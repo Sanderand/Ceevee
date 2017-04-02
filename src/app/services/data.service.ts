@@ -113,80 +113,54 @@ const data = {
       "description": "Lorem ipsum dolor sit amet"
     }]
   }, {
-    "class": "skills",
-    "title": "Skills",
+    "class": "detail-list",
+    "title": "Volunteering",
     "items": [{
-      "title": "HTML5",
-      "description": "Lorem ipsum dolor sit amet",
-      "percentage": 0.5,
-    }, {
-      "title": "Angular",
-      "description": "Lorem ipsum dolor sit amet",
-      "percentage": 0.7,
-    }, {
-      "title": "Typescript",
-      "description": "Lorem ipsum dolor sit amet",
-      "percentage": 0.9,
-    }]
-  }, {
-    "class": "volunteering",
-    "headline": "Volunteer Experience",
-    "subline": "",
-    "items": [{
-      "name": "",
-      "institution": "",
-      "location": "",
-      "role": "",
-      "cause": "",
+      "title": "First Aider",
+      "description": "Lorem ipsum dolor sit amet.",
+      "institution": "German Red Cross",
+      "location": "Warburg, Germany",
       "start": 1491105337407,
-      "end": 1491105337407,
-      "current": true,
-      "once": "false",
-      "description": "",
-      "tags": [],
-      "links": []
-    }]
-  }, {
-    "class": "awards",
-    "headline": "Awards",
-    "subline": "",
-    "items": [{
-      "name": "Mobile Solutions Hackerthon 2015 Winner",
-      "description": "Development of single page applications for on-boarding pre-paid and post-paid services in an Adobe Experience Manager environment at Australia’s biggest Telco, Telstra. Using AngularJS, Node.JS, Karma, Jasmine, Swagger and Atlassian products.",
-      "institution": "IE Digital",
-      "location": "Melbourne, Australia",
-      "date": 1491105337407,
-      "tags": [],
-      "links": []
-    }]
-  }, {
-    "class": "interests",
-    "headline": "Interests",
-    "subline": "Stuff I do in my freetime",
-    "items": [{
-      "name": "Traveling",
-      "description": "Lorem ipsum dolor sit amet",
+      "end": null,
+      "link": "https://drk.de",
       "tags": [{
-        "name": "Freedom"
-      }],
-      "links": [{
-        "name": "Travelblog",
-        "url": "https://medium.com/andresander"
+        name: 'Charity'
       }]
     }]
   }, {
-    "class": "contribution",
-    "headline": "Contributions",
-    "subline": "Some additional work",
+    "class": "detail-list",
+    "title": "Awards",
     "items": [{
-      "name": "Webcomponents Example",
-      "description": "Lorem ipsum dolor sit amet",
+      "title": "Mobile Solutions Hackerthon 2015 Winner",
+      "description": "Development of a location based service application for geo-fencing.",
+      "institution": "Deutsche Telekom AG",
+      "location": "Darmstadt, Germany",
+      "start": null,
+      "end": 1491105337407,
+      "link": "#",
       "tags": [{
-        "name": "Open Source"
-      }],
-      "links": [{
-        "name": "Repository",
-        "url": "https://github.com/webcomponents"
+        name: 'Hackathon'
+      }, {
+        name: 'Mobile'
+      }]
+    }]
+  }, {
+    "class": "detail-list",
+    "title": "Contributions",
+    "items": [{
+      "title": "webcomponents.js",
+      "description": "Lorem ipsum dolor sit amet",
+      "institution": "Github",
+      "location": null,
+      "start": null,
+      "end": 1491105337407,
+      "link": "#",
+      "tags": [{
+        name: 'Github'
+      }, {
+        name: 'Open Source'
+      }, {
+        name: 'Web Components'
       }]
     }]
   }, {
@@ -194,13 +168,26 @@ const data = {
     "title": "Languages",
     "items": [{
       "title": "German",
+      "percentage": 1.0,
       "description": "Mother-tongue"
     }, {
       "title": "English",
+      "percentage": 0.9,
       "description": "Spoken and written proficiency"
     }, {
       "title": "French",
+      "percentage": 0.1,
       "description": "Basic language skills"
+    }]
+  }, {
+    "class": "skills",
+    "title": "Interests",
+    "items": [{
+      "title": "Traveling",
+      "description": "Lorem ipsum dolor sit amet"
+    },{
+      "title": "Yoga",
+      "description": "Lorem ipsum dolor sit amet"
     }]
   }]
 };
