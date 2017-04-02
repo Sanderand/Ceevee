@@ -1,1 +1,56 @@
 /* You can add global styles to this file, and also import other style files */
+
+.cv {
+  .default {
+    font-family: "Helvetica Neue";
+    display: flex;
+    flex-direction: column;
+
+    .details {
+      .name {
+
+      }
+      .dob {
+
+      }
+      .email {
+
+      }
+      .url {
+
+      }
+      .tel {
+
+      }
+      .summary {
+
+      }
+    }
+
+    .items {
+      .item {
+        .header {
+          padding: 1em 0em;
+
+          .headline {
+            font-size: 2em;
+            display: inline-block;
+            line-height: 2em;
+            color: #222222;
+          }
+
+          .subline {
+            font-size: 1.5em;
+            display: inline-block;
+            line-height: 2em;
+            color: #444444;
+
+            &:before {
+              content: ' - ';
+            }
+          }
+        }
+      }
+    }
+  }
+}
