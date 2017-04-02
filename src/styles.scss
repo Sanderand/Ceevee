@@ -1,56 +1,348 @@
-/* You can add global styles to this file, and also import other style files */
+$c_light: #666;
+$c_lighter: #ccc;
+$c_highlight: #4183C4;
 
 .cv {
   .default {
-    font-family: "Helvetica Neue";
+    font-size: 0.9em;
+    font-family: 'Quicksand', sans-serif;
     display: flex;
     flex-direction: column;
 
+    *, :after, :before {
+      box-sizing: inherit;
+    }
+
+    a {
+      color: $c_highlight;
+      text-decoration: none;
+    }
+
+    .tag {
+      background-color: $c_highlight;
+      color: #fff;
+
+      display: inline-block;
+      line-height: 1;
+      vertical-align: baseline;
+      margin: 0 .1em;
+      padding: 0 .7em;
+      font-size: .8em;
+      line-height: 1.8em;
+      font-weight: 700;
+      border-radius: .3em;
+    }
+
     .details {
+      text-align: center;
+      line-height: 1.25em;
+      margin-bottom: 2em;
+
       .name {
-
+        text-transform: uppercase;
+        font-size: 1.75em;
+        letter-spacing: 0.25em;
+        padding-top: 1em;
+        padding-bottom: 0.25em;
+        font-weight: bolder;
       }
-      .dob {
 
-      }
-      .email {
+      .address {
+        display: inline-block;
 
+        &:after {
+          padding-left: .5em;
+          padding-right: .25em;
+          content: '•';
+        }
       }
-      .url {
 
-      }
       .tel {
-
+        display: inline-block;
       }
-      .summary {
 
+      .email {
+        display: inline-block;
+
+        &:after {
+          padding-left: .5em;
+          padding-right: .25em;
+          content: '•';
+        }
+      }
+
+      .url {
+        display: inline-block;
+      }
+
+      .email,
+      .url {
+        font-size: 0.9em;
       }
     }
 
     .items {
-      .item {
-        .header {
-          padding: 1em 0em;
+      padding-left: 2em;
+      padding-right: 2em;
+      padding-bottom: 1em;
+      max-width: 768px;
+      margin: 0 auto;
 
-          .headline {
-            font-size: 2em;
+      .item {
+        .experience,
+        .education,
+        .volunteering,
+        .skills,
+        .awards,
+        .interests,
+        .contribution,
+        .language,
+        .recommendation {
+          margin-bottom: 2em;
+
+          >.title {
+            text-transform: uppercase;
+            padding-bottom: 0.5em;
+            font-weight: 900;
+            font-size: 1.15em;
+          }
+        }
+
+        .text {
+          padding-bottom: 2em;
+          text-align: center;
+
+          .title {
             display: inline-block;
-            line-height: 2em;
-            color: #222222;
+            font-weight: 500;
+            color: $c_light;
+
+            &:after {
+              content: ':';
+            }
           }
 
-          .subline {
-            font-size: 1.5em;
+          .content {
             display: inline-block;
-            line-height: 2em;
-            color: #444444;
+          }
+        }
 
-            &:before {
-              content: ' - ';
+        .experience,
+        .education {
+          display: table;
+
+          .child {
+            display: table-row;
+
+            &:last-child .left,
+            &:last-child .right {
+              padding-bottom: 0;
+            }
+
+            .left, .right {
+              padding-bottom: 1.25em;
+              display: table-cell;
+            }
+
+            .left {
+              padding-right: 1.25em;
+              min-width: 120px;
+            }
+
+            .right {
+              width: 100%;
+              padding-left: 1.25em;
+              vertical-align: top;
+              border-left: 1px solid $c_lighter;
+            }
+
+            .title {
+              display: inline-block;
+              font-weight: bolder;
+              padding-bottom: 0.25em;
+            }
+
+            .institution {
+              display: inline-block;
+            }
+
+            .location {
+              display: inline-block;
+              font-size: 0.9em;
+
+              &:before{
+                content: '(';
+              }
+
+              &:after {
+                content: ')';
+              }
+            }
+
+            .timespan {
+              color: $c_light;
+              font-size: 0.9em;
+
+              .start {
+                display: inline-block;
+
+                &:after {
+                  content: '-';
+                  padding-left: .5em;
+                  padding-right: .25em;
+                }
+              }
+              .end {
+                display: inline-block;
+              }
+            }
+
+            .description {
+              padding-top: 0.35em;
+              padding-bottom: 0.35em;
+              text-align: justify;
+            }
+          }
+        }
+
+        .skills {
+          display: table;
+
+          .child {
+            display: table-row;
+
+            .title {
+              display: table-cell;
+              min-width: 120px;
+              padding-right: 1.25em;
+              padding-bottom: 0.5em;
+            }
+
+            .bar {
+              display: table-cell;
+              vertical-align: top;
+              width: 100%;
+              padding-bottom: 0.5em;
+
+              .wrapper {
+                width: 50%;
+                background-color: $c_lighter;
+                margin-bottom: 0.25em;
+
+                .percentage {
+                  display: block;
+                  height: 0.5em;
+                  background-color: $c_highlight;
+                }
+              }
+
+              .description {
+                font-size: 0.85em;
+                color: $c_light;
+              }
+            }
+          }
+        }
+
+        .recommendation {
+          .child {
+            .name {
+              display: inline-block;
+              font-weight: bolder;
+            }
+
+            .relationship {
+              display: inline-block;
+              font-size: 0.9em;
+
+              &:before{
+                content: '(';
+              }
+
+              &::after{
+                content: ' at';
+              }
+            }
+
+            .institution {
+              display: inline-block;
+              font-size: 0.9em;
+
+              &:after {
+                content: ')';
+              }
+            }
+            .comment {
+              text-align: justify;
+              color: $c_light;
+              font-size: 0.85em;
+
+              &:before{
+                content: '„';
+                display: inline-block;
+                width: 0.5em;
+                font-weight: 900;
+              }
+
+              &::after{
+                content: '”';
+                display: inline-block;
+                width: 0.5em;
+                font-weight: 900;
+              }
             }
           }
         }
       }
     }
   }
+}
+
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
 }

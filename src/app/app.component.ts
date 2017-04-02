@@ -11,6 +11,9 @@ import { TYPES } from './services/types';
 export class AppComponent implements OnInit {
   public data: any = null;
   public TYPES = TYPES;
+  public CONSTANTS: any = {
+    UNTIL_NOW: 'present'
+  };
 
   constructor (
     private _dataService: DataService

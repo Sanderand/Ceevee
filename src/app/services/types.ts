@@ -1,9 +1,9 @@
 export const TYPES = {
-  HEADER: 'header',
+  TEXT: 'text',
   EXPERIENCE: 'experience',
   EDUCATION: 'education',
   VOLUNTEERING: 'volunteering',
-  BUZZWORD: 'buzzword',
+  SKILLS: 'skills',
   AWARDS: 'awards',
   INTERESTS: 'interests',
   CONTRIBUTION: 'contribution',

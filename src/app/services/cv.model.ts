@@ -1,10 +1,9 @@
 export class Details {
   public name: string;
-  public dob: number;
+  public address: string;
   public email: string;
   public url: string;
   public tel: string;
-  public summary: string;
 }
 
 export class Theme {

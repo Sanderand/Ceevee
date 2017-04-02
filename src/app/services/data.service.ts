@@ -36,56 +36,97 @@ export class DataService {
 const data = {
   "details": {
     "name": "Andre Sander",
-    "dob": 12836127832,
+    "address": "Habichtsweg 14, 34414 Warburg",
     "email": "mail@andresander.com",
     "url": "http://andresander.com",
-    "tel": "+64 22 348 1354",
-    "summary": "Lorem ipsum dolor sit amet"
+    "tel": "022 348 1354"
   },
   "theme": {
     "name": "Default",
     "class": "default"
   },
   "items": [{
-    "class": "header",
-    "headline": "Curriculum Vitae",
-    "subline": "Lebenslauf"
-  },{
+    "class": "text",
+    "title": "Mission",
+    "content": "Making the web a better place!"
+  }, {
     "class": "experience",
-    "headline": "Experience",
-    "subline": "Jobs",
+    "title": "Experience",
     "items": [{
-      "headline": "Front End Developer",
-      "subline": "Contractor",
+      "title": "JavaScript Developer",
+      "institution": "Trade Me",
+      "link": "https://trademe.co.nz",
+      "location": "Wellington, New Zealand",
+      "start": 1491105337407,
+      "end": null,
+      "description": "Anyway, some uni student is just Jim Hickey in disguise, to find the true meaning of life, one must start wobbling with the Jafa, mate. After the tomato sauce is skived off, you add all the cool pauas to the jersey you've got yourself a meal.",
+      "tags": [
+        { name: 'typescript' },
+        { name: 'angular' }
+      ]
+    }, {
+      "title": "Front End Developer",
       "institution": "IE Digital",
+      "link": "https://ie.com.au",
       "location": "Melbourne, Australia",
-      "role": "",
-      "start": 12369182981,
-      "end": 21283768123,
-      "current": true,
+      "start": 1491105337407,
+      "end": 1491105337407,
       "description": "Development of single page applications for on-boarding pre-paid and post-paid services in an Adobe Experience Manager environment at Australia’s biggest Telco, Telstra. Using AngularJS, Node.JS, Karma, Jasmine, Swagger and Atlassian products.",
-      "tags": [],
-      "links": [{
-        "name": "Website",
-        "url": "https://trademe.co.nz"
-      }]
+      "tags": [
+        { name: 'ng1' },
+        { name: 'karma' },
+        { name: 'node.js' },
+        { name: 'AEM' }
+      ]
+    }]
+  }, {
+    "class": "recommendation",
+    "title": "Recommendations",
+    "items": [{
+      "name": "Mark Gladman",
+      "institution": "Telstra Digital",
+      "relationship": "Manager",
+      "comment": "Andre was an amazing addition to the Telstra Digital development team. He hit the ground running and was comfortable with even the most complicated pieces of work. His strong knowledge of Angular was a huge boon to the team and would strongly recommend his skills and up-beat personality."
     }]
   }, {
     "class": "education",
-    "headline": "Education",
-    "subline": "",
+    "title": "Education",
     "items": [{
-      "institution": "",
-      "location": "",
-      "start": 128736871273,
-      "end": 234838488438,
-      "current": true,
-      "degree": "",
-      "field": "",
-      "grade": "",
-      "description": "",
-      "tags": [],
-      "links": []
+      "institution": "University of Applied Sciences Darmstadt",
+      "link": "https://hda.de",
+      "location": "Darmstadt, Germany",
+      "start": 1491105337407,
+      "end": 1491105337407,
+      "title": "Bachelor of Science",
+      "field": "Computer Science",
+      "grade": "1.5",
+      "description": "Lorem ipsum dolor sit amet"
+    }, {
+      "institution": "Hüffertgymnasium",
+      "link": "https://hgw.de",
+      "location": "Warburg, Germany",
+      "start": 1491105337407,
+      "end": 1491105337407,
+      "title": "Highschool Degree",
+      "field": "Mathematics, English, Computer Science, Geographie",
+      "grade": "1.6",
+      "description": "Lorem ipsum dolor sit amet"
+    }]
+  }, {
+    "class": "skills",
+    "title": "Skills",
+    "items": [{
+      "title": "HTML5",
+      "description": "Lorem ipsum dolor sit amet",
+      "percentage": 0.5,
+    }, {
+      "title": "Angular",
+      "description": "Lorem ipsum dolor sit amet",
+      "percentage": 0.7,
+    }, {
+      "title": "Typescript",
+      "description": "Lorem ipsum dolor sit amet",
+      "percentage": 0.9,
     }]
   }, {
     "class": "volunteering",
@@ -97,21 +138,13 @@ const data = {
       "location": "",
       "role": "",
       "cause": "",
-      "start": 128736871273,
-      "end": 234838488438,
+      "start": 1491105337407,
+      "end": 1491105337407,
       "current": true,
       "once": "false",
       "description": "",
       "tags": [],
       "links": []
-    }]
-  }, {
-    "class": "buzzword",
-    "headline": "",
-    "subline": "",
-    "items": [{
-      "name": "HTML5",
-      "starred": true,
     }]
   }, {
     "class": "awards",
@@ -122,7 +155,7 @@ const data = {
       "description": "Development of single page applications for on-boarding pre-paid and post-paid services in an Adobe Experience Manager environment at Australia’s biggest Telco, Telstra. Using AngularJS, Node.JS, Karma, Jasmine, Swagger and Atlassian products.",
       "institution": "IE Digital",
       "location": "Melbourne, Australia",
-      "date": 12369182981,
+      "date": 1491105337407,
       "tags": [],
       "links": []
     }]
@@ -157,25 +190,17 @@ const data = {
       }]
     }]
   }, {
-    "class": "language",
-    "headline": "Languages",
-    "subline": "",
+    "class": "skills",
+    "title": "Languages",
     "items": [{
-      "name": "German",
-      "spoken": true,
-      "written": true,
-      "level": "Mother-tongue"
-    }]
-  }, {
-    "class": "recommendation",
-    "headline": "Recommendations",
-    "subline": "Received feedback",
-    "items": [{
-      "name": "Mark Gladman",
-      "role": "Digital Development Stream Lead",
-      "institution": "Telstra Digital",
-      "relationship": "Manager",
-      "comment": "Andre was an amazing addition to the Telstra Digital development team. He hit the ground running and was comfortable with even the most complicated pieces of work. His strong knowledge of Angular was a huge boon to the team and would strongly recommend his skills and up-beat personality."
+      "title": "German",
+      "description": "Mother-tongue"
+    }, {
+      "title": "English",
+      "description": "Spoken and written proficiency"
+    }, {
+      "title": "French",
+      "description": "Basic language skills"
     }]
   }]
 };

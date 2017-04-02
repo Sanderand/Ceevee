@@ -5,230 +5,253 @@
 
     <div class="details">
       <div class="name">{{ data.details.name }}</div>
-      <div class="dob">{{ data.details.dob }}</div>
-      <div class="email">{{ data.details.email }}</div>
-      <div class="url">{{ data.details.url }}</div>
-      <div class="tel">{{ data.details.tel }}</div>
-      <div class="summary">{{ data.details.summary }}</div>
+
+      <div>
+        <div class="address">{{ data.details.address }}</div>
+        <div class="tel">{{ data.details.tel }}</div>
+      </div>
+
+      <div>
+        <a
+          [attr.href]="'mailto:' + data.details.email"
+          class="email">{{ data.details.email }}</a>
+        <a
+          [attr.href]="data.details.url"
+          target="_blank"
+          class="url">{{ data.details.url }}</a>
+      </div>
     </div>
 
     <div class="items">
       <div
         *ngFor="let item of data.items"
         class="item">
-        <div [class]="item.class">
-          <div
-            *ngIf="item.class === TYPES.HEADER"
-            [class]="item.class">
-            <div class="headline">{{ item.headline }}</div>
-            <div class="subline">{{ item.subline }}</div>
-          </div>
+        <div
+          *ngIf="item.class === TYPES.TEXT"
+          [class]="item.class">
+          <div class="title">{{ item.title }}</div>
+          <div class="content">{{ item.content }}</div>
+        </div>
+
+        <div
+          *ngIf="item.class === TYPES.EXPERIENCE"
+          [class]="item.class">
+          <div class="title">{{ item.title }}</div>
 
           <div
-            *ngIf="item.class === TYPES.EXPERIENCE"
-            [class]="item.class">
-            <div class="headline">{{ item.headline }}</div>
-            <div class="subline">{{ item.subline }}</div>
+            *ngFor="let child of item.items"
+            class="child">
+            <div class="left">
+              <div class="title">{{ child.title }}</div>
 
-            <div *ngFor="let child of item.items">
-              <div class="headline">{{ child.headline }}</div>
-              <div class="subline">{{ child.subline }}</div>
-              <div class="institution">{{ child.institution }}</div>
+              <div class="timespan">
+                <div class="start">{{ child.start | date:'MM/yy' }}</div>
+                <div class="end">{{ child.end ? (child.end | date:'MM/yy') : CONSTANTS.UNTIL_NOW }}</div>
+              </div>
+            </div>
+
+            <div class="right">
+              <a
+                [attr.href]="child.link"
+                target="_blank"
+                class="institution">{{ child.institution }}</a>
               <div class="location">{{ child.location }}</div>
-              <div class="role">{{ child.role }}</div>
-              <div class="start">{{ child.start }}</div>
-              <div class="end">{{ child.end }}</div>
-              <div class="current">{{ child.current }}</div>
               <div class="description">{{ child.description }}</div>
 
-              <div
-                *ngFor="let tag of child.tags"
-                class="tags">
-                <div class="tag">
-                  <div class="tag">{{ tag.name }}</div>
-                </div>
-              </div>
-
-              <div
-                *ngFor="let link of child.links"
-                class="links">
-                <div class="link">
-                  <a [href]="link.href" class="link">{{ link.name }}</a>
+              <div class="tags">
+                <div
+                  *ngFor="let tag of child.tags"
+                  class="tag">
+                  {{ tag.name }}
                 </div>
               </div>
             </div>
           </div>
+        </div>
+
+        <div
+          *ngIf="item.class === TYPES.EDUCATION"
+          [class]="item.class">
+          <div class="title">{{ item.title }}</div>
 
           <div
-            *ngIf="item.class === TYPES.EDUCATION"
-            [class]="item.class">
-            <div class="headline">{{ item.headline }}</div>
-            <div class="subline">{{ item.subline }}</div>
+            *ngFor="let child of item.items"
+            class="child">
 
-            <div *ngFor="let child of item.items">
-              <div class="institution">{{ child.institution }}</div>
+            <div class="left">
+              <div class="title">{{ child.title }}</div>
+
+              <div class="timespan">
+                <div class="start">{{ child.start | date:'MM/yy' }}</div>
+                <div class="end">{{ child.end ? (child.end | date:'MM/yy') : CONSTANTS.UNTIL_NOW }}</div>
+              </div>
+            </div>
+
+            <div class="right">
+              <a
+                [attr.href]="child.link"
+                target="_blank"
+                class="institution">{{ child.institution }}</a>
               <div class="location">{{ child.location }}</div>
-              <div class="start">{{ child.start }}</div>
-              <div class="end">{{ child.end }}</div>
-              <div class="current">{{ child.current }}</div>
-              <div class="degree">{{ child.degree }}</div>
-              <div class="field">{{ child.field }}</div>
-              <div class="grade">{{ child.grade }}</div>
               <div class="description">{{ child.description }}</div>
-
-              <div
-                *ngFor="let tag of child.tags"
-                class="tags">
-                <div class="tag">
-                  <div class="tag">{{ tag.name }}</div>
-                </div>
-              </div>
-
-              <div
-                *ngFor="let link of child.links"
-                class="links">
-                <div class="link">
-                  <a [href]="link.href" class="link">{{ link.name }}</a>
-                </div>
-              </div>
+              <div class="field">Field: {{ child.field }}</div>
+              <div class="grade">Grade: {{ child.grade }}</div>
             </div>
           </div>
+        </div>
+
+        <div
+          *ngIf="item.class === TYPES.VOLUNTEERING"
+          [class]="item.class">
+          <div class="headline">{{ item.headline }}</div>
+          <div class="subline">{{ item.subline }}</div>
 
           <div
-            *ngIf="item.class === TYPES.VOLUNTEERING"
-            [class]="item.class">
-            <div class="headline">{{ item.headline }}</div>
-            <div class="subline">{{ item.subline }}</div>
+            *ngFor="let child of item.items"
+            class="child">
+            <div class="name">{{ child.name }}</div>
+            <div class="institution">{{ child.institution }}</div>
+            <div class="location">{{ child.location }}</div>
+            <div class="role">{{ child.role }}</div>
+            <div class="cause">{{ child.cause }}</div>
+            <div class="start">{{ child.start | date:'MM/yy' }}</div>
+            <div class="end">{{ child.end ? (child.end | date:'MM/yy') : CONSTANTS.UNTIL_NOW }}</div>
 
-            <div *ngFor="let child of item.items">
-              <div class="name">{{ child.name }}</div>
-              <div class="institution">{{ child.institution }}</div>
-              <div class="location">{{ child.location }}</div>
-              <div class="role">{{ child.role }}</div>
-              <div class="cause">{{ child.cause }}</div>
-              <div class="start">{{ child.start }}</div>
-              <div class="end">{{ child.end }}</div>
-              <div class="current">{{ child.current }}</div>
-              <div class="once">{{ child.once }}</div>
-              <div class="description">{{ child.description }}</div>
-
-              <div
-                *ngFor="let tag of child.tags"
-                class="tags">
-                <div class="tag">
-                  <div class="tag">{{ tag.name }}</div>
-                </div>
-              </div>
-
-              <div
-                *ngFor="let link of child.links"
-                class="links">
-                <div class="link">
-                  <a [href]="link.href" class="link">{{ link.name }}</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div
-            *ngIf="item.class === TYPES.BUZZWORD"
-            [class]="item.class">
-            <div class="headline">{{ item.headline }}</div>
-            <div class="subline">{{ item.subline }}</div>
-
-            <div *ngFor="let child of item.items">
-              <div class="name">{{ child.name }}</div>
-              <div class="starred">{{ child.starred }}</div>
-            </div>
-          </div>
-
-          <div
-            *ngIf="item.class === TYPES.AWARDS"
-            [class]="item.class">
-            <div class="headline">{{ item.headline }}</div>
-            <div class="subline">{{ item.subline }}</div>
-
-            <div *ngFor="let child of item.items">
-              <div class="name">{{ child.name }}</div>
-              <div class="description">{{ child.description }}</div>
-              <div class="institution">{{ child.institution }}</div>
-              <div class="location">{{ child.location }}</div>
-              <div class="date">{{ child.date }}</div>
-
-              <div
-                *ngFor="let tag of child.tags"
-                class="tags">
-                <div class="tag">
-                  <div class="tag">{{ tag.name }}</div>
-                </div>
-              </div>
-
-              <div
-                *ngFor="let link of child.links"
-                class="links">
-                <div class="link">
-                  <a [href]="link.href" class="link">{{ link.name }}</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div
-            *ngIf="item.class === TYPES.CONTRIBUTION || item.class === TYPES.INTERESTS"
-            [class]="item.class">
-            <div class="headline">{{ item.headline }}</div>
-            <div class="subline">{{ item.subline }}</div>
+            <div class="current">{{ child.current }}</div>
+            <div class="once">{{ child.once }}</div>
+            <div class="description">{{ child.description }}</div>
 
             <div
-              *ngFor="let child of item.items">
-              <div class="name">{{ child.name }}</div>
-              <div class="description">{{ child.description }}</div>
+              *ngFor="let tag of child.tags"
+              class="tags">
+              <div class="tag">{{ tag.name }}</div>
+            </div>
 
+            <div
+              *ngFor="let link of child.links"
+              class="links">
+              <div class="link">
+                <a [attr.href]="link.href" class="link">{{ link.name }}</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          *ngIf="item.class === TYPES.SKILLS"
+          [class]="item.class">
+          <div class="title">{{ item.title }}</div>
+
+          <div
+            *ngFor="let child of item.items"
+            class="child">
+            <div class="title">{{ child.title }}</div>
+
+            <div class="bar">
               <div
-                *ngFor="let tag of child.tags"
-                class="tags">
-                <div class="tag">
-                  <div class="tag">{{ tag.name }}</div>
+                *ngIf="child.percentage"
+                class="wrapper">
+                <div
+                  class="percentage"
+                  [style.width]="child.percentage * 100 + '%'">
                 </div>
               </div>
 
               <div
-                *ngFor="let link of child.links"
-                class="links">
-                <div class="link">
-                  <a [href]="link.href" class="link">{{ link.name }}</a>
-                </div>
+                *ngIf="child.description"
+                class="description">
+                {{ child.description }}
               </div>
             </div>
           </div>
+        </div>
+
+        <div
+          *ngIf="item.class === TYPES.AWARDS"
+          [class]="item.class">
+          <div class="headline">{{ item.headline }}</div>
+          <div class="subline">{{ item.subline }}</div>
 
           <div
-            *ngIf="item.class === TYPES.LANGUAGE"
-            [class]="item.class">
-            <div class="headline">{{ item.headline }}</div>
-            <div class="subline">{{ item.subline }}</div>
+            *ngFor="let child of item.items"
+            class="child">
+            <div class="name">{{ child.name }}</div>
+            <div class="description">{{ child.description }}</div>
+            <div class="institution">{{ child.institution }}</div>
+            <div class="location">{{ child.location }}</div>
+            <div class="date">{{ child.date | date:'MM/yy' }}</div>
 
-            <div *ngFor="let child of item.items">
-              <div class="name">{{ child.name }}</div>
-              <div class="spoken">{{ child.spoken }}</div>
-              <div class="written">{{ child.written }}</div>
-              <div class="level">{{ child.level }}</div>
+            <div
+              *ngFor="let tag of child.tags"
+              class="tags">
+              <div class="tag">{{ tag.name }}</div>
+            </div>
+
+            <div
+              *ngFor="let link of child.links"
+              class="links">
+              <div class="link">
+                <a [href]="link.href" class="link">{{ link.name }}</a>
+              </div>
             </div>
           </div>
+        </div>
+
+        <div
+          *ngIf="item.class === TYPES.CONTRIBUTION || item.class === TYPES.INTERESTS"
+          [class]="item.class">
+          <div class="headline">{{ item.headline }}</div>
+          <div class="subline">{{ item.subline }}</div>
 
           <div
-            *ngIf="item.class === TYPES.RECOMMENDATION"
-            [class]="item.class">
-            <div class="headline">{{ item.headline }}</div>
-            <div class="subline">{{ item.subline }}</div>
+            *ngFor="let child of item.items">
+            <div class="name">{{ child.name }}</div>
+            <div class="description">{{ child.description }}</div>
 
-            <div *ngFor="let child of item.items">
-              <div class="name">{{ child.name }}</div>
-              <div class="role">{{ child.role }}</div>
-              <div class="institution">{{ child.institution }}</div>
-              <div class="relationship">{{ child.relationship }}</div>
-              <div class="comment">{{ child.comment }}</div>
+            <div
+              *ngFor="let tag of child.tags"
+              class="tags">
+              <div class="tag">{{ tag.name }}</div>
             </div>
+
+            <div
+              *ngFor="let link of child.links"
+              class="links">
+              <div class="link">
+                <a [href]="link.href" class="link">{{ link.name }}</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          *ngIf="item.class === TYPES.LANGUAGE"
+          [class]="item.class">
+          <div class="headline">{{ item.headline }}</div>
+          <div class="subline">{{ item.subline }}</div>
+
+          <div
+            *ngFor="let child of item.items"
+            class="child">
+            <div class="name">{{ child.name }}</div>
+            <div class="spoken">{{ child.spoken }}</div>
+            <div class="written">{{ child.written }}</div>
+            <div class="level">{{ child.level }}</div>
+          </div>
+        </div>
+
+        <div
+          *ngIf="item.class === TYPES.RECOMMENDATION"
+          [class]="item.class">
+          <div class="title">{{ item.title }}</div>
+
+          <div
+            *ngFor="let child of item.items"
+            class="child">
+            <div class="name">{{ child.name }}</div>
+            <div class="relationship">{{ child.relationship }}</div>
+            <div class="institution">{{ child.institution }}</div>
+            <div class="comment">{{ child.comment }}</div>
           </div>
         </div>
       </div>
