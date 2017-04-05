@@ -2,6 +2,9 @@ import { Component, OnInit, ViewEncapsulation, ViewChild, ElementRef, HostListen
 import { DataService } from './services/data.service';
 import { TYPES } from './services/types';
 
+// TODO: edit special field: percentage, links, dates
+// TODO: rename/abstract list-types
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
