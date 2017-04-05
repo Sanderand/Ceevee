@@ -38,7 +38,7 @@ export class AppComponent implements OnInit {
     let value = target.innerHTML;
 
     this.editing = { parent, field, target };
-    this.input.nativeElement.value = value;
+    this.input.nativeElement.value = value.trim();
 
     $event.preventDefault();
     $event.stopPropagation();
@@ -58,7 +58,7 @@ export class AppComponent implements OnInit {
     this.inputWrapper.nativeElement.style.position = 'absolute';
     this.inputWrapper.nativeElement.style.top = `${ offsetTop }px`;
     this.inputWrapper.nativeElement.style.left = `${ boundingBox.left }px`;
-    this.inputWrapper.nativeElement.style.right = `32px`;
+    this.inputWrapper.nativeElement.style.right = `0px`;
     this.inputWrapper.nativeElement.style.height = `${ boundingBox.height }px`;
     this.inputWrapper.nativeElement.classList.add('active');
 
@@ -69,6 +69,7 @@ export class AppComponent implements OnInit {
     this.input.nativeElement.style.letterSpacing = styleElement.letterSpacing;
     this.input.nativeElement.style.fontFamily = styleElement.fontFamily;
     this.input.nativeElement.style.textTransform = styleElement.textTransform;
+    this.input.nativeElement.style.textAlign = styleElement.textAlign;
     this.input.nativeElement.focus();
   }
 
