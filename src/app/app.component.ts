@@ -30,12 +30,15 @@ export class AppComponent implements OnInit {
   }
 
   public editField ($event, parent, field): void {
+    if (this.editing) {
+      this.saveChanges();
+    }
+
     let target = $event.target;
     let value = target.innerHTML;
 
     this.editing = { parent, field, target };
     this.input.nativeElement.value = value;
-    this.input.nativeElement.focus();
 
     $event.preventDefault();
     $event.stopPropagation();
@@ -44,6 +47,10 @@ export class AppComponent implements OnInit {
   }
 
   @HostListener('window:resize') public updateEditBoxPosition (): void {
+    if (!this.editing) {
+      return;
+    }
+
     let boundingBox = this.editing.target.getBoundingClientRect();
     let offsetTop = this.editing.target.offsetTop;
     let styleElement = window.getComputedStyle(this.editing.target);
@@ -62,6 +69,7 @@ export class AppComponent implements OnInit {
     this.input.nativeElement.style.letterSpacing = styleElement.letterSpacing;
     this.input.nativeElement.style.fontFamily = styleElement.fontFamily;
     this.input.nativeElement.style.textTransform = styleElement.textTransform;
+    this.input.nativeElement.focus();
   }
 
   @HostListener('document:click', ['$event']) public onClick ($event): void {
@@ -71,10 +79,19 @@ export class AppComponent implements OnInit {
   }
 
   public cancelEdit (): void {
+    if (!this.editing) {
+      return;
+    }
+
     this.inputWrapper.nativeElement.classList.remove('active');
+    this.editing = null;
   }
 
   public saveChanges (): void {
+    if (!this.editing) {
+      return;
+    }
+
     let newValue = this.input.nativeElement.value.trim();
 
     if (newValue.length) {
