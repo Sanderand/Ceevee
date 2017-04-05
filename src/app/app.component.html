@@ -177,18 +177,38 @@
         <div
           *ngIf="item.class === TYPES.RECOMMENDATION"
           [class]="item.class">
-          <div class="title">{{ item.title }}</div>
+          <div
+            (click)="editField($event, item, 'title')"
+            class="title">{{ item.title }}</div>
 
           <div
             *ngFor="let child of item.items"
             class="child">
-            <div class="name">{{ child.name }}</div>
-            <div class="relationship">{{ child.relationship }}</div>
-            <div class="institution">{{ child.institution }}</div>
-            <div class="comment">{{ child.comment }}</div>
+            <div
+              (click)="editField($event, child, 'name')"
+              class="name">{{ child.name }}</div>
+            <div
+              (click)="editField($event, child, 'relationship')"
+              class="relationship">{{ child.relationship }}</div>
+            <div
+              (click)="editField($event, child, 'institution')"
+              class="institution">{{ child.institution }}</div>
+            <div
+              (click)="editField($event, child, 'comment')"
+              class="comment">{{ child.comment }}</div>
           </div>
         </div>
       </div>
     </div>
+  </div>
+</div>
+
+<div
+  #inputWrapper
+  class="input-wrapper">
+  <textarea #input></textarea>
+  <div class="buttons">
+    <button
+      (click)="cancelEdit()">Undo</button>
   </div>
 </div>
