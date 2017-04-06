@@ -64,12 +64,10 @@ export class AppComponent implements OnInit {
     this.inputWrapper.nativeElement.style.top = `${ offsetTop }px`;
     this.inputWrapper.nativeElement.style.left = `${ boundingBox.left }px`;
     this.inputWrapper.nativeElement.style.right = `0px`;
-    this.inputWrapper.nativeElement.style.height = styleElement.lineHeight;//`${ boundingBox.height }px`;
     this.inputWrapper.nativeElement.classList.add('active');
 
     this.textarea.nativeElement.style.fontSize = styleElement.fontSize;
     this.textarea.nativeElement.style.fontWeight = styleElement.fontWeight;
-    this.textarea.nativeElement.style.color = styleElement.color;
     this.textarea.nativeElement.style.lineHeight = styleElement.lineHeight;
     this.textarea.nativeElement.style.letterSpacing = styleElement.letterSpacing;
     this.textarea.nativeElement.style.fontFamily = styleElement.fontFamily;
@@ -80,16 +78,14 @@ export class AppComponent implements OnInit {
   }
 
   @HostListener('document:click', ['$event']) public onClick ($event): void {
-    if (!this.inputWrapper.nativeElement.contains($event.target)) {
+    if (!this.textarea.nativeElement.contains($event.target)) {
       this.saveChanges();
     }
   }
 
   public updateTextAreaHeight = (): void => {
-      if (this.textarea.nativeElement.value.length) {
-          this.textarea.nativeElement.style.height = `auto`;
-          this.textarea.nativeElement.style.height = `${ this.textarea.nativeElement.scrollHeight }px`;
-      }
+    this.textarea.nativeElement.style.height = `auto`;
+    this.textarea.nativeElement.style.height = `${ this.textarea.nativeElement.scrollHeight }px`;
   }
 
   public delayedUpdateTextAreaHeight (): void {
@@ -116,6 +112,7 @@ export class AppComponent implements OnInit {
     let newValue = this.textarea.nativeElement.value.trim();
 
     if (newValue.length) {
+      // newValue = newValue.replace('\n', '<br>');
       this.editing.parent[this.editing.field] = newValue;
     }
 

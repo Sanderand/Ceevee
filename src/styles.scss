@@ -310,8 +310,8 @@
 .input-wrapper {
   display: none;
   z-index: 1000;
-  border-bottom: 1px solid $c_editing;
-  box-shadow: 0px 0px 10px 5px #fff;
+  background-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0px 0px 5px 2px #fff;
 
   &.active {
     display: block;
@@ -324,12 +324,14 @@
     outline: none;
     resize: none;
     padding: 0;
+    border-bottom: 1px solid $c_editing;
+    color: $c_editing;
     background-color: $c_editing_light;
   }
 
   .buttons {
     display: inline-block;
-    margin-top: -2px;
+    margin-top: -4px;
 
     button {
       display: inline;
@@ -347,6 +349,7 @@
       &:hover {
         color: #fff;
         background-color: $c_editing;
+        cursor: pointer;
       }
     }
   }
