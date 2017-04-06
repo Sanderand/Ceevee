@@ -57,7 +57,7 @@ const data = {
       "institution": "Trade Me",
       "link": "https://trademe.co.nz",
       "location": "Wellington, New Zealand",
-      "start": 1491105337407,
+      "start": "04/2017",
       "end": null,
       "description": "Anyway, some uni student is just Jim Hickey in disguise, to find the true meaning of life, one must start wobbling with the Jafa, mate. After the tomato sauce is skived off, you add all the cool pauas to the jersey you've got yourself a meal.",
       "tags": [
@@ -69,8 +69,8 @@ const data = {
       "institution": "IE Digital",
       "link": "https://ie.com.au",
       "location": "Melbourne, Australia",
-      "start": 1491105337407,
-      "end": 1491105337407,
+      "start": "04/2017",
+      "end": "04/2017",
       "description": "Development of single page applications for on-boarding pre-paid and post-paid services in an Adobe Experience Manager environment at Australia’s biggest Telco, Telstra. Using AngularJS, Node.JS, Karma, Jasmine, Swagger and Atlassian products.",
       "tags": [
         { name: 'ng1' },
@@ -95,8 +95,8 @@ const data = {
       "institution": "University of Applied Sciences Darmstadt",
       "link": "https://hda.de",
       "location": "Darmstadt, Germany",
-      "start": 1491105337407,
-      "end": 1491105337407,
+      "start": "04/2017",
+      "end": "04/2017",
       "title": "Bachelor of Science",
       "field": "Computer Science",
       "grade": "1.5",
@@ -105,8 +105,8 @@ const data = {
       "institution": "Hüffertgymnasium",
       "link": "https://hgw.de",
       "location": "Warburg, Germany",
-      "start": 1491105337407,
-      "end": 1491105337407,
+      "start": "04/2017",
+      "end": "04/2017",
       "title": "Highschool Degree",
       "field": "Mathematics, English, Computer Science, Geographie",
       "grade": "1.6",
@@ -120,7 +120,7 @@ const data = {
       "description": "Lorem ipsum dolor sit amet.",
       "institution": "German Red Cross",
       "location": "Warburg, Germany",
-      "start": 1491105337407,
+      "start": "04/2017",
       "end": null,
       "link": "https://drk.de",
       "tags": [{
@@ -136,7 +136,7 @@ const data = {
       "institution": "Deutsche Telekom AG",
       "location": "Darmstadt, Germany",
       "start": null,
-      "end": 1491105337407,
+      "end": "04/2017",
       "link": "#",
       "tags": [{
         name: 'Hackathon'
@@ -153,7 +153,7 @@ const data = {
       "institution": "Github",
       "location": null,
       "start": null,
-      "end": 1491105337407,
+      "end": "04/2017",
       "link": "#",
       "tags": [{
         name: 'Github'

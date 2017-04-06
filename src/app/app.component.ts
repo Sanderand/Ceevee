@@ -2,7 +2,7 @@ import { Component, OnInit, ViewEncapsulation, ViewChild, ElementRef, HostListen
 import { DataService } from './services/data.service';
 import { TYPES } from './services/types';
 
-// TODO: edit special field: percentage, links, dates
+// TODO: edit special field: percentage, links
 // TODO: rename/abstract list-types
 
 @Component({
@@ -18,8 +18,8 @@ export class AppComponent implements OnInit {
     UNTIL_NOW: 'present'
   };
 
-  @ViewChild('input') public input: ElementRef;
   @ViewChild('inputWrapper') public inputWrapper: ElementRef;
+  @ViewChild('textarea') public textarea: ElementRef;
   public editing: any;
 
   constructor (
@@ -41,7 +41,7 @@ export class AppComponent implements OnInit {
     let value = target.innerHTML;
 
     this.editing = { parent, field, target };
-    this.input.nativeElement.value = value.trim();
+    this.textarea.nativeElement.value = value.trim();
 
     $event.preventDefault();
     $event.stopPropagation();
@@ -58,22 +58,25 @@ export class AppComponent implements OnInit {
     let offsetTop = this.editing.target.offsetTop;
     let styleElement = window.getComputedStyle(this.editing.target);
 
+    this.editing.target.style.opacity = '0';
+
     this.inputWrapper.nativeElement.style.position = 'absolute';
     this.inputWrapper.nativeElement.style.top = `${ offsetTop }px`;
     this.inputWrapper.nativeElement.style.left = `${ boundingBox.left }px`;
     this.inputWrapper.nativeElement.style.right = `0px`;
-    this.inputWrapper.nativeElement.style.height = `${ boundingBox.height }px`;
+    this.inputWrapper.nativeElement.style.height = styleElement.lineHeight;//`${ boundingBox.height }px`;
     this.inputWrapper.nativeElement.classList.add('active');
 
-    this.input.nativeElement.style.fontSize = styleElement.fontSize;
-    this.input.nativeElement.style.fontWeight = styleElement.fontWeight;
-    this.input.nativeElement.style.color = styleElement.color;
-    this.input.nativeElement.style.lineHeight = styleElement.lineHeight;
-    this.input.nativeElement.style.letterSpacing = styleElement.letterSpacing;
-    this.input.nativeElement.style.fontFamily = styleElement.fontFamily;
-    this.input.nativeElement.style.textTransform = styleElement.textTransform;
-    this.input.nativeElement.style.textAlign = styleElement.textAlign;
-    this.input.nativeElement.focus();
+    this.textarea.nativeElement.style.fontSize = styleElement.fontSize;
+    this.textarea.nativeElement.style.fontWeight = styleElement.fontWeight;
+    this.textarea.nativeElement.style.color = styleElement.color;
+    this.textarea.nativeElement.style.lineHeight = styleElement.lineHeight;
+    this.textarea.nativeElement.style.letterSpacing = styleElement.letterSpacing;
+    this.textarea.nativeElement.style.fontFamily = styleElement.fontFamily;
+    this.textarea.nativeElement.style.textTransform = styleElement.textTransform;
+
+    this.textarea.nativeElement.focus();
+    this.updateTextAreaHeight();
   }
 
   @HostListener('document:click', ['$event']) public onClick ($event): void {
@@ -82,12 +85,26 @@ export class AppComponent implements OnInit {
     }
   }
 
+  public updateTextAreaHeight = (): void => {
+      if (this.textarea.nativeElement.value.length) {
+          this.textarea.nativeElement.style.height = `auto`;
+          this.textarea.nativeElement.style.height = `${ this.textarea.nativeElement.scrollHeight }px`;
+      }
+  }
+
+  public delayedUpdateTextAreaHeight (): void {
+      setTimeout(() => {
+        this.updateTextAreaHeight();
+      }, 0);
+  }
+
   public cancelEdit (): void {
     if (!this.editing) {
       return;
     }
 
     this.inputWrapper.nativeElement.classList.remove('active');
+    this.editing.target.style.opacity = '1';
     this.editing = null;
   }
 
@@ -96,7 +113,7 @@ export class AppComponent implements OnInit {
       return;
     }
 
-    let newValue = this.input.nativeElement.value.trim();
+    let newValue = this.textarea.nativeElement.value.trim();
 
     if (newValue.length) {
       this.editing.parent[this.editing.field] = newValue;
