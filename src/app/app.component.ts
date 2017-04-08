@@ -4,6 +4,8 @@ import { TYPES } from './types';
 
 // TODO: edit special field: percentage, links
 // TODO: rename/abstract list-types
+// TODO: remove item
+// TODO: deal with blank fields
 
 @Component({
   selector: 'app-root',
