@@ -1,11 +1,12 @@
 import { Component, OnInit, ViewEncapsulation, ViewChild, ElementRef, HostListener } from '@angular/core';
-import { DataService } from './services/data.service';
+
 import { TYPES } from './types';
+import { DataService } from './services/data.service';
 import { restrictRange } from './helpers/math.helpers';
 
 // TODO: edit special field: percentage, links
 // TODO: rename/abstract list-types
-// TODO: remove item
+// TODO: remove items
 // TODO: deal with blank fields
 
 const MIN_FONT_SIZE: number = 0.8;
@@ -50,7 +51,7 @@ export class AppComponent implements OnInit {
     this.data.theme.fontFamily = $event.target.value || null;
   }
 
-  public addChild ($event, parent, field, type): void {
+  public addFirstChild ($event, parent, field, type): void {
     $event.preventDefault();
     $event.stopPropagation();
 
@@ -59,6 +60,14 @@ export class AppComponent implements OnInit {
       ...parent[field]
     ];
 
+    this.updateEditBoxPosition();
+  }
+
+  public addLastChild ($event, parent, field, type): void {
+    $event.preventDefault();
+    $event.stopPropagation();
+
+    parent[field].push(Object.assign({}, type.model));
     this.updateEditBoxPosition();
   }
 
@@ -146,7 +155,7 @@ export class AppComponent implements OnInit {
     let newValue = this.textarea.nativeElement.value.trim();
 
     if (newValue.length) {
-      // newValue = newValue.replace('\n', '<br>');
+      // TODO: newValue = newValue.replace('\n', '<br>');
       this.editing.parent[this.editing.field] = newValue;
     }
 

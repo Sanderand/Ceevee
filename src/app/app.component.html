@@ -92,7 +92,7 @@
             class="editable title">
             {{ item.title }}
             <span
-              (click)="addChild($event, item, 'items', TYPES.EDUCATION)"
+              (click)="addFirstChild($event, item, 'items', TYPES.EDUCATION)"
               class="icon-btn">+</span>
           </div>
 
@@ -164,7 +164,7 @@
             class="editable title">
             {{ item.title }}
             <span
-              (click)="addChild($event, item, 'items', TYPES.SKILLS)"
+              (click)="addFirstChild($event, item, 'items', TYPES.SKILLS)"
               class="icon-btn">+</span>
           </div>
 
@@ -208,7 +208,7 @@
             class="editable title">
             {{ item.title }}
             <span
-              (click)="addChild($event, item, 'items', TYPES.DETAIL_LIST)"
+              (click)="addFirstChild($event, item, 'items', TYPES.DETAIL_LIST)"
               class="icon-btn">+</span>
           </div>
 
@@ -253,17 +253,15 @@
                 class="editable description">{{ child.description }}</div>
 
               <div class="tags">
-                <span
-                  (click)="addChild($event, child, 'tags', TYPES.TAG)"
-                  class="icon-btn">
-                  +
-                </span>
                 <div
                   (click)="editField($event, tag, 'name')"
                   *ngFor="let tag of child.tags"
                   class="editable tag">
                   {{ tag.name }}
                 </div>
+                <span
+                  (click)="addLastChild($event, child, 'tags', TYPES.TAG)"
+                  class="icon-btn">+</span>
               </div>
             </div>
           </div>
@@ -279,7 +277,7 @@
             class="editable title">
             {{ item.title }}
             <span
-              (click)="addChild($event, item, 'items', TYPES.RECOMMENDATION)"
+              (click)="addFirstChild($event, item, 'items', TYPES.RECOMMENDATION)"
               class="icon-btn">+</span>
           </div>
 
