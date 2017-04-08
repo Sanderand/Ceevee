@@ -114,6 +114,7 @@
         .title {
           padding-left: 0.75em;
           padding-right: 0.75em;
+          text-align: justify;
           color: $c_light;
         }
 
@@ -122,7 +123,8 @@
           content: '';
           display: inline-block;
           flex: 1;
-          height: 1px !important;
+          min-width: 1.5em;
+          height: 1px;
           border-bottom: 1px solid $c_lighter;
           align-self: center;
         }
