@@ -1,11 +1,16 @@
 import { Component, OnInit, ViewEncapsulation, ViewChild, ElementRef, HostListener } from '@angular/core';
 import { DataService } from './services/data.service';
 import { TYPES } from './types';
+import { restrictRange } from './helpers/math.helpers';
 
 // TODO: edit special field: percentage, links
 // TODO: rename/abstract list-types
 // TODO: remove item
 // TODO: deal with blank fields
+
+const MIN_FONT_SIZE: number = 0.8;
+const MAX_FONT_SIZE: number = 1.2;
+const FONT_SIZE_CHANGE_STEP: number = 0.05;
 
 @Component({
   selector: 'app-root',
@@ -34,11 +39,11 @@ export class AppComponent implements OnInit {
   }
 
   public decreaseFontSize (): void {
-    this.data.theme.fontSize -= .1;
+    this.data.theme.fontSize = restrictRange(this.data.theme.fontSize - FONT_SIZE_CHANGE_STEP, MIN_FONT_SIZE, MAX_FONT_SIZE);
   }
 
   public increaseFontSize (): void {
-    this.data.theme.fontSize += .1;
+    this.data.theme.fontSize = restrictRange(this.data.theme.fontSize + FONT_SIZE_CHANGE_STEP, MIN_FONT_SIZE, MAX_FONT_SIZE);
   }
 
   public changeFontFamily ($event): void {
