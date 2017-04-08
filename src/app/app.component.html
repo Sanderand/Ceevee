@@ -3,6 +3,8 @@
     *ngIf="data"
     [class]="data.theme.class">
 
+    <!-- DETAILS -->
+
     <div class="details">
       <div
         (click)="editField($event, data.details, 'name')"
@@ -38,97 +40,38 @@
       </div>
     </div>
 
+    <!-- ITEMS -->
+
     <div class="items">
       <div
         *ngFor="let item of data.items"
         class="item">
+
+        <!-- DIVIDER -->
+
         <div
-          *ngIf="item.class === TYPES.TEXT"
+          *ngIf="item.class === TYPES.DIVIDER.class"
           [class]="item.class">
           <div
+            *ngIf="item.title"
             (click)="editField($event, item, 'title')"
             class="editable title">
             {{ item.title }}
-          </div>
-          <div
-            (click)="editField($event, item, 'content')"
-            class="editable content">
-            {{ item.content }}
           </div>
         </div>
 
+        <!-- EDUCATION -->
+
         <div
-          *ngIf="item.class === TYPES.EXPERIENCE"
+          *ngIf="item.class === TYPES.EDUCATION.class"
           [class]="item.class">
           <div
             (click)="editField($event, item, 'title')"
             class="editable title">
             {{ item.title }}
-          </div>
-
-          <div
-            *ngFor="let child of item.items"
-            class="child">
-            <div class="left">
-              <div
-                (click)="editField($event, child, 'title')"
-                class="editable title">
-                {{ child.title }}
-              </div>
-
-              <div class="timespan">
-                <div
-                  (click)="editField($event, child, 'start')"
-                  class="editable start">
-                  {{ child.start }}
-                </div>
-                <div
-                  (click)="editField($event, child, 'end')"
-                  class="editable end">
-                  {{ child.end ? child.end : CONSTANTS.UNTIL_NOW }}
-                </div>
-              </div>
-            </div>
-
-            <div class="right">
-              <a
-                (click)="editField($event, child, 'link')"
-                class="editable institution"
-                [attr.href]="child.link"
-                target="_blank">
-                {{ child.institution }}
-              </a>
-
-              <div
-                (click)="editField($event, child, 'location')"
-                class="editable location">
-                {{ child.location }}
-              </div>
-              <div
-                (click)="editField($event, child, 'description')"
-                class="editable description">
-                {{ child.description }}
-              </div>
-
-              <div class="tags">
-                <div
-                  (click)="editField($event, tag, 'name')"
-                  class="editable tag"
-                  *ngFor="let tag of child.tags">
-                  {{ tag.name }}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div
-          *ngIf="item.class === TYPES.EDUCATION"
-          [class]="item.class">
-          <div
-            (click)="editField($event, item, 'title')"
-            class="editable title">
-            {{ item.title }}
+            <span
+              (click)="addChild($event, item, 'items', TYPES.EDUCATION)"
+              class="icon-btn">+</span>
           </div>
 
           <div
@@ -151,7 +94,7 @@
                 <div
                   (click)="editField($event, child, 'end')"
                   class="editable end">
-                  {{ child.end ? child.end : CONSTANTS.UNTIL_NOW }}
+                  {{ child.end }}
                 </div>
               </div>
             </div>
@@ -189,13 +132,18 @@
           </div>
         </div>
 
+        <!-- SKILLS -->
+
         <div
-          *ngIf="item.class === TYPES.SKILLS"
+          *ngIf="item.class === TYPES.SKILLS.class"
           [class]="item.class">
           <div
             (click)="editField($event, item, 'title')"
             class="editable title">
             {{ item.title }}
+            <span
+              (click)="addChild($event, item, 'items', TYPES.SKILLS)"
+              class="icon-btn">+</span>
           </div>
 
           <div
@@ -228,13 +176,18 @@
           </div>
         </div>
 
+        <!-- DETAIL_LIST -->
+
         <div
-          *ngIf="item.class === TYPES.DETAIL_LIST"
+          *ngIf="item.class === TYPES.DETAIL_LIST.class"
           [class]="item.class">
           <div
             (click)="editField($event, item, 'title')"
             class="editable title">
             {{ item.title }}
+            <span
+              (click)="addChild($event, item, 'items', TYPES.DETAIL_LIST)"
+              class="icon-btn">+</span>
           </div>
 
           <div
@@ -256,7 +209,7 @@
                 </div>
                 <div
                   (click)="editField($event, child, 'end')"
-                  class="editable end">{{ child.end ? child.end : CONSTANTS.UNTIL_NOW }}</div>
+                  class="editable end">{{ child.end }}</div>
               </div>
             </div>
 
@@ -278,6 +231,11 @@
                 class="editable description">{{ child.description }}</div>
 
               <div class="tags">
+                <span
+                  (click)="addChild($event, child, 'tags', TYPES.TAG)"
+                  class="icon-btn">
+                  +
+                </span>
                 <div
                   (click)="editField($event, tag, 'name')"
                   *ngFor="let tag of child.tags"
@@ -289,13 +247,18 @@
           </div>
         </div>
 
+        <!-- RECOMMENDATION -->
+
         <div
-          *ngIf="item.class === TYPES.RECOMMENDATION"
+          *ngIf="item.class === TYPES.RECOMMENDATION.class"
           [class]="item.class">
           <div
             (click)="editField($event, item, 'title')"
             class="editable title">
             {{ item.title }}
+            <span
+              (click)="addChild($event, item, 'items', TYPES.RECOMMENDATION)"
+              class="icon-btn">+</span>
           </div>
 
           <div

@@ -49,6 +49,7 @@
         margin-top: 1em;
         margin-bottom: 0.25em;
         font-weight: bolder;
+        display: inline-block;
       }
 
       .address {
@@ -89,267 +90,212 @@
       max-width: 768px;
       margin: 0 auto;
 
-      .item {
-        .experience,
-        .education,
-        .detail-list,
-        .skills,
-        .recommendation {
-          margin-bottom: 2em;
-          page-break-inside: avoid;
+      .education,
+      .detail-list,
+      .skills,
+      .recommendation {
+        margin-bottom: 2em;
+        page-break-inside: avoid;
 
-          >.title {
-            text-transform: uppercase;
-            margin-bottom: 0.5em;
-            font-weight: 900;
-            font-size: 1.15em;
-          }
+        >.title {
+          text-transform: uppercase;
+          margin-bottom: 0.5em;
+          font-weight: 900;
+          font-size: 1.15em;
+          display: inline-block;
+        }
+      }
+
+      .divider {
+        display: flex;
+        text-align: center;
+        margin-bottom: 2em;
+
+        .title {
+          padding-left: 0.75em;
+          padding-right: 0.75em;
+          color: $c_light;
         }
 
-        .text {
-          padding-bottom: 2em;
-          text-align: center;
+        &:before,
+        &:after {
+          content: '';
+          display: inline-block;
+          flex: 1;
+          height: 1px !important;
+          border-bottom: 1px solid $c_lighter;
+          align-self: center;
+        }
+      }
+
+      .education,
+      .detail-list {
+        display: table;
+
+        .child {
+          display: table-row;
+
+          &:last-child .left,
+          &:last-child .right {
+            padding-bottom: 0;
+          }
+
+          .left, .right {
+            padding-bottom: 1.25em;
+            display: table-cell;
+          }
+
+          .left {
+            padding-right: 1.25em;
+            min-width: 150px;
+          }
+
+          .right {
+            width: 100%;
+            padding-left: 1.25em;
+            vertical-align: top;
+            border-left: 1px solid $c_lighter;
+          }
 
           .title {
             display: inline-block;
-            font-weight: 500;
-            color: $c_light;
-
-            &:after {
-              content: ':';
-            }
+            font-weight: bolder;
+            padding-bottom: 0.25em;
           }
 
-          .content {
+          .institution {
             display: inline-block;
           }
-        }
 
-        .experience,
-        .education,
-        .detail-list {
-          display: table;
+          .location {
+            display: inline-block;
+            font-size: 0.9em;
 
-          .child {
-            display: table-row;
-
-            &:last-child .left,
-            &:last-child .right {
-              padding-bottom: 0;
+            &:before{
+              content: '(';
             }
 
-            .left, .right {
-              padding-bottom: 1.25em;
-              display: table-cell;
+            &:after {
+              content: ')';
             }
+          }
 
-            .left {
-              padding-right: 1.25em;
-              min-width: 150px;
-            }
+          .timespan {
+            color: $c_light;
+            font-size: 0.9em;
 
-            .right {
-              width: 100%;
-              padding-left: 1.25em;
-              vertical-align: top;
-              border-left: 1px solid $c_lighter;
-            }
-
-            .title {
+            .start {
               display: inline-block;
-              font-weight: bolder;
-              padding-bottom: 0.25em;
-            }
-
-            .institution {
-              display: inline-block;
-            }
-
-            .location {
-              display: inline-block;
-              font-size: 0.9em;
-
-              &:before{
-                content: '(';
-              }
 
               &:after {
-                content: ')';
+                content: '-';
+                padding-left: .5em;
+                padding-right: .25em;
               }
             }
+            .end {
+              display: inline-block;
+            }
+          }
 
-            .timespan {
-              color: $c_light;
-              font-size: 0.9em;
+          .description {
+            margin-top: 0.35em;
+            margin-bottom: 0.35em;
+            text-align: justify;
+          }
+        }
+      }
 
-              .start {
-                display: inline-block;
+      .skills {
+        display: table;
 
-                &:after {
-                  content: '-';
-                  padding-left: .5em;
-                  padding-right: .25em;
-                }
-              }
-              .end {
-                display: inline-block;
+        .child {
+          display: table-row;
+
+          .title {
+            display: table-cell;
+            min-width: 120px;
+            padding-right: 1.25em;
+            padding-bottom: 0.5em;
+          }
+
+          .bar {
+            display: table-cell;
+            vertical-align: top;
+            width: 100%;
+            padding-bottom: 0.5em;
+
+            .wrapper {
+              width: 50%;
+              background-color: $c_lighter;
+              margin-bottom: 0.25em;
+
+              .percentage {
+                display: block;
+                height: 0.5em;
+                background-color: $c_highlight;
               }
             }
 
             .description {
-              margin-top: 0.35em;
-              margin-bottom: 0.35em;
-              text-align: justify;
-            }
-          }
-        }
-
-        .skills {
-          display: table;
-
-          .child {
-            display: table-row;
-
-            .title {
-              display: table-cell;
-              min-width: 120px;
-              padding-right: 1.25em;
-              padding-bottom: 0.5em;
-            }
-
-            .bar {
-              display: table-cell;
-              vertical-align: top;
-              width: 100%;
-              padding-bottom: 0.5em;
-
-              .wrapper {
-                width: 50%;
-                background-color: $c_lighter;
-                margin-bottom: 0.25em;
-
-                .percentage {
-                  display: block;
-                  height: 0.5em;
-                  background-color: $c_highlight;
-                }
-              }
-
-              .description {
-                font-size: 0.85em;
-                color: $c_light;
-              }
-            }
-          }
-        }
-
-        .recommendation {
-          .child {
-            .name {
-              display: inline-block;
-              font-weight: bolder;
-            }
-
-            .relationship {
-              display: inline-block;
-              font-size: 0.9em;
-
-              &:before{
-                content: '(';
-              }
-
-              &::after{
-                content: ' at';
-              }
-            }
-
-            .institution {
-              display: inline-block;
-              font-size: 0.9em;
-
-              &:after {
-                content: ')';
-              }
-            }
-            .comment {
-              text-align: justify;
-              color: $c_light;
               font-size: 0.85em;
-              margin-top: 0.2em;
-
-              &:before{
-                content: '„';
-                display: inline-block;
-                width: 0.5em;
-                font-weight: 900;
-              }
-
-              &::after{
-                content: '”';
-                display: inline-block;
-                width: 0.5em;
-                font-weight: 900;
-              }
+              color: $c_light;
             }
           }
         }
       }
-    }
-  }
-}
 
-// edit stuff
+      .recommendation {
+        .child {
+          padding-bottom: 1.25em;
 
-.editable {
-  &:hover {
-    color: $c_editing !important;
-    cursor: pointer;
-  }
-}
+          .name {
+            display: inline-block;
+            font-weight: bolder;
+          }
 
-.input-wrapper {
-  display: none;
-  z-index: 1000;
-  background-color: rgba(255, 255, 255, 0.8);
-  box-shadow: 0px 0px 5px 2px #fff;
+          .relationship {
+            display: inline-block;
+            font-size: 0.9em;
 
-  &.active {
-    display: block;
-  }
+            &:before{
+              content: '(';
+            }
 
-  textarea {
-    width: 100%;
-    height: 100%;
-    border: none;
-    outline: none;
-    resize: none;
-    padding: 0;
-    border-bottom: 1px solid $c_editing;
-    color: $c_editing;
-    background-color: $c_editing_light;
-  }
+            &::after{
+              content: ' at';
+            }
+          }
 
-  .buttons {
-    display: inline-block;
-    margin-top: -4px;
+          .institution {
+            display: inline-block;
+            font-size: 0.9em;
 
-    button {
-      display: inline;
-      min-width: 24px;
-      height: 24px;
-      padding: 0px 6px;
-      line-height: 24px;
-      text-align: center;
-      font-size: 12px;
-      background-color: #fff;
-      border: 1px solid $c_editing;
-      border-top: none;
-      color: $c_editing;
+            &:after {
+              content: ')';
+            }
+          }
 
-      &:hover {
-        color: #fff;
-        background-color: $c_editing;
-        cursor: pointer;
+          .comment {
+            text-align: justify;
+            color: $c_light;
+            font-size: 0.9em;
+            line-height: 1.15em;
+            margin-top: 0.2em;
+
+            &:before {
+              content: '„';
+              display: inline;
+              font-weight: 900;
+            }
+
+            &::after {
+              content: '”';
+              display: inline;
+              font-weight: 900;
+            }
+          }
+        }
       }
     }
   }

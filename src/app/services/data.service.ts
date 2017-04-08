@@ -1,7 +1,7 @@
 import { Injectable } from  '@angular/core';
 import { Observable } from 'rxjs';
 
-import { CV } from './cv.model';
+import { CV } from '../models/cv.model';
 
 @Injectable()
 export class DataService {
@@ -46,11 +46,10 @@ const data = {
     "class": "default"
   },
   "items": [{
-    "class": "text",
-    "title": "Mission",
-    "content": "Making the web a better place!"
+    "class": "divider",
+    "title": "Making the Web a better place!"
   }, {
-    "class": "experience",
+    "class": "detail-list",
     "title": "Experience",
     "items": [{
       "title": "JavaScript Developer",
@@ -58,7 +57,7 @@ const data = {
       "link": "https://trademe.co.nz",
       "location": "Wellington, New Zealand",
       "start": "04/2017",
-      "end": null,
+      "end": "present",
       "description": "Anyway, some uni student is just Jim Hickey in disguise, to find the true meaning of life, one must start wobbling with the Jafa, mate. After the tomato sauce is skived off, you add all the cool pauas to the jersey you've got yourself a meal.",
       "tags": [
         { name: 'typescript' },
@@ -121,7 +120,7 @@ const data = {
       "institution": "German Red Cross",
       "location": "Warburg, Germany",
       "start": "04/2017",
-      "end": null,
+      "end": "present",
       "link": "https://drk.de",
       "tags": [{
         name: 'Charity'
@@ -189,5 +188,7 @@ const data = {
       "title": "Yoga",
       "description": "Lorem ipsum dolor sit amet"
     }]
+  }, {
+    "class": "divider"
   }]
 };

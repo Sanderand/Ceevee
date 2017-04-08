@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation, ViewChild, ElementRef, HostListener } from '@angular/core';
 import { DataService } from './services/data.service';
-import { TYPES } from './services/types';
+import { TYPES } from './types';
 
 // TODO: edit special field: percentage, links
 // TODO: rename/abstract list-types
@@ -14,9 +14,6 @@ import { TYPES } from './services/types';
 export class AppComponent implements OnInit {
   public data: any = null;
   public TYPES = TYPES;
-  public CONSTANTS: any = {
-    UNTIL_NOW: 'present'
-  };
 
   @ViewChild('inputWrapper') public inputWrapper: ElementRef;
   @ViewChild('textarea') public textarea: ElementRef;
@@ -32,20 +29,36 @@ export class AppComponent implements OnInit {
       .subscribe(data => this.data = data);
   }
 
+  public addChild ($event, parent, field, type): void {
+    $event.preventDefault();
+    $event.stopPropagation();
+
+    parent[field] = [
+      Object.assign({}, type.model),
+      ...parent[field]
+    ];
+
+    this.updateEditBoxPosition();
+  }
+
   public editField ($event, parent, field): void {
     if (this.editing) {
       this.saveChanges();
     }
 
-    let target = $event.target;
-    let value = target.innerHTML;
-
-    this.editing = { parent, field, target };
-    this.textarea.nativeElement.value = value.trim();
-
     $event.preventDefault();
     $event.stopPropagation();
 
+    let target = $event.target;
+    let value = parent[field];
+
+    this.editing = { parent, field, target };
+
+    if (typeof value === 'string') {
+      value = value.trim();
+    }
+
+    this.textarea.nativeElement.value = value;
     this.updateEditBoxPosition();
   }
 
