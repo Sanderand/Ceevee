@@ -43,7 +43,9 @@ const data = {
   },
   "theme": {
     "name": "Default",
-    "class": "default"
+    "class": "default",
+    "fontFamily": "'Quicksand', sans-serif",
+    "fontSize": 0.9
   },
   "items": [{
     "class": "divider",

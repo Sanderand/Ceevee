@@ -1,5 +1,12 @@
 @import '../variables.scss';
 
+
+header {
+  @media print {
+    display: none;
+  }
+}
+
 .icon-btn {
   width: 20px;
   height: 18px;

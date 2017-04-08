@@ -16,6 +16,8 @@ import { TYPES } from './types';
 export class AppComponent implements OnInit {
   public data: any = null;
   public TYPES = TYPES;
+  public fontSize: number = 1;
+  public fontFamily: string = null;
 
   @ViewChild('inputWrapper') public inputWrapper: ElementRef;
   @ViewChild('textarea') public textarea: ElementRef;
@@ -29,6 +31,18 @@ export class AppComponent implements OnInit {
     this._dataService
       .getData()
       .subscribe(data => this.data = data);
+  }
+
+  public decreaseFontSize (): void {
+    this.data.theme.fontSize -= .1;
+  }
+
+  public increaseFontSize (): void {
+    this.data.theme.fontSize += .1;
+  }
+
+  public changeFontFamily ($event): void {
+    this.data.theme.fontFamily = $event.target.value || null;
   }
 
   public addChild ($event, parent, field, type): void {

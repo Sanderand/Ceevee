@@ -1,6 +1,24 @@
+<header>
+  <div class="button-group">
+    <button
+      (click)="decreaseFontSize()">A-</button>
+    <button
+      (click)="increaseFontSize()">A+</button>
+  </div>
+
+  <select
+    (change)="changeFontFamily($event)">
+    <option value="">Default</option>
+    <option value="sans-serif">Sans-Serif</option>
+    <option value="serif">Serif</option>
+  </select>
+</header>
+
 <div class="cv">
   <div
     *ngIf="data"
+    [style.fontSize]="data.theme.fontSize + 'em'"
+    [style.fontFamily]="data.theme.fontFamily"
     [class]="data.theme.class">
 
     <!-- DETAILS -->
