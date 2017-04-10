@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewEncapsulation, ViewChild, ElementRef, HostListener } from '@angular/core';
 
 import { TYPES } from './types';
+import { MIN_FONT_SIZE, MAX_FONT_SIZE, FONT_SIZE_CHANGE_STEP } from './constants/constants';
+
 import { DataService } from './services/data.service';
 import { restrictRange } from './helpers/math.helpers';
 
@@ -9,10 +11,6 @@ import { restrictRange } from './helpers/math.helpers';
 // TODO: remove items
 // TODO: deal with blank fields
 
-const MIN_FONT_SIZE: number = 0.8;
-const MAX_FONT_SIZE: number = 1.2;
-const FONT_SIZE_CHANGE_STEP: number = 0.05;
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -20,14 +18,18 @@ const FONT_SIZE_CHANGE_STEP: number = 0.05;
   encapsulation: ViewEncapsulation.None
 })
 export class AppComponent implements OnInit {
-  public data: any = null;
   public TYPES = TYPES;
-  public fontSize: number = 1;
-  public fontFamily: string = null;
+  public MIN_FONT_SIZE = MIN_FONT_SIZE;
+  public MAX_FONT_SIZE = MAX_FONT_SIZE;
 
   @ViewChild('inputWrapper') public inputWrapper: ElementRef;
   @ViewChild('textarea') public textarea: ElementRef;
-  public editing: any;
+
+  public data: any = null;
+  public fontSize: number = 1;
+  public fontFamily: string = null;
+
+  private editing: any = null;
 
   constructor (
     private _dataService: DataService
@@ -159,6 +161,7 @@ export class AppComponent implements OnInit {
       this.editing.parent[this.editing.field] = newValue;
     }
 
+    console.debug(this.data);
     this.cancelEdit();
   }
 }

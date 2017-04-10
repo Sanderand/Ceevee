@@ -2,9 +2,11 @@
   <div
     class="button-group">
     <button
-      (click)="decreaseFontSize()">aa</button>
+      (click)="decreaseFontSize()"
+      [disabled]="data.theme.fontSize === MIN_FONT_SIZE">aa</button>
     <button
-      (click)="increaseFontSize()">AA</button>
+      (click)="increaseFontSize()"
+      [disabled]="data.theme.fontSize === MAX_FONT_SIZE">AA</button>
   </div>
 
   <select
@@ -215,7 +217,6 @@
           <div
             *ngFor="let child of item.items"
             class="child">
-
             <div class="left">
               <div
                 (click)="editField($event, child, 'title')"
