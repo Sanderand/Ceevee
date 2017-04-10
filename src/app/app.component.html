@@ -278,31 +278,28 @@
             class="editable title">
             {{ item.title }}
             <span
-              (click)="addFirstChild($event, item, 'items', TYPES.RECOMMENDATION)"
+              (click)="openModal($event, item, 'items', TYPES.RECOMMENDATION)"
               class="icon-btn">+</span>
           </div>
 
           <div
-            *ngFor="let child of item.items"
-            class="child">
+            *ngFor="let child of item.items; let idx = index"
+            (click)="openModal($event, item, 'items', TYPES.RECOMMENDATION, idx)"
+            class="child modal-edit">
             <div
-              (click)="editField($event, child, 'name')"
-              class="editable name">
+              class="name">
               {{ child.name }}
             </div>
             <div
-              (click)="editField($event, child, 'relationship')"
-              class="editable relationship">
+              class="relationship">
               {{ child.relationship }}
             </div>
             <div
-              (click)="editField($event, child, 'institution')"
-              class="editable institution">
+              class="institution">
               {{ child.institution }}
             </div>
             <div
-              (click)="editField($event, child, 'comment')"
-              class="editable comment">
+              class="comment">
               {{ child.comment }}
             </div>
           </div>
@@ -313,17 +310,11 @@
 </div>
 
 <div
-  #inputWrapper
+  #inputWrapperRef
   class="input-wrapper">
 
-  <textarea
-    #textarea
-    (change)="updateTextAreaHeight()"
-    (cut)="delayedUpdateTextAreaHeight()"
-    (paste)="delayedUpdateTextAreaHeight()"
-    (drop)="delayedUpdateTextAreaHeight()"
-    (keydown)="delayedUpdateTextAreaHeight()">
-  </textarea>
+  <input
+    #inputRef>
 
   <div class="buttons">
     <button
@@ -331,4 +322,42 @@
     <button
       (click)="saveChanges()">Save</button>
   </div>
+</div>
+
+<div
+  *ngIf="modal"
+  (click)="backdropClose($event)"
+  class="modal-wrapper">
+  <form
+    class="modal"
+    (submit)="submitModal($event)">
+
+    <h2>{{ modal.isAdding ? 'New' : 'Update' }} {{ modal.typeName }}</h2>
+
+    <div
+      *ngFor="let field of modal.fields">
+      <label>{{ field.label }}</label>
+
+      <input
+        *ngIf="field.type !== 'textarea'"
+        [type]="field.type"
+        [name]="field.label"
+        [placeholder]="field.placeholder"
+        [(ngModel)]="field.value">
+
+      <textarea
+        *ngIf="field.type === 'textarea'"
+        [name]="field.label"
+        [placeholder]="field.placeholder"
+        [(ngModel)]="field.value">
+      </textarea>
+    </div>
+
+    <button type="submit">Submit</button>
+    <button
+      type="button"
+      (click)="clearModal()">
+      Cancel
+    </button>
+  </form>
 </div>

@@ -1,6 +1,21 @@
-export class Recommendation {
-  public name: string = 'John Doe';
-  public institution: string = 'The Company';
-  public relationship: string = 'Manager';
-  public comment: string = 'Lorem ipsum dolor sit amet.';
-}
+export const RecommendationFields = [{
+  key: 'name',
+  label: 'Name',
+  type: 'text',
+  placeholder: 'John Doe'
+}, {
+  key: 'institution',
+  label: 'Institution',
+  type: 'text',
+  placeholder: 'The Company'
+}, {
+  key: 'relationship',
+  label: 'Relationship',
+  type: 'text',
+  placeholder: 'Manager'
+}, {
+  key: 'comment',
+  label: 'Comment',
+  type: 'textarea',
+  placeholder: 'Lorem ipsum dolor sit amet.'
+}];

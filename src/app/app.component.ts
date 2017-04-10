@@ -22,12 +22,14 @@ export class AppComponent implements OnInit {
   public MIN_FONT_SIZE = MIN_FONT_SIZE;
   public MAX_FONT_SIZE = MAX_FONT_SIZE;
 
-  @ViewChild('inputWrapper') public inputWrapper: ElementRef;
-  @ViewChild('textarea') public textarea: ElementRef;
+  @ViewChild('inputWrapperRef') public inputWrapperRef: ElementRef;
+  @ViewChild('inputRef') public inputRef: ElementRef;
 
   public data: any = null;
   public fontSize: number = 1;
   public fontFamily: string = null;
+
+  public modal: any = null;
 
   private editing: any = null;
 
@@ -53,6 +55,62 @@ export class AppComponent implements OnInit {
     this.data.theme.fontFamily = $event.target.value || null;
   }
 
+  public openModal ($event, parent, field, type, index): void {
+    this.cancelEdit();
+
+    $event.preventDefault();
+    $event.stopPropagation();
+
+    let isAdding = (index === undefined || index === null);
+
+    this.modal = {
+      editTarget: { parent, field, index },
+      isEditing: !isAdding,
+      isAdding: isAdding,
+      typeName: type.name,
+      fields: type.fields.map(a => Object.assign({}, a))
+    };
+
+    if (!isAdding) {
+      Object.keys(parent[field][index]).forEach(key => {
+        this.modal.fields.forEach(f => {
+          if (f.key === key) {
+            f.value = parent[field][index][key];
+          }
+        });
+      });
+    }
+  }
+
+  @HostListener('window:keydown.escape') public clearModal (): void {
+    this.modal = null;
+  }
+
+  public submitModal ($event): void {
+    $event.preventDefault();
+
+    let newItem = {};
+    let hasNoIndex = (this.modal.editTarget.index === undefined || this.modal.editTarget.index === null);
+
+    this.modal.fields.forEach(field => {
+      newItem[field.key] = field.value;
+    });
+
+    if (hasNoIndex) {
+      this.modal.editTarget.parent[this.modal.editTarget.field].push(newItem);
+    } else {
+      this.modal.editTarget.parent[this.modal.editTarget.field][this.modal.editTarget.index] = newItem;
+    }
+
+    this.clearModal();
+  }
+
+  public backdropClose ($event): void {
+    if ($event.target.classList.contains('modal-wrapper')) {
+      this.clearModal();
+    }
+  }
+
   public addFirstChild ($event, parent, field, type): void {
     $event.preventDefault();
     $event.stopPropagation();
@@ -74,6 +132,8 @@ export class AppComponent implements OnInit {
   }
 
   public editField ($event, parent, field): void {
+    this.clearModal();
+
     if (this.editing) {
       this.saveChanges();
     }
@@ -90,7 +150,7 @@ export class AppComponent implements OnInit {
       value = value.trim();
     }
 
-    this.textarea.nativeElement.value = value;
+    this.inputRef.nativeElement.value = value;
     this.updateEditBoxPosition();
   }
 
@@ -105,38 +165,26 @@ export class AppComponent implements OnInit {
 
     this.editing.target.style.opacity = '0';
 
-    this.inputWrapper.nativeElement.style.position = 'absolute';
-    this.inputWrapper.nativeElement.style.top = `${ offsetTop }px`;
-    this.inputWrapper.nativeElement.style.left = `${ boundingBox.left }px`;
-    this.inputWrapper.nativeElement.style.right = `0px`;
-    this.inputWrapper.nativeElement.classList.add('active');
+    this.inputWrapperRef.nativeElement.style.position = 'absolute';
+    this.inputWrapperRef.nativeElement.style.top = `${ offsetTop }px`;
+    this.inputWrapperRef.nativeElement.style.left = `${ boundingBox.left }px`;
+    this.inputWrapperRef.nativeElement.style.right = `0px`;
+    this.inputWrapperRef.nativeElement.classList.add('active');
 
-    this.textarea.nativeElement.style.fontSize = styleElement.fontSize;
-    this.textarea.nativeElement.style.fontWeight = styleElement.fontWeight;
-    this.textarea.nativeElement.style.lineHeight = styleElement.lineHeight;
-    this.textarea.nativeElement.style.letterSpacing = styleElement.letterSpacing;
-    this.textarea.nativeElement.style.fontFamily = styleElement.fontFamily;
-    this.textarea.nativeElement.style.textTransform = styleElement.textTransform;
+    this.inputRef.nativeElement.style.fontSize = styleElement.fontSize;
+    this.inputRef.nativeElement.style.fontWeight = styleElement.fontWeight;
+    this.inputRef.nativeElement.style.lineHeight = styleElement.lineHeight;
+    this.inputRef.nativeElement.style.letterSpacing = styleElement.letterSpacing;
+    this.inputRef.nativeElement.style.fontFamily = styleElement.fontFamily;
+    this.inputRef.nativeElement.style.textTransform = styleElement.textTransform;
 
-    this.textarea.nativeElement.focus();
-    this.updateTextAreaHeight();
+    this.inputRef.nativeElement.focus();
   }
 
-  @HostListener('document:click', ['$event']) public onClick ($event): void {
-    if (!this.textarea.nativeElement.contains($event.target)) {
+  @HostListener('window:click', ['$event']) public onClick ($event): void {
+    if (!this.inputRef.nativeElement.contains($event.target)) {
       this.saveChanges();
     }
-  }
-
-  public updateTextAreaHeight = (): void => {
-    this.textarea.nativeElement.style.height = `auto`;
-    this.textarea.nativeElement.style.height = `${ this.textarea.nativeElement.scrollHeight }px`;
-  }
-
-  public delayedUpdateTextAreaHeight (): void {
-      setTimeout(() => {
-        this.updateTextAreaHeight();
-      }, 0);
   }
 
   public cancelEdit (): void {
@@ -144,7 +192,7 @@ export class AppComponent implements OnInit {
       return;
     }
 
-    this.inputWrapper.nativeElement.classList.remove('active');
+    this.inputWrapperRef.nativeElement.classList.remove('active');
     this.editing.target.style.opacity = '1';
     this.editing = null;
   }
@@ -154,14 +202,13 @@ export class AppComponent implements OnInit {
       return;
     }
 
-    let newValue = this.textarea.nativeElement.value.trim();
+    let newValue = this.inputRef.nativeElement.value.trim();
 
     if (newValue.length) {
       // TODO: newValue = newValue.replace('\n', '<br>');
       this.editing.parent[this.editing.field] = newValue;
     }
 
-    console.debug(this.data);
     this.cancelEdit();
   }
 }
