@@ -156,34 +156,33 @@
           </div>
         </div>
 
-        <!-- SKILLS -->
+        <!-- SKILL -->
 
         <div
-          *ngIf="item.class === TYPES.SKILLS.class"
+          *ngIf="item.class === TYPES.SKILL.class"
           [class]="item.class">
           <div
             (click)="editField($event, item, 'title')"
             class="editable title">
             {{ item.title }}
             <span
-              (click)="addFirstChild($event, item, 'items', TYPES.SKILLS)"
+              (click)="openModal($event, item, 'items', TYPES.SKILL)"
               class="icon-btn">+</span>
           </div>
 
           <div
-            *ngFor="let child of item.items"
+            *ngFor="let child of item.items; let idx = index"
+            (click)="openModal($event, item, 'items', TYPES.SKILL, idx)"
             class="child">
             <div
-              (click)="editField($event, child, 'title')"
-              class="editable title">
+              class="title">
               {{ child.title }}
             </div>
 
             <div class="bar">
               <div
                 *ngIf="child.percentage"
-                (click)="editField($event, child, 'percentage')"
-                class="editable wrapper">
+                class="wrapper">
                 <div
                   class="percentage"
                   [style.width]="child.percentage * 100 + '%'">
@@ -192,8 +191,7 @@
 
               <div
                 *ngIf="child.description"
-                (click)="editField($event, child, 'description')"
-                class="editable description">
+                class="description">
                 {{ child.description }}
               </div>
             </div>

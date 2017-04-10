@@ -2,7 +2,7 @@ import { Divider } from './models/divider.model';
 import { Education } from './models/education.model';
 import { RecommendationFields } from './models/recommendation.model';
 import { DetailListItem } from './models/detail-list-item.model';
-import { Skill } from './models/skill.model';
+import { SkillFields } from './models/skill.model';
 import { Tag } from './models/tag.model';
 
 export const TYPES = {
@@ -15,17 +15,18 @@ export const TYPES = {
     model: new Education()
   },
   RECOMMENDATION: {
-    class: 'recommendation',
     fields: RecommendationFields,
-    name: 'Recommendation'
+    class: 'recommendation',
+    name: 'Recommendation',
   },
   DETAIL_LIST: {
     class: 'detail-list',
     model: new DetailListItem()
   },
-  SKILLS: {
-    class: 'skills',
-    model: new Skill()
+  SKILL: {
+    fields: SkillFields,
+    class: 'skill',
+    name: 'Skill',
   },
   TAG: {
     class: 'tag',

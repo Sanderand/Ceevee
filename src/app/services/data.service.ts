@@ -165,7 +165,7 @@ const data = {
       }]
     }]
   }, {
-    "class": "skills",
+    "class": "skill",
     "title": "Languages",
     "items": [{
       "title": "German",
@@ -181,7 +181,7 @@ const data = {
       "description": "Basic language skills"
     }]
   }, {
-    "class": "skills",
+    "class": "skill",
     "title": "Interests",
     "items": [{
       "title": "Traveling",
