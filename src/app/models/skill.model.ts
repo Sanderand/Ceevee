@@ -6,7 +6,7 @@ export const SkillFields = [{
 }, {
   key: 'percentage',
   label: 'Percentage',
-  type: 'text',
+  type: 'number',
   placeholder: 'Percentage'
 }, {
   key: 'description',

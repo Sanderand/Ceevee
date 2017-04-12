@@ -1,35 +1,33 @@
-import { Divider } from './models/divider.model';
-import { Education } from './models/education.model';
+import { DividerFields } from './models/divider.model';
+import { EducationFields } from './models/education.model';
 import { RecommendationFields } from './models/recommendation.model';
-import { DetailListItem } from './models/detail-list-item.model';
+import { DetailListItemFields } from './models/detail-list-item.model';
 import { SkillFields } from './models/skill.model';
-import { Tag } from './models/tag.model';
+import { DetailsFields } from './models/details.model';
 
 export const TYPES = {
+  DETAILS: {
+    class: 'details',
+    fields: DetailsFields
+  },
   DIVIDER: {
     class: 'divider',
-    model: new Divider()
+    fields: DividerFields
   },
   EDUCATION: {
     class: 'education',
-    model: new Education()
+    fields: EducationFields
   },
   RECOMMENDATION: {
-    fields: RecommendationFields,
     class: 'recommendation',
-    name: 'Recommendation',
+    fields: RecommendationFields
   },
   DETAIL_LIST: {
     class: 'detail-list',
-    model: new DetailListItem()
+    fields: DetailListItemFields
   },
   SKILL: {
-    fields: SkillFields,
     class: 'skill',
-    name: 'Skill',
-  },
-  TAG: {
-    class: 'tag',
-    model: new Tag()
+    fields: SkillFields
   }
 };

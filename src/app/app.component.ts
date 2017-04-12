@@ -67,7 +67,6 @@ export class AppComponent implements OnInit {
       editTarget: { parent, field, index },
       isEditing: !isAdding,
       isAdding: isAdding,
-      typeName: type.name,
       fields: type.fields.map(a => Object.assign({}, a))
     };
 
@@ -90,18 +89,22 @@ export class AppComponent implements OnInit {
     $event.preventDefault();
 
     let newItem = {};
-    let hasNoIndex = (this.modal.editTarget.index === undefined || this.modal.editTarget.index === null);
 
     this.modal.fields.forEach(field => {
       newItem[field.key] = field.value;
     });
 
-    if (hasNoIndex) {
+    if (this.modal.isAdding) {
       this.modal.editTarget.parent[this.modal.editTarget.field].push(newItem);
     } else {
       this.modal.editTarget.parent[this.modal.editTarget.field][this.modal.editTarget.index] = newItem;
     }
 
+    this.clearModal();
+  }
+
+  public deleteModalItem (): void {
+    this.modal.editTarget.parent[this.modal.editTarget.field].splice(this.modal.editTarget.index, 1);
     this.clearModal();
   }
 

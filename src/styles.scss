@@ -1,5 +1,10 @@
 @import 'variables.scss';
 
+body, html {
+  height: 100%;
+  overflow-y: auto;
+}
+
 .cv {
   .default {
     padding-left: 2em;
@@ -146,18 +151,18 @@
           }
 
           .left, .right {
-            padding-bottom: 1.25em;
+            padding-bottom: 1em;
             display: table-cell;
           }
 
           .left {
-            padding-right: 1.25em;
-            min-width: 150px;
+            padding-right: 1em;
+            min-width: $v_left_width;
           }
 
           .right {
             width: 100%;
-            padding-left: 1.25em;
+            padding-left: 1em;
             vertical-align: top;
             border-left: 1px solid $c_lighter;
           }
@@ -219,12 +224,13 @@
 
           .title {
             display: table-cell;
-            min-width: 120px;
-            padding-right: 1.25em;
+            min-width: $v_left_width;
+            padding-right: 1em;
             padding-bottom: 0.5em;
           }
 
           .bar {
+            padding-left: 1em;
             display: table-cell;
             vertical-align: top;
             width: 100%;

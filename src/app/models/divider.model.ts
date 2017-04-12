@@ -1,3 +1,6 @@
-export class Divider {
-  public title: string = 'Divider';
-}
+export const DividerFields = [{
+  key: 'title',
+  label: 'Title',
+  type: 'text',
+  placeholder: 'Divider'
+}];

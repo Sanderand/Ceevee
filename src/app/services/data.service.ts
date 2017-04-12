@@ -58,8 +58,8 @@ const data = {
       "institution": "Trade Me",
       "link": "https://trademe.co.nz",
       "location": "Wellington, New Zealand",
-      "start": "04/2017",
-      "end": "present",
+      "start": 1491871721436,
+      "end": null,
       "description": "Anyway, some uni student is just Jim Hickey in disguise, to find the true meaning of life, one must start wobbling with the Jafa, mate. After the tomato sauce is skived off, you add all the cool pauas to the jersey you've got yourself a meal.",
       "tags": [
         { name: 'typescript' },
@@ -70,8 +70,8 @@ const data = {
       "institution": "IE Digital",
       "link": "https://ie.com.au",
       "location": "Melbourne, Australia",
-      "start": "04/2017",
-      "end": "04/2017",
+      "start": 1491871721436,
+      "end": 1491871721436,
       "description": "Development of single page applications for on-boarding pre-paid and post-paid services in an Adobe Experience Manager environment at Australia’s biggest Telco, Telstra. Using AngularJS, Node.JS, Karma, Jasmine, Swagger and Atlassian products.",
       "tags": [
         { name: 'ng1' },
@@ -96,8 +96,8 @@ const data = {
       "institution": "University of Applied Sciences Darmstadt",
       "link": "https://hda.de",
       "location": "Darmstadt, Germany",
-      "start": "04/2017",
-      "end": "04/2017",
+      "start": 1491871721436,
+      "end": 1491871721436,
       "title": "Bachelor of Science",
       "field": "Computer Science",
       "grade": "1.5",
@@ -106,8 +106,8 @@ const data = {
       "institution": "Hüffertgymnasium",
       "link": "https://hgw.de",
       "location": "Warburg, Germany",
-      "start": "04/2017",
-      "end": "04/2017",
+      "start": 1491871721436,
+      "end": 1491871721436,
       "title": "Highschool Degree",
       "field": "Mathematics, English, Computer Science, Geographie",
       "grade": "1.6",
@@ -121,8 +121,8 @@ const data = {
       "description": "Lorem ipsum dolor sit amet.",
       "institution": "German Red Cross",
       "location": "Warburg, Germany",
-      "start": "04/2017",
-      "end": "present",
+      "start": 1491871721436,
+      "end": null,
       "link": "https://drk.de",
       "tags": [{
         name: 'Charity'
@@ -137,7 +137,7 @@ const data = {
       "institution": "Deutsche Telekom AG",
       "location": "Darmstadt, Germany",
       "start": null,
-      "end": "04/2017",
+      "end": 1491871721436,
       "link": "#",
       "tags": [{
         name: 'Hackathon'
@@ -154,7 +154,7 @@ const data = {
       "institution": "Github",
       "location": null,
       "start": null,
-      "end": "04/2017",
+      "end": 1491871721436,
       "link": "#",
       "tags": [{
         name: 'Github'
@@ -169,15 +169,15 @@ const data = {
     "title": "Languages",
     "items": [{
       "title": "German",
-      "percentage": 1.0,
+      "percentage": 100,
       "description": "Mother-tongue"
     }, {
       "title": "English",
-      "percentage": 0.9,
+      "percentage": 90,
       "description": "Spoken and written proficiency"
     }, {
       "title": "French",
-      "percentage": 0.1,
+      "percentage": 10,
       "description": "Basic language skills"
     }]
   }, {
