@@ -5,6 +5,7 @@ import { MIN_FONT_SIZE, MAX_FONT_SIZE, FONT_SIZE_CHANGE_STEP } from './constants
 
 import { DataService } from './services/data.service';
 import { restrictRange } from './helpers/math.helpers';
+import { ModalComponent } from './modal/modal.component';
 
 // TODO: edit special field: percentage, links
 // TODO: rename/abstract list-types
@@ -24,14 +25,14 @@ export class AppComponent implements OnInit {
 
   @ViewChild('inputWrapperRef') public inputWrapperRef: ElementRef;
   @ViewChild('inputRef') public inputRef: ElementRef;
+  @ViewChild('modal') public modal: ModalComponent;
 
   public data: any = null;
   public fontSize: number = 1;
   public fontFamily: string = null;
 
-  public modal: any = null;
-
   private editing: any = null;
+  private modalEditingReference: any = null;
 
   constructor (
     private _dataService: DataService
@@ -55,63 +56,23 @@ export class AppComponent implements OnInit {
     this.data.theme.fontFamily = $event.target.value || null;
   }
 
-  public openModal ($event, parent, field, type, index): void {
-    this.cancelEdit();
-
-    $event.preventDefault();
-    $event.stopPropagation();
-
-    let isAdding = (index === undefined || index === null);
-
-    this.modal = {
-      editTarget: { parent, field, index },
-      isEditing: !isAdding,
-      isAdding: isAdding,
-      fields: type.fields.map(a => Object.assign({}, a))
-    };
-
-    if (!isAdding) {
-      Object.keys(parent[field][index]).forEach(key => {
-        this.modal.fields.forEach(f => {
-          if (f.key === key) {
-            f.value = parent[field][index][key];
-          }
-        });
-      });
-    }
+  public openModal ($event, type, data, parent, index): void {
+    let fieldsClone = type.fields.map(a => Object.assign({}, a));
+    let dataClone = data ? Object.assign({}, data) : null;
+    this.modalEditingReference = { parent, index };
+    this.modal.open(fieldsClone, dataClone);
   }
 
-  @HostListener('window:keydown.escape') public clearModal (): void {
-    this.modal = null;
-  }
-
-  public submitModal ($event): void {
-    $event.preventDefault();
-
-    let newItem = {};
-
-    this.modal.fields.forEach(field => {
-      newItem[field.key] = field.value;
-    });
-
-    if (this.modal.isAdding) {
-      this.modal.editTarget.parent[this.modal.editTarget.field].push(newItem);
-    } else {
-      this.modal.editTarget.parent[this.modal.editTarget.field][this.modal.editTarget.index] = newItem;
+  public onModalClose (data): void {
+    if (this.modalEditingReference) {
+      if (data) {
+        this.modalEditingReference.parent[this.modalEditingReference.index] = data;
+      } else {
+        this.modalEditingReference.parent.splice(this.modalEditingReference.index, 1);
+      }
     }
 
-    this.clearModal();
-  }
-
-  public deleteModalItem (): void {
-    this.modal.editTarget.parent[this.modal.editTarget.field].splice(this.modal.editTarget.index, 1);
-    this.clearModal();
-  }
-
-  public backdropClose ($event): void {
-    if ($event.target.classList.contains('modal-wrapper')) {
-      this.clearModal();
-    }
+    this.modalEditingReference = null;
   }
 
   public addFirstChild ($event, parent, field, type): void {
@@ -126,6 +87,8 @@ export class AppComponent implements OnInit {
     this.updateEditBoxPosition();
   }
 
+
+
   public addLastChild ($event, parent, field, type): void {
     $event.preventDefault();
     $event.stopPropagation();
@@ -135,7 +98,7 @@ export class AppComponent implements OnInit {
   }
 
   public editField ($event, parent, field): void {
-    this.clearModal();
+    this.modal.close();
 
     if (this.editing) {
       this.saveChanges();

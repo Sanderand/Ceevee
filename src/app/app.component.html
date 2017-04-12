@@ -30,7 +30,7 @@
     <!-- DETAILS -->
 
     <div
-      (click)="openModal($event, data, 'details', TYPES.DETAILS)"
+      (click)="openModal($event, TYPES.DETAILS, data.details, data, 'details')"
       class="details modal-edit">
 
       <div
@@ -95,14 +95,11 @@
             (click)="editField($event, item, 'title')"
             class="editable title">
             {{ item.title }}
-            <span
-              (click)="openModal($event, item, 'items', TYPES.EDUCATION)"
-              class="icon-btn">+</span>
           </div>
 
           <div
             *ngFor="let child of item.items; let idx = index"
-            (click)="openModal($event, item, 'items', TYPES.EDUCATION, idx)"
+            (click)="openModal($event, TYPES.EDUCATION, item.items, child, item.items, idx)"
             class="child modal-edit">
 
             <div class="left">
@@ -149,6 +146,10 @@
               </div>
             </div>
           </div>
+
+          <button
+            (click)="openModal($event, TYPES.EDUCATION, null, item.items, item.items.length)"
+            class="btn btn-block btn-sm btn-secondary">Add {{ TYPES.EDUCATION.name }}</button>
         </div>
 
         <!-- SKILL -->
@@ -160,14 +161,11 @@
             (click)="editField($event, item, 'title')"
             class="editable title">
             {{ item.title }}
-            <span
-              (click)="openModal($event, item, 'items', TYPES.SKILL)"
-              class="icon-btn">+</span>
           </div>
 
           <div
             *ngFor="let child of item.items; let idx = index"
-            (click)="openModal($event, item, 'items', TYPES.SKILL, idx)"
+            (click)="openModal($event, TYPES.SKILL, child, item.items, idx)"
             class="child modal-edit">
             <div
               class="title">
@@ -191,6 +189,10 @@
               </div>
             </div>
           </div>
+
+          <button
+            (click)="openModal($event, TYPES.SKILL, null, item.items, item.items.length)"
+            class="btn btn-block btn-sm btn-secondary">Add {{ TYPES.SKILL.name }}</button>
         </div>
 
         <!-- DETAIL_LIST -->
@@ -202,14 +204,11 @@
             (click)="editField($event, item, 'title')"
             class="editable title">
             {{ item.title }}
-            <span
-              (click)="openModal($event, item, 'items', TYPES.DETAIL_LIST)"
-              class="icon-btn">+</span>
           </div>
 
           <div
             *ngFor="let child of item.items; let idx = index"
-            (click)="openModal($event, item, 'items', TYPES.DETAIL_LIST, idx)"
+            (click)="openModal($event, TYPES.DETAIL_LIST, child, item.items, idx)"
             class="child modal-edit">
             <div class="left">
               <div
@@ -254,6 +253,10 @@
               </div>
             </div>
           </div>
+
+          <button
+            (click)="openModal($event, TYPES.DETAIL_LIST, null, item.items, item.items.length)"
+            class="btn btn-block btn-sm btn-secondary">Add {{ TYPES.DETAIL_LIST.name }}</button>
         </div>
 
         <!-- RECOMMENDATION -->
@@ -265,14 +268,11 @@
             (click)="editField($event, item, 'title')"
             class="editable title">
             {{ item.title }}
-            <span
-              (click)="openModal($event, item, 'items', TYPES.RECOMMENDATION)"
-              class="icon-btn">+</span>
           </div>
 
           <div
             *ngFor="let child of item.items; let idx = index"
-            (click)="openModal($event, item, 'items', TYPES.RECOMMENDATION, idx)"
+            (click)="openModal($event, TYPES.RECOMMENDATION, child, item.items, idx)"
             class="child modal-edit">
             <div
               class="name">
@@ -291,6 +291,10 @@
               {{ child.comment }}
             </div>
           </div>
+
+          <button
+            (click)="openModal($event, TYPES.RECOMMENDATION, null, item.items, item.items.length)"
+            class="btn btn-block btn-sm btn-secondary">Add {{ TYPES.RECOMMENDATION.name }}</button>
         </div>
       </div>
     </div>
@@ -312,59 +316,6 @@
   </div>
 </div>
 
-<div
-  *ngIf="modal"
-  (click)="backdropClose($event)"
-  class="modal-wrapper">
-  <form
-    class="modal"
-    (submit)="submitModal($event)">
-
-    <div>
-      <span>{{ modal.isAdding ? 'New' : 'Update' }} entry</span>
-
-      <button
-        class="btn btn-primary btn-sm"
-        type="submit">
-        {{ modal.isAdding ? 'Save' : 'Update'}}
-      </button>
-
-      <button
-        *ngIf="modal.isEditing"
-        class="btn btn-warning btn-sm"
-        type="button"
-        (click)="deleteModalItem()">
-        Delete
-      </button>
-
-      <button
-        class="btn btn-secondary btn-sm"
-        type="button"
-        (click)="clearModal()">
-        Cancel
-      </button>
-    </div>
-
-    <div
-      *ngFor="let field of modal.fields"
-      class="form-group">
-      <label>{{ field.label }}</label>
-
-      <input
-        *ngIf="field.type === 'text' || field.type === 'number' || field.type === 'email' || field.type === 'url' || field.type === 'date' || field.type === 'month'"
-        [type]="field.type"
-        [name]="field.label"
-        [placeholder]="field.placeholder"
-        [(ngModel)]="field.value"
-        class="form-control">
-
-      <textarea
-        *ngIf="field.type === 'textarea'"
-        [name]="field.label"
-        [placeholder]="field.placeholder"
-        [(ngModel)]="field.value"
-        class="form-control">
-      </textarea>
-    </div>
-  </form>
-</div>
+<cv-modal
+  (close)="onModalClose($event)"
+  #modal></cv-modal>

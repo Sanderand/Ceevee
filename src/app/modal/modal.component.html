@@ -1,0 +1,56 @@
+<div
+  *ngIf="isOpen"
+  (click)="onBackdropClick($event)"
+  class="modal-wrapper">
+  <form
+    class="modal"
+    (submit)="submit($event)">
+
+    <div>
+      <span>{{ isAdding ? 'New' : 'Update' }} entry</span>
+
+      <button
+        class="btn btn-primary btn-sm"
+        type="submit">
+        {{ isAdding ? 'Save' : 'Update'}}
+      </button>
+
+      <button
+        *ngIf="!isAdding"
+        class="btn btn-warning btn-sm"
+        type="button"
+        (click)="remove()">
+        Delete
+      </button>
+
+      <button
+        class="btn btn-secondary btn-sm"
+        type="button"
+        (click)="cancel()">
+        Cancel
+      </button>
+    </div>
+
+    <div
+      *ngFor="let field of fields"
+      class="form-group">
+      <label>{{ field.label }}</label>
+
+      <input
+        *ngIf="field.type === 'text' || field.type === 'number' || field.type === 'email' || field.type === 'url' || field.type === 'date' || field.type === 'month'"
+        [type]="field.type"
+        [name]="field.label"
+        [placeholder]="field.placeholder"
+        [(ngModel)]="data[field.key]"
+        class="form-control">
+
+      <textarea
+        *ngIf="field.type === 'textarea'"
+        [name]="field.label"
+        [placeholder]="field.placeholder"
+        [(ngModel)]="data[field.key]"
+        class="form-control">
+      </textarea>
+    </div>
+  </form>
+</div>

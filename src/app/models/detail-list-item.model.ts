@@ -1,17 +1,17 @@
 export const DetailListItemFields = [{
   key: 'title',
   label: 'Title',
-  placeholder: 'title',
+  placeholder: 'Title',
   type: 'text'
 }, {
   key: 'institution',
   label: 'Institution',
-  placeholder: 'institution',
+  placeholder: 'Institution',
   type: 'text'
 }, {
   key: 'link',
   label: 'Link',
-  placeholder: 'link',
+  placeholder: 'Link',
   type: 'text'
 }, {
   key: 'location',
