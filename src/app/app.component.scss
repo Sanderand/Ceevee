@@ -96,8 +96,18 @@ header {
 .modal-edit {
   &:hover {
     background-color: $c_editing_light;
+
+    @media print {
+      background-color: transparent;
+    }
   }
 
+  @media print {
+    display: none;
+  }
+}
+
+.print-hide {
   @media print {
     display: none;
   }
