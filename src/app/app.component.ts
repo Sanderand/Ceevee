@@ -59,8 +59,9 @@ export class AppComponent implements OnInit {
   public openModal ($event, type, data, parent, index): void {
     let fieldsClone = type.fields.map(a => Object.assign({}, a));
     let dataClone = data ? Object.assign({}, data) : null;
+    let preventDelete = (type === this.TYPES.DETAILS);
     this.modalEditingReference = { parent, index };
-    this.modal.open(fieldsClone, dataClone);
+    this.modal.open(fieldsClone, dataClone, preventDelete);
   }
 
   public onModalClose (data): void {

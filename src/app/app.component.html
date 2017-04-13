@@ -102,13 +102,15 @@
             (click)="openModal($event, TYPES.EDUCATION, item.items, child, item.items, idx)"
             class="child modal-edit">
 
-            <div class="left">
+            <div
+              class="left">
               <div
                 class="title">
                 {{ child.title }}
               </div>
 
-              <div class="timespan">
+              <div
+                class="timespan">
                 <div
                   class="start">
                   {{ child.start ? (child.start | date:'MM/yy') : 'present' }}
@@ -122,12 +124,11 @@
 
             <div class="right">
               <a
-                class="institution"
                 [attr.href]="child.link"
+                class="institution"
                 target="_blank">
                 {{ child.institution }}
               </a>
-
               <div
                 class="location">
                 {{ child.location }}
@@ -232,8 +233,8 @@
             <div class="right">
               <a
                 *ngIf="child.institution"
-                class="institution"
                 [attr.href]="child.link"
+                class="institution"
                 target="_blank">{{ child.institution }}</a>
 
               <div

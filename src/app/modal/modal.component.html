@@ -16,7 +16,7 @@
       </button>
 
       <button
-        *ngIf="!isAdding"
+        *ngIf="!isAdding && !preventDelete"
         class="btn btn-warning btn-sm"
         type="button"
         (click)="remove()">

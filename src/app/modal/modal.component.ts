@@ -13,10 +13,12 @@ export class ModalComponent {
   public data: any = null;
   public isAdding: boolean = false;
   public isOpen: boolean = false;
+  public preventDelete: boolean = false;
 
-  public open (fields, data): void {
+  public open (fields, data, preventDelete): void {
     this.isAdding = !data;
     this.isOpen = true;
+    this.preventDelete = preventDelete;
 
     this.fields = fields;
     this.data = data || {};
