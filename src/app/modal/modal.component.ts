@@ -7,7 +7,7 @@ import { Component, Output, ViewEncapsulation, SimpleChanges, ElementRef, HostLi
   encapsulation: ViewEncapsulation.None
 })
 export class ModalComponent {
-  @Output('close') public closeEmitter: EventEmitter<any> = new EventEmitter<any>();
+  @Output() public close: EventEmitter<any> = new EventEmitter<any>();
 
   public fields: any = null;
   public data: any = null;
@@ -15,7 +15,7 @@ export class ModalComponent {
   public isOpen: boolean = false;
   public preventDelete: boolean = false;
 
-  public open (fields, data, preventDelete): void {
+  public openModal (fields, data, preventDelete): void {
     this.isAdding = !data;
     this.isOpen = true;
     this.preventDelete = preventDelete;
@@ -24,36 +24,36 @@ export class ModalComponent {
     this.data = data || {};
   }
 
-  public close (): void {
-    this.closeEmitter.emit(this.data);
+  public closeModal (): void {
+    this.close.emit(this.data);
     this.isOpen = false;
   }
 
-  public submit ($event): void {
+  public submitModal ($event): void {
     $event.preventDefault();
-    this.close();
+    this.closeModal();
   }
 
-  public cancel (): void {
+  public cancelModal (): void {
     if (this.isAdding) {
-      this.remove();
+      this.removeItem();
     } else {
-      this.close();
+      this.closeModal();
     }
   }
 
-  public remove (): void {
+  public removeItem (): void {
     this.data = null;
-    this.close();
+    this.closeModal();
   }
 
   public onBackdropClick ($event): void {
     if ($event.target.classList.contains('modal-wrapper')) {
-      this.cancel();
+      this.cancelModal();
     }
   }
 
   @HostListener('window:keydown.escape') public onEscapeKey (): void {
-    this.cancel();
+    this.cancelModal();
   }
 }

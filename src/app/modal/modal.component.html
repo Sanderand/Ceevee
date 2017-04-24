@@ -4,7 +4,7 @@
   class="modal-wrapper">
   <form
     class="modal"
-    (submit)="submit($event)">
+    (submit)="submitModal($event)">
 
     <div>
       <span>{{ isAdding ? 'New' : 'Update' }} entry</span>
@@ -19,14 +19,14 @@
         *ngIf="!isAdding && !preventDelete"
         class="btn btn-warning btn-sm"
         type="button"
-        (click)="remove()">
+        (click)="removeItem()">
         Delete
       </button>
 
       <button
         class="btn btn-secondary btn-sm"
         type="button"
-        (click)="cancel()">
+        (click)="cancelModal()">
         Cancel
       </button>
     </div>

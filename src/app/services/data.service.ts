@@ -1,37 +1,7 @@
-import { Injectable } from  '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { CV } from '../models/cv.model';
-
-@Injectable()
-export class DataService {
-  public getData (): Observable<CV> {
-    return Observable.of(data);
-  }
-
-  // constructor (
-  //   private _http: Http
-  // ) {}
-  //
-  // public getData (): Observable<CV> {
-  //   return Observable.of(data);
-  //   return this._http
-  //     .get(DATA_PATH)
-  //     .map(this.extractData)
-  //     .catch(this.handleError);
-  // }
-  //
-  // private extractData (res: Response): any {
-  //   let body = res.json();
-  //   console.log(body.data);
-  //   return body.data || {};
-  // }
-  //
-  // private handleError (error: Response | any): any {
-  //   console.error(error);
-  //   return Observable.throw(error);
-  // }
-}
 
 const data = {
   "details": {
@@ -194,3 +164,33 @@ const data = {
     "class": "divider"
   }]
 };
+
+@Injectable()
+export class DataService {
+  public getData (): Observable<CV> {
+    return Observable.of(data);
+  }
+
+  // constructor (
+  //   private _http: Http
+  // ) {}
+  //
+  // public getData (): Observable<CV> {
+  //   return Observable.of(data);
+  //   return this._http
+  //     .get(DATA_PATH)
+  //     .map(this.extractData)
+  //     .catch(this.handleError);
+  // }
+  //
+  // private extractData (res: Response): any {
+  //   let body = res.json();
+  //   console.log(body.data);
+  //   return body.data || {};
+  // }
+  //
+  // private handleError (error: Response | any): any {
+  //   console.error(error);
+  //   return Observable.throw(error);
+  // }
+}

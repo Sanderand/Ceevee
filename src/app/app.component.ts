@@ -13,7 +13,7 @@ import { ModalComponent } from './modal/modal.component';
 // TODO: deal with blank fields
 
 @Component({
-  selector: 'app-root',
+  selector: 'cv-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   encapsulation: ViewEncapsulation.None
@@ -57,11 +57,11 @@ export class AppComponent implements OnInit {
   }
 
   public openModal ($event, type, data, parent, index): void {
-    let fieldsClone = type.fields.map(a => Object.assign({}, a));
-    let dataClone = data ? Object.assign({}, data) : null;
-    let preventDelete = (type === this.TYPES.DETAILS);
+    const fieldsClone = type.fields.map(a => Object.assign({}, a));
+    const dataClone = data ? Object.assign({}, data) : null;
+    const preventDelete = (type === this.TYPES.DETAILS);
     this.modalEditingReference = { parent, index };
-    this.modal.open(fieldsClone, dataClone, preventDelete);
+    this.modal.openModal(fieldsClone, dataClone, preventDelete);
   }
 
   public onModalClose (data): void {
@@ -88,8 +88,6 @@ export class AppComponent implements OnInit {
     this.updateEditBoxPosition();
   }
 
-
-
   public addLastChild ($event, parent, field, type): void {
     $event.preventDefault();
     $event.stopPropagation();
@@ -99,7 +97,7 @@ export class AppComponent implements OnInit {
   }
 
   public editField ($event, parent, field): void {
-    this.modal.close();
+    this.modal.closeModal();
 
     if (this.editing) {
       this.saveChanges();
@@ -108,7 +106,7 @@ export class AppComponent implements OnInit {
     $event.preventDefault();
     $event.stopPropagation();
 
-    let target = $event.target;
+    const target = $event.target;
     let value = parent[field];
 
     this.editing = { parent, field, target };
@@ -126,9 +124,9 @@ export class AppComponent implements OnInit {
       return;
     }
 
-    let boundingBox = this.editing.target.getBoundingClientRect();
-    let offsetTop = this.editing.target.offsetTop;
-    let styleElement = window.getComputedStyle(this.editing.target);
+    const boundingBox = this.editing.target.getBoundingClientRect();
+    const offsetTop = this.editing.target.offsetTop;
+    const styleElement = window.getComputedStyle(this.editing.target);
 
     this.editing.target.style.opacity = '0';
 
@@ -169,7 +167,7 @@ export class AppComponent implements OnInit {
       return;
     }
 
-    let newValue = this.inputRef.nativeElement.value.trim();
+    const newValue = this.inputRef.nativeElement.value.trim();
 
     if (newValue.length) {
       // TODO: newValue = newValue.replace('\n', '<br>');

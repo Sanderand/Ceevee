@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { AppComponent } from './app.component';
 import { DataService } from './services/data.service';
 
-class mockDataService {
+class DataServiceMock {
   public getData (): Observable<any> {
     return Observable.of({});
   }
@@ -17,7 +17,7 @@ describe('AppComponent', () => {
         AppComponent
       ],
       providers: [
-        { provide: DataService, useClass: mockDataService }
+        { provide: DataService, useClass: DataServiceMock }
       ]
     }).compileComponents();
   }));
