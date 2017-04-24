@@ -7,8 +7,7 @@ import { AngularFireModule, AuthProviders, AuthMethods, AngularFire } from 'angu
 import { AppComponent } from './app.component';
 import { DataService } from './services/data.service';
 import { ModalComponent } from './modal/modal.component';
-import { AuthComponent } from './auth/auth.component';
-// TODO MOVE AUTHCOMPONENT DECLARTION TO AUTHMODULE
+import { AuthModule } from './auth/auth.module';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyAj2R8sLxgNVaSIHMcLnXKzTSoj5ACeZEg',
@@ -27,14 +26,14 @@ const firebaseAuthConfig = {
 @NgModule({
   declarations: [
     AppComponent,
-    AuthComponent,
     ModalComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    AngularFireModule.initializeApp(firebaseConfig, firebaseAuthConfig)
+    AngularFireModule.initializeApp(firebaseConfig, firebaseAuthConfig),
+    AuthModule
   ],
   providers: [
     DataService,

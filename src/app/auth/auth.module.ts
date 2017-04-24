@@ -11,7 +11,7 @@ import { AuthComponent } from './auth.component';
         AuthComponent
     ],
     exports: [
-        AuthModule
+        AuthComponent
     ],
     imports: [
         BrowserModule,
