@@ -30,6 +30,7 @@ export class AppComponent implements OnInit {
   public data: any = null;
   public fontSize: number = 1;
   public fontFamily: string = null;
+  public item: any = null;
 
   private editing: any = null;
   private modalEditingReference: any = null;
@@ -42,6 +43,8 @@ export class AppComponent implements OnInit {
     this._dataService
       .getData()
       .subscribe(data => this.data = data);
+
+    this.item = this._dataService.item;
   }
 
   public decreaseFontSize (): void {

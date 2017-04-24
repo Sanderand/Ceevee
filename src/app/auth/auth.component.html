@@ -1,0 +1,11 @@
+<div
+    *ngIf="(af.auth | async)"
+    class="profile">
+    <img
+        [attr.src]="(af.auth | async)?.google?.photoURL">
+    {{ (af.auth | async)?.google?.displayName }}
+</div>
+
+
+<button (click)="login()">Login</button>
+<button (click)="logout()">Logout</button>

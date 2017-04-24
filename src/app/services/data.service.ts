@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { AngularFire, FirebaseObjectObservable } from 'angularfire2';
 
 import { CV } from '../models/cv.model';
 
@@ -167,6 +168,14 @@ const data = {
 
 @Injectable()
 export class DataService {
+  public item: FirebaseObjectObservable<any>;
+
+  constructor (
+    private _af: AngularFire
+  ) {
+    this.item = _af.database.object('/item');
+  }
+
   public getData (): Observable<CV> {
     return Observable.of(data);
   }

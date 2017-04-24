@@ -20,6 +20,15 @@
   </select>
 </header>
 
+<cv-auth></cv-auth>
+
+<div>
+  ABC = {{ (item | async)?.abc }}
+</div>
+<div>
+  TEST = {{ (item | async)?.test }}
+</div>
+
 <div class="cv">
   <div
     *ngIf="data"
