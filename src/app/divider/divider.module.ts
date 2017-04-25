@@ -3,14 +3,14 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
-import { AuthComponent } from './auth.component';
+import { DividerComponent } from './divider.component';
 
 @NgModule({
     declarations: [
-        AuthComponent
+        DividerComponent
     ],
     exports: [
-        AuthComponent
+        DividerComponent
     ],
     imports: [
         BrowserModule,
@@ -18,4 +18,4 @@ import { AuthComponent } from './auth.component';
         CommonModule
     ]
 })
-export class AuthModule { }
+export class DividerModule { }

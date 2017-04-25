@@ -94,7 +94,7 @@ body, html {
 
     .items {
       max-width: 768px;
-      margin: 0 auto;
+      // margin: 0 auto;
 
       .education,
       .detail-list,
@@ -315,4 +315,44 @@ body, html {
       }
     }
   }
+}
+
+
+//// LOADING STATE
+
+.ghost {
+  background: linear-gradient(317deg, #bbbbbb, #e8e8e8);
+  background-size: 400% 400%;
+  border-radius: 3px;
+
+  -webkit-animation: AnimationName 1.7s ease infinite;
+  -moz-animation: AnimationName 1.7s ease infinite;
+  animation: AnimationName 1.7s ease infinite;
+
+  @-webkit-keyframes AnimationName {
+      0%{background-position:0% 11%}
+      50%{background-position:100% 90%}
+      100%{background-position:0% 11%}
+  }
+  @-moz-keyframes AnimationName {
+      0%{background-position:0% 11%}
+      50%{background-position:100% 90%}
+      100%{background-position:0% 11%}
+  }
+  @keyframes AnimationName { 
+      0%{background-position:0% 11%}
+      50%{background-position:100% 90%}
+      100%{background-position:0% 11%}
+  }
+}
+
+
+
+
+
+/// HELPERS
+
+
+.text-center {
+  text-align: center;
 }

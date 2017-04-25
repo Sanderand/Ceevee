@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation, ViewChild, ElementRef, HostListener } from '@angular/core';
+import { AngularFire } from 'angularfire2';
 
 import { TYPES } from './types';
 import { MIN_FONT_SIZE, MAX_FONT_SIZE, FONT_SIZE_CHANGE_STEP } from './constants/constants';
@@ -30,13 +31,16 @@ export class AppComponent implements OnInit {
   public data: any = null;
   public fontSize: number = 1;
   public fontFamily: string = null;
-  public item: any = null;
+
+  public details: any = null;
+  public items: any = null;
 
   private editing: any = null;
   private modalEditingReference: any = null;
 
   constructor (
-    private _dataService: DataService
+    private _dataService: DataService,
+    private _af: AngularFire
   ) {}
 
   public ngOnInit (): void {
@@ -44,7 +48,8 @@ export class AppComponent implements OnInit {
       .getData()
       .subscribe(data => this.data = data);
 
-    this.item = this._dataService.item;
+    this.details = this._af.database.object('/cvs/one/details');
+    this.items = this._af.database.list('/cvs/one/items');
   }
 
   public decreaseFontSize (): void {
@@ -60,23 +65,23 @@ export class AppComponent implements OnInit {
   }
 
   public openModal ($event, type, data, parent, index): void {
-    const fieldsClone = type.fields.map(a => Object.assign({}, a));
-    const dataClone = data ? Object.assign({}, data) : null;
-    const preventDelete = (type === this.TYPES.DETAILS);
-    this.modalEditingReference = { parent, index };
-    this.modal.openModal(fieldsClone, dataClone, preventDelete);
+    // const fieldsClone = type.fields.map(a => Object.assign({}, a));
+    // const dataClone = data ? Object.assign({}, data) : null;
+    // const preventDelete = (type === this.TYPES.DETAILS);
+    // this.modalEditingReference = { parent, index };
+    // this.modal.openModal(fieldsClone, dataClone, preventDelete);
   }
 
   public onModalClose (data): void {
-    if (this.modalEditingReference) {
-      if (data) {
-        this.modalEditingReference.parent[this.modalEditingReference.index] = data;
-      } else {
-        this.modalEditingReference.parent.splice(this.modalEditingReference.index, 1);
-      }
-    }
+    // if (this.modalEditingReference) {
+    //   if (data) {
+    //     this.modalEditingReference.parent[this.modalEditingReference.index] = data;
+    //   } else {
+    //     this.modalEditingReference.parent.splice(this.modalEditingReference.index, 1);
+    //   }
+    // }
 
-    this.modalEditingReference = null;
+    // this.modalEditingReference = null;
   }
 
   public addFirstChild ($event, parent, field, type): void {

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { AngularFire } from 'angularfire2';
+import { AngularFire, AngularFireAuth } from 'angularfire2';
 
 @Component({
     selector: 'cv-auth',
@@ -8,22 +8,21 @@ import { AngularFire } from 'angularfire2';
     encapsulation: ViewEncapsulation.None
 })
 export class AuthComponent implements OnInit {
+    public auth: AngularFireAuth = null;
+
     constructor (
-        public af: AngularFire
+        private _af: AngularFire
     ) {}
 
     public ngOnInit (): void {
-        this.af.auth
-            .subscribe(res => {
-                console.log(res);
-            });
+        this.auth = this._af.auth;
     }
 
     public login() {
-        this.af.auth.login();
+        this._af.auth.login();
     }
 
     public logout() {
-        this.af.auth.logout();
+        this._af.auth.logout();
     }
 }

@@ -1,0 +1,17 @@
+<div
+    *ngIf="data"
+    class="modal-edit">
+    <div
+        *ngIf="data.title"
+        class="title">
+        {{ data.title }}
+    </div>
+</div>
+
+<div
+    *ngIf="!data">
+    <div
+        class="ghost"
+        style="height: 10px;">
+    </div>
+</div>

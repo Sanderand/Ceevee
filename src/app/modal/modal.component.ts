@@ -1,59 +1,71 @@
-import { Component, Output, ViewEncapsulation, SimpleChanges, ElementRef, HostListener, EventEmitter } from '@angular/core';
+import { Component, Output, OnInit, ViewEncapsulation, SimpleChanges, ElementRef, HostListener, EventEmitter } from '@angular/core';
+
+import { ModalService } from '../services/modal.service';
 
 @Component({
-  selector: 'cv-modal',
-  templateUrl: './modal.component.html',
-  styleUrls: ['./modal.component.scss'],
-  encapsulation: ViewEncapsulation.None
+    selector: 'cv-modal',
+    templateUrl: './modal.component.html',
+    styleUrls: ['./modal.component.scss'],
+    encapsulation: ViewEncapsulation.None
 })
-export class ModalComponent {
-  @Output() public close: EventEmitter<any> = new EventEmitter<any>();
+export class ModalComponent implements OnInit {
+    public fields: any = null;
+    public data: any = null;
+    public isAdding: boolean = false;
+    public isOpen: boolean = false;
+    public preventDelete: boolean = false;
+    public source: string = '';
 
-  public fields: any = null;
-  public data: any = null;
-  public isAdding: boolean = false;
-  public isOpen: boolean = false;
-  public preventDelete: boolean = false;
+    constructor (
+        private _modalService: ModalService
+    ) {}
 
-  public openModal (fields, data, preventDelete): void {
-    this.isAdding = !data;
-    this.isOpen = true;
-    this.preventDelete = preventDelete;
-
-    this.fields = fields;
-    this.data = data || {};
-  }
-
-  public closeModal (): void {
-    this.close.emit(this.data);
-    this.isOpen = false;
-  }
-
-  public submitModal ($event): void {
-    $event.preventDefault();
-    this.closeModal();
-  }
-
-  public cancelModal (): void {
-    if (this.isAdding) {
-      this.removeItem();
-    } else {
-      this.closeModal();
+    public ngOnInit (): void {
+        this._modalService.open$
+            .filter(options => !!options)
+            .subscribe(options => {
+                this.isAdding = !options.data;
+                this.fields = options.fields;
+                this.preventDelete = options.preventDelete;
+                this.data = options.data || {};
+                this.source = options.source;
+                this.isOpen = true;
+            });
     }
-  }
 
-  public removeItem (): void {
-    this.data = null;
-    this.closeModal();
-  }
-
-  public onBackdropClick ($event): void {
-    if ($event.target.classList.contains('modal-wrapper')) {
-      this.cancelModal();
+    public closeModal (): void {
+        this.isOpen = false;
+        this._modalService.closeModal({
+            data: this.data,
+            source: this.source
+        });
     }
-  }
 
-  @HostListener('window:keydown.escape') public onEscapeKey (): void {
-    this.cancelModal();
-  }
+    public submitModal ($event): void {
+        $event.preventDefault();
+        this.closeModal();
+    }
+
+    public cancelModal (): void {
+        if (this.isAdding) {
+            this.removeItem();
+        } else {
+            this.closeModal();
+        }
+    }
+
+    public removeItem (): void {
+        this.data = null;
+        this.closeModal();
+    }
+
+    public onBackdropClick ($event): void {
+        if ($event.target.classList.contains('modal-wrapper')) {
+            this.cancelModal();
+        }
+    }
+
+    @HostListener('window:keydown.escape') public onEscapeKey (): void {
+        this.cancelModal();
+    }
 }

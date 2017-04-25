@@ -18,62 +18,33 @@
     <option
       value="serif">Serif</option>
   </select>
+
+  <cv-auth></cv-auth>
 </header>
-
-<cv-auth></cv-auth>
-
-<div>
-  ABC = {{ (item | async)?.abc }}
-</div>
-<div>
-  TEST = {{ (item | async)?.test }}
-</div>
 
 <div class="cv">
   <div
-    *ngIf="data"
     [style.fontSize]="data.theme.fontSize + 'em'"
     [style.fontFamily]="data.theme.fontFamily"
     [class]="data.theme.class">
 
-    <!-- DETAILS -->
+    <cv-details 
+      [data]="details | async"
+      [path]="'/cvs/one/details'"></cv-details>
 
-    <div
-      (click)="openModal($event, TYPES.DETAILS, data.details, data, 'details')"
-      class="details modal-edit">
-
+    <div class="items">
       <div
-        class="name">
-        {{ data.details.name }}
-      </div>
+        *ngFor="let item of items | async"
+        class="item">
 
-      <div>
-        <div
-          class="address">
-          {{ data.details.address }}
-        </div>
-
-        <div
-          class="tel">
-          {{ data.details.tel }}
-        </div>
-      </div>
-
-      <div>
-        <a
-          [attr.href]="'mailto:' + data.details.email"
-          class="email">
-          {{ data.details.email }}
-        </a>
-
-        <a
-          [attr.href]="data.details.url"
-          class="url"
-          target="_blank">
-          {{ data.details.url }}
-        </a>
+        <cv-divider
+          *ngIf="item.type === TYPES.DIVIDER.class"
+          [data]="item"
+          [path]="'/cvs/one/items/' + item.$key"></cv-divider>
       </div>
     </div>
+
+    <h1>OLD</h1>
 
     <!-- ITEMS -->
 

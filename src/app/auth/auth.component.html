@@ -1,9 +1,9 @@
 <div
-    *ngIf="(af.auth | async)"
+    *ngIf="(auth | async)"
     class="profile">
     <img
-        [attr.src]="(af.auth | async)?.google?.photoURL">
-    {{ (af.auth | async)?.google?.displayName }}
+        [attr.src]="(auth | async)?.google?.photoURL">
+    {{ (auth | async)?.google?.displayName }}
 </div>
 
 <button (click)="login()">Login</button>

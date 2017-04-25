@@ -1,13 +1,17 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
 import { AngularFireModule, AuthProviders, AuthMethods, AngularFire } from 'angularfire2';
 
 import { AppComponent } from './app.component';
 import { DataService } from './services/data.service';
-import { ModalComponent } from './modal/modal.component';
+import { ModalService } from './services/modal.service';
+
 import { AuthModule } from './auth/auth.module';
+import { ModalModule } from './modal/modal.module';
+import { DetailsModule } from './details/details.module';
+import { DividerModule } from './divider/divider.module';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyAj2R8sLxgNVaSIHMcLnXKzTSoj5ACeZEg',
@@ -25,19 +29,23 @@ const firebaseAuthConfig = {
 
 @NgModule({
   declarations: [
-    AppComponent,
-    ModalComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule,
+    CommonModule,
     AngularFireModule.initializeApp(firebaseConfig, firebaseAuthConfig),
-    AuthModule
+
+    AuthModule,
+    ModalModule,
+    DetailsModule,
+    DividerModule
   ],
   providers: [
     DataService,
-    AngularFire
+    AngularFire,
+    ModalService
   ],
   bootstrap: [
     AppComponent
