@@ -3,10 +3,10 @@
     class="button-group">
     <button
       (click)="decreaseFontSize()"
-      [disabled]="data.theme.fontSize === MIN_FONT_SIZE">aa</button>
+      [disabled]="fontSize === MIN_FONT_SIZE">aa</button>
     <button
       (click)="increaseFontSize()"
-      [disabled]="data.theme.fontSize === MAX_FONT_SIZE">AA</button>
+      [disabled]="fontSize === MAX_FONT_SIZE">AA</button>
   </div>
 
   <select
@@ -24,9 +24,9 @@
 
 <div class="cv">
   <div
-    [style.fontSize]="data.theme.fontSize + 'em'"
-    [style.fontFamily]="data.theme.fontFamily"
-    [class]="data.theme.class">
+    [style.fontSize]="fontSize + 'em'"
+    [style.fontFamily]="fontFamily"
+    [class]="(theme | async)?.class">
 
     <cv-details 
       [data]="details | async"

@@ -29,14 +29,16 @@ export class AppComponent implements OnInit {
   @ViewChild('modal') public modal: ModalComponent;
 
   public data: any = null;
-  public fontSize: number = 1;
-  public fontFamily: string = null;
 
+  public theme: any = null;
   public details: any = null;
   public items: any = null;
 
   private editing: any = null;
   private modalEditingReference: any = null;
+
+  public fontSize: number = null;
+  public fontFamily: string = null;
 
   constructor (
     private _dataService: DataService,
@@ -48,20 +50,38 @@ export class AppComponent implements OnInit {
       .getData()
       .subscribe(data => this.data = data);
 
+    this.theme = this._af.database.object('/cvs/one/theme');
+
+    this.theme.subscribe(theme => {
+      this.fontSize = theme.fontSize || 1;
+      this.fontFamily = theme.fontFamily || null;
+      console.warn('select active font family');
+    });
+
     this.details = this._af.database.object('/cvs/one/details');
     this.items = this._af.database.list('/cvs/one/items');
   }
 
   public decreaseFontSize (): void {
-    this.data.theme.fontSize = restrictRange(this.data.theme.fontSize - FONT_SIZE_CHANGE_STEP, MIN_FONT_SIZE, MAX_FONT_SIZE);
+    this.fontSize = restrictRange(this.fontSize - FONT_SIZE_CHANGE_STEP, MIN_FONT_SIZE, MAX_FONT_SIZE);
+    this.updateTheme();
   }
 
   public increaseFontSize (): void {
-    this.data.theme.fontSize = restrictRange(this.data.theme.fontSize + FONT_SIZE_CHANGE_STEP, MIN_FONT_SIZE, MAX_FONT_SIZE);
+    this.fontSize = restrictRange(this.fontSize + FONT_SIZE_CHANGE_STEP, MIN_FONT_SIZE, MAX_FONT_SIZE);
+    this.updateTheme();
   }
 
   public changeFontFamily ($event): void {
-    this.data.theme.fontFamily = $event.target.value || null;
+    this.fontFamily = $event.target.value || null;
+    this.updateTheme();
+  }
+
+  private updateTheme (): void {
+    this.theme.update({
+      fontSize: this.fontSize,
+      fontFamily: this.fontFamily
+    });
   }
 
   public openModal ($event, type, data, parent, index): void {
