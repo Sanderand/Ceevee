@@ -4,15 +4,6 @@
     display: table;
     width: 100%;
 
-    label {
-        // todo: make mixin!
-        text-transform: uppercase;
-        margin-bottom: 0.5em;
-        font-weight: 400;
-        font-size: 1.2em;
-        display: inline-block;
-    }
-
     .item {
         &:last-child .left,
         &:last-child .right {
@@ -81,22 +72,6 @@
             margin-top: 0.35em;
             margin-bottom: 0.35em;
             text-align: justify;
-        }
-
-        .tag {
-            background-color: #fff;
-            border: 1px solid $c_highlight;
-            color: $c_highlight;
-
-            display: inline-block;
-            line-height: 1;
-            vertical-align: baseline;
-            margin: 0 .1em;
-            padding: 0 .7em;
-            font-size: .8em;
-            line-height: 1.8em;
-            font-weight: normal;
-            border-radius: .3em;
         }
     }
 }

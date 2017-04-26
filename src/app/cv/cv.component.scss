@@ -30,3 +30,29 @@
         }
     }
 }
+
+// GLOBALS
+
+.section-title {
+    text-transform: uppercase;
+    margin-bottom: 0.5em;
+    font-weight: 400;
+    font-size: 1.2em;
+    display: inline-block;
+}
+
+.tag {
+    background-color: #fff;
+    border: 1px solid $c_highlight;
+    color: $c_highlight;
+
+    display: inline-block;
+    line-height: 1;
+    vertical-align: baseline;
+    margin: 0 .1em;
+    padding: 0 .7em;
+    font-size: .8em;
+    line-height: 1.8em;
+    font-weight: normal;
+    border-radius: .3em;
+}
