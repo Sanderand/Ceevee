@@ -6,5 +6,12 @@
     {{ (auth | async)?.google?.displayName }}
 </div>
 
+<ul>
+    <li
+        *ngFor="let cv of (userCvs | async)">
+        {{ cv.$key }}
+    </li>
+</ul>
+
 <button (click)="login()">Login</button>
 <button (click)="logout()">Logout</button>

@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation, HostBinding, OnInit } from '@angular/core';
-import { AngularFire } from 'angularfire2';
+import { AngularFire, AngularFireAuth } from 'angularfire2';
 
 import { ModalService } from '../modal/modal.service';
 import { Field } from '../models/field.model';
@@ -23,12 +23,14 @@ export class CVComponent implements OnInit {
     public MAX_FONT_SIZE = MAX_FONT_SIZE;
 
     public theme: any = null;
+    public auth: AngularFireAuth = null;
 
     constructor (
         private _af: AngularFire
     ) { }
 
     public ngOnInit (): void {
+        this.auth = this._af.auth;
         this.theme = this._af.database.object('/cvs/one/theme');
         this.theme
             .subscribe(theme => {

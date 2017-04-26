@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { AngularFire, AngularFireAuth } from 'angularfire2';
+import { AngularFire, AngularFireAuth, FirebaseListObservable } from 'angularfire2';
+import { Subject } from 'rxjs';
 
 @Component({
     selector: 'cv-auth',
@@ -9,6 +10,7 @@ import { AngularFire, AngularFireAuth } from 'angularfire2';
 })
 export class AuthComponent implements OnInit {
     public auth: AngularFireAuth = null;
+    public cvs: FirebaseListObservable<any> = null;
 
     constructor (
         private _af: AngularFire
@@ -16,6 +18,29 @@ export class AuthComponent implements OnInit {
 
     public ngOnInit (): void {
         this.auth = this._af.auth;
+        this.cvs = this._af.database.list('/cvs');
+
+        let cvIds = new Subject<any>();
+
+        this.auth
+            .filter(auth => !!auth)
+            .map(auth => auth.uid)
+            .subscribe(uid => {
+                this._af.database
+                    .list(`/users/${ uid }`)
+                    .map(ids => ids.map(i => i.$key))
+                    .subscribe(cvIds => {
+                        cvIds.forEach(id => {
+                            this._af.database
+                                .object(`/cvs/${ id }`)
+                                .subscribe(cv => {
+                                    console.log(cv);
+                                });
+                        });
+                    });
+            });
+
+            // .map(id => this._af.database.object(`/cvs/${ id }`))
     }
 
     public login() {
