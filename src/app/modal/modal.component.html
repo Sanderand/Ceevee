@@ -1,56 +1,58 @@
-<div
-  *ngIf="isOpen"
-  (click)="onBackdropClick($event)"
-  class="modal-wrapper">
-  <form
-    class="modal"
-    (submit)="submitModal($event)">
+<div class="modal-inner">
+    <form
+        (submit)="submitModal($event)">
+        <header>
+            {{ isAdding ? 'New' : 'Update' }} item
+        </header>
 
-    <div>
-      <span>{{ isAdding ? 'New' : 'Update' }} entry</span>
+        <main>
+            <div
+                *ngFor="let field of fields"
+                class="form-group">
+                <label>
+                    {{ field.label }}
+                </label>
 
-      <button
-        class="btn btn-primary btn-sm"
-        type="submit">
-        {{ isAdding ? 'Save' : 'Update'}}
-      </button>
+                <input
+                    *ngIf="field.type === 'text' || field.type === 'number' || field.type === 'email' || field.type === 'url' || field.type === 'date' || field.type === 'month'"
+                    [(ngModel)]="data[field.key]"
+                    [type]="field.type"
+                    [name]="field.label"
+                    [placeholder]="field.placeholder"
+                    class="form-control">
 
-      <button
-        *ngIf="!isAdding && !preventDelete"
-        class="btn btn-warning btn-sm"
-        type="button"
-        (click)="removeItem()">
-        Delete
-      </button>
+                <textarea
+                    *ngIf="field.type === 'textarea'"
+                    [(ngModel)]="data[field.key]"
+                    [name]="field.label"
+                    [placeholder]="field.placeholder"
+                    class="form-control">
+                </textarea>
+            </div>
+        </main>
 
-      <button
-        class="btn btn-secondary btn-sm"
-        type="button"
-        (click)="cancelModal()">
-        Cancel
-      </button>
-    </div>
+        <footer
+            class="btn-group">
+            <button
+                class="btn btn-primary btn-sm"
+                type="submit">
+                {{ isAdding ? 'Save' : 'Update'}}
+            </button>
 
-    <div
-      *ngFor="let field of fields"
-      class="form-group">
-      <label>{{ field.label }}</label>
+            <button
+                *ngIf="!isAdding && !preventDelete"
+                (click)="removeItem()"
+                class="btn btn-warning btn-sm"
+                type="button">
+                Delete
+            </button>
 
-      <input
-        *ngIf="field.type === 'text' || field.type === 'number' || field.type === 'email' || field.type === 'url' || field.type === 'date' || field.type === 'month'"
-        [type]="field.type"
-        [name]="field.label"
-        [placeholder]="field.placeholder"
-        [(ngModel)]="data[field.key]"
-        class="form-control">
-
-      <textarea
-        *ngIf="field.type === 'textarea'"
-        [name]="field.label"
-        [placeholder]="field.placeholder"
-        [(ngModel)]="data[field.key]"
-        class="form-control">
-      </textarea>
-    </div>
-  </form>
+            <button
+                (click)="cancelModal()"
+                class="btn btn-secondary btn-sm"
+                type="button">
+                Cancel
+            </button>
+        </footer>
+    </form>
 </div>

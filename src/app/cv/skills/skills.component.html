@@ -1,0 +1,55 @@
+<div
+    *ngIf="items">
+    <div
+        class="section-title">
+        {{ title.$value || 'Skills' }}
+    </div>
+
+    <div
+        *ngFor="let item of items"
+        (click)="editData($event, item)"
+        class="item editable">
+        <div
+            class="title">
+            {{ item.title }}
+        </div>
+
+        <div
+            class="bar">
+            <div
+                *ngIf="item.percentage"
+                class="wrapper">
+
+                <div
+                    [style.width]="item.percentage + '%'"
+                    class="percentage">
+                </div>
+            </div>
+
+            <div
+                *ngIf="item.description"
+                class="description">
+                {{ item.description }}
+            </div>
+        </div>
+    </div>
+    
+    <button
+        (click)="editData($event, null)"
+        class="btn btn-block btn-secondary">
+        Add item
+    </button>
+</div>
+
+<div
+    *ngIf="!items">
+    <div
+        class="ghost"
+        style="display: inline-block; height: 30px; width: 70px; margin-right: 70px;">
+    </div>
+
+    <div
+        class="ghost"
+        style="display: inline-block; height: 30px; width: 200px;">
+    </div>
+</div>

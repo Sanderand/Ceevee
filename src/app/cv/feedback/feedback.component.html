@@ -1,0 +1,51 @@
+<div
+    *ngIf="items">
+    <div
+        class="section-title">
+        {{ title.$value || 'Feedback' }}
+    </div>
+
+    <div
+        *ngFor="let item of items"
+        (click)="editData($event, item)"
+        class="item editable">
+        <div
+            class="name">
+            {{ item.name }}
+        </div>
+
+        <div
+            class="relationship">
+            {{ item.relationship }}
+        </div>
+
+        <div
+            class="institution">
+            {{ item.institution }}
+        </div>
+        
+        <div
+            class="comment">
+            {{ item.comment }}
+        </div>
+    </div>
+    
+    <button
+        (click)="editData($event, null)"
+        class="btn btn-block btn-secondary">
+        Add item
+    </button>
+</div>
+
+<div
+    *ngIf="!items">
+    <div
+        class="ghost"
+        style="display: inline-block; height: 30px; width: 70px; margin-right: 70px;">
+    </div>
+
+    <div
+        class="ghost"
+        style="display: inline-block; height: 30px; width: 200px;">
+    </div>
+</div>

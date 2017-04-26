@@ -1,6 +1,6 @@
 import { Field } from './field.model';
 
-export const RecommendationFields: Array<Field> = [{
+export const FeedbackFields: Array<Field> = [{
   key: 'name',
   label: 'Name',
   type: 'text',

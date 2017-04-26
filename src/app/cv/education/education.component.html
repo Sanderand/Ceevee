@@ -1,0 +1,78 @@
+<div
+    *ngIf="items">
+    <div
+        class="section-title">
+        {{ title.$value || 'Education' }}
+    </div>
+
+    <div
+        *ngFor="let item of items"
+        (click)="editData($event, item)"
+        class="item editable">
+
+        <div
+            class="left">
+            <div
+                class="title">
+                {{ item.title }}
+            </div>
+
+            <div
+                class="timespan">
+                <div
+                    class="start">
+                    {{ item.start ? (item.start | date:'MM/yy') : 'present' }}
+                </div>
+                <div
+                    class="end">
+                    {{ item.end ? (item.end | date:'MM/yy') : 'present' }}
+                </div>
+            </div>
+        </div>
+
+        <div
+            class="right">
+            <a 
+                [attr.href]="item.link"
+                class="institution"
+                target="_blank">
+                {{ item.institution }}
+            </a>
+            <div
+                class="location">
+                {{ item.location }}
+            </div>
+            <div
+                class="description">
+                {{ item.description }}
+            </div>
+            <div
+                class="field">
+                {{ item.field }}
+            </div>
+            <div
+                class="grade">
+                {{ item.grade }}
+            </div>
+        </div>
+    </div>
+    
+    <button
+        (click)="editData($event, null)"
+        class="btn btn-block btn-secondary">
+        Add item
+    </button>
+</div>
+
+<div
+    *ngIf="!items">
+    <div
+        class="ghost"
+        style="height: 30px; width: 150px; margin-bottom: 10px;">
+    </div>
+
+    <div
+        class="ghost"
+        style="height: 100px;">
+    </div>
+</div>

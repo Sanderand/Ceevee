@@ -9,6 +9,7 @@ export class SplitPipe implements PipeTransform {
 
     return value
       .split(delimitter)
-      .map(i => i.trim());
+      .map(i => i.trim())
+      .filter(i => i.length);
   }
 }

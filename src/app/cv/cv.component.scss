@@ -1,10 +1,25 @@
 @import '../../variables.scss';
 
 .cv {
-    padding-top: 1em;
     display: block;
+    max-width: 768px;
+    margin: 0 auto;
+    padding: 1em 2em;
+    font-size: 1em;
+    font-family: 'Quicksand', sans-serif;
+
+    *, :after, :before {
+        user-select: none;
+    }
+
+    a {
+        color: $c_highlight;
+        text-decoration: none;
+    }
     
     header {
+        display: block;
+
         @media print {
             display: none;
         }
@@ -13,6 +28,8 @@
     .editable {
         &:hover {
             background-color: $c_editing_light;
+            border-radius: 3px;
+            box-shadow: 0px 0px 5px 5px $c_editing_light;
 
             @media print {
                 background-color: transparent;
@@ -29,30 +46,56 @@
             display: none;
         }
     }
-}
 
-// GLOBALS
+    .section-title {
+        text-transform: uppercase;
+        margin-bottom: 0.5em;
+        font-weight: 400;
+        font-size: 1.2em;
+        display: inline-block;
+    }
 
-.section-title {
-    text-transform: uppercase;
-    margin-bottom: 0.5em;
-    font-weight: 400;
-    font-size: 1.2em;
-    display: inline-block;
-}
+    .tag {
+        background-color: #fff;
+        border: 1px solid $c_highlight;
+        color: $c_highlight;
 
-.tag {
-    background-color: #fff;
-    border: 1px solid $c_highlight;
-    color: $c_highlight;
+        display: inline-block;
+        line-height: 1;
+        vertical-align: baseline;
+        margin: 0 .1em;
+        padding: 0 .7em;
+        font-size: .8em;
+        line-height: 1.8em;
+        font-weight: normal;
+        border-radius: .3em;
+    }
 
-    display: inline-block;
-    line-height: 1;
-    vertical-align: baseline;
-    margin: 0 .1em;
-    padding: 0 .7em;
-    font-size: .8em;
-    line-height: 1.8em;
-    font-weight: normal;
-    border-radius: .3em;
+    .ghost {
+        background: linear-gradient(317deg, #bbbbbb, #e8e8e8);
+        background-size: 400% 400%;
+        border-radius: 3px;
+
+        -webkit-animation: AnimationName 1.7s ease infinite;
+        -moz-animation: AnimationName 1.7s ease infinite;
+        animation: AnimationName 1.7s ease infinite;
+
+        @-webkit-keyframes AnimationName {
+            0%{background-position:0% 11%}
+            50%{background-position:100% 90%}
+            100%{background-position:0% 11%}
+        }
+
+        @-moz-keyframes AnimationName {
+            0%{background-position:0% 11%}
+            50%{background-position:100% 90%}
+            100%{background-position:0% 11%}
+        }
+
+        @keyframes AnimationName { 
+            0%{background-position:0% 11%}
+            50%{background-position:100% 90%}
+            100%{background-position:0% 11%}
+        }
+    }
 }

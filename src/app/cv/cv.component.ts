@@ -23,9 +23,6 @@ export class CVComponent implements OnInit {
     public MAX_FONT_SIZE = MAX_FONT_SIZE;
 
     public theme: any = null;
-    public details: any = null;
-    public divider: any = null;
-    public items: any = null;
 
     constructor (
         private _af: AngularFire
@@ -33,10 +30,6 @@ export class CVComponent implements OnInit {
 
     public ngOnInit (): void {
         this.theme = this._af.database.object('/cvs/one/theme');
-        this.details = this._af.database.object('/cvs/one/details');
-        this.divider = this._af.database.object('/cvs/one/divider');
-        this.items = this._af.database.list('/cvs/one/items');
-
         this.theme
             .subscribe(theme => {
                 this.fontSize = theme.fontSize || 1;

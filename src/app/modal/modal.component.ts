@@ -1,4 +1,4 @@
-import { Component, Output, OnInit, ViewEncapsulation, SimpleChanges, ElementRef, HostListener, EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, HostListener, HostBinding } from '@angular/core';
 
 import { ModalService } from './modal.service';
 
@@ -9,10 +9,12 @@ import { ModalService } from './modal.service';
     encapsulation: ViewEncapsulation.None
 })
 export class ModalComponent implements OnInit {
+    @HostBinding('class.modal') public hostClass: boolean = true;
+    @HostBinding('class.is-open') public isOpen: boolean = false;
+
     public fields: any = null;
     public data: any = null;
     public isAdding: boolean = false;
-    public isOpen: boolean = false;
     public preventDelete: boolean = false;
     public source: string = '';
 
@@ -33,39 +35,40 @@ export class ModalComponent implements OnInit {
             });
     }
 
-    public closeModal (): void {
+    public closeModal (data): void {
         this.isOpen = false;
         this._modalService.closeModal({
-            data: this.data,
+            data: data,
             source: this.source
         });
     }
 
     public submitModal ($event): void {
         $event.preventDefault();
-        this.closeModal();
+        this.closeModal(this.data);
     }
 
     public cancelModal (): void {
         if (this.isAdding) {
             this.removeItem();
         } else {
-            this.closeModal();
+            this.closeModal(this.data);
         }
     }
 
     public removeItem (): void {
-        this.data = null;
-        this.closeModal();
+        this.closeModal(null);
     }
 
+    @HostListener('click', ['$event'])
     public onBackdropClick ($event): void {
-        if ($event.target.classList.contains('modal-wrapper')) {
+        if ($event.target.classList.contains('modal') || $event.target.classList.contains('modal-inner')) {
             this.cancelModal();
         }
     }
 
-    @HostListener('window:keydown.escape') public onEscapeKey (): void {
+    @HostListener('window:keydown.escape')
+    public onEscapeKey (): void {
         this.cancelModal();
     }
 }

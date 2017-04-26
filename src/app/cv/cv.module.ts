@@ -9,6 +9,9 @@ import { SplitPipe } from '../pipes/split.pipe';
 import { DetailsComponent } from './details/details.component';
 import { DividerComponent } from './divider/divider.component';
 import { ExperienceComponent } from './experience/experience.component';
+import { EducationComponent } from './education/education.component';
+import { SkillsComponent } from './skills/skills.component';
+import { FeedbackComponent } from './feedback/feedback.component';
 
 @NgModule({
     declarations: [
@@ -17,7 +20,10 @@ import { ExperienceComponent } from './experience/experience.component';
 
         DetailsComponent,
         DividerComponent,
-        ExperienceComponent
+        ExperienceComponent,
+        EducationComponent,
+        SkillsComponent,
+        FeedbackComponent
     ],
     exports: [
         CVComponent,

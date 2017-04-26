@@ -3,8 +3,9 @@
 .divider {
     display: flex;
     text-align: center;
-    margin-bottom: 2em;
     min-height: 2em;
+    margin-bottom: 2em;
+    page-break-inside: avoid;
 
     .title {
         padding-left: 0.75em;

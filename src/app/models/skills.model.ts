@@ -1,6 +1,6 @@
 import { Field } from './field.model';
 
-export const SkillFields: Array<Field> = [{
+export const SkillsFields: Array<Field> = [{
   key: 'title',
   label: 'Title',
   type: 'text',

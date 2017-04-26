@@ -5,7 +5,6 @@ import { FormsModule } from '@angular/forms';
 import { AngularFireModule, AuthProviders, AuthMethods, AngularFire } from 'angularfire2';
 
 import { AppComponent } from './app.component';
-import { DataService } from './services/data.service';
 import { ModalService } from './modal/modal.service';
 
 import { AuthModule } from './auth/auth.module';
@@ -41,7 +40,6 @@ const firebaseAuthConfig = {
     CVModule
   ],
   providers: [
-    DataService,
     AngularFire,
     ModalService
   ],
