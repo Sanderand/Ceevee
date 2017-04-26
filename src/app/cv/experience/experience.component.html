@@ -1,12 +1,12 @@
 <div
-    *ngIf="data">
+    *ngIf="items">
     <div
         class="section-title">
-        Experience
+        {{ title.$value || 'Experience' }}
     </div>
 
     <div
-        *ngFor="let item of data"
+        *ngFor="let item of items"
         (click)="editData($event, item)"
         class="item editable">
 
@@ -64,14 +64,14 @@
     </div>
     
     <button
-        (click)="editData($event, {})"
+        (click)="editData($event, null)"
         class="btn btn-block btn-secondary">
         Add item
     </button>
 </div>
 
 <div
-    *ngIf="!data">
+    *ngIf="!items">
     <div
         class="ghost"
         style="height: 30px; width: 150px; margin-bottom: 10px;">

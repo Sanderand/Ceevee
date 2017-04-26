@@ -8,7 +8,9 @@ import { generateUUID } from '../helpers/math.helpers';
 export class FBList implements OnInit {
     @Input() public path: string = null;
 
-    public data: any = null;
+    public items: any = null;
+    public title: string = null;
+
     protected _fields: Array<Field> = [];
     private _uuid: string = generateUUID();
     private keyInModal: string = null;
@@ -20,8 +22,12 @@ export class FBList implements OnInit {
 
     public ngOnInit (): void {
         this._af.database
-            .list(this.path)
-            .subscribe(data => this.data = data);
+            .object(`${this.path}/title`)
+            .subscribe(title => this.title = title);
+
+        this._af.database
+            .list(`${this.path}/items`)
+            .subscribe(items => this.items = items);
 
         this._modalService.close$
             .filter(res => !!res && res.source === this._uuid)
@@ -29,37 +35,33 @@ export class FBList implements OnInit {
     }
 
     public editData ($event, item): void {
-        if (!item) {
-            return;
-        }
-
         $event.preventDefault();
 
         this._modalService
             .openModal({
-                data: Object.assign({}, item),
+                data: item ? Object.assign({}, item) : null,
                 fields: this._fields.map(a => Object.assign({}, a)),
                 preventDelete: false,
                 source: this._uuid
             });
 
-        this.keyInModal = item.$key || null;
+        this.keyInModal = item ? item.$key : null;
     }
 
     private updateData (data): void {
         if (data) {
             if (this.keyInModal) {
                 this._af.database
-                    .list(this.path)
+                    .list(`${this.path}/items`)
                     .update(this.keyInModal, data);
             } else {
                 this._af.database
-                    .list(this.path)
+                    .list(`${this.path}/items`)
                     .push(data);
             }
         } else {
             this._af.database
-                .list(this.path)
+                .list(`${this.path}/items`)
                 .remove(this.keyInModal);
         }
 
