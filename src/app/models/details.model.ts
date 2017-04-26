@@ -1,4 +1,6 @@
-export const DetailsFields = [{
+import { Field } from './field.model';
+
+export const DetailsFields: Array<Field> = [{
   key: 'name',
   label: 'Name',
   placeholder: 'Name',
@@ -18,7 +20,7 @@ export const DetailsFields = [{
   label: 'Url',
   placeholder: 'Url',
   type: 'url'
-}, { 
+}, {
   key: 'tel',
   label: 'Tel',
   placeholder: 'Tel',

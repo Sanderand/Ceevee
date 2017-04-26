@@ -1,0 +1,181 @@
+<header>
+  <div
+    class="button-group">
+    <button
+      (click)="decreaseFontSize()"
+      [disabled]="fontSize === MIN_FONT_SIZE">aa</button>
+    <button
+      (click)="increaseFontSize()"
+      [disabled]="fontSize === MAX_FONT_SIZE">AA</button>
+  </div>
+
+  <select
+    (change)="changeFontFamily($event)">
+    <option
+      value="">Default</option>
+    <option
+      value="sans-serif">Sans-Serif</option>
+    <option
+      value="serif">Serif</option>
+  </select>
+</header>
+
+<cv-details
+    [path]="'/cvs/one/details'">
+</cv-details>
+
+<cv-divider
+    [path]="'/cvs/one/divider'">
+</cv-divider>
+
+<cv-experience
+    [path]="'/cvs/one/experience'">
+</cv-experience>
+
+<!--
+<div class="items">
+    <div *ngFor="let item of data.items" class="item">
+
+        <div *ngIf="item.class === TYPES.EDUCATION.class"
+            [class]="item.class">
+            <div (click)="editField($event, item, 'title')" class="editable title">
+                {{ item.title }}
+            </div>
+
+            <div *ngFor="let child of item.items; let idx = index" (click)="openModal($event, TYPES.EDUCATION, item.items, child, item.items, idx)"
+                class="child modal-edit">
+
+                <div class="left">
+                    <div class="title">
+                        {{ child.title }}
+                    </div>
+
+                    <div class="timespan">
+                        <div class="start">
+                            {{ child.start ? (child.start | date:'MM/yy') : 'present' }}
+                        </div>
+                        <div class="end">
+                            {{ child.end ? (child.end | date:'MM/yy') : 'present' }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="right">
+                    <a
+                        [attr.href]="child.link" class="institution" target="_blank">
+            {{ child.institution }}
+            </a>
+                    <div class="location">
+                        {{ child.location }}
+                    </div>
+                    <div class="description">
+                        {{ child.description }}
+                    </div>
+                    <div class="field">
+                        {{ child.field }}
+                    </div>
+                    <div class="grade">
+                        {{ child.grade }}
+                    </div>
+                </div>
+            </div>
+
+            <button (click)="openModal($event, TYPES.EDUCATION, null, item.items, item.items.length)" class="btn btn-block btn-sm btn-secondary print-hide">Add {{ TYPES.EDUCATION.name }}</button>
+        </div>
+
+        <div *ngIf="item.class === TYPES.SKILL.class"
+            [class]="item.class">
+            <div (click)="editField($event, item, 'title')" class="editable title">
+                {{ item.title }}
+            </div>
+
+            <div *ngFor="let child of item.items; let idx = index" (click)="openModal($event, TYPES.SKILL, child, item.items, idx)" class="child modal-edit">
+                <div class="title">
+                    {{ child.title }}
+                </div>
+
+                <div class="bar">
+                    <div *ngIf="child.percentage" class="wrapper">
+                        <div class="percentage"
+                            [style.width]="child.percentage + '%'">
+                        </div>
+                    </div>
+
+                    <div *ngIf="child.description" class="description">
+                        {{ child.description }}
+                    </div>
+                </div>
+            </div>
+
+            <button (click)="openModal($event, TYPES.SKILL, null, item.items, item.items.length)" class="btn btn-block btn-sm btn-secondary print-hide">Add {{ TYPES.SKILL.name }}</button>
+        </div>
+
+        <div *ngIf="item.class === TYPES.DETAIL_LIST.class"
+            [class]="item.class">
+            <div (click)="editField($event, item, 'title')" class="editable title">
+                {{ item.title }}
+            </div>
+
+            <div *ngFor="let child of item.items; let idx = index" (click)="openModal($event, TYPES.DETAIL_LIST, child, item.items, idx)"
+                class="child modal-edit">
+                <div class="left">
+                    <div class="title">
+                        {{ child.title }}
+                    </div>
+
+                    <div class="timespan">
+                        <div *ngIf="child.start" class="start">
+                            {{ child.start ? (child.start | date:'MM/yy') : 'present' }}
+                        </div>
+                        <div class="end">
+                            {{ child.end ? (child.end | date:'MM/yy') : 'present' }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="right">
+                    <a *ngIf="child.institution"
+                        [attr.href]="child.link" class="institution" target="_blank">{{ child.institution }}</a>
+
+                    <div *ngIf="child.location" class="location">{{ child.location }}</div>
+
+                    <div class="description">{{ child.description }}</div>
+
+                    <div class="tags">
+                        <div (click)="editField($event, tag, 'name')" *ngFor="let tag of child.tags" class="tag">
+                            {{ tag.name }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button (click)="openModal($event, TYPES.DETAIL_LIST, null, item.items, item.items.length)" class="btn btn-block btn-sm btn-secondary print-hide">Add {{ TYPES.DETAIL_LIST.name }}</button>
+        </div>
+
+        <div *ngIf="item.class === TYPES.RECOMMENDATION.class"
+            [class]="item.class">
+            <div (click)="editField($event, item, 'title')" class="editable title">
+                {{ item.title }}
+            </div>
+
+            <div *ngFor="let child of item.items; let idx = index" (click)="openModal($event, TYPES.RECOMMENDATION, child, item.items, idx)"
+                class="child modal-edit">
+                <div class="name">
+                    {{ child.name }}
+                </div>
+                <div class="relationship">
+                    {{ child.relationship }}
+                </div>
+                <div class="institution">
+                    {{ child.institution }}
+                </div>
+                <div class="comment">
+                    {{ child.comment }}
+                </div>
+            </div>
+
+            <button (click)="openModal($event, TYPES.RECOMMENDATION, null, item.items, item.items.length)" class="btn btn-block btn-sm btn-secondary print-hide">Add {{ TYPES.RECOMMENDATION.name }}</button>
+        </div>
+    </div>
+</div>
+-->

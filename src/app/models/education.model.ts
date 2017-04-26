@@ -1,4 +1,6 @@
-export const EducationFields = [{
+import { Field } from './field.model';
+
+export const EducationFields: Array<Field> = [{
   key: 'institution',
   label: 'Institution',
   type: 'text',

@@ -1,0 +1,27 @@
+@import '../../../variables.scss';
+
+.divider {
+    display: flex;
+    text-align: center;
+    margin-bottom: 2em;
+    min-height: 2em;
+
+    .title {
+        padding-left: 0.75em;
+        padding-right: 0.75em;
+        text-align: justify;
+        color: $c_light;
+        line-height: 2em;
+    }
+
+    &:before,
+    &:after {
+        content: '';
+        display: inline-block;
+        flex: 1;
+        min-width: 1.5em;
+        height: 1px;
+        border-bottom: 1px solid $c_lighter;
+        align-self: center;
+    }
+}

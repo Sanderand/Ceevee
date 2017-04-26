@@ -1,0 +1,32 @@
+@import '../../variables.scss';
+
+.cv {
+    padding-top: 1em;
+    display: block;
+    
+    header {
+        @media print {
+            display: none;
+        }
+    }
+
+    .editable {
+        &:hover {
+            background-color: $c_editing_light;
+
+            @media print {
+                background-color: transparent;
+            }
+        }
+
+        @media print {
+            display: none;
+        }
+    }
+
+    .print-hide {
+        @media print {
+            display: none;
+        }
+    }
+}

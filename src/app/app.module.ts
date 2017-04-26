@@ -6,12 +6,11 @@ import { AngularFireModule, AuthProviders, AuthMethods, AngularFire } from 'angu
 
 import { AppComponent } from './app.component';
 import { DataService } from './services/data.service';
-import { ModalService } from './services/modal.service';
+import { ModalService } from './modal/modal.service';
 
 import { AuthModule } from './auth/auth.module';
 import { ModalModule } from './modal/modal.module';
-import { DetailsModule } from './details/details.module';
-import { DividerModule } from './divider/divider.module';
+import { CVModule } from './cv/cv.module';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyAj2R8sLxgNVaSIHMcLnXKzTSoj5ACeZEg',
@@ -39,8 +38,7 @@ const firebaseAuthConfig = {
 
     AuthModule,
     ModalModule,
-    DetailsModule,
-    DividerModule
+    CVModule
   ],
   providers: [
     DataService,

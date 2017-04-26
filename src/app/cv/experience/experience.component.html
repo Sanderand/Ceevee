@@ -1,0 +1,21 @@
+<div
+    *ngIf="data">
+    <div
+        *ngFor="let item of data"
+        (click)="editData($event, item)"
+        class="editable">
+        <div
+            *ngIf="item.title"
+            class="title">
+            {{ item.title }}
+        </div>
+    </div>
+</div>
+
+<div
+    *ngIf="!data">
+    <div
+        class="ghost"
+        style="height: 10px;">
+    </div>
+</div>

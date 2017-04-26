@@ -1,6 +1,6 @@
 import { Component, Output, OnInit, ViewEncapsulation, SimpleChanges, ElementRef, HostListener, EventEmitter } from '@angular/core';
 
-import { ModalService } from '../services/modal.service';
+import { ModalService } from './modal.service';
 
 @Component({
     selector: 'cv-modal',

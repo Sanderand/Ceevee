@@ -1,0 +1,54 @@
+@import '../../../variables.scss';
+
+.details {
+    text-align: center;
+    line-height: 1.25em;
+    margin-bottom: 2em;
+
+    .name {
+        text-transform: uppercase;
+        font-size: 1.75em;
+        letter-spacing: 0.25em;
+        margin-bottom: 0.25em;
+        font-weight: bolder;
+        display: inline-block;
+    }
+
+    .address {
+        display: inline-block;
+
+        &:after {
+            padding-left: .5em;
+            padding-right: .25em;
+            content: '•';
+        }
+    }
+
+    .tel {
+        display: inline-block;
+    }
+
+    .email {
+        display: inline-block;
+
+        &:after {
+            padding-left: .5em;
+            padding-right: .25em;
+            content: '•';
+        }
+    }
+
+    .url {
+        display: inline-block;
+    }
+
+    .email,
+    .url {
+        font-size: 0.9em;
+    }
+
+    .ghost {
+        width: 400px;
+        margin: 0 auto;
+    }
+}

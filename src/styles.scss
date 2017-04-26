@@ -43,55 +43,6 @@ body, html {
       border-radius: .3em;
     }
 
-    .details {
-      text-align: center;
-      line-height: 1.25em;
-      margin-bottom: 2em;
-
-      .name {
-        text-transform: uppercase;
-        font-size: 1.75em;
-        letter-spacing: 0.25em;
-        margin-top: 1em;
-        margin-bottom: 0.25em;
-        font-weight: bolder;
-        display: inline-block;
-      }
-
-      .address {
-        display: inline-block;
-
-        &:after {
-          padding-left: .5em;
-          padding-right: .25em;
-          content: '•';
-        }
-      }
-
-      .tel {
-        display: inline-block;
-      }
-
-      .email {
-        display: inline-block;
-
-        &:after {
-          padding-left: .5em;
-          padding-right: .25em;
-          content: '•';
-        }
-      }
-
-      .url {
-        display: inline-block;
-      }
-
-      .email,
-      .url {
-        font-size: 0.9em;
-      }
-    }
-
     .items {
       max-width: 768px;
       // margin: 0 auto;
@@ -112,30 +63,6 @@ body, html {
 
         .child {
           page-break-inside: avoid;
-        }
-      }
-
-      .divider {
-        display: flex;
-        text-align: center;
-        margin-bottom: 2em;
-
-        .title {
-          padding-left: 0.75em;
-          padding-right: 0.75em;
-          text-align: justify;
-          color: $c_light;
-        }
-
-        &:before,
-        &:after {
-          content: '';
-          display: inline-block;
-          flex: 1;
-          min-width: 1.5em;
-          height: 1px;
-          border-bottom: 1px solid $c_lighter;
-          align-self: center;
         }
       }
 
