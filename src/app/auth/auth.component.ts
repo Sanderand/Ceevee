@@ -20,8 +20,6 @@ export class AuthComponent implements OnInit {
         this.auth = this._af.auth;
         this.cvs = this._af.database.list('/cvs');
 
-        let cvIds = new Subject<any>();
-
         this.auth
             .filter(auth => !!auth)
             .map(auth => auth.uid)
@@ -39,6 +37,17 @@ export class AuthComponent implements OnInit {
                         });
                     });
             });
+
+        let uid = this.auth
+            .filter(auth => !!auth)
+            .map(auth => auth.uid);
+
+        let ids = uid
+            .map(uid => this._af.database.list(`/users/${ uid }`))
+            .mergeAll()
+            .map(ids => ids.map(i => i.$key));
+
+        ids.subscribe(i => console.log(i));
 
             // .map(id => this._af.database.object(`/cvs/${ id }`))
     }
