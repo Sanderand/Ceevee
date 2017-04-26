@@ -39,17 +39,29 @@ export class FBList implements OnInit {
             .openModal({
                 data: Object.assign({}, item),
                 fields: this._fields.map(a => Object.assign({}, a)),
-                preventDelete: true,
+                preventDelete: false,
                 source: this._uuid
             });
 
-        this.keyInModal = item.$key;
+        this.keyInModal = item.$key || null;
     }
 
     private updateData (data): void {
-        this._af.database
-            .list(this.path)
-            .update(this.keyInModal, data);
+        if (data) {
+            if (this.keyInModal) {
+                this._af.database
+                    .list(this.path)
+                    .update(this.keyInModal, data);
+            } else {
+                this._af.database
+                    .list(this.path)
+                    .push(data);
+            }
+        } else {
+            this._af.database
+                .list(this.path)
+                .remove(this.keyInModal);
+        }
 
         this.keyInModal = null;
     }

@@ -1,21 +1,83 @@
 <div
     *ngIf="data">
+    <label>
+        Experience
+    </label>
+
     <div
         *ngFor="let item of data"
         (click)="editData($event, item)"
-        class="editable">
+        class="item editable">
+
         <div
-            *ngIf="item.title"
-            class="title">
-            {{ item.title }}
+            class="left">
+            <div
+                class="title">
+                {{ item.title }}
+            </div>
+
+            <div
+                class="timespan">
+                <div
+                    *ngIf="item.start"
+                    class="start">
+                    {{ item.start ? (item.start | date:'MM/yy') : 'present' }}
+                </div>
+                <div
+                    class="end">
+                    {{ item.end ? (item.end | date:'MM/yy') : 'present' }}
+                </div>
+            </div>
+        </div>
+
+        <div
+            class="right">
+            <a
+                *ngIf="item.institution"
+                [attr.href]="item.link"
+                class="institution"
+                target="_blank">
+                {{ item.institution }}
+            </a>
+
+            <div
+                *ngIf="item.location"
+                class="location">
+                {{ item.location }}
+            </div>
+
+            <div
+                class="description">
+                {{ item.description }}
+            </div>
+
+            <div
+                class="tags">
+                <div
+                    *ngFor="let tag of (item.tags | split:',')"
+                    class="tag">
+                    {{ tag }}
+                </div>
+            </div>
         </div>
     </div>
+    
+    <button
+        (click)="editData($event, {})"
+        class="btn btn-block btn-secondary">
+        Add item
+    </button>
 </div>
 
 <div
     *ngIf="!data">
     <div
         class="ghost"
-        style="height: 10px;">
+        style="height: 30px; width: 150px; margin-bottom: 10px;">
+    </div>
+
+    <div
+        class="ghost"
+        style="height: 100px;">
     </div>
 </div>

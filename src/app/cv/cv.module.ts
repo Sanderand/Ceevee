@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 import { CVComponent } from './cv.component';
+import { SplitPipe } from '../pipes/split.pipe';
 
 import { DetailsComponent } from './details/details.component';
 import { DividerComponent } from './divider/divider.component';
@@ -12,13 +13,15 @@ import { ExperienceComponent } from './experience/experience.component';
 @NgModule({
     declarations: [
         CVComponent,
+        SplitPipe,
 
         DetailsComponent,
         DividerComponent,
         ExperienceComponent
     ],
     exports: [
-        CVComponent
+        CVComponent,
+        SplitPipe
     ],
     imports: [
         BrowserModule,
