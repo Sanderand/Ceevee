@@ -1,17 +1,11 @@
 <div
-    *ngIf="(auth | async)"
+    *ngIf="(user | async)"
     class="profile">
-    <img
-        [attr.src]="(auth | async)?.google?.photoURL">
-    {{ (auth | async)?.google?.displayName }}
+    <img [attr.src]="(user | async)?.google?.photoURL">
+    <span>
+        {{ (user | async)?.google?.displayName }}
+    </span>
 </div>
-
-<ul>
-    <li
-        *ngFor="let cv of (userCvs | async)">
-        {{ cv.$key }}
-    </li>
-</ul>
 
 <button (click)="login()">Login</button>
 <button (click)="logout()">Logout</button>

@@ -5,11 +5,14 @@ import { FormsModule } from '@angular/forms';
 import { AngularFireModule, AuthProviders, AuthMethods, AngularFire } from 'angularfire2';
 
 import { AppComponent } from './app.component';
-import { ModalService } from './modal/modal.service';
 
 import { AuthModule } from './auth/auth.module';
 import { ModalModule } from './modal/modal.module';
 import { CVModule } from './cv/cv.module';
+
+import { ModalService } from './modal/modal.service';
+import { AuthService } from './auth/auth.service';
+import { CVService } from './cv/cv.service';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyAj2R8sLxgNVaSIHMcLnXKzTSoj5ACeZEg',
@@ -41,7 +44,10 @@ const firebaseAuthConfig = {
   ],
   providers: [
     AngularFire,
-    ModalService
+
+    ModalService,
+    AuthService,
+    CVService
   ],
   bootstrap: [
     AppComponent

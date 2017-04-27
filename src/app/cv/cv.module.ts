@@ -12,6 +12,8 @@ import { ExperienceComponent } from './experience/experience.component';
 import { EducationComponent } from './education/education.component';
 import { SkillsComponent } from './skills/skills.component';
 import { FeedbackComponent } from './feedback/feedback.component';
+import { CVService } from './cv.service';
+import { CVSelectModule } from './cv-select/cv-select.module';
 
 @NgModule({
     declarations: [
@@ -30,6 +32,8 @@ import { FeedbackComponent } from './feedback/feedback.component';
         SplitPipe
     ],
     imports: [
+        CVSelectModule,
+
         BrowserModule,
         FormsModule,
         CommonModule

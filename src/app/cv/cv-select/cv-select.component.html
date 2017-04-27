@@ -1,0 +1,19 @@
+<form>
+    <select
+        [(ngModel)]="activeCV"
+        (change)="loadCV()"
+        name="selected-cv"
+        class="custom-select">
+
+        <option
+            *ngIf="!(cvs | async)">
+            Loading...
+        </option>
+
+        <option
+            *ngFor="let cv of (cvs | async)"
+            [ngValue]="cv.$key">
+            {{ cv.title }}
+        </option>
+    </select>
+</form>

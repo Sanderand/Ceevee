@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation, HostBinding, OnInit } from '@angular/core';
-import { AngularFire, AngularFireAuth } from 'angularfire2';
+import { AngularFire, AngularFireAuth, FirebaseListObservable } from 'angularfire2';
 
 import { ModalService } from '../modal/modal.service';
 import { Field } from '../models/field.model';
@@ -7,6 +7,7 @@ import { DetailsFields } from '../models/details.model';
 
 import { MIN_FONT_SIZE, MAX_FONT_SIZE, FONT_SIZE_CHANGE_STEP } from '../constants/constants';
 import { restrictRange } from '../helpers/math.helpers';
+import { CVService } from './cv.service';
 
 @Component({
     selector: 'cv-cv',
@@ -26,7 +27,8 @@ export class CVComponent implements OnInit {
     public auth: AngularFireAuth = null;
 
     constructor (
-        private _af: AngularFire
+        private _af: AngularFire,
+        private _cvService: CVService
     ) { }
 
     public ngOnInit (): void {
