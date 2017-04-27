@@ -12,6 +12,7 @@ import { ExperienceComponent } from './experience/experience.component';
 import { EducationComponent } from './education/education.component';
 import { SkillsComponent } from './skills/skills.component';
 import { FeedbackComponent } from './feedback/feedback.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
     declarations: [
@@ -32,7 +33,8 @@ import { FeedbackComponent } from './feedback/feedback.component';
     imports: [
         BrowserModule,
         FormsModule,
-        CommonModule
+        CommonModule,
+        RouterModule
     ]
 })
 export class CVModule { }
