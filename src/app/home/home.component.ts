@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { Observable } from 'rxjs';
-import { CVService } from '../cv/cv.service';
 import { AuthService } from '../auth/auth.service';
+import { Router } from '@angular/router';
+
+const DASHBOARD_ROUTE = '/me';
 
 @Component({
     selector: 'cv-home',
@@ -10,20 +11,16 @@ import { AuthService } from '../auth/auth.service';
     encapsulation: ViewEncapsulation.None
 })
 export class HomeComponent implements OnInit {
-    public user: Observable<any>;
-
     constructor (
         private _authService: AuthService,
-        private _cvService: CVService
+        private _router: Router
     ) {}
 
     public ngOnInit (): void {
-        this.user = this._authService.user$;
-
-        this._cvService
-            .getCVList()
-            .subscribe(cvs => {
-                console.log(cvs);
+        this._authService.user$
+            .filter(user => !!user)
+            .subscribe(user => {
+                this._router.navigate([DASHBOARD_ROUTE]);
             });
     }
 }

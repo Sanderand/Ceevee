@@ -10,7 +10,9 @@ export class CVService {
     constructor (
         private _af: AngularFire,
         private _authService: AuthService
-    ) {}
+    ) {
+
+    }
 
     public getCVList (): Observable<any> {
         return this._authService.user$
@@ -19,17 +21,21 @@ export class CVService {
             .map(uid => this._af.database.list(`/cvs/${ uid }`));
     }
 
-    public loadCV (id): void {
-        this.getCv(id)
+    public loadCV (id): Observable<any> {
+        let cv = this.getCv(id);
+
+        cv
             .subscribe(cv => {
                 this.cv$.next(cv);
             });
+
+        return cv;
     }
 
     private getCv (id: string): Observable<any> {
         return this._authService.user$
             .filter(user => !!user)
             .map(user => user.uid)
-            .map(uid => this._af.database.list(`/cvs/${ uid }/${ id }`));
+            .map(uid => this._af.database.object(`/cvs/${ uid }/${ id }`));
     }
 }

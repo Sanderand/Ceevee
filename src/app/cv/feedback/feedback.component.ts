@@ -15,6 +15,7 @@ import { FBList } from '../../classes/fb-list.class';
 export class FeedbackComponent extends FBList {
     @HostBinding('class.feedback') public cssClass = true;
     protected _fields: Array<Field> = FeedbackFields;
+    protected _key: string = 'feedback';
 
     constructor (
         _af: AngularFire,

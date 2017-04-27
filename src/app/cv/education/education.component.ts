@@ -15,6 +15,7 @@ import { FBList } from '../../classes/fb-list.class';
 export class EducationComponent extends FBList {
     @HostBinding('class.education') public cssClass = true;
     protected _fields: Array<Field> = EducationFields;
+    protected _key: string = 'education';
 
     constructor (
         _af: AngularFire,

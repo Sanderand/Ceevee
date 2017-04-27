@@ -1,13 +1,12 @@
 import { Component, ViewEncapsulation, HostBinding, OnInit } from '@angular/core';
-import { AngularFire, AngularFireAuth, FirebaseListObservable } from 'angularfire2';
-
-import { ModalService } from '../modal/modal.service';
-import { Field } from '../models/field.model';
-import { DetailsFields } from '../models/details.model';
+import { FirebaseObjectObservable, AngularFire } from 'angularfire2';
 
 import { MIN_FONT_SIZE, MAX_FONT_SIZE, FONT_SIZE_CHANGE_STEP } from '../constants/constants';
 import { restrictRange } from '../helpers/math.helpers';
 import { CVService } from './cv.service';
+import { ActivatedRoute } from '@angular/router';
+import { AuthService } from '../auth/auth.service';
+import { Observable } from 'rxjs';
 
 @Component({
     selector: 'cv-cv',
@@ -23,23 +22,50 @@ export class CVComponent implements OnInit {
     public MIN_FONT_SIZE = MIN_FONT_SIZE;
     public MAX_FONT_SIZE = MAX_FONT_SIZE;
 
-    public theme: any = null;
-    public auth: AngularFireAuth = null;
+    public cv: FirebaseObjectObservable<any>;
+    public path: Observable<any>;
+    private _theme: FirebaseObjectObservable<any>;
 
     constructor (
         private _af: AngularFire,
-        private _cvService: CVService
+        private _authService: AuthService,
+        private _cvService: CVService,
+        private _route: ActivatedRoute
     ) { }
 
     public ngOnInit (): void {
-        this.auth = this._af.auth;
-        this.theme = this._af.database.object('/cvs/one/theme');
-        this.theme
-            .subscribe(theme => {
-                this.fontSize = theme.fontSize || 1;
-                this.fontFamily = theme.fontFamily || null;
-                this.hostClasses = `cv ${theme.class}`;
-            });
+        this._route.params
+            .map(p => p.id)
+            .filter(id => !!id)
+            .subscribe(id => this._cvService.loadCV(id));
+
+          this._cvService.cv$
+              .subscribe(cv => {
+                  this.cv = cv;
+              });
+
+        let cvId = this._cvService.cv$
+            .filter(cv => !!cv)
+            .mergeAll()
+            .map(cv => cv.$key);
+
+        let userId = this._authService.user$
+            .filter(user => !!user)
+            .map(user => user.uid);
+
+        this.path = Observable.zip(userId, cvId)
+            .map(res => `/cvs/${ res[0] }/${ res[1] }`);
+
+        this.path.subscribe(path => {
+            this._theme = this._af.database.object(`${ path }/theme`);
+            this._theme
+                .subscribe(theme => {
+                    theme = theme || {};
+                    this.fontSize = theme.fontSize || 1;
+                    this.fontFamily = theme.fontFamily || null;
+                    this.hostClasses = `cv ${theme.class || ''}`;
+                });
+        })
     }
 
     public decreaseFontSize (): void {
@@ -58,9 +84,9 @@ export class CVComponent implements OnInit {
     }
 
     private updateTheme (): void {
-        this.theme.update({
+        this._theme.update({
             fontSize: this.fontSize,
-            fontFamily: this.fontFamily
+            fontFamily: this.fontFamily || null
         });
     }
 }

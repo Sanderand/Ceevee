@@ -1,11 +1,21 @@
 <div
     *ngIf="(user | async)"
     class="profile">
-    <img [attr.src]="(user | async)?.google?.photoURL">
+    <img [src]="(user | async)?.google?.photoURL">
     <span>
         {{ (user | async)?.google?.displayName }}
     </span>
 </div>
 
-<button (click)="login()">Login</button>
-<button (click)="logout()">Logout</button>
+<button
+    *ngIf="!(user | async)"
+    (click)="login()">
+    Login
+</button>
+
+<button
+    *ngIf="(user | async)"
+    (click)="logout()">
+    Logout
+</button>
+

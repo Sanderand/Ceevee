@@ -16,6 +16,7 @@ export class DetailsComponent extends FBObject {
     @HostBinding('class.details') public cssClass = true;
     @HostBinding('class.editable') public editableClass = true;
     protected _fields: Array<Field> = DetailsFields;
+    protected _key: string = 'details';
 
     constructor (
         _af: AngularFire,

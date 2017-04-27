@@ -12,6 +12,7 @@ export class FBList implements OnInit {
     public title: string = null;
 
     protected _fields: Array<Field> = [];
+    protected _key: string = null;
     private _uuid: string = generateUUID();
     private keyInModal: string = null;
 
@@ -22,11 +23,11 @@ export class FBList implements OnInit {
 
     public ngOnInit (): void {
         this._af.database
-            .object(`${this.path}/title`)
+            .object(`${this.path}/${this._key}/title`)
             .subscribe(title => this.title = title);
 
         this._af.database
-            .list(`${this.path}/items`)
+            .list(`${this.path}/${this._key}/items`)
             .subscribe(items => this.items = items);
 
         this._modalService.close$
@@ -52,16 +53,16 @@ export class FBList implements OnInit {
         if (data) {
             if (this.keyInModal) {
                 this._af.database
-                    .list(`${this.path}/items`)
+                    .list(`${this.path}/${this._key}/items`)
                     .update(this.keyInModal, data);
             } else {
                 this._af.database
-                    .list(`${this.path}/items`)
+                    .list(`${this.path}/${this._key}/items`)
                     .push(data);
             }
         } else {
             this._af.database
-                .list(`${this.path}/items`)
+                .list(`${this.path}/${this._key}/items`)
                 .remove(this.keyInModal);
         }
 

@@ -10,6 +10,7 @@ export class FBObject implements OnInit {
 
     public data: any = null;
     protected _fields: Array<Field> = [];
+    protected _key: string = null;
     private _uuid: string = generateUUID();
 
     constructor (
@@ -19,7 +20,7 @@ export class FBObject implements OnInit {
 
     public ngOnInit (): void {
         this._af.database
-            .object(this.path)
+            .object(`${ this.path }/${ this._key }`)
             .subscribe(data => this.data = data);
 
         this._modalService.close$
@@ -46,7 +47,7 @@ export class FBObject implements OnInit {
 
     private updateData (data): void {
         this._af.database
-            .object(this.path)
+            .object(`${ this.path }/${ this._key }`)
             .update(data);
     }
 }

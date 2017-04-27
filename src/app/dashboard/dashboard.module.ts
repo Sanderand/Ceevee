@@ -2,19 +2,22 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { CVSelectComponent } from './cv-select.component';
+
+import { DashboardComponent } from './dashboard.component';
+import { CVListModule } from '../cv-list/cv-list.module';
 
 @NgModule({
     declarations: [
-        CVSelectComponent
+        DashboardComponent
     ],
     exports: [
-      CVSelectComponent
+        DashboardComponent
     ],
     imports: [
         BrowserModule,
         FormsModule,
-        CommonModule
+        CommonModule,
+        CVListModule
     ]
 })
-export class CVSelectModule { }
+export class DashboardModule { }

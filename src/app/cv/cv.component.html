@@ -33,30 +33,31 @@
             Serif
         </option>
     </select>
-
-    <cv-select></cv-select>
 </header>
 
-<cv-details
-    [path]="'/cvs/one/details'">
-</cv-details>
+<div
+    *ngIf="path | async">
+    <cv-details
+        [path]="path | async">
+    </cv-details>
 
-<cv-divider
-    [path]="'/cvs/one/divider'">
-</cv-divider>
+    <cv-divider
+        [path]="path | async">
+    </cv-divider>
 
-<cv-experience
-    [path]="'/cvs/one/experience'">
-</cv-experience>
+    <cv-experience
+        [path]="path | async">
+    </cv-experience>
 
-<cv-education
-    [path]="'/cvs/one/education'">
-</cv-education>
+    <cv-education
+        [path]="path | async">
+    </cv-education>
 
-<cv-skills
-    [path]="'/cvs/one/skills'">
-</cv-skills>
+    <cv-skills
+        [path]="path | async">
+    </cv-skills>
 
-<cv-feedback
-    [path]="'/cvs/one/feedback'">
-</cv-feedback>
+    <cv-feedback
+        [path]="path | async">
+    </cv-feedback>
+</div>
