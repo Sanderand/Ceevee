@@ -1,3 +1,40 @@
 <h1>Dashboard</h1>
 
 <cv-list></cv-list>
+
+<form
+    novalidate
+    autocomplete="off"
+    (submit)="onFormSubmit($event)">
+    <div
+        class="form-group"
+        [class.has-danger]="!!error">
+        <label class="form-control-label">Add new CV</label>
+
+        <div
+            class="input-group">
+            <input
+                [(ngModel)]="newTitle"
+                [class.form-control-danger]="!!error"
+                (keydown)="clearError()"
+                class="form-control"
+                placeholder="Title"
+                name="title"
+                type="text">
+
+            <span class="input-group-btn">
+                <button
+                    type="submit"
+                    class="btn btn-primary">
+                    Add
+                </button>
+            </span>
+        </div>
+
+        <small
+            *ngIf="!!error"
+            class="form-text text-muted">
+            {{ error }}
+        </small>
+    </div>
+</form>

@@ -10,8 +10,11 @@ export class CVService {
     constructor (
         private _af: AngularFire,
         private _authService: AuthService
-    ) {
+    ) {}
 
+    public addCV (title: string): Observable<any> {
+        // todo
+        return null;
     }
 
     public getCVList (): Observable<any> {
@@ -24,10 +27,9 @@ export class CVService {
     public loadCV (id): Observable<any> {
         let cv = this.getCv(id);
 
-        cv
-            .subscribe(cv => {
-                this.cv$.next(cv);
-            });
+        cv.subscribe(cv => {
+            this.cv$.next(cv);
+        });
 
         return cv;
     }

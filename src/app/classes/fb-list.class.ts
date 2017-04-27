@@ -4,6 +4,7 @@ import { AngularFire } from 'angularfire2';
 import { ModalService } from '../modal/modal.service';
 import { Field } from '../models/field.model';
 import { generateUUID } from '../helpers/math.helpers';
+import { Subscription } from 'rxjs';
 
 export class FBList implements OnInit {
     @Input() public path: string = null;
@@ -15,6 +16,8 @@ export class FBList implements OnInit {
     protected _key: string = null;
     private _uuid: string = generateUUID();
     private keyInModal: string = null;
+    private _titleSubscription: Subscription;
+    private _itemsSubscription: Subscription;
 
     constructor (
         private _af: AngularFire,
@@ -22,17 +25,35 @@ export class FBList implements OnInit {
     ) {}
 
     public ngOnInit (): void {
-        this._af.database
-            .object(`${this.path}/${this._key}/title`)
-            .subscribe(title => this.title = title);
-
-        this._af.database
-            .list(`${this.path}/${this._key}/items`)
-            .subscribe(items => this.items = items);
+        this.refreshData();
 
         this._modalService.close$
             .filter(res => !!res && res.source === this._uuid)
             .subscribe(res => this.updateData(res.data));
+    }
+
+    public ngOnChanges (): void {
+        this.refreshData();
+    }
+
+    private refreshData (): void {
+        if (this.path) {
+            if (this._titleSubscription) {
+                this._titleSubscription.unsubscribe();
+            }
+
+            if (this._itemsSubscription) {
+                this._itemsSubscription.unsubscribe();
+            }
+
+            this._titleSubscription = this._af.database
+                .object(`${this.path}/${this._key}/title`)
+                .subscribe(title => this.title = title);
+
+            this._itemsSubscription = this._af.database
+                .list(`${this.path}/${this._key}/items`)
+                .subscribe(items => this.items = items);
+        }
     }
 
     public editData ($event, item): void {

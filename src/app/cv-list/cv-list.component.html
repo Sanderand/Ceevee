@@ -7,3 +7,18 @@
         </a>
     </li>
 </ul>
+
+<div
+    *ngIf="!(cvs | async)">
+    <div
+        class="ghost"
+        style="width: 170px;"></div>
+
+    <div
+        class="ghost"
+        style="width: 150px;; margin-top: 10px"></div>
+
+    <div
+        class="ghost"
+        style="width: 190px;; margin-top: 10px"></div>
+</div>

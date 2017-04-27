@@ -35,29 +35,26 @@
     </select>
 </header>
 
-<div
-    *ngIf="path | async">
-    <cv-details
-        [path]="path | async">
-    </cv-details>
+<cv-details
+    [path]="path | async">
+</cv-details>
 
-    <cv-divider
-        [path]="path | async">
-    </cv-divider>
+<cv-divider
+    [path]="path | async">
+</cv-divider>
 
-    <cv-experience
-        [path]="path | async">
-    </cv-experience>
+<cv-experience
+    [path]="path | async">
+</cv-experience>
 
-    <cv-education
-        [path]="path | async">
-    </cv-education>
+<cv-education
+    [path]="path | async">
+</cv-education>
 
-    <cv-skills
-        [path]="path | async">
-    </cv-skills>
+<cv-skills
+    [path]="path | async">
+</cv-skills>
 
-    <cv-feedback
-        [path]="path | async">
-    </cv-feedback>
-</div>
+<cv-feedback
+    [path]="path | async">
+</cv-feedback>

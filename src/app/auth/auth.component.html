@@ -7,6 +7,11 @@
     </span>
 </div>
 
+<div
+    *ngIf="!(user | async)"
+    class="ghost"
+    style="width: 150px; height: 40px;"></div>
+
 <button
     *ngIf="!(user | async)"
     (click)="login()">
@@ -18,4 +23,3 @@
     (click)="logout()">
     Logout
 </button>
-
