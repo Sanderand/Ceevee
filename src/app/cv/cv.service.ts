@@ -12,9 +12,11 @@ export class CVService {
         private _authService: AuthService
     ) {}
 
-    public addCV (title: string): Observable<any> {
-        // todo
-        return null;
+    public addCV (title: string): void {
+        this.getCVList()
+            .subscribe(list => list.push({
+                title
+            }));
     }
 
     public getCVList (): Observable<any> {
