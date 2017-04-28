@@ -21,9 +21,17 @@
         font-weight: 400;
         color: #333;
 
-        &:hover {
+        &:hover,
+        &.active {
             color: #111;
             background-color: #eee;
         }
+    }
+
+    .divider {
+        height: 1px;
+        margin: 0.5rem 0;
+        overflow: hidden;
+        background-color: #eee;
     }
 }

@@ -7,10 +7,23 @@
     <cv-dropdown
         [open]="dropdownOpen">
         <a
+            routerLink="/me"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{exact: true}"
+            class="item">
+            Dashboard
+        </a>
+
+        <a
             routerLink="/me/edit"
+            routerLinkActive="active"
             class="item">
             Profile
         </a>
+
+        <div
+            class="divider"></div>
+
         <a
             (click)="logout()"
             class="item">
