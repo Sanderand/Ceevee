@@ -1,3 +1,38 @@
-<cv-auth-tile></cv-auth-tile>
+<header>
+    <a
+        routerLink="/"
+        class="title">
+        CeeVee
+    </a>
+
+    <cv-auth-tile></cv-auth-tile>
+</header>
+
+<main>
+    <section>
+        <router-outlet></router-outlet>
+    </section>
+
+    <footer>
+        <span>
+            #e5f20
+        </span>
+
+        <a
+            routerLink="/donate">
+            Donate
+        </a>
+
+        <a
+            routerLink="/advertise">
+            Advertise
+        </a>
+
+        <a
+            routerLink="/jobs">
+            Jobs
+        </a>
+    </footer>
+</main>
+
 <cv-modal></cv-modal>
-<router-outlet></router-outlet>

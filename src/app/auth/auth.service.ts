@@ -15,6 +15,7 @@ export class AuthService {
     ) {
         this._af.auth
             .subscribe(user => {
+                console.log('user', user);
                 this.user$.next(user);
             });
     }

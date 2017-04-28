@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import { AngularFireModule, AuthProviders, AuthMethods, AngularFire } from 'angularfire2';
 
 import { AppComponent } from './app.component';
@@ -20,6 +21,7 @@ import { CVSelectModule } from './cv-select/cv-select.module';
 import { CVListModule } from './cv-list/cv-list.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { ProfileEditModule } from './profile-edit/profile-edit.module';
+import { SharedModule } from './shared/shared.module';
 
 export const firebaseConfig = {
     apiKey: 'AIzaSyAj2R8sLxgNVaSIHMcLnXKzTSoj5ACeZEg',
@@ -43,6 +45,7 @@ const firebaseAuthConfig = {
         BrowserModule,
         FormsModule,
         CommonModule,
+        RouterModule,
         AngularFireModule.initializeApp(firebaseConfig, firebaseAuthConfig),
 
         AppRoutingModule,
@@ -52,7 +55,8 @@ const firebaseAuthConfig = {
         HomeModule,
         DashboardModule,
         NotFoundModule,
-        ProfileEditModule
+        ProfileEditModule,
+        SharedModule
     ],
     providers: [
         AngularFire,

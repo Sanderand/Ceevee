@@ -14,7 +14,7 @@ const CV_TITLE_MIN_LENGTH = 3;
 export class DashboardComponent implements OnInit {
     @HostBinding('class.dashboard') true;
 
-    public user: Observable<any>;
+    public userName: string = null;
     public newTitle: string = null;
     public error: string = null;
 
@@ -24,7 +24,12 @@ export class DashboardComponent implements OnInit {
     ) {}
 
     public ngOnInit (): void {
-        this.user = this._authService.user$;
+        this._authService.user$
+            .filter(user => !!user)
+            .subscribe(user => {
+                // todo get first name from users object
+                this.userName = user.google.displayName.split(' ')[0];
+            });
     }
 
     public onFormSubmit ($event: Event): void {
