@@ -1,12 +1,14 @@
 import { Component, ViewEncapsulation, HostBinding, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FirebaseObjectObservable, AngularFire } from 'angularfire2';
 
 import { MIN_FONT_SIZE, MAX_FONT_SIZE, FONT_SIZE_CHANGE_STEP } from '../constants/constants';
 import { restrictRange } from '../helpers/math.helpers';
 import { CVService } from './cv.service';
-import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../auth/auth.service';
 import { Observable } from 'rxjs';
+
+const DASHBOARD_PATH = '/me';
 
 @Component({
     selector: 'cv-cv',
@@ -23,6 +25,7 @@ export class CVComponent implements OnInit {
     public MAX_FONT_SIZE = MAX_FONT_SIZE;
 
     public cv: FirebaseObjectObservable<any>;
+    public cvId: Observable<any>;
     public path: Observable<any>;
     private _theme: FirebaseObjectObservable<any>;
 
@@ -30,7 +33,8 @@ export class CVComponent implements OnInit {
         private _af: AngularFire,
         private _authService: AuthService,
         private _cvService: CVService,
-        private _route: ActivatedRoute
+        private _route: ActivatedRoute,
+        private _router: Router
     ) { }
 
     public ngOnInit (): void {
@@ -44,16 +48,16 @@ export class CVComponent implements OnInit {
                 this.cv = cv;
             });
 
-        let cvId = this._cvService.cv$
-            .filter(cv => !!cv)
-            .mergeAll()
-            .map(cv => cv.$key);
-
         let userId = this._authService.user$
             .filter(user => !!user)
             .map(user => user.uid);
 
-        this.path = Observable.zip(userId, cvId)
+        this.cvId = this._cvService.cv$
+            .filter(cv => !!cv)
+            .mergeAll()
+            .map(cv => cv.$key);
+
+        this.path = Observable.zip(userId, this.cvId)
             .map(res => `/cvs/${ res[0] }/${ res[1] }`);
 
         this.path.subscribe(path => {
@@ -66,6 +70,12 @@ export class CVComponent implements OnInit {
                     this.hostClasses = `cv ${theme.class || ''}`;
                 });
         })
+    }
+
+    public removeCV (): void {
+        this._router.navigate([DASHBOARD_PATH]).then(res => {
+            this.cvId.subscribe(id => this._cvService.removeCV(id));
+        });
     }
 
     public decreaseFontSize (): void {

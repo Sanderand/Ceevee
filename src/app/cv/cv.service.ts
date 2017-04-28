@@ -39,7 +39,7 @@ export class CVService {
     public removeCV (id): void {
         this.getCv(id)
             .subscribe(cv => {
-                cv.delete();
+                cv.remove();
             });
     }
 
