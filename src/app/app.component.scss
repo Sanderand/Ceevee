@@ -10,7 +10,7 @@
     >header {
         background-color: #fff;
         height: 64px;
-        box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.5);
+        box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.25);
         z-index: 1;
         display: flex;
         flex-direction: row;
@@ -88,25 +88,10 @@
         }
     }
 
-    >header,
-    >main>footer {
-        a {
-            color: #aaa;
-
-            &:hover {
-                color: #777;
-            }
-
-            &:hover, &:active, &:focus, &:visited {
-                text-decoration: none;    
-            }
-        }
-    }
-
     .ghost {
         background: linear-gradient(317deg, #bbbbbb, #e8e8e8);
         background-size: 400% 400%;
-        border-radius: 3px;
+        border-radius: 2px;
 
         -webkit-animation: AnimationName 1.7s ease infinite;
         -moz-animation: AnimationName 1.7s ease infinite;
@@ -130,5 +115,16 @@
             100%{background-position:0% 11%}
         }
     }
-}
 
+    a {
+        color: #aaa;
+
+        &:hover {
+            color: #777;
+        }
+
+        &:hover, &:active, &:focus, &:visited {
+            text-decoration: none;    
+        }
+    }
+}

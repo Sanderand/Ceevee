@@ -1,10 +1,20 @@
 <ul>
     <li
-        *ngFor="let cv of (cvs | async)">
-        <a
-            [routerLink]="cv.$key">
+        *ngFor="let cv of (cvs | async)"
+        [routerLink]="cv.$key">
+        <div
+            class="primary">
             {{ cv.title }}
-        </a>
+
+            <div
+                class="secondary">
+                Lorem ipsum dolor sit amet
+            </div>
+        </div>
+
+        <div class="suffix">
+            3 days ago
+        </div>
     </li>
 </ul>
 
@@ -12,13 +22,9 @@
     *ngIf="!(cvs | async)">
     <div
         class="ghost"
-        style="width: 170px;"></div>
+        style="height: 75px; margin-top: 1rem"></div>
 
     <div
         class="ghost"
-        style="width: 150px;; margin-top: 10px"></div>
-
-    <div
-        class="ghost"
-        style="width: 190px;; margin-top: 10px"></div>
+        style="height: 75px; margin-top: 0.5rem; margin-bottom: 1rem;"></div>
 </div>

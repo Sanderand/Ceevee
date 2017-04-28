@@ -21,6 +21,7 @@ export class CVListComponent implements OnInit {
             .getCVList()
             .subscribe(cvs => {
                 this.cvs = cvs;
+                this.cvs.subscribe(c => console.log(c));
             });
     }
 }
