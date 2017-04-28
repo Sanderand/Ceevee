@@ -36,6 +36,13 @@ export class CVService {
         return cv;
     }
 
+    public removeCV (id): void {
+        this.getCv(id)
+            .subscribe(cv => {
+                cv.delete();
+            });
+    }
+
     private getCv (id: string): Observable<any> {
         return this._authService.user$
             .filter(user => !!user)

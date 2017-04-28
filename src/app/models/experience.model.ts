@@ -13,7 +13,7 @@ export const ExperienceFields: Array<Field> = [{
 }, {
   key: 'link',
   label: 'Link',
-  placeholder: 'Link',
+  placeholder: 'http://',
   type: 'text'
 }, {
   key: 'location',

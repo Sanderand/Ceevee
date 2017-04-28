@@ -39,10 +39,10 @@ export class CVComponent implements OnInit {
             .filter(id => !!id)
             .subscribe(id => this._cvService.loadCV(id));
 
-          this._cvService.cv$
-              .subscribe(cv => {
-                  this.cv = cv;
-              });
+        this._cvService.cv$
+            .subscribe(cv => {
+                this.cv = cv;
+            });
 
         let cvId = this._cvService.cv$
             .filter(cv => !!cv)

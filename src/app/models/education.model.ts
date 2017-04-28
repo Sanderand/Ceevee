@@ -8,8 +8,8 @@ export const EducationFields: Array<Field> = [{
 }, {
   key: 'link',
   label: 'Link',
-  type: 'url',
-  placeholder: 'http://something.com'
+  type: 'text',
+  placeholder: 'http://'
 }, {
   key: 'location',
   label: 'Location',
