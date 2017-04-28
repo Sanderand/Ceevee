@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, HostBinding } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 import { CVService } from '../cv/cv.service';
@@ -12,6 +12,8 @@ const CV_TITLE_MIN_LENGTH = 3;
     encapsulation: ViewEncapsulation.None
 })
 export class DashboardComponent implements OnInit {
+    @HostBinding('class.dashboard') true;
+
     public user: Observable<any>;
     public newTitle: string = null;
     public error: string = null;

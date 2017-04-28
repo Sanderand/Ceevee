@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, HostBinding } from '@angular/core';
 
 @Component({
     selector: 'cv-not-found',
@@ -6,4 +6,6 @@ import { Component, ViewEncapsulation } from '@angular/core';
     styleUrls: ['not-found.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class NotFoundComponent {}
+export class NotFoundComponent {
+    @HostBinding('class.not-found') true;
+}

@@ -9,7 +9,7 @@ import { CVService } from '../cv/cv.service';
     encapsulation: ViewEncapsulation.None
 })
 export class CVListComponent implements OnInit {
-    @HostBinding('class') public hostClasses: string = 'cv-list';
+    @HostBinding('class.cv-list') true;
     public cvs: FirebaseListObservable<any>;
 
     constructor (

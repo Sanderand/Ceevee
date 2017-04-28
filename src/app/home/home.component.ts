@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, HostBinding } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
 import { Router } from '@angular/router';
 
@@ -11,6 +11,8 @@ const DASHBOARD_ROUTE = '/me';
     encapsulation: ViewEncapsulation.None
 })
 export class HomeComponent implements OnInit {
+    @HostBinding('class.dashboard') true;
+
     constructor (
         private _authService: AuthService,
         private _router: Router
