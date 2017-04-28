@@ -13,7 +13,6 @@ import { FBObject } from '../../classes/fb-object.class';
     encapsulation: ViewEncapsulation.None
 })
 export class DividerComponent extends FBObject {
-    @HostBinding('class.divider') public cssClass = true;
     @HostBinding('class.editable') public editableClass = true;
     protected _fields: Array<Field> = DividerFields;
     protected _key: string = 'divider';

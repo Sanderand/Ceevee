@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewEncapsulation, HostListener, HostBinding } from '@angular/core';
-
 import { ModalService } from './modal.service';
 
 @Component({
@@ -9,7 +8,6 @@ import { ModalService } from './modal.service';
     encapsulation: ViewEncapsulation.None
 })
 export class ModalComponent implements OnInit {
-    @HostBinding('class.modal') public hostClass: boolean = true;
     @HostBinding('class.is-open') public isOpen: boolean = false;
 
     public fields: any = null;

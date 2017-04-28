@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, HostBinding } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 
 @Component({
     selector: 'cv-spinner',
@@ -6,6 +6,4 @@ import { Component, ViewEncapsulation, HostBinding } from '@angular/core';
     styleUrls: ['spinner.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class SpinnerComponent {
-    @HostBinding('class.spinner') true;
-}
+export class SpinnerComponent {}

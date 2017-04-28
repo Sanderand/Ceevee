@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, HostBinding } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 
 @Component({
     selector: 'cv-profile-edit',
@@ -6,6 +6,4 @@ import { Component, ViewEncapsulation, HostBinding } from '@angular/core';
     styleUrls: ['profile-edit.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class ProfileEditComponent {
-    @HostBinding('class.profile-edit') true;
-}
+export class ProfileEditComponent {}

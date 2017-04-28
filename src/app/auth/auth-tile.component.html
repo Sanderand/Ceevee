@@ -2,7 +2,7 @@
     *ngIf="(user | async)">
     <img
         data-trigger="dropdown"
-        [src]="photoUrl">
+        [src]="(user | async)?.photoUrl || PHOTO_PLACEHOLDER_URL">
 
     <cv-dropdown
         [open]="dropdownOpen">

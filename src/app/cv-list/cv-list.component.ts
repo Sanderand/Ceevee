@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, HostBinding, OnInit } from '@angular/core';
+import { Component, ViewEncapsulation, OnInit } from '@angular/core';
 import { FirebaseListObservable } from 'angularfire2';
 import { CVService } from '../cv/cv.service';
 
@@ -9,7 +9,6 @@ import { CVService } from '../cv/cv.service';
     encapsulation: ViewEncapsulation.None
 })
 export class CVListComponent implements OnInit {
-    @HostBinding('class.cv-list') true;
     public cvs: FirebaseListObservable<any>;
 
     constructor (

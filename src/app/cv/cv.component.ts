@@ -17,7 +17,7 @@ const DASHBOARD_PATH = '/me';
     encapsulation: ViewEncapsulation.None
 })
 export class CVComponent implements OnInit {
-    @HostBinding('class') public hostClasses: string = 'cv';
+    @HostBinding('class') public hostClass: string = null;
     @HostBinding('style.fontSize.em') public fontSize: number = null;
     @HostBinding('style.fontFamily') public fontFamily: string = null;
 
@@ -67,7 +67,7 @@ export class CVComponent implements OnInit {
                     theme = theme || {};
                     this.fontSize = theme.fontSize || 1;
                     this.fontFamily = theme.fontFamily || null;
-                    this.hostClasses = `cv ${theme.class || ''}`;
+                    this.hostClass = theme.class || null;
                 });
         })
     }

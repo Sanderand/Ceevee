@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, HostBinding } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
 import { Router } from '@angular/router';
 
@@ -11,8 +11,6 @@ const DASHBOARD_ROUTE = '/me';
     encapsulation: ViewEncapsulation.None
 })
 export class HomeComponent {
-    @HostBinding('class.home') true;
-
     constructor (
         private _authService: AuthService,
         private _router: Router

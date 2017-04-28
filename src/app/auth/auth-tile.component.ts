@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, HostBinding, HostListener } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
@@ -13,9 +13,7 @@ const HOME_ROUTE = '/';
     encapsulation: ViewEncapsulation.None
 })
 export class AuthTileComponent implements OnInit {
-    @HostBinding('class.auth-tile') true;
-
-    public photoUrl: string = PHOTO_PLACEHOLDER_URL;
+    public PHOTO_PLACEHOLDER_URL = PHOTO_PLACEHOLDER_URL;
     public dropdownOpen: boolean = false;
     public user: Observable<any>;
 
@@ -26,14 +24,6 @@ export class AuthTileComponent implements OnInit {
 
     public ngOnInit (): void {
         this.user = this._authService.user$;
-
-        this.user
-            .filter(user => !!user)
-            .map(user => user.google.photoUrl)
-            .subscribe(photoUrl => {
-                // todo: fix 403 thing with actual photoUrl;
-                this.photoUrl = PHOTO_PLACEHOLDER_URL;
-            });
     }
 
     public login() {

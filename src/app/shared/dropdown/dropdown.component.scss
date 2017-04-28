@@ -1,6 +1,6 @@
 @import '../../../variables.scss';
 
-.dropdown {
+cv-dropdown {
     position: absolute;
     display: none;
     z-index: 2;
@@ -16,6 +16,7 @@
     }
 
     .item {
+        cursor: pointer;
         display: block;
         padding: 3px 1.5rem;
         font-weight: 400;

@@ -1,47 +1,59 @@
 <header>
     <h1>
-        {{ userName ? 'Hi ' + userName : 'Hi' }}!
+        Hi
+        {{ (user | async)?.firstName }}
     </h1>
     <h5>
-        What is it that you need to do?
+        Here's an overview of your existing CVs
     </h5>
 </header>
 
+<!-- todo make dump component! -->
 <cv-list></cv-list>
 
-<form
-    novalidate
-    autocomplete="off"
-    (submit)="onFormSubmit($event)">
-    <div
-        class="form-group"
-        [class.has-danger]="!!error">
-        <label class="form-control-label">Add new CV</label>
+<ul
+    *ngIf="user | async"
+    class="cards">
+    <label
+        class="form-control-label">
+        Create a new CV
+    </label>
 
-        <div
-            class="input-group">
-            <input
-                [(ngModel)]="newTitle"
-                [class.form-control-danger]="!!error"
-                (keydown)="clearError()"
-                class="form-control"
-                placeholder="Title"
-                name="title"
-                type="text">
+    <li class="card">
+        <form
+            (submit)="onFormSubmit($event)"
+            autocomplete="off"
+            class="primary"
+            novalidate>
+            <div
+                class="form-group"
+                [class.has-danger]="!!error">
+                <div
+                    class="input-group">
+                    <input
+                        [(ngModel)]="newTitle"
+                        [class.form-control-danger]="!!error"
+                        (keydown)="clearError()"
+                        class="form-control"
+                        placeholder="Title"
+                        name="title"
+                        type="text">
 
-            <span class="input-group-btn">
-                <button
-                    type="submit"
-                    class="btn btn-primary">
-                    Add
-                </button>
-            </span>
-        </div>
+                    <span class="input-group-btn">
+                        <button
+                            type="submit"
+                            class="btn btn-success">
+                            Add
+                        </button>
+                    </span>
+                </div>
 
-        <small
-            *ngIf="!!error"
-            class="form-text text-muted">
-            {{ error }}
-        </small>
-    </div>
-</form>
+                <small
+                    *ngIf="!!error"
+                    class="form-text text-muted">
+                    {{ error }}
+                </small>
+            </div>
+        </form>
+    </li>
+</ul>

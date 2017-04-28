@@ -1,5 +1,7 @@
-<ul>
+<ul
+    class="cards">
     <li
+        class="card"
         *ngFor="let cv of (cvs | async)"
         [routerLink]="cv.$key">
         <div

@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, HostBinding } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { AngularFire } from 'angularfire2';
 
 @Component({
@@ -7,6 +7,4 @@ import { AngularFire } from 'angularfire2';
   styleUrls: ['./app.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class AppComponent {
-    @HostBinding('class.cv-root') true;
-}
+export class AppComponent {}

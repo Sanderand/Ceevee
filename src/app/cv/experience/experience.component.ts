@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, HostBinding } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { AngularFire } from 'angularfire2';
 
 import { ModalService } from '../../modal/modal.service';
@@ -13,7 +13,6 @@ import { FBList } from '../../classes/fb-list.class';
     encapsulation: ViewEncapsulation.None
 })
 export class ExperienceComponent extends FBList {
-    @HostBinding('class.experience') public cssClass = true;
     protected _fields: Array<Field> = ExperienceFields;
     protected _key: string = 'experience';
 

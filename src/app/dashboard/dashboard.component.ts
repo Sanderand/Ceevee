@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, HostBinding } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 import { CVService } from '../cv/cv.service';
@@ -12,11 +12,9 @@ const CV_TITLE_MIN_LENGTH = 3;
     encapsulation: ViewEncapsulation.None
 })
 export class DashboardComponent implements OnInit {
-    @HostBinding('class.dashboard') true;
-
-    public userName: string = null;
     public newTitle: string = null;
     public error: string = null;
+    public user: Observable<any>;
 
     constructor (
         private _authService: AuthService,
@@ -24,12 +22,7 @@ export class DashboardComponent implements OnInit {
     ) {}
 
     public ngOnInit (): void {
-        this._authService.user$
-            .filter(user => user && user.google && user.google.displayName)
-            .subscribe(user => {
-                // todo get first name from users object
-                this.userName = user.google.displayName.split(' ')[0];
-            });
+        this.user = this._authService.user$;
     }
 
     public onFormSubmit ($event: Event): void {

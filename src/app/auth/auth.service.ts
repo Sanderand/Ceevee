@@ -23,7 +23,9 @@ export class AuthService {
                     this.redirectAfterUnAuth();
                 }
 
+                user = this.reformatUser(user);
                 this.user$.next(user);
+                console.log('user', user);
             });
     }
 
@@ -41,5 +43,18 @@ export class AuthService {
 
     private redirectAfterUnAuth (): void {
         this._router.navigate([REDIRECT_UN_AUTH_ROUTE]);
+    }
+
+    private reformatUser (user: any): any {
+        if (!user) {
+            return null;
+        }
+
+        return {
+            uid: user.uid,
+            fullName: user.google.displayName,
+            firstName: user.google.displayName.split(' ')[0],
+            photoUrl: user.google.photoUrl
+        };
     }
 }
