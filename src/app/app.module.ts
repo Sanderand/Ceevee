@@ -19,6 +19,7 @@ import { CVService } from './cv/cv.service';
 import { CVSelectModule } from './cv-select/cv-select.module';
 import { CVListModule } from './cv-list/cv-list.module';
 import { DashboardModule } from './dashboard/dashboard.module';
+import { ProfileEditModule } from './profile-edit/profile-edit.module';
 
 export const firebaseConfig = {
     apiKey: 'AIzaSyAj2R8sLxgNVaSIHMcLnXKzTSoj5ACeZEg',
@@ -50,7 +51,8 @@ const firebaseAuthConfig = {
         CVModule,
         HomeModule,
         DashboardModule,
-        NotFoundModule
+        NotFoundModule,
+        ProfileEditModule
     ],
     providers: [
         AngularFire,

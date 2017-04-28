@@ -1,14 +1,16 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, HostBinding } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 
 @Component({
-    selector: 'cv-auth',
-    templateUrl: 'auth.component.html',
-    styleUrls: ['auth.component.scss'],
+    selector: 'cv-auth-tile',
+    templateUrl: 'auth-tile.component.html',
+    styleUrls: ['auth-tile.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class AuthComponent implements OnInit {
+export class AuthTileComponent implements OnInit {
+    @HostBinding('class.auth-tile') true;
+
     public user: Observable<any>;
 
     constructor (

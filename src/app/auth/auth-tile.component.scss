@@ -1,0 +1,44 @@
+.auth-tile {
+    .profile {
+        background-color: #dadada;
+        color: #4c4c4c;
+        border-radius: 38px;
+        padding: 3px;
+        padding-right: 13px;
+        font-size: 14px;
+        display: inline-block;
+
+        img {
+            display: inline-block;
+            width: 32px;
+            height: 32px;
+            border-radius: 100%;
+            margin-right: 6px;
+        }
+
+        &:hover {
+            background-color: #cacaca;
+            cursor: pointer;
+        }
+    }
+
+    .dropdown {
+        position: absolute;
+        background-color: #cacaca;
+        margin: 0px 20px;
+        border: 1px solid #aaaaaa;
+
+        .item {
+            padding: 2px 12px;
+
+            &:not(:last-child){
+                border-bottom: 1px solid #aaaaaa;
+            }
+
+            &:hover {
+                background-color: #bababa;
+                cursor: pointer;
+            }
+        }
+    }
+}

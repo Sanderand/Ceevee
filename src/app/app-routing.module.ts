@@ -5,6 +5,7 @@ import { HomeComponent } from './home/home.component';
 import { CVComponent } from './cv/cv.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ProfileEditComponent } from './profile-edit/profile-edit.component';
 
 const appRoutes: Routes = [{
     // todo: redirect if authenticated
@@ -14,6 +15,10 @@ const appRoutes: Routes = [{
     // todo: routeGuard
     path: 'me',
     component: DashboardComponent,
+}, {
+    // todo: routeGuard
+    path: 'me/edit',
+    component: ProfileEditComponent,
 }, {
     // todo: routeGuard
     path: 'me/:id',

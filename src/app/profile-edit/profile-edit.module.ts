@@ -4,14 +4,14 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
-import { AuthTileComponent } from './auth-tile.component';
+import { ProfileEditComponent } from './profile-edit.component';
 
 @NgModule({
     declarations: [
-        AuthTileComponent
+        ProfileEditComponent
     ],
     exports: [
-        AuthTileComponent
+        ProfileEditComponent
     ],
     imports: [
         BrowserModule,
@@ -20,4 +20,4 @@ import { AuthTileComponent } from './auth-tile.component';
         RouterModule
     ]
 })
-export class AuthModule { }
+export class ProfileEditModule { }

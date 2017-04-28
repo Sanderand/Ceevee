@@ -25,7 +25,8 @@ export class AuthService {
 
     public logout (): void {
         this._af.auth.logout();
-        this._router.navigate([HOME_ROUTE]);
+        debugger;
+        this._router.navigate([HOME_ROUTE]).then(a => console.log(a));
         console.warn('todo navigate back. make this work ^^^');
     }
 }
