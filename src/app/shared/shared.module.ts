@@ -5,13 +5,16 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 import { SpinnerComponent } from './spinner/spinner.component';
+import { DropdownComponent } from './dropdown/dropdown.component';
 
 @NgModule({
     declarations: [
-        SpinnerComponent
+        SpinnerComponent,
+        DropdownComponent
     ],
     exports: [
-        SpinnerComponent
+        SpinnerComponent,
+        DropdownComponent
     ],
     imports: [
         BrowserModule,

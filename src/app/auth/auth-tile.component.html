@@ -1,34 +1,20 @@
 <div
-    *ngIf="(user | async)"
-    (click)="dropdownOpen = !dropdownOpen">
-    <div
-        class="profile">
-        <img [src]="(user | async)?.google?.photoURL">
-        {{ (user | async)?.google?.displayName }}
-    </div>
+    *ngIf="(user | async)">
+    <img
+        data-trigger="dropdown"
+        [src]="photoUrl">
 
-    <div
-        *ngIf="dropdownOpen"
-        class="dropdown">
-        <div
+    <cv-dropdown
+        [open]="dropdownOpen">
+        <a
             routerLink="/me/edit"
             class="item">
             Profile
-        </div>
-        <div
+        </a>
+        <a
             (click)="logout()"
             class="item">
-            Logout
-        </div>
-    </div>
-</div>
-
-<div
-    *ngIf="!(user | async)">
-    <div
-        (click)="login()"
-        class="profile">
-        <img>
-        Login
-    </div>
+            Log out
+        </a>
+    </cv-dropdown>
 </div>

@@ -25,7 +25,7 @@ export class DashboardComponent implements OnInit {
 
     public ngOnInit (): void {
         this._authService.user$
-            .filter(user => !!user)
+            .filter(user => user && user.google && user.google.displayName)
             .subscribe(user => {
                 // todo get first name from users object
                 this.userName = user.google.displayName.split(' ')[0];

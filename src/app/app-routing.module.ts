@@ -10,6 +10,10 @@ import { ProfileEditComponent } from './profile-edit/profile-edit.component';
 const appRoutes: Routes = [{
     // todo: redirect if authenticated
     path: '',
+    pathMatch: 'full',
+    redirectTo: '/home'
+}, {
+    path: 'home',
     component: HomeComponent
 }, {
     // todo: routeGuard

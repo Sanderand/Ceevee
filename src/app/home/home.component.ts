@@ -19,10 +19,10 @@ export class HomeComponent implements OnInit {
     ) {}
 
     public ngOnInit (): void {
-        this._authService.user$
-            .filter(user => !!user)
-            .subscribe(user => {
-                this._router.navigate([DASHBOARD_ROUTE]);
-            });
+        //
+    }
+
+    public login (): void {
+        this._authService.login();
     }
 }

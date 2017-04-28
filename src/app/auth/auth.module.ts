@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
+import { SharedModule } from '../shared/shared.module';
 import { AuthTileComponent } from './auth-tile.component';
 
 @NgModule({
@@ -17,7 +18,9 @@ import { AuthTileComponent } from './auth-tile.component';
         BrowserModule,
         FormsModule,
         CommonModule,
-        RouterModule
+        RouterModule,
+
+        SharedModule
     ]
 })
 export class AuthModule { }
