@@ -1,14 +1,14 @@
 <div
-    *ngIf="data">
+    *ngIf="(data | async)">
     <div
-        *ngIf="data.title"
+        *ngIf="(data | async)?.title"
         class="title">
-        {{ data.title }}
+        {{ (data | async)?.title }}
     </div>
 </div>
 
 <div
-    *ngIf="!data">
+    *ngIf="!(data | async)">
     <div
         class="ghost"
         style="height: 2em; width: 100px;">

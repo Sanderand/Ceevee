@@ -1,1 +1,7 @@
-<h1>Profile edit</h1>
+<h1>Your Profile</h1>
+
+<input
+    type="text"
+    [value]="(user | async)?.fullName">
+
+{{ user | async | json }}

@@ -4,8 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
-import { SpinnerComponent } from './spinner/spinner.component';
-import { DropdownComponent } from './dropdown/dropdown.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
+import { DropdownComponent } from './components/dropdown/dropdown.component';
 import { SplitPipe } from './pipes/split.pipe';
 import { WhenPipe } from './pipes/when.pipe';
 
@@ -20,7 +20,7 @@ import { WhenPipe } from './pipes/when.pipe';
     exports: [
         SpinnerComponent,
         DropdownComponent,
-  
+
         SplitPipe,
         WhenPipe
     ],

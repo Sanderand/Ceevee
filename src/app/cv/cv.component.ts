@@ -2,8 +2,8 @@ import { Component, ViewEncapsulation, HostBinding, OnInit } from '@angular/core
 import { ActivatedRoute, Router } from '@angular/router';
 import { FirebaseObjectObservable, AngularFire } from 'angularfire2';
 
-import { MIN_FONT_SIZE, MAX_FONT_SIZE, FONT_SIZE_CHANGE_STEP } from '../constants/constants';
-import { restrictRange } from '../helpers/math.helpers';
+import { MIN_FONT_SIZE, MAX_FONT_SIZE, FONT_SIZE_CHANGE_STEP } from '../shared/constants/constants';
+import { restrictRange } from '../shared/helpers/math.helpers';
 import { CVService } from './cv.service';
 import { AuthService } from '../auth/auth.service';
 import { Observable } from 'rxjs';

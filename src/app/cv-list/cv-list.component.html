@@ -2,7 +2,7 @@
     class="cards">
     <li
         class="card"
-        *ngFor="let cv of (cvs | async)"
+        *ngFor="let cv of cvs"
         [routerLink]="cv.$key">
         <div
             class="primary">
@@ -21,7 +21,7 @@
 </ul>
 
 <div
-    *ngIf="!(cvs | async)">
+    *ngIf="!cvs || !cvs.length">
     <div
         class="ghost"
         style="height: 75px; margin-top: 1rem"></div>

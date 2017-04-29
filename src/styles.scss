@@ -1,6 +1,12 @@
 @import 'variables.scss';
 
-body, html {
-  height: 100%;
-  overflow-y: auto;
+
+html {
+    overflow: hidden;
+    height: 100%;
+}
+
+body {
+    overflow: auto;
+    height: 100%;
 }

@@ -2,9 +2,9 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import { AngularFire } from 'angularfire2';
 
 import { ModalService } from '../../modal/modal.service';
-import { Field } from '../../models/field.model';
-import { FeedbackFields } from '../../models/feedback.model';
-import { FBList } from '../../classes/fb-list.class';
+import { Field } from '../../shared/models/field.model';
+import { FeedbackFields } from '../../shared/models/feedback.model';
+import { FBList } from '../../shared/classes/fb-list.class';
 
 @Component({
     selector: 'cv-feedback',

@@ -2,9 +2,9 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import { AngularFire } from 'angularfire2';
 
 import { ModalService } from '../../modal/modal.service';
-import { Field } from '../../models/field.model';
-import { EducationFields } from '../../models/education.model';
-import { FBList } from '../../classes/fb-list.class';
+import { Field } from '../../shared/models/field.model';
+import { EducationFields } from '../../shared/models/education.model';
+import { FBList } from '../../shared/classes/fb-list.class';
 
 @Component({
     selector: 'cv-education',

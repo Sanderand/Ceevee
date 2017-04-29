@@ -1,7 +1,7 @@
 import { OnInit, Input } from '@angular/core';
 import { AngularFire } from 'angularfire2';
 
-import { ModalService } from '../modal/modal.service';
+import { ModalService } from '../../modal/modal.service';
 import { Field } from '../models/field.model';
 import { generateUUID } from '../helpers/math.helpers';
 import { Subscription } from 'rxjs';

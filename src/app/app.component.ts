@@ -1,5 +1,4 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { AngularFire } from 'angularfire2';
 
 @Component({
   selector: 'cv-root',

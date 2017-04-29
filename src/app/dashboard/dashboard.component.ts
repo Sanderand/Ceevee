@@ -15,6 +15,7 @@ export class DashboardComponent implements OnInit {
     public newTitle: string = null;
     public error: string = null;
     public user: Observable<any>;
+    public cvs: Observable<any>;
 
     constructor (
         private _authService: AuthService,
@@ -23,6 +24,12 @@ export class DashboardComponent implements OnInit {
 
     public ngOnInit (): void {
         this.user = this._authService.user$;
+
+        this._cvService
+            .getCVList()
+            .subscribe(cvs => {
+                this.cvs = cvs;
+            });
     }
 
     public onFormSubmit ($event: Event): void {

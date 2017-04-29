@@ -1,4 +1,6 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { AuthService } from '../auth/auth.service';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
     selector: 'cv-profile-edit',
@@ -6,4 +8,14 @@ import { Component, ViewEncapsulation } from '@angular/core';
     styleUrls: ['profile-edit.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class ProfileEditComponent {}
+export class ProfileEditComponent implements OnInit {
+  public user: Observable<any>;
+
+  constructor (
+    private _authService: AuthService
+  ) { }
+
+  public ngOnInit (): void {
+    this.user = this._authService.user$;
+  }
+}

@@ -4,12 +4,12 @@
         {{ (user | async)?.firstName }}
     </h1>
     <h5>
-        Here's an overview of your CVs
+        {{ (cvs | async)?.length ? 'Here\'s an overview of your CVs' : 'You don\'t have any CVs, yet' }}
     </h5>
 </header>
 
-<!-- todo make dump component! -->
-<cv-list></cv-list>
+<cv-list
+  [cvs]="cvs | async"></cv-list>
 
 <ul
     *ngIf="user | async"
