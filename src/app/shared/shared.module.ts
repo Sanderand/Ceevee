@@ -6,15 +6,23 @@ import { RouterModule } from '@angular/router';
 
 import { SpinnerComponent } from './spinner/spinner.component';
 import { DropdownComponent } from './dropdown/dropdown.component';
+import { SplitPipe } from './pipes/split.pipe';
+import { WhenPipe } from './pipes/when.pipe';
 
 @NgModule({
     declarations: [
         SpinnerComponent,
-        DropdownComponent
+        DropdownComponent,
+
+        SplitPipe,
+        WhenPipe
     ],
     exports: [
         SpinnerComponent,
-        DropdownComponent
+        DropdownComponent,
+  
+        SplitPipe,
+        WhenPipe
     ],
     imports: [
         BrowserModule,

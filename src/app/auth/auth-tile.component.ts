@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 
-const PHOTO_PLACEHOLDER_URL = 'assets/photo-placeholder.png';
+const PHOTO_PLACEHOLDER_URL = 'https://firebasestorage.googleapis.com/v0/b/ceevee-9a7a5.appspot.com/o/photo-placeholder.png?alt=media&token=69213439-53f7-4b70-9544-f484bbce9bba';
 const HOME_ROUTE = '/';
 
 @Component({

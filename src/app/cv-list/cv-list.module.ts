@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { CVListComponent } from './cv-list.component';
 import { RouterModule } from '@angular/router';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
     declarations: [
@@ -16,7 +17,8 @@ import { RouterModule } from '@angular/router';
         BrowserModule,
         FormsModule,
         CommonModule,
-        RouterModule
+        RouterModule,
+        SharedModule
     ]
 })
 export class CVListModule { }

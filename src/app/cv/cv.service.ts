@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 import { AngularFire } from 'angularfire2';
+import * as firebase from 'firebase';
 
 @Injectable()
 export class CVService {
@@ -13,9 +14,15 @@ export class CVService {
     ) {}
 
     public addCV (title: string): void {
-        this.getCVList()
+      this.getCVList()
             .subscribe(list => list.push({
-                title
+                title,
+                divider: true,
+                experience: true,
+                education: true,
+                skills: true,
+                feedback: true,
+                _created: firebase.database.ServerValue.TIMESTAMP
             }));
     }
 

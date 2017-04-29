@@ -22,6 +22,7 @@ import { CVListModule } from './cv-list/cv-list.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { ProfileEditModule } from './profile-edit/profile-edit.module';
 import { SharedModule } from './shared/shared.module';
+import { WhenPipe } from './shared/pipes/when.pipe';
 
 export const firebaseConfig = {
     apiKey: 'AIzaSyAj2R8sLxgNVaSIHMcLnXKzTSoj5ACeZEg',
@@ -39,7 +40,7 @@ const firebaseAuthConfig = {
 
 @NgModule({
     declarations: [
-        AppComponent,
+        AppComponent
     ],
     imports: [
         BrowserModule,
