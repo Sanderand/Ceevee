@@ -21,29 +21,11 @@ cv-cv {
 
     header {
         display: block;
-
-        @media print {
-            display: none;
-        }
     }
 
     .editable {
         &:hover {
             box-shadow: 0px 0px 5px 2px $c_editing_light;
-
-            @media print {
-                background-color: transparent;
-            }
-        }
-
-        @media print {
-            display: none;
-        }
-    }
-
-    .print-hide {
-        @media print {
-            display: none;
         }
     }
 
@@ -69,5 +51,34 @@ cv-cv {
         line-height: 1.8em;
         font-weight: normal;
         border-radius: .3em;
+    }
+}
+
+
+@media print {
+    header,
+    footer,
+    form,
+    input,
+    button,
+    .btn {
+        display: none;
+    }
+
+    cv-cv {
+        display: block;
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+        max-width: 100%;
+        min-width: 100%;
+        height: 100%;
+        max-height: 100%;
+        min-height: 100%;
+        margin: 0;
+        background-color: #fff;
     }
 }

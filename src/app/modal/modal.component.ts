@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, HostListener, HostBinding } from '@angular/core';
+import { Component, HostBinding, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
 import { ModalService } from './modal.service';
 
 @Component({
@@ -60,6 +60,10 @@ export class ModalComponent implements OnInit {
 
     @HostListener('click', ['$event'])
     public onBackdropClick ($event): void {
+        if (!this.isOpen) {
+            return;
+        }
+
         if ($event.target.classList.contains('modal') || $event.target.classList.contains('modal-inner')) {
             this.cancelModal();
         }
@@ -67,6 +71,10 @@ export class ModalComponent implements OnInit {
 
     @HostListener('window:keydown.escape')
     public onEscapeKey (): void {
+        if (!this.isOpen) {
+            return;
+        }
+
         this.cancelModal();
     }
 }

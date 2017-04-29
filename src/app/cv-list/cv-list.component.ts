@@ -7,5 +7,5 @@ import { Component, Input, ViewEncapsulation } from '@angular/core';
     encapsulation: ViewEncapsulation.None
 })
 export class CVListComponent {
-    @Input() public cvs: Array<any> = [];
+    @Input() public cvs: Array<any>;
 }

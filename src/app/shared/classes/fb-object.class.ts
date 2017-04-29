@@ -25,7 +25,7 @@ export class FBObject implements OnInit, OnChanges {
         this._modalService.close$
             .filter(res => !!res && res.source === this._uuid)
             .map(res => res.data)
-            .subscribe(data => this.updateData(data));
+            .subscribe(data => this.data.update(data));
     }
 
     public ngOnChanges (): void {
@@ -45,6 +45,7 @@ export class FBObject implements OnInit, OnChanges {
 
         this.data
             .first()
+            .map(data => data.$value || {})
             .subscribe(data => {
                 this._modalService
                     .openModal({
@@ -55,9 +56,5 @@ export class FBObject implements OnInit, OnChanges {
                     });
             });
 
-    }
-
-    private updateData (data): void {
-      this.data.update(data);
     }
 }
