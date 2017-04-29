@@ -9,10 +9,10 @@ import { Subscription } from 'rxjs';
 export class FBObject implements OnInit, OnChanges {
     @Input() public path: string = null;
 
+    public data: FirebaseObjectObservable<any>;
     protected _fields: Array<Field> = [];
     protected _key: string = null;
     private _uuid: string = generateUUID();
-    private data: FirebaseObjectObservable<any>;
 
     constructor (
         private _af: AngularFire,
@@ -44,8 +44,8 @@ export class FBObject implements OnInit, OnChanges {
         $event.preventDefault();
 
         this.data
+            .filter(data => !!data)
             .first()
-            .map(data => data.$value || {})
             .subscribe(data => {
                 this._modalService
                     .openModal({
