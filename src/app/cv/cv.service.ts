@@ -14,14 +14,10 @@ export class CVService {
     ) {}
 
     public addCV (title: string): void {
-      this.getCVList()
+        this.getCVList()
+            .first()
             .subscribe(list => list.push({
                 title,
-                divider: true,
-                experience: true,
-                education: true,
-                skills: true,
-                feedback: true,
                 _created: firebase.database.ServerValue.TIMESTAMP
             }));
     }
@@ -33,18 +29,18 @@ export class CVService {
             .map(uid => this._af.database.list(`/cvs/${ uid }`));
     }
 
-    public loadCV (id): Observable<any> {
-        let cv = this.getCv(id);
-
-        cv.subscribe(cv => {
-            this.cv$.next(cv);
-        });
-
-        return cv;
+    public loadCV (id): void {
+        this.getCv(id)
+            .first()
+            .subscribe(cv => {
+                this.cv$.next(cv);
+            });
     }
 
     public removeCV (id): void {
         this.getCv(id)
+            .filter(cv => !!cv)
+            .first()
             .subscribe(cv => {
                 cv.remove();
             });

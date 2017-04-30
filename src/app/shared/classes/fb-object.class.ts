@@ -63,7 +63,11 @@ export class FBObject implements OnInit, OnChanges {
             .first()
             .map(data => {
                 let clone = {};
-                Object.keys(data).forEach(key => clone[key] = data[key]);
+
+                Object.keys(data)
+                    .filter(key => key[0] !== '$')
+                    .forEach(key => clone[key] = data[key]);
+
                 return clone;
             });
     }

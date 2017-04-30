@@ -73,8 +73,10 @@ export class CVComponent implements OnInit {
     }
 
     public removeCV (): void {
-        this._router.navigate([DASHBOARD_PATH]).then(res => {
-            this.cvId.subscribe(id => this._cvService.removeCV(id));
+        this._router.navigate([DASHBOARD_PATH]).then(() => {
+            this.cvId
+                .first()
+                .subscribe(id => this._cvService.removeCV(id));
         });
     }
 
