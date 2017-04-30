@@ -5,6 +5,7 @@ import { ModalService } from '../../modal/modal.service';
 import { Field } from '../models/field.model';
 import { generateUUID } from '../helpers/math.helpers';
 import { Subscription } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 
 export class FBObject implements OnInit, OnChanges {
     @Input() public path: string = null;
@@ -43,18 +44,27 @@ export class FBObject implements OnInit, OnChanges {
     public editData ($event): void {
         $event.preventDefault();
 
-        this.data
-            .filter(data => !!data)
-            .first()
+        this.getDataClone()
             .subscribe(data => {
                 this._modalService
                     .openModal({
-                        data: Object.assign({}, data),
+                        data: data,
                         fields: this._fields.map(a => Object.assign({}, a)),
                         preventDelete: true,
                         source: this._uuid
-                    });
-            });
+                  });
 
+            });
+    }
+
+    private getDataClone (): Observable<any> {
+        return this.data
+            .filter(data => !!data)
+            .first()
+            .map(data => {
+                let clone = {};
+                Object.keys(data).forEach(key => clone[key] = data[key]);
+                return clone;
+            });
     }
 }
