@@ -22,7 +22,8 @@ cv-modal {
         height: 100%;
 
         form {
-            display: block;
+            display: flex;
+            flex-direction: column;
             min-width: 60%;
             max-width: 600px;
             max-height: 600px;
@@ -30,7 +31,19 @@ cv-modal {
 
             border-radius: 4px;
             background-color: #fff;
-            box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+            box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.25);
+
+            @media (max-width: 768px) {
+                min-width: 80%;
+            }
+
+            @media (max-width: 512px) {
+                width: 100%;
+                margin: 0;
+                height: 100%;
+                border-radius: 0;
+                max-height: none;
+            }
 
             header {
                 height: 50px;
@@ -44,7 +57,12 @@ cv-modal {
                 padding: 15px;
                 overflow-y: auto;
                 max-height: 500px;
-                box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5) inset;
+                box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.25) inset;
+
+                @media (max-width: 512px) {
+                    flex: 1;
+                    max-height: none;
+                }
             }
 
             footer {

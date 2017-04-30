@@ -3,7 +3,7 @@
     <li
         class="card"
         *ngFor="let cv of cvs"
-        [routerLink]="cv.$key">
+        (click)="navigateToCV(cv.$key)">
         <div
             class="primary">
             {{ cv.title }}

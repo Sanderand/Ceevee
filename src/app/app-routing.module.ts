@@ -6,6 +6,7 @@ import { CVComponent } from './cv/cv.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProfileEditComponent } from './profile-edit/profile-edit.component';
+import { ModalComponent } from './modal/modal.component';
 
 const appRoutes: Routes = [{
     // todo: redirect if authenticated
@@ -18,15 +19,20 @@ const appRoutes: Routes = [{
 }, {
     // todo: routeGuard
     path: 'me',
-    component: DashboardComponent,
+    component: DashboardComponent
 }, {
     // todo: routeGuard
     path: 'me/edit',
-    component: ProfileEditComponent,
+    component: ProfileEditComponent
 }, {
     // todo: routeGuard
     path: 'me/:id',
     component: CVComponent
+}, {
+    // todo: routeGuard
+    path: 'data',
+    component: ModalComponent,
+    outlet: 'modal'
 }, {
     path: '**',
     component: NotFoundComponent

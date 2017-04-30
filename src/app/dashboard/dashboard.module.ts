@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 
 import { DashboardComponent } from './dashboard.component';
 import { CVListModule } from '../cv-list/cv-list.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
     declarations: [
@@ -17,7 +18,8 @@ import { CVListModule } from '../cv-list/cv-list.module';
         BrowserModule,
         FormsModule,
         CommonModule,
-        CVListModule
+        CVListModule,
+        RouterModule
     ]
 })
 export class DashboardModule { }
