@@ -23,7 +23,8 @@ export class AuthService {
                         this.user$.next({
                             uid: user.uid,
                             photo: userData.photo || PHOTO_PLACEHOLDER_URL,
-                            name: userData.name || user.google.displayName.split(' ')[0]
+                            name: userData.name || user.google.displayName.split(' ')[0],
+                            _updated: userData._updated
                         });
                     })
                 }
@@ -32,7 +33,12 @@ export class AuthService {
 
     public login (): void {
         this._af.auth.login().then(() => {
-            this._router.navigate(['/me']);
+            this.user$
+              .filter(Boolean)
+              .subscribe(user => {
+                let redirectRoute = user._updated ? '/' : '/me';
+                this._router.navigate([redirectRoute]);
+            });
         });
     }
 

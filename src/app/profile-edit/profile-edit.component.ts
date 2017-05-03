@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
 import { AngularFire } from 'angularfire2';
 import { Router } from '@angular/router';
+import * as firebase from 'firebase';
 
 @Component({
     selector: 'cv-profile-edit',
@@ -41,8 +42,10 @@ export class ProfileEditComponent implements OnInit {
     if (this.user.name && this.user.name.length > 1) {
       this._af.database.object(`/users/${ this.user.uid }`).update({
         photo: this.user.photo,
-        name: this.user.name
+        name: this.user.name,
+        _updated: firebase.database.ServerValue.TIMESTAMP
       }).then(() => {
+        // todo show loading state
         this._router.navigate(['/']);
       });
     }
