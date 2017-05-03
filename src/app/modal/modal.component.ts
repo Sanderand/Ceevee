@@ -22,7 +22,7 @@ export class ModalComponent implements OnInit {
 
     public ngOnInit (): void {
         this._modalService.open$
-            .filter(options => !!options)
+            .filter(Boolean)
             .subscribe(options => {
                 this.isAdding = !options.data;
                 this.fields = options.fields;

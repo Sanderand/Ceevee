@@ -35,16 +35,37 @@
     </select>
 
     <button
-        (click)="removeCV()"
-        class="btn btn-danger">
-        Delete
-    </button>
-
-    <button
-        (click)="true"
+        (click)="openDropdown($event)"
         class="btn btn-secondary">
         ...
     </button>
+
+    <cv-dropdown
+      #dropdown>
+      <a
+        class="item">
+        Print
+      </a>
+
+      <a
+        class="item">
+        Share
+      </a>
+
+      <div
+        class="divider"></div>
+
+      <a
+        class="item">
+        Rename
+      </a>
+
+      <a
+        (click)="removeCV()"
+        class="item text-danger">
+        Delete
+      </a>
+    </cv-dropdown>
 </header>
 
 <cv-details

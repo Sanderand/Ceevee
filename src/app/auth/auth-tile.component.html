@@ -1,11 +1,11 @@
 <div
     *ngIf="(user | async)">
     <img
-        data-trigger="dropdown"
+        (click)="openDropdown($event)"
         [src]="(user | async)?.photo || PHOTO_PLACEHOLDER_URL">
 
     <cv-dropdown
-        [open]="dropdownOpen">
+        #dropdown>
         <a
             routerLink="/"
             routerLinkActive="active"
@@ -26,7 +26,7 @@
 
         <a
             (click)="logout()"
-            class="item">
+            class="item text-danger">
             Log out
         </a>
     </cv-dropdown>

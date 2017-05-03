@@ -24,7 +24,7 @@ export class CVService {
 
     public getCVList (): Observable<any> {
         return this._authService.user$
-            .filter(user => !!user)
+            .filter(Boolean)
             .map(user => user.uid)
             .map(uid => this._af.database.list(`/cvs/${ uid }`));
     }
@@ -39,7 +39,7 @@ export class CVService {
 
     public removeCV (id): void {
         this.getCv(id)
-            .filter(cv => !!cv)
+            .filter(Boolean)
             .first()
             .subscribe(cv => {
                 cv.remove();
@@ -48,7 +48,7 @@ export class CVService {
 
     private getCv (id: string): Observable<any> {
         return this._authService.user$
-            .filter(user => !!user)
+            .filter(Boolean)
             .map(user => user.uid)
             .map(uid => this._af.database.object(`/cvs/${ uid }/${ id }`));
     }

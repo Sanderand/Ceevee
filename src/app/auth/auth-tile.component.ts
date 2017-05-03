@@ -1,7 +1,8 @@
-import { Component, OnInit, ViewEncapsulation, HostListener } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service'
 import { PHOTO_PLACEHOLDER_URL } from '../shared/constants/constants';
+import { DropdownComponent } from '../shared/components/dropdown/dropdown.component';
 
 @Component({
     selector: 'cv-auth-tile',
@@ -10,8 +11,9 @@ import { PHOTO_PLACEHOLDER_URL } from '../shared/constants/constants';
     encapsulation: ViewEncapsulation.None
 })
 export class AuthTileComponent implements OnInit {
+    @ViewChild('dropdown') public dropdown: DropdownComponent;
+
     public PHOTO_PLACEHOLDER_URL = PHOTO_PLACEHOLDER_URL;
-    public dropdownOpen: boolean = false;
     public user: Observable<any>;
 
     constructor (
@@ -26,12 +28,8 @@ export class AuthTileComponent implements OnInit {
         this._authService.logout();
     }
 
-    @HostListener('body:click', ['$event'])
-    public onClick ($event): void {
-        const { trigger } = $event.target.dataset;
-
-        if (this.dropdownOpen || !this.dropdownOpen && trigger) {
-            this.dropdownOpen = !this.dropdownOpen;
-        }
+    public openDropdown ($event): void {
+        $event.stopPropagation();
+        this.dropdown.open = true;
     }
 }

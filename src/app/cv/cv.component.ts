@@ -1,12 +1,13 @@
-import { Component, ViewEncapsulation, HostBinding, OnInit } from '@angular/core';
+import { Component, HostBinding, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FirebaseObjectObservable, AngularFire } from 'angularfire2';
+import { AngularFire, FirebaseObjectObservable } from 'angularfire2';
 
-import { MIN_FONT_SIZE, MAX_FONT_SIZE, FONT_SIZE_CHANGE_STEP } from '../shared/constants/constants';
+import { FONT_SIZE_CHANGE_STEP, MAX_FONT_SIZE, MIN_FONT_SIZE } from '../shared/constants/constants';
 import { restrictRange } from '../shared/helpers/math.helpers';
 import { CVService } from './cv.service';
 import { AuthService } from '../auth/auth.service';
 import { Observable } from 'rxjs';
+import { DropdownComponent } from '../shared/components/dropdown/dropdown.component';
 
 @Component({
     selector: 'cv-cv',
@@ -18,6 +19,8 @@ export class CVComponent implements OnInit {
     @HostBinding('class') public hostClass: string = null;
     @HostBinding('style.fontSize.em') public fontSize: number = null;
     @HostBinding('style.fontFamily') public fontFamily: string = null;
+
+    @ViewChild('dropdown') public dropdown: DropdownComponent;
 
     public MIN_FONT_SIZE = MIN_FONT_SIZE;
     public MAX_FONT_SIZE = MAX_FONT_SIZE;
@@ -39,10 +42,11 @@ export class CVComponent implements OnInit {
         // todo simplify
         this._route.params
             .map(p => p.id)
-            .filter(id => !!id)
+            .filter(Boolean)
             .subscribe(id => this._cvService.loadCV(id));
 
         this._cvService.cv$
+            .filter(Boolean)
             .subscribe(cv => {
                 cv.subscribe(cvData => {
                     if (!cvData.$exists()) {
@@ -54,11 +58,11 @@ export class CVComponent implements OnInit {
             });
 
         let userId = this._authService.user$
-            .filter(user => !!user)
+            .filter(Boolean)
             .map(user => user.uid);
 
         this.cvId = this._cvService.cv$
-            .filter(cv => !!cv)
+            .filter(Boolean)
             .mergeAll()
             .map(cv => cv.$key);
 
@@ -105,5 +109,10 @@ export class CVComponent implements OnInit {
             fontSize: this.fontSize,
             fontFamily: this.fontFamily || null
         });
+    }
+
+    public openDropdown ($event): void {
+        $event.stopPropagation();
+        this.dropdown.open = true;
     }
 }

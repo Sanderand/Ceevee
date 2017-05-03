@@ -24,7 +24,7 @@ export class CVSelectComponent implements OnInit {
             });
 
         this._cvService.cv$
-            .filter(cv => !!cv)
+            .filter(Boolean)
             .subscribe(cv => {
                 this.activeCV = cv.$key;
                 console.info(cv);

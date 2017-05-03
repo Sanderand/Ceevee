@@ -59,7 +59,7 @@ export class FBObject implements OnInit, OnChanges {
 
     private getDataClone (): Observable<any> {
         return this.data
-            .filter(data => !!data)
+            .filter(Boolean)
             .first()
             .map(data => {
                 let clone = {};
