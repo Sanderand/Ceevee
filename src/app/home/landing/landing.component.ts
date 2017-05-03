@@ -3,8 +3,8 @@ import { AuthService } from '../../auth/auth.service';
 
 @Component({
     selector: 'cv-landing',
-    templateUrl: 'landing.component.html',
-    styleUrls: ['landing.component.scss'],
+    templateUrl: './landing.component.html',
+    styleUrls: ['./landing.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
 export class LandingComponent {

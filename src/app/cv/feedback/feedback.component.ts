@@ -8,8 +8,8 @@ import { FBList } from '../../shared/classes/fb-list.class';
 
 @Component({
     selector: 'cv-feedback',
-    templateUrl: 'feedback.component.html',
-    styleUrls: ['feedback.component.scss'],
+    templateUrl: './feedback.component.html',
+    styleUrls: ['./feedback.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
 export class FeedbackComponent extends FBList {

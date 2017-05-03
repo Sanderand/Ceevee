@@ -7,8 +7,8 @@ const CV_TITLE_MIN_LENGTH = 3;
 
 @Component({
     selector: 'cv-dashboard',
-    templateUrl: 'dashboard.component.html',
-    styleUrls: ['dashboard.component.scss'],
+    templateUrl: './dashboard.component.html',
+    styleUrls: ['./dashboard.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
 export class DashboardComponent implements OnInit {

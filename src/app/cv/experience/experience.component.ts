@@ -8,8 +8,8 @@ import { FBList } from '../../shared/classes/fb-list.class';
 
 @Component({
     selector: 'cv-experience',
-    templateUrl: 'experience.component.html',
-    styleUrls: ['experience.component.scss'],
+    templateUrl: './experience.component.html',
+    styleUrls: ['./experience.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
 export class ExperienceComponent extends FBList {

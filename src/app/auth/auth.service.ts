@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AngularFire } from 'angularfire2';
 import { BehaviorSubject } from 'rxjs';
 import { Observable } from 'rxjs/Observable';
+import { PHOTO_PLACEHOLDER_URL } from '../shared/constants/constants';
 
 @Injectable()
 export class AuthService {
@@ -16,16 +17,23 @@ export class AuthService {
             .subscribe(user => {
                 if (this.user$.getValue() && !user) {
                     this._router.navigate(['/']);
+                    this.user$.next(null);
+                } else if (user) {
+                    this._af.database.object(`/users/${ user.uid }`).subscribe(userData => {
+                        this.user$.next({
+                            uid: user.uid,
+                            photo: userData.photo || PHOTO_PLACEHOLDER_URL,
+                            name: userData.name || user.google.displayName.split(' ')[0]
+                        });
+                    })
                 }
-
-                user = this.reformatUser(user);
-                this.user$.next(user);
-                console.log('user', user);
             });
     }
 
     public login (): void {
-        this._af.auth.login();
+        this._af.auth.login().then(() => {
+            this._router.navigate(['/me']);
+        });
     }
 
     public logout (): void {
@@ -34,18 +42,5 @@ export class AuthService {
 
     public isLoggedIn (): Observable<boolean> {
         return this._af.auth.map(user => !!user);
-    }
-
-    private reformatUser (user: any): any {
-        if (!user) {
-            return null;
-        }
-
-        return {
-            uid: user.uid,
-            fullName: user.google.displayName,
-            firstName: user.google.displayName.split(' ')[0],
-            photoUrl: user.google.photoUrl
-        };
     }
 }

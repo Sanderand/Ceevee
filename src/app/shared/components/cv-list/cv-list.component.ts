@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 
 @Component({
     selector: 'cv-list',
-    templateUrl: 'cv-list.component.html',
-    styleUrls: ['cv-list.component.scss'],
+    templateUrl: './cv-list.component.html',
+    styleUrls: ['./cv-list.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
 export class CVListComponent {

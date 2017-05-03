@@ -8,8 +8,8 @@ import { FBObject } from '../../shared/classes/fb-object.class';
 
 @Component({
     selector: 'cv-divider',
-    templateUrl: 'divider.component.html',
-    styleUrls: ['divider.component.scss'],
+    templateUrl: './divider.component.html',
+    styleUrls: ['./divider.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
 export class DividerComponent extends FBObject {

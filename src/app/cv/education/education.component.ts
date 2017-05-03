@@ -8,8 +8,8 @@ import { FBList } from '../../shared/classes/fb-list.class';
 
 @Component({
     selector: 'cv-education',
-    templateUrl: 'education.component.html',
-    styleUrls: ['education.component.scss'],
+    templateUrl: './education.component.html',
+    styleUrls: ['./education.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
 export class EducationComponent extends FBList {

@@ -4,8 +4,8 @@ import { CVService } from '../../../cv/cv.service';
 
 @Component({
     selector: 'cv-select',
-    templateUrl: 'cv-select.component.html',
-    styleUrls: ['cv-select.component.scss'],
+    templateUrl: './cv-select.component.html',
+    styleUrls: ['./cv-select.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
 export class CVSelectComponent implements OnInit {

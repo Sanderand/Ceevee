@@ -10,8 +10,8 @@ import { Observable } from 'rxjs';
 
 @Component({
     selector: 'cv-cv',
-    templateUrl: 'cv.component.html',
-    styleUrls: ['cv.component.scss'],
+    templateUrl: './cv.component.html',
+    styleUrls: ['./cv.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
 export class CVComponent implements OnInit {

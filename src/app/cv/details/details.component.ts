@@ -8,8 +8,8 @@ import { FBObject } from '../../shared/classes/fb-object.class';
 
 @Component({
     selector: 'cv-details',
-    templateUrl: 'details.component.html',
-    styleUrls: ['details.component.scss'],
+    templateUrl: './details.component.html',
+    styleUrls: ['./details.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
 export class DetailsComponent extends FBObject {

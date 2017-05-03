@@ -1,7 +1,30 @@
-<h1>Your Profile</h1>
+<form
+    *ngIf="user"
+    (submit)="submitChanges($event)"
+    autocomplete="off"
+    novalidate>
+    <div
+        class="profile-photo">
+        <img
+            (click)="chooseNewPhoto()"
+            [attr.src]="user.photo"
+            [attr.alt]="user.name">
+    </div>
 
-<input
-    type="text"
-    [value]="(user | async)?.fullName">
+    <div
+        class="form-group">
+        <label>Name</label>
+        <input
+            placeholder="Name"
+            class="form-control"
+            type="text"
+            name="name"
+            [(ngModel)]="user.name">
+    </div>
 
-{{ user | async | json }}
+    <button
+        type="submit"
+        class="btn btn-block btn-success">
+        Save Changes
+    </button>
+</form>

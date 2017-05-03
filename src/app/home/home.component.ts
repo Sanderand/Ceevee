@@ -4,8 +4,8 @@ import { Observable } from 'rxjs/Observable';
 
 @Component({
     selector: 'cv-home',
-    templateUrl: 'home.component.html',
-    styleUrls: ['home.component.scss'],
+    templateUrl: './home.component.html',
+    styleUrls: ['./home.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
 export class HomeComponent implements OnInit {

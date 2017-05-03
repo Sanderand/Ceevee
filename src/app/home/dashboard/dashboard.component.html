@@ -1,7 +1,7 @@
 <header>
     <h1>
         Hi
-        {{ (user | async)?.firstName }}
+        {{ (user | async)?.name }}
     </h1>
     <h5>
         {{ (cvs | async)?.length ? 'Here\'s an overview of your CVs' : 'You don\'t have any CVs, yet' }}

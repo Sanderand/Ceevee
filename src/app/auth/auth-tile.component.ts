@@ -1,14 +1,12 @@
 import { Component, OnInit, ViewEncapsulation, HostListener } from '@angular/core';
-import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AuthService } from './auth.service';
-
-const PHOTO_PLACEHOLDER_URL = 'https://firebasestorage.googleapis.com/v0/b/ceevee-9a7a5.appspot.com/o/photo-placeholder.png?alt=media&token=69213439-53f7-4b70-9544-f484bbce9bba';
+import { AuthService } from './auth.service'
+import { PHOTO_PLACEHOLDER_URL } from '../shared/constants/constants';
 
 @Component({
     selector: 'cv-auth-tile',
-    templateUrl: 'auth-tile.component.html',
-    styleUrls: ['auth-tile.component.scss'],
+    templateUrl: './auth-tile.component.html',
+    styleUrls: ['./auth-tile.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
 export class AuthTileComponent implements OnInit {
