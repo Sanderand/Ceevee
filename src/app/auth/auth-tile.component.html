@@ -7,15 +7,15 @@
     <cv-dropdown
         [open]="dropdownOpen">
         <a
-            routerLink="/me"
+            routerLink="/"
             routerLinkActive="active"
-            [routerLinkActiveOptions]="{exact: true}"
+            [routerLinkActiveOptions]="{ exact: true }"
             class="item">
             Dashboard
         </a>
 
         <a
-            routerLink="/me/edit"
+            routerLink="/me"
             routerLinkActive="active"
             class="item">
             Profile

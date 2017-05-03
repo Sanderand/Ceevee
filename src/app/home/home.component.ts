@@ -1,8 +1,6 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
-import { Router } from '@angular/router';
-
-const DASHBOARD_ROUTE = '/me';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
     selector: 'cv-home',
@@ -10,13 +8,14 @@ const DASHBOARD_ROUTE = '/me';
     styleUrls: ['home.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
+    public isLoggedIn$: Observable<boolean>;
+
     constructor (
-        private _authService: AuthService,
-        private _router: Router
+        private _authService: AuthService
     ) {}
 
-    public login (): void {
-        this._authService.login();
+    public ngOnInit (): void {
+        this.isLoggedIn$ = this._authService.isLoggedIn();
     }
 }

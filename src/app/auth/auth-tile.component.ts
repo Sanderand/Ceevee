@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 
 const PHOTO_PLACEHOLDER_URL = 'https://firebasestorage.googleapis.com/v0/b/ceevee-9a7a5.appspot.com/o/photo-placeholder.png?alt=media&token=69213439-53f7-4b70-9544-f484bbce9bba';
-const HOME_ROUTE = '/';
 
 @Component({
     selector: 'cv-auth-tile',
@@ -18,21 +17,15 @@ export class AuthTileComponent implements OnInit {
     public user: Observable<any>;
 
     constructor (
-        private _authService: AuthService,
-        private _router: Router
+        private _authService: AuthService
     ) {}
 
     public ngOnInit (): void {
         this.user = this._authService.user$;
     }
 
-    public login() {
-        this._authService.login();
-    }
-
-    public logout() {
-        this._router.navigate([HOME_ROUTE])
-            .then(res => this._authService.logout());
+    public logout (): void {
+        this._authService.logout();
     }
 
     @HostListener('body:click', ['$event'])

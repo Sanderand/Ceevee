@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AuthService } from '../auth/auth.service';
-import { CVService } from '../cv/cv.service';
+import { AuthService } from '../../auth/auth.service';
+import { CVService } from '../../cv/cv.service';
 
 const CV_TITLE_MIN_LENGTH = 3;
 

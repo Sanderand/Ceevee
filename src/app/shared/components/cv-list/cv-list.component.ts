@@ -17,6 +17,6 @@ export class CVListComponent {
     public navigateToCV (id): void {
         this._router
             .navigate([{ outlets: { modal: null }}])
-            .then(() => this._router.navigate([`/me/${ id}`]));
+            .then(() => this._router.navigate([`/cv/${ id }`]));
     }
 }

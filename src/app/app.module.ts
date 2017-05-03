@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { AngularFireModule, AuthProviders, AuthMethods, AngularFire } from 'angularfire2';
+import { AngularFire, AngularFireModule } from 'angularfire2';
 
 import { AppComponent } from './app.component';
 
@@ -17,26 +17,11 @@ import { NotFoundModule } from './not-found/not-found.module';
 import { ModalService } from './modal/modal.service';
 import { AuthService } from './auth/auth.service';
 import { CVService } from './cv/cv.service';
-import { CVSelectModule } from './cv-select/cv-select.module';
-import { CVListModule } from './cv-list/cv-list.module';
-import { DashboardModule } from './dashboard/dashboard.module';
 import { ProfileEditModule } from './profile-edit/profile-edit.module';
 import { SharedModule } from './shared/shared.module';
-import { WhenPipe } from './shared/pipes/when.pipe';
+import { AuthGuard } from './shared/guards/auth.guard';
 
-export const firebaseConfig = {
-    apiKey: 'AIzaSyAj2R8sLxgNVaSIHMcLnXKzTSoj5ACeZEg',
-    authDomain: 'ceevee-9a7a5.firebaseapp.com',
-    databaseURL: 'https://ceevee-9a7a5.firebaseio.com',
-    projectId: 'ceevee-9a7a5',
-    storageBucket: 'ceevee-9a7a5.appspot.com',
-    messagingSenderId: '634507029561'
-};
-
-const firebaseAuthConfig = {
-    provider: AuthProviders.Google,
-    method: AuthMethods.Popup
-};
+import { FIREBASE_ATUH_CONFIG, FIREBASE_CONFIG } from './shared/constants/constants';
 
 @NgModule({
     declarations: [
@@ -47,20 +32,20 @@ const firebaseAuthConfig = {
         FormsModule,
         CommonModule,
         RouterModule,
-        AngularFireModule.initializeApp(firebaseConfig, firebaseAuthConfig),
+        AngularFireModule.initializeApp(FIREBASE_CONFIG, FIREBASE_ATUH_CONFIG),
 
         AppRoutingModule,
         AuthModule,
         ModalModule,
         CVModule,
         HomeModule,
-        DashboardModule,
         NotFoundModule,
         ProfileEditModule,
         SharedModule
     ],
     providers: [
         AngularFire,
+        AuthGuard,
 
         ModalService,
         AuthService,

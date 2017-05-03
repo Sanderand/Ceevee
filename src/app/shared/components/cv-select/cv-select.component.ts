@@ -1,6 +1,6 @@
 import { Component, ViewEncapsulation, OnInit } from '@angular/core';
 import { FirebaseListObservable } from 'angularfire2';
-import { CVService } from '../cv/cv.service';
+import { CVService } from '../../../cv/cv.service';
 
 @Component({
     selector: 'cv-select',

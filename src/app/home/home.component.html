@@ -1,15 +1,5 @@
-<header>
-    <h1
-        class="hero">
-        CeeVee
-    </h1>
-    <h1>
-        Lorem ipsum dolor sit amet
-    </h1>
-</header>
+<cv-landing
+    *ngIf="!(isLoggedIn$ | async)"></cv-landing>
 
-<button 
-    (click)="login()"
-    class="btn btn-success">
-    Login
-</button>
+<cv-dashboard
+    *ngIf="(isLoggedIn$ | async)"></cv-dashboard>

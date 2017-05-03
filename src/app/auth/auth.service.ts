@@ -2,14 +2,11 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { AngularFire } from 'angularfire2';
 import { BehaviorSubject } from 'rxjs';
-
-const REDIRECT_AUTH_ROUTE = '/me';
-const REDIRECT_UN_AUTH_ROUTE = '/';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class AuthService {
     public user$: BehaviorSubject<any> = new BehaviorSubject<any>(null);
-    private _previousUser: any = null;
 
     constructor (
         private _af: AngularFire,
@@ -17,10 +14,8 @@ export class AuthService {
     ) {
         this._af.auth
             .subscribe(user => {
-                if (!this._previousUser && user) {
-                    this.redirectAfterAuth();
-                } else if (this._previousUser && !user) {
-                    this.redirectAfterUnAuth();
+                if (this.user$.getValue() && !user) {
+                    this._router.navigate(['/']);
                 }
 
                 user = this.reformatUser(user);
@@ -37,12 +32,8 @@ export class AuthService {
         this._af.auth.logout();
     }
 
-    private redirectAfterAuth (): void {
-        this._router.navigate([REDIRECT_AUTH_ROUTE]);
-    }
-
-    private redirectAfterUnAuth (): void {
-        this._router.navigate([REDIRECT_UN_AUTH_ROUTE]);
+    public isLoggedIn (): Observable<boolean> {
+        return this._af.auth.map(user => !!user);
     }
 
     private reformatUser (user: any): any {

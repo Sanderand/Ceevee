@@ -8,11 +8,16 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
 import { DropdownComponent } from './components/dropdown/dropdown.component';
 import { SplitPipe } from './pipes/split.pipe';
 import { WhenPipe } from './pipes/when.pipe';
+import { CVListComponent } from './components/cv-list/cv-list.component';
+import { CVSelectComponent } from './components/cv-select/cv-select.component';
 
 @NgModule({
     declarations: [
         SpinnerComponent,
         DropdownComponent,
+
+        CVListComponent,
+        CVSelectComponent,
 
         SplitPipe,
         WhenPipe
@@ -20,6 +25,9 @@ import { WhenPipe } from './pipes/when.pipe';
     exports: [
         SpinnerComponent,
         DropdownComponent,
+
+        CVListComponent,
+        CVSelectComponent,
 
         SplitPipe,
         WhenPipe

@@ -8,8 +8,6 @@ import { CVService } from './cv.service';
 import { AuthService } from '../auth/auth.service';
 import { Observable } from 'rxjs';
 
-const DASHBOARD_PATH = '/me';
-
 @Component({
     selector: 'cv-cv',
     templateUrl: 'cv.component.html',
@@ -38,6 +36,7 @@ export class CVComponent implements OnInit {
     ) { }
 
     public ngOnInit (): void {
+        // todo simplify
         this._route.params
             .map(p => p.id)
             .filter(id => !!id)
@@ -45,6 +44,12 @@ export class CVComponent implements OnInit {
 
         this._cvService.cv$
             .subscribe(cv => {
+                cv.subscribe(cvData => {
+                    if (!cvData.$exists()) {
+                        this._router.navigate(['/']);
+                    }
+                });
+
                 this.cv = cv;
             });
 
@@ -73,7 +78,7 @@ export class CVComponent implements OnInit {
     }
 
     public removeCV (): void {
-        this._router.navigate([DASHBOARD_PATH]).then(() => {
+        this._router.navigate(['/']).then(() => {
             this.cvId
                 .first()
                 .subscribe(id => this._cvService.removeCV(id));

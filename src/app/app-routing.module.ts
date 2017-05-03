@@ -4,35 +4,26 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { CVComponent } from './cv/cv.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProfileEditComponent } from './profile-edit/profile-edit.component';
 import { ModalComponent } from './modal/modal.component';
+import { AuthGuard } from './shared/guards/auth.guard';
 
 const appRoutes: Routes = [{
-    // todo: redirect if authenticated
     path: '',
     pathMatch: 'full',
-    redirectTo: '/home'
-}, {
-    path: 'home',
     component: HomeComponent
 }, {
-    // todo: routeGuard
+    canActivate: [AuthGuard],
     path: 'me',
-    component: DashboardComponent
-}, {
-    // todo: routeGuard
-    path: 'me/edit',
     component: ProfileEditComponent
 }, {
-    // todo: routeGuard
-    path: 'me/:id',
+    canActivate: [AuthGuard],
+    path: 'cv/:id',
     component: CVComponent
 }, {
-    // todo: routeGuard
+    outlet: 'modal',
     path: 'data',
-    component: ModalComponent,
-    outlet: 'modal'
+    component: ModalComponent
 }, {
     path: '**',
     component: NotFoundComponent
@@ -44,6 +35,9 @@ const appRoutes: Routes = [{
     ],
     exports: [
         RouterModule
+    ],
+    providers: [
+        AuthGuard
     ]
 })
 export class AppRoutingModule {}
