@@ -1,6 +1,7 @@
 <form
     *ngIf="user"
     (submit)="submitChanges($event)"
+    class="card"
     autocomplete="off"
     novalidate>
     <div
@@ -15,7 +16,7 @@
         class="form-group">
         <label>Name</label>
         <input
-            placeholder="Name"
+            placeholder="Enter your name here"
             class="form-control"
             type="text"
             name="name"

@@ -38,34 +38,35 @@
         (click)="openDropdown($event)"
         class="btn btn-secondary">
         ...
+
+        <cv-dropdown
+            #dropdown
+            closeOnScroll="true">
+            <a
+                class="item">
+                Print
+            </a>
+
+            <a
+                class="item">
+                Share
+            </a>
+
+            <div
+                class="divider"></div>
+
+            <a
+                class="item">
+                Rename
+            </a>
+
+            <a
+                (click)="removeCV()"
+                class="item text-danger">
+                Delete
+            </a>
+        </cv-dropdown>
     </button>
-
-    <cv-dropdown
-      #dropdown>
-      <a
-        class="item">
-        Print
-      </a>
-
-      <a
-        class="item">
-        Share
-      </a>
-
-      <div
-        class="divider"></div>
-
-      <a
-        class="item">
-        Rename
-      </a>
-
-      <a
-        (click)="removeCV()"
-        class="item text-danger">
-        Delete
-      </a>
-    </cv-dropdown>
 </header>
 
 <cv-details

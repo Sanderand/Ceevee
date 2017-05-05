@@ -5,7 +5,8 @@
         [src]="(user | async)?.photo || PHOTO_PLACEHOLDER_URL">
 
     <cv-dropdown
-        #dropdown>
+        #dropdown
+        closeOnScroll="true">
         <a
             routerLink="/"
             routerLinkActive="active"
