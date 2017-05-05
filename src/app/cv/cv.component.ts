@@ -1,6 +1,6 @@
 import { Component, HostBinding, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AngularFire, FirebaseObjectObservable } from 'angularfire2';
+import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
 
 import { FONT_SIZE_CHANGE_STEP, MAX_FONT_SIZE, MIN_FONT_SIZE } from '../shared/constants/constants';
 import { restrictRange } from '../shared/helpers/math.helpers';
@@ -26,6 +26,9 @@ export class CVComponent implements OnInit {
     public MAX_FONT_SIZE = MAX_FONT_SIZE;
 
     public cv: FirebaseObjectObservable<any>;
+    public sections: FirebaseListObservable<any>;
+    public newSectionName: any;
+
     public cvId: Observable<any>;
     public path: Observable<any>;
     private _theme: FirebaseObjectObservable<any>;
@@ -39,7 +42,32 @@ export class CVComponent implements OnInit {
     ) { }
 
     public ngOnInit (): void {
-        // todo simplify
+      this._route.params
+        .map(p => p.id)
+        .filter(Boolean)
+        .subscribe(cid => {
+            this._cvService.getCv(cid)
+              .subscribe(cv => {
+                this.cv = cv;
+              });
+
+            this._cvService.getCvSections(cid)
+              .subscribe(sections => {
+                this.sections = sections;
+              });
+        });
+
+
+
+
+
+
+
+
+
+
+
+        /*
         this._route.params
             .map(p => p.id)
             .filter(Boolean)
@@ -79,6 +107,13 @@ export class CVComponent implements OnInit {
                     this.hostClass = theme.class || null;
                 });
         })
+        */
+    }
+
+    public submitChanges (event): void {
+      event.preventDefault();
+
+
     }
 
     public removeCV (): void {

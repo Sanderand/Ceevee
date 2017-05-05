@@ -26,7 +26,7 @@ export class DashboardComponent implements OnInit {
         this.user = this._authService.user$;
 
         this._cvService
-            .getCVList()
+            .getCvs()
             .subscribe(cvs => {
                 this.cvs = cvs;
             });

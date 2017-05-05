@@ -18,7 +18,7 @@ export class CVSelectComponent implements OnInit {
 
     public ngOnInit (): void {
         this._cvService
-            .getCVList()
+            .getCvs()
             .subscribe(cvs => {
                 this.cvs = cvs;
             });
@@ -32,6 +32,7 @@ export class CVSelectComponent implements OnInit {
     }
 
     public loadCV (): void {
-        this._cvService.loadCV(this.activeCV);
+        // todo: if this component is needed
+        // this._cvService.loadCV(this.activeCV);
     }
 }

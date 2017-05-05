@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
-import { AngularFire } from 'angularfire2';
+import { AngularFire, FirebaseListObservable } from 'angularfire2';
 import * as firebase from 'firebase';
 
 @Injectable()
@@ -14,7 +14,7 @@ export class CVService {
     ) {}
 
     public addCV (title: string): void {
-        this.getCVList()
+        this.getCvs()
             .first()
             .subscribe(list => list.push({
                 title,
@@ -22,34 +22,40 @@ export class CVService {
             }));
     }
 
-    public getCVList (): Observable<any> {
+    public getCv (cid): Observable<any> {
+        return this._authService.user$
+          .filter(Boolean)
+          .map(user => user.uid)
+          .map(uid => this._af.database.object(`/cvs/${ uid }/${ cid }`));
+    }
+
+    public getCvSections (cid): Observable<any> {
+      return this._authService.user$
+          .filter(Boolean)
+          .map(user => user.uid)
+          .map(uid => this._af.database.list(`/sections/${ uid }/${ cid }`));
+    }
+
+    public getCvs (): Observable<any> {
         return this._authService.user$
             .filter(Boolean)
             .map(user => user.uid)
             .map(uid => this._af.database.list(`/cvs/${ uid }`));
     }
 
-    public loadCV (id): void {
-        this.getCv(id)
-            .first()
-            .subscribe(cv => {
-                this.cv$.next(cv);
-            });
-    }
-
     public removeCV (id): void {
-        this.getCv(id)
-            .filter(Boolean)
-            .first()
-            .subscribe(cv => {
-                cv.remove();
-            });
+      this._authService.user$
+        .filter(Boolean)
+        .map(user => user.uid)
+        .subscribe(uid => {
+          this._af.database.object(`/cvs/${ uid }/${ id }`).remove();
+        });
     }
 
-    private getCv (id: string): Observable<any> {
+    private getCvData (id: string): Observable<any> {
         return this._authService.user$
             .filter(Boolean)
             .map(user => user.uid)
-            .map(uid => this._af.database.object(`/cvs/${ uid }/${ id }`));
+            .map(uid => this._af.database.object(`/cvs/${ uid }/${ id }/details`));
     }
 }

@@ -1,12 +1,12 @@
 <ul
     class="cards">
     <li
-        class="card"
         *ngFor="let cv of cvs"
-        (click)="navigateToCV(cv.$key)">
+        [routerLink]="'/cv/' + cv.$key"
+        class="card">
         <div
             class="primary">
-            {{ cv.title }}
+            {{ cv?.title }}
 
             <div
                 class="secondary">
@@ -15,7 +15,7 @@
         </div>
 
         <div class="suffix">
-            {{ cv._created | when }}
+            {{ cv?._created | when }}
         </div>
     </li>
 </ul>

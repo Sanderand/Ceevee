@@ -69,26 +69,58 @@
     </button>
 </header>
 
-<cv-details
-    [path]="path | async">
-</cv-details>
+<div
+*ngFor="let section of (sections | async)">
+  {{section|json}}
+</div>
+<!--<cv-details-->
+    <!--[path]="path | async">-->
+<!--</cv-details>-->
 
-<cv-divider
-    [path]="path | async">
-</cv-divider>
+<!--<cv-divider-->
+    <!--[path]="path | async">-->
+<!--</cv-divider>-->
 
-<cv-experience
-    [path]="path | async">
-</cv-experience>
+<!--<cv-experience-->
+    <!--[path]="path | async">-->
+<!--</cv-experience>-->
 
-<cv-education
-    [path]="path | async">
-</cv-education>
+<!--<cv-education-->
+    <!--[path]="path | async">-->
+<!--</cv-education>-->
 
-<cv-skills
-    [path]="path | async">
-</cv-skills>
+<!--<cv-skills-->
+    <!--[path]="path | async">-->
+<!--</cv-skills>-->
 
-<cv-feedback
-    [path]="path | async">
-</cv-feedback>
+<!--<cv-feedback-->
+    <!--[path]="path | async">-->
+<!--</cv-feedback>-->
+
+
+<label
+  class="form-control-label">
+  Add new section
+</label>
+<form
+  (submit)="submitChanges($event)"
+  class="card"
+  autocomplete="off"
+  novalidate>
+  <div
+    class="form-group">
+    <label>Name</label>
+    <input
+      placeholder="Section name"
+      class="form-control"
+      type="text"
+      name="name"
+      [(ngModel)]="newSectionName">
+  </div>
+
+  <button
+    type="submit"
+    class="btn btn-block btn-success">
+    Add
+  </button>
+</form>
