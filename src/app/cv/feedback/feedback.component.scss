@@ -1,62 +1,64 @@
 @import '../../../variables.scss';
 
 cv-feedback {
-    display: block;
-    width: 100%;
-    margin-bottom: 2em;
-    page-break-inside: avoid;
+    .items {
+        display: block;
+        width: 100%;
+        margin-bottom: 2em;
+        page-break-inside: avoid;
 
-    .item {
-        padding-bottom: 1.25em;
+        .item {
+            padding-bottom: 1.25em;
 
-        &:last-child {
-            padding-bottom: 0;
-        }
-
-        .name {
-            display: inline-block;
-            font-weight: bolder;
-        }
-
-        .relationship {
-            display: inline-block;
-            font-size: 0.9em;
-
-            &:before{
-                content: '(';
+            &:last-child {
+                padding-bottom: 0;
             }
 
-            &::after{
-                content: ' at';
-            }
-        }
-
-        .institution {
-            display: inline-block;
-            font-size: 0.9em;
-
-            &:after {
-                content: ')';
-            }
-        }
-
-        .comment {
-            text-align: justify;
-            color: $c_light;
-            font-size: 0.9em;
-            line-height: 1.15em;
-            margin-top: 0.2em;
-
-            &:before {
-                content: '„';
-                display: inline;
-                font-weight: 900;
+            .name {
+                display: inline-block;
+                font-weight: bolder;
             }
 
-            &::after {
-                content: '”';
-                display: inline;
-                font-weight: 900;
+            .relationship {
+                display: inline-block;
+                font-size: 0.9em;
+
+                &:before{
+                    content: '(';
+                }
+
+                &::after{
+                    content: ' at';
+                }
+            }
+
+            .institution {
+                display: inline-block;
+                font-size: 0.9em;
+
+                &:after {
+                    content: ')';
+                }
+            }
+
+            .comment {
+                text-align: justify;
+                color: $c_light;
+                font-size: 0.9em;
+                line-height: 1.15em;
+                margin-top: 0.2em;
+
+                &:before {
+                    content: '„';
+                    display: inline;
+                    font-weight: 900;
+                }
+
+                &::after {
+                    content: '”';
+                    display: inline;
+                    font-weight: 900;
+                }
             }
         }
     }

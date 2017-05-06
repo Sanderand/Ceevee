@@ -1,12 +1,13 @@
 <div
-    *ngIf="items">
-    <div
-        class="section-title">
-        {{ title.$value || 'Experience' }}
-    </div>
+  *ngIf="section?.meta?.title"
+  class="section-title">
+  {{ section?.meta?.title }}
+</div>
 
+<div
+    class="items">
     <div
-        *ngFor="let item of items"
+        *ngFor="let item of (items | async)"
         (click)="editData($event, item)"
         class="item editable">
 
@@ -62,23 +63,10 @@
             </div>
         </div>
     </div>
-    
-    <button
-        (click)="editData($event, null)"
-        class="btn btn-block btn-secondary">
-        Add item
-    </button>
 </div>
 
-<div
-    *ngIf="!items">
-    <div
-        class="ghost"
-        style="height: 30px; width: 150px; margin-bottom: 10px;">
-    </div>
-
-    <div
-        class="ghost"
-        style="height: 100px;">
-    </div>
-</div>
+<button
+    (click)="editData($event, null)"
+    class="btn btn-secondary">
+    Add item
+</button>

@@ -29,7 +29,29 @@ export class CVComponent implements OnInit {
     public uid: Observable<any>;
     public cid: Observable<any>;
     public sections: FirebaseListObservable<any>;
-    public newSectionName: any;
+    public newSection = {
+      title: null,
+      type: null
+    };
+    public types = [{
+      name: 'Details',
+      type: 'DETAILS'
+    }, {
+      name: 'Divider',
+      type: 'DIVIDER'
+    }, {
+      name: 'Education',
+      type: 'EDUCATION'
+    }, {
+      name: 'Experience',
+      type: 'EXPERIENCE'
+    }, {
+      name: 'Feedback',
+      type: 'FEEDBACK'
+    }, {
+      name: 'Skills',
+      type: 'SKILLS'
+    }];
 
     public path: Observable<any>;
     private _theme: FirebaseObjectObservable<any>;
@@ -117,7 +139,22 @@ export class CVComponent implements OnInit {
     public submitChanges (event): void {
       event.preventDefault();
 
+      if (!this.newSection.type && !this.newSection.title) {
+        return;
+      }
 
+      this.sections.push({
+        data: {},
+        meta: {
+          type: this.newSection.type,
+          title: this.newSection.title
+        }
+      });
+
+      this.newSection = {
+        title: null,
+        type: null
+      };
     }
 
     public removeCV (): void {

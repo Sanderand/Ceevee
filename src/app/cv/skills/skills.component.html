@@ -1,39 +1,43 @@
 <div
-    class="section-title">
-    {{ section?.meta?.title || 'Unnamed' }}
+  *ngIf="section?.meta?.title"
+  class="section-title">
+  {{ section?.meta?.title }}
 </div>
 
 <div
-    *ngFor="let item of (items | async)"
-    (click)="editData($event, item)"
-    class="item editable">
+    class="items">
     <div
-        class="title">
-        {{ item.title }}
-    </div>
-
-    <div
-        class="bar">
+        *ngFor="let item of (items | async)"
+        (click)="editData($event, item)"
+        class="item editable">
         <div
-            *ngIf="item.percentage"
-            class="wrapper">
-
-            <div
-                [style.width]="item.percentage + '%'"
-                class="percentage">
-            </div>
+            class="title">
+            {{ item.title }}
         </div>
 
         <div
-            *ngIf="item.description"
-            class="description">
-            {{ item.description }}
+            class="bar">
+            <div
+                *ngIf="item.percentage"
+                class="wrapper">
+
+                <div
+                    [style.width]="item.percentage + '%'"
+                    class="percentage">
+                </div>
+            </div>
+
+            <div
+                *ngIf="item.description"
+                class="description">
+                {{ item.description }}
+            </div>
         </div>
     </div>
 </div>
 
 <button
     (click)="editData($event, null)"
-    class="btn btn-block btn-secondary">
+    class="btn btn-secondary">
     Add item
 </button>

@@ -11,6 +11,7 @@ export class FBObject implements OnInit {
     @Input() public section: any;
     @Input() public path: string;
 
+    private _uuid = generateUUID();
     protected _fields: Array<Field> = [];
 
     constructor (
@@ -20,7 +21,7 @@ export class FBObject implements OnInit {
 
     public ngOnInit (): void {
         this._modalService.close$
-            .filter(res => !!res && res.source === this.path)
+            .filter(res => !!res && res.source === this._uuid)
             .subscribe(res => this.updateData(res.data));
     }
 
@@ -33,7 +34,7 @@ export class FBObject implements OnInit {
                 data: this.getDataClone(),
                 fields: this._fields.map(a => Object.assign({}, a)),
                 preventDelete: true,
-                source: this.path
+                source: this._uuid
           });
     }
 
@@ -44,7 +45,7 @@ export class FBObject implements OnInit {
     private getDataClone (): any {
         let clone = {};
 
-        Object.keys(this.section.data)
+        Object.keys(this.section.data || {})
             .filter(key => key[0] !== '$')
             .forEach(key => clone[key] = this.section.data[key]);
 

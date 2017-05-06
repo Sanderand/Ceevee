@@ -1,79 +1,89 @@
 @import '../../../variables.scss';
 
-cv-experience {
+cv-education {
+  .items {
     display: table;
     width: 100%;
     margin-bottom: 2em;
     page-break-inside: avoid;
 
     .item {
-        &:last-child .left,
-        &:last-child .right {
-            padding-bottom: 0;
+      &:last-child .left,
+      &:last-child .right {
+        padding-bottom: 0;
+      }
+
+      .left, .right {
+        padding-bottom: 1em;
+        display: table-cell;
+      }
+
+      .left {
+        padding-right: 1em;
+        min-width: $v_left_width;
+      }
+
+      .right {
+        width: 100%;
+        padding-left: 1em;
+        vertical-align: top;
+        border-left: 1px solid $c_lighter;
+      }
+
+      .title {
+        display: inline-block;
+        font-weight: bolder;
+        padding-bottom: 0.25em;
+      }
+
+      .institution {
+        display: inline-block;
+      }
+
+      .location {
+        display: inline-block;
+        font-size: 0.9em;
+
+        &:before {
+          content: '(';
         }
 
-        .left, .right {
-            padding-bottom: 1em;
-            display: table-cell;
+        &:after {
+          content: ')';
         }
+      }
 
-        .left {
-            padding-right: 1em;
-            min-width: $v_left_width;
+      .timespan {
+        color: $c_light;
+        font-size: 0.9em;
+
+        .start {
+          display: inline-block;
+
+          &:after {
+            content: '-';
+            padding-left: .5em;
+            padding-right: .25em;
+          }
         }
-
-        .right {
-            width: 100%;
-            padding-left: 1em;
-            vertical-align: top;
-            border-left: 1px solid $c_lighter;
+        .end {
+          display: inline-block;
         }
+      }
 
-        .title {
-            display: inline-block;
-            font-weight: bolder;
-            padding-bottom: 0.25em;
-        }
+      .description {
+        margin-top: 0.35em;
+        margin-bottom: 0.35em;
+        text-align: justify;
+      }
 
-        .institution {
-            display: inline-block;
-        }
+      .grade {
+        // TODO
+      }
 
-        .location {
-            display: inline-block;
-            font-size: 0.9em;
-
-            &:before {
-                content: '(';
-            }
-
-            &:after {
-                content: ')';
-            }
-        }
-
-        .timespan {
-            color: $c_light;
-            font-size: 0.9em;
-
-            .start {
-                display: inline-block;
-
-                &:after {
-                    content: '-';
-                    padding-left: .5em;
-                    padding-right: .25em;
-                }
-            }
-            .end {
-                display: inline-block;
-            }
-        }
-
-        .description {
-            margin-top: 0.35em;
-            margin-bottom: 0.35em;
-            text-align: justify;
-        }
+      .field {
+        // TODO
+      }
     }
+  }
 }

@@ -77,8 +77,10 @@
   <section
     *ngFor="let section of (sections | async)">
 
+    <!--TODO MOVE PATH CALCULATION TO SOMEWHERE ELSE-->
+
     <cv-details
-      *ngIf="section.meta.type === 'PROFILE'"
+      *ngIf="section.meta.type === 'DETAILS'"
       [path]="'sections/' + (uid | async) + '/' + (cid | async) + '/' + section.$key"
       [section]="section"
       [style.order]="section.meta.order">
@@ -91,6 +93,20 @@
       [style.order]="section.meta.order">
     </cv-divider>
 
+    <cv-education
+      *ngIf="section.meta.type === 'EDUCATION'"
+      [path]="'sections/' + (uid | async) + '/' + (cid | async) + '/' + section.$key"
+      [section]="section"
+      [style.order]="section.meta.order">
+    </cv-education>
+
+    <cv-experience
+      *ngIf="section.meta.type === 'EXPERIENCE'"
+      [path]="'sections/' + (uid | async) + '/' + (cid | async) + '/' + section.$key"
+      [section]="section"
+      [style.order]="section.meta.order">
+    </cv-experience>
+
     <cv-skills
       *ngIf="section.meta.type === 'SKILLS'"
       [path]="'sections/' + (uid | async) + '/' + (cid | async) + '/' + section.$key"
@@ -99,23 +115,6 @@
     </cv-skills>
   </section>
 </div>
-
-<!--<cv-divider-->
-    <!--[path]="path | async">-->
-<!--</cv-divider>-->
-
-<!--<cv-experience-->
-    <!--[path]="path | async">-->
-<!--</cv-experience>-->
-
-<!--<cv-education-->
-    <!--[path]="path | async">-->
-<!--</cv-education>-->
-
-<!--<cv-feedback-->
-    <!--[path]="path | async">-->
-<!--</cv-feedback>-->
-
 
 <label
   class="form-control-label">
@@ -128,13 +127,28 @@
   novalidate>
   <div
     class="form-group">
-    <label>Name</label>
+    <label>Title</label>
     <input
-      placeholder="Section name"
+      placeholder="Section title"
       class="form-control"
       type="text"
       name="name"
-      [(ngModel)]="newSectionName">
+      [(ngModel)]="newSection.title">
+  </div>
+
+  <div
+    class="form-group">
+    <label>Type</label>
+    <select
+      name="type"
+      class="custom-select"
+      [(ngModel)]="newSection.type">
+      <option
+        [value]="type.type"
+        *ngFor="let type of types">
+        {{ type.name }}
+      </option>
+    </select>
   </div>
 
   <button

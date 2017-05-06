@@ -43,23 +43,9 @@ export class CVService {
             .map(uid => this._af.database.list(`/cvs/${ uid }`));
     }
 
-    public removeCV (id): void {
-      throw Error();
-
-      // also remove section!
-
-      // this._authService.user$
-      //   .filter(Boolean)
-      //   .map(user => user.uid)
-      //   .subscribe(uid => {
-      //     this._af.database.object(`/cvs/${ uid }/${ id }`).remove();
-      //   });
-    }
-
-    private getCvData (id: string): Observable<any> {
-        return this._authService.user$
-            .filter(Boolean)
-            .map(user => user.uid)
-            .map(uid => this._af.database.object(`/cvs/${ uid }/${ id }/details`));
+    public removeCV (cid): void {
+      let uid = this._authService.user$.getValue().uid;
+      this._af.database.object(`/cvs/${ uid }/${ cid }`).remove();
+      this._af.database.object(`/sections/${ uid }/${ cid }`).remove();
     }
 }

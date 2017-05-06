@@ -1,43 +1,45 @@
 @import '../../../variables.scss';
 
 cv-skills {
-    display: table;
-    width: 100%;
-    margin-bottom: 2em;
-    page-break-inside: avoid;
+    .items {
+        display: table;
+        width: 100%;
+        margin-bottom: 2em;
+        page-break-inside: avoid;
 
-    .item {
-        display: table-row;
+        .item {
+            display: table-row;
 
-        .title {
-            display: table-cell;
-            min-width: $v_left_width;
-            padding-right: 1em;
-            padding-bottom: 0.5em;
-        }
-
-        .bar {
-            padding-left: 1em;
-            display: table-cell;
-            vertical-align: top;
-            width: 100%;
-            padding-bottom: 0.5em;
-
-            .wrapper {
-                width: 50%;
-                background-color: $c_lighter;
-                margin-bottom: 0.25em;
-
-                .percentage {
-                    display: block;
-                    height: 0.5em;
-                    background-color: $c_highlight;
-                }
+            .title {
+                display: table-cell;
+                min-width: $v_left_width;
+                padding-right: 1em;
+                padding-bottom: 0.5em;
             }
 
-            .description {
-                font-size: 0.85em;
-                color: $c_light;
+            .bar {
+                padding-left: 1em;
+                display: table-cell;
+                vertical-align: top;
+                width: 100%;
+                padding-bottom: 0.5em;
+
+                .wrapper {
+                    width: 50%;
+                    background-color: $c_lighter;
+                    margin-bottom: 0.25em;
+
+                    .percentage {
+                        display: block;
+                        height: 0.5em;
+                        background-color: $c_highlight;
+                    }
+                }
+
+                .description {
+                    font-size: 0.85em;
+                    color: $c_light;
+                }
             }
         }
     }
