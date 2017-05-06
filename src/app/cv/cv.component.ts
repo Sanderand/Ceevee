@@ -29,10 +29,6 @@ export class CVComponent implements OnInit {
     public uid: Observable<any>;
     public cid: Observable<any>;
     public sections: FirebaseListObservable<any>;
-    public newSection = {
-      title: null,
-      type: null
-    };
     public types = [{
       name: 'Details',
       type: 'DETAILS'
@@ -52,6 +48,10 @@ export class CVComponent implements OnInit {
       name: 'Skills',
       type: 'SKILLS'
     }];
+    public newSection = {
+      title: null,
+      type: null
+    };
 
     public path: Observable<any>;
     private _theme: FirebaseObjectObservable<any>;
@@ -134,6 +134,8 @@ export class CVComponent implements OnInit {
                 });
         })
         */
+
+        this.resetForm();
     }
 
     public submitChanges (event): void {
@@ -151,9 +153,13 @@ export class CVComponent implements OnInit {
         }
       });
 
+      this.resetForm();
+    }
+
+    private resetForm (): void {
       this.newSection = {
         title: null,
-        type: null
+        type: this.types[0].type
       };
     }
 

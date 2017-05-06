@@ -113,47 +113,73 @@
       [section]="section"
       [style.order]="section.meta.order">
     </cv-skills>
+
+    <cv-feedback
+      *ngIf="section.meta.type === 'FEEDBACK'"
+      [path]="'sections/' + (uid | async) + '/' + (cid | async) + '/' + section.$key"
+      [section]="section"
+      [style.order]="section.meta.order">
+    </cv-feedback>
   </section>
+
+  <div
+    *ngIf="!(sections | async)">
+      <div class="ghost" style="height: 2rem;width: 12rem; margin-bottom: 1rem;"></div>
+      <div class="ghost" style="height: 5rem;margin-bottom: 1rem;"></div>
+      <div class="ghost" style="height: 1rem;margin-bottom: 1rem;"></div>
+      <div class="ghost" style="height: 1rem;margin-bottom: 2rem;"></div>
+      <div class="ghost" style="height: 2rem;margin-bottom: 1rem; width: 12rem;"></div>
+      <div class="ghost" style="height: 5rem;margin-bottom: 1rem;"></div>
+      <div class="ghost" style="height: 5rem;margin-bottom: 1rem;"></div>
+      <div class="ghost" style="height: 5rem;margin-bottom: 1rem;"></div>
+    </div>
 </div>
 
 <label
   class="form-control-label">
   Add new section
 </label>
-<form
-  (submit)="submitChanges($event)"
-  class="card"
-  autocomplete="off"
-  novalidate>
-  <div
-    class="form-group">
-    <label>Title</label>
-    <input
-      placeholder="Section title"
-      class="form-control"
-      type="text"
-      name="name"
-      [(ngModel)]="newSection.title">
-  </div>
 
-  <div
-    class="form-group">
-    <label>Type</label>
-    <select
-      name="type"
-      class="custom-select"
-      [(ngModel)]="newSection.type">
-      <option
-        [value]="type.type"
-        *ngFor="let type of types">
-        {{ type.name }}
-      </option>
-    </select>
-  </div>
+<footer>
+  <form
+    (submit)="submitChanges($event)"
+    class="card"
+    autocomplete="off"
+    novalidate>
 
-  <button
-    type="submit"
-    class="btn btn-block btn-success">
-    Add
-  </button>
-</form>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">Title</label>
+      <div class="col-10">
+        <input
+          placeholder="Section title"
+          class="form-control"
+          type="text"
+          name="name"
+          [(ngModel)]="newSection.title">
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-2 col-form-label">Type</label>
+      <div class="col-10">
+        <select
+          name="type"
+          class="custom-select"
+          [(ngModel)]="newSection.type">
+          <option
+            [value]="type.type"
+            *ngFor="let type of types">
+            {{ type.name }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <button
+      type="submit"
+      class="btn btn-block btn-success">
+      Add
+    </button>
+  </form>
+</footer>
+

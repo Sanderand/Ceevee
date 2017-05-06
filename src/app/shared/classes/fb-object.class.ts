@@ -33,13 +33,16 @@ export class FBObject implements OnInit {
             .openModal({
                 data: this.getDataClone(),
                 fields: this._fields.map(a => Object.assign({}, a)),
-                preventDelete: true,
                 source: this._uuid
           });
     }
 
     private updateData (newData): void {
+      if (newData) {
         this._af.database.object(`${ this.path }/data`).update(newData);
+      } else {
+        this._af.database.object(`${ this.path }`).remove();
+      }
     }
 
     private getDataClone (): any {

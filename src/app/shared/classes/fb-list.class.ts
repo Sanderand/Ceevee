@@ -55,7 +55,11 @@ export class FBList implements OnInit, OnChanges {
                 this.items.push(data);
             }
         } else {
-            this.items.remove(this._keyInModal);
+            if (this._keyInModal) {
+                this.items.remove(this._keyInModal);
+            } else {
+                // note a new item gets cancelled
+            }
         }
 
         this._keyInModal = null;

@@ -48,6 +48,30 @@ cv-cv {
         font-weight: normal;
         border-radius: .3em;
     }
+
+    .inline-btn {
+        display: inline-block;
+        border-radius: 100%;
+        width: 24px;
+        height: 24px;
+        background-color: #dadada;
+        text-align: center;
+        font-weight: 800;
+        color: #888;
+        line-height: 22px;
+        cursor: pointer;
+
+        &:hover {
+            color: #444;
+            background-color: #888;
+        }
+    }
+
+    footer {
+      select {
+        width: 100%;
+      }
+    }
 }
 
 

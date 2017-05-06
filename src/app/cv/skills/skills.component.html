@@ -2,6 +2,11 @@
   *ngIf="section?.meta?.title"
   class="section-title">
   {{ section?.meta?.title }}
+  <span
+    (click)="editData($event, null)"
+    class="inline-btn">
+    +
+  </span>
 </div>
 
 <div
@@ -35,9 +40,3 @@
         </div>
     </div>
 </div>
-
-<button
-    (click)="editData($event, null)"
-    class="btn btn-secondary">
-    Add item
-</button>
