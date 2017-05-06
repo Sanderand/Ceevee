@@ -3,7 +3,7 @@ import { AngularFire } from 'angularfire2';
 
 import { ModalService } from '../../modal/modal.service';
 import { Field } from '../../shared/models/field.model';
-import { SkillsFields } from '../../shared/models/skills.model';
+import { SkillsFields } from './skills.model';
 import { FBList } from '../../shared/classes/fb-list.class';
 
 @Component({

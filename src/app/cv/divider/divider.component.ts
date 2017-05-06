@@ -3,7 +3,7 @@ import { AngularFire } from 'angularfire2';
 
 import { ModalService } from '../../modal/modal.service';
 import { Field } from '../../shared/models/field.model';
-import { DividerFields } from '../../shared/models/divider.model';
+import { DividerFields } from './divider.model';
 import { FBObject } from '../../shared/classes/fb-object.class';
 
 @Component({
