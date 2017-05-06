@@ -1,52 +1,31 @@
 <div
-    *ngIf="(data | async)">
+    class="name">
+    {{ data?.name }}
+</div>
+
+<div>
     <div
-        class="name">
-        {{ (data | async)?.name }}
+        class="address">
+        {{ data?.address }}
     </div>
 
-    <div>
-        <div
-            class="address">
-            {{ (data | async)?.address }}
-        </div>
-
-        <div
-            class="tel">
-            {{ (data | async)?.tel }}
-        </div>
-    </div>
-
-    <div>
-        <a
-            [attr.href]="'mailto:' + (data | async)?.email"
-            class="email">
-          {{ (data | async)?.email }}
-        </a>
-
-        <a
-            [attr.href]="(data | async)?.url"
-            class="url"
-            target="_blank">
-          {{ (data | async)?.url }}
-        </a>
+    <div
+        class="tel">
+        {{ data?.tel }}
     </div>
 </div>
 
-<div
-    *ngIf="!(data | async)">
-    <div
-        class="ghost"
-        style="height: 40px; margin-bottom: 5px;">
-    </div>
+<div>
+    <a
+        [attr.href]="'mailto:' + data?.email"
+        class="email">
+      {{ data?.email }}
+    </a>
 
-    <div
-        class="ghost"
-        style="height: 25px; margin-bottom: 5px;">
-    </div>
-
-    <div
-        class="ghost"
-        style="height: 20px;">
-    </div>
+    <a
+        [attr.href]="data?.url"
+        class="url"
+        target="_blank">
+      {{ data?.url }}
+    </a>
 </div>

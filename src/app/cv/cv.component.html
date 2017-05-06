@@ -1,81 +1,97 @@
-<header>
-    <span
-        class="button-group">
+<div
+  class="card">
+    <header>
+        <span
+            class="button-group">
+            <button
+                (click)="decreaseFontSize()"
+                [disabled]="fontSize === MIN_FONT_SIZE"
+                class="btn btn-secondary">
+                aa
+            </button>
+            <button
+                (click)="increaseFontSize()"
+                [disabled]="fontSize === MAX_FONT_SIZE"
+                class="btn btn-secondary">
+                AA
+            </button>
+        </span>
+
+        <select
+            class="custom-select"
+            (change)="changeFontFamily($event)">
+            <option
+                value="">
+                Default
+            </option>
+
+            <option
+                value="sans-serif">
+                Sans-Serif
+            </option>
+
+            <option
+                value="serif">
+                Serif
+            </option>
+        </select>
+
         <button
-            (click)="decreaseFontSize()"
-            [disabled]="fontSize === MIN_FONT_SIZE"
+            (click)="openDropdown($event)"
             class="btn btn-secondary">
-            aa
+            ...
+
+            <cv-dropdown
+                #dropdown
+                closeOnScroll="true">
+                <a
+                    class="item">
+                    Print
+                </a>
+
+                <a
+                    class="item">
+                    Share
+                </a>
+
+                <div
+                    class="divider"></div>
+
+                <a
+                    class="item">
+                    Rename
+                </a>
+
+                <a
+                    (click)="removeCV()"
+                    class="item text-danger">
+                    Delete
+                </a>
+            </cv-dropdown>
         </button>
-        <button
-            (click)="increaseFontSize()"
-            [disabled]="fontSize === MAX_FONT_SIZE"
-            class="btn btn-secondary">
-            AA
-        </button>
-    </span>
-
-    <select
-        class="custom-select"
-        (change)="changeFontFamily($event)">
-        <option
-            value="">
-            Default
-        </option>
-
-        <option
-            value="sans-serif">
-            Sans-Serif
-        </option>
-
-        <option
-            value="serif">
-            Serif
-        </option>
-    </select>
-
-    <button
-        (click)="openDropdown($event)"
-        class="btn btn-secondary">
-        ...
-
-        <cv-dropdown
-            #dropdown
-            closeOnScroll="true">
-            <a
-                class="item">
-                Print
-            </a>
-
-            <a
-                class="item">
-                Share
-            </a>
-
-            <div
-                class="divider"></div>
-
-            <a
-                class="item">
-                Rename
-            </a>
-
-            <a
-                (click)="removeCV()"
-                class="item text-danger">
-                Delete
-            </a>
-        </cv-dropdown>
-    </button>
-</header>
+    </header>
+</div>
 
 <div
-*ngFor="let section of (sections | async)">
-  {{section|json}}
+  class="card">
+  <section
+    *ngFor="let section of (sections | async)">
+
+    <cv-details
+      *ngIf="section.meta.type === 'PROFILE'"
+      [data]="section.data"
+      [meta]="section.meta"
+      [path]="'sections/' + (uid | async) + '/' + (cid | async) + '/' + section.$key + '/data'"
+      [style.order]="section.meta.order">
+    </cv-details>
+
+    <!--<cv-skills-->
+      <!--[data]="section.data"-->
+      <!--[meta]="section.meta"-->
+      <!--[key]="section.$key">-->
+    <!--</cv-skills>-->
+  </section>
 </div>
-<!--<cv-details-->
-    <!--[path]="path | async">-->
-<!--</cv-details>-->
 
 <!--<cv-divider-->
     <!--[path]="path | async">-->
@@ -88,10 +104,6 @@
 <!--<cv-education-->
     <!--[path]="path | async">-->
 <!--</cv-education>-->
-
-<!--<cv-skills-->
-    <!--[path]="path | async">-->
-<!--</cv-skills>-->
 
 <!--<cv-feedback-->
     <!--[path]="path | async">-->

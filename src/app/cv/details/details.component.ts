@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, HostBinding } from '@angular/core';
+import { Component, ViewEncapsulation, HostBinding, OnChanges, SimpleChanges, Input } from '@angular/core';
 import { AngularFire } from 'angularfire2';
 
 import { ModalService } from '../../modal/modal.service';
@@ -15,7 +15,6 @@ import { FBObject } from '../../shared/classes/fb-object.class';
 export class DetailsComponent extends FBObject {
     @HostBinding('class.editable') public editableClass = true;
     protected _fields: Array<Field> = DetailsFields;
-    protected _key: string = 'details';
 
     constructor (
         _af: AngularFire,

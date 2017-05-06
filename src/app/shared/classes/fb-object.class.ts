@@ -7,68 +7,48 @@ import { generateUUID } from '../helpers/math.helpers';
 import { Subscription } from 'rxjs';
 import { Observable } from 'rxjs/Observable';
 
-export class FBObject implements OnInit, OnChanges {
-    @Input() public path: string = null;
+export class FBObject implements OnInit {
+    @Input() public data: any;
+    @Input() public meta: any;
+    @Input() public path: string;
 
-    public data: FirebaseObjectObservable<any>;
     protected _fields: Array<Field> = [];
-    protected _key: string = null;
-    private _uuid: string = generateUUID();
 
     constructor (
-        private _af: AngularFire,
-        private _modalService: ModalService
+      private _af: AngularFire,
+      private _modalService: ModalService
     ) {}
 
     public ngOnInit (): void {
-        this.refreshData();
-
         this._modalService.close$
-            .filter(res => !!res && res.source === this._uuid)
-            .map(res => res.data)
-            .subscribe(data => this.data.update(data));
-    }
-
-    public ngOnChanges (): void {
-        this.refreshData();
-    }
-
-    private refreshData (): void {
-        if (this.path) {
-            this.data = this._af.database
-                .object(`${ this.path }/${ this._key }`);
-        }
+            .filter(res => !!res && res.source === this.path)
+            .subscribe(res => this.updateData(res.data));
     }
 
     @HostListener('click', ['$event'])
     public editData ($event): void {
         $event.preventDefault();
 
-        this.getDataClone()
-            .subscribe(data => {
-                this._modalService
-                    .openModal({
-                        data: data,
-                        fields: this._fields.map(a => Object.assign({}, a)),
-                        preventDelete: true,
-                        source: this._uuid
-                  });
-
-            });
+        this._modalService
+            .openModal({
+                data: this.getDataClone(),
+                fields: this._fields.map(a => Object.assign({}, a)),
+                preventDelete: true,
+                source: this.path
+          });
     }
 
-    private getDataClone (): Observable<any> {
-        return this.data
-            .filter(Boolean)
-            .first()
-            .map(data => {
-                let clone = {};
+    private updateData (newData): void {
+        this._af.database.object(this.path).update(newData);
+    }
 
-                Object.keys(data)
-                    .filter(key => key[0] !== '$')
-                    .forEach(key => clone[key] = data[key]);
+    private getDataClone (): any {
+        let clone = {};
 
-                return clone;
-            });
+        Object.keys(this.data)
+            .filter(key => key[0] !== '$')
+            .forEach(key => clone[key] = this.data[key]);
+
+        return clone;
     }
 }

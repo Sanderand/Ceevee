@@ -1,13 +1,13 @@
 import { Component, HostBinding, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
+import { FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
 
 import { FONT_SIZE_CHANGE_STEP, MAX_FONT_SIZE, MIN_FONT_SIZE } from '../shared/constants/constants';
 import { restrictRange } from '../shared/helpers/math.helpers';
 import { CVService } from './cv.service';
-import { AuthService } from '../auth/auth.service';
 import { Observable } from 'rxjs';
 import { DropdownComponent } from '../shared/components/dropdown/dropdown.component';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
     selector: 'cv-cv',
@@ -26,15 +26,15 @@ export class CVComponent implements OnInit {
     public MAX_FONT_SIZE = MAX_FONT_SIZE;
 
     public cv: FirebaseObjectObservable<any>;
+    public uid: Observable<any>;
+    public cid: Observable<any>;
     public sections: FirebaseListObservable<any>;
     public newSectionName: any;
 
-    public cvId: Observable<any>;
     public path: Observable<any>;
     private _theme: FirebaseObjectObservable<any>;
 
     constructor (
-        private _af: AngularFire,
         private _authService: AuthService,
         private _cvService: CVService,
         private _route: ActivatedRoute,
@@ -42,19 +42,23 @@ export class CVComponent implements OnInit {
     ) { }
 
     public ngOnInit (): void {
-      this._route.params
-        .map(p => p.id)
-        .filter(Boolean)
-        .subscribe(cid => {
-            this._cvService.getCv(cid)
-              .subscribe(cv => {
-                this.cv = cv;
-              });
+      this.uid = this._authService.user$.map(u => u.uid);
 
-            this._cvService.getCvSections(cid)
-              .subscribe(sections => {
-                this.sections = sections;
-              });
+      this.cid = this._route.params
+        .map(p => p.id)
+        .filter(Boolean);
+
+      this.cid
+        .subscribe(cid => {
+          this._cvService.getCv(cid)
+            .subscribe(cv => {
+              this.cv = cv;
+            });
+
+          this._cvService.getCvSections(cid)
+            .subscribe(sections => {
+              this.sections = sections;
+            });
         });
 
 
@@ -118,7 +122,7 @@ export class CVComponent implements OnInit {
 
     public removeCV (): void {
         this._router.navigate(['/']).then(() => {
-            this.cvId
+            this.cid
                 .first()
                 .subscribe(id => this._cvService.removeCV(id));
         });

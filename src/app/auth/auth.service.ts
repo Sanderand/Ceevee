@@ -19,6 +19,7 @@ export class AuthService {
                     this._router.navigate(['/']);
                     this.user$.next(null);
                 } else if (user) {
+                    // put into function
                     this._af.database.object(`/users/${ user.uid }`).subscribe(userData => {
                         this.user$.next({
                             uid: user.uid,
