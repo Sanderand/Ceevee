@@ -15,7 +15,6 @@ import { FBObject } from '../../shared/classes/fb-object.class';
 export class DividerComponent extends FBObject {
     @HostBinding('class.editable') public editableClass = true;
     protected _fields: Array<Field> = DividerFields;
-    protected _key: string = 'divider';
 
     constructor (
         _af: AngularFire,

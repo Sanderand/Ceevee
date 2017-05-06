@@ -8,8 +8,7 @@ import { Subscription } from 'rxjs';
 import { Observable } from 'rxjs/Observable';
 
 export class FBObject implements OnInit {
-    @Input() public data: any;
-    @Input() public meta: any;
+    @Input() public section: any;
     @Input() public path: string;
 
     protected _fields: Array<Field> = [];
@@ -39,15 +38,15 @@ export class FBObject implements OnInit {
     }
 
     private updateData (newData): void {
-        this._af.database.object(this.path).update(newData);
+        this._af.database.object(`${ this.path }/data`).update(newData);
     }
 
     private getDataClone (): any {
         let clone = {};
 
-        Object.keys(this.data)
+        Object.keys(this.section.data)
             .filter(key => key[0] !== '$')
-            .forEach(key => clone[key] = this.data[key]);
+            .forEach(key => clone[key] = this.section.data[key]);
 
         return clone;
     }

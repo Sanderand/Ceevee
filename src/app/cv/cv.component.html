@@ -79,17 +79,24 @@
 
     <cv-details
       *ngIf="section.meta.type === 'PROFILE'"
-      [data]="section.data"
-      [meta]="section.meta"
-      [path]="'sections/' + (uid | async) + '/' + (cid | async) + '/' + section.$key + '/data'"
+      [path]="'sections/' + (uid | async) + '/' + (cid | async) + '/' + section.$key"
+      [section]="section"
       [style.order]="section.meta.order">
     </cv-details>
 
-    <!--<cv-skills-->
-      <!--[data]="section.data"-->
-      <!--[meta]="section.meta"-->
-      <!--[key]="section.$key">-->
-    <!--</cv-skills>-->
+    <cv-divider
+      *ngIf="section.meta.type === 'DIVIDER'"
+      [path]="'sections/' + (uid | async) + '/' + (cid | async) + '/' + section.$key"
+      [section]="section"
+      [style.order]="section.meta.order">
+    </cv-divider>
+
+    <cv-skills
+      *ngIf="section.meta.type === 'SKILLS'"
+      [path]="'sections/' + (uid | async) + '/' + (cid | async) + '/' + section.$key"
+      [section]="section"
+      [style.order]="section.meta.order">
+    </cv-skills>
   </section>
 </div>
 

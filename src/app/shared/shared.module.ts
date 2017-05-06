@@ -10,6 +10,7 @@ import { SplitPipe } from './pipes/split.pipe';
 import { WhenPipe } from './pipes/when.pipe';
 import { CVListComponent } from './components/cv-list/cv-list.component';
 import { CVSelectComponent } from './components/cv-select/cv-select.component';
+import { KeysPipe } from './pipes/keys.pipe';
 
 @NgModule({
     declarations: [
@@ -20,7 +21,8 @@ import { CVSelectComponent } from './components/cv-select/cv-select.component';
         CVSelectComponent,
 
         SplitPipe,
-        WhenPipe
+        WhenPipe,
+        KeysPipe
     ],
     exports: [
         SpinnerComponent,
@@ -30,7 +32,8 @@ import { CVSelectComponent } from './components/cv-select/cv-select.component';
         CVSelectComponent,
 
         SplitPipe,
-        WhenPipe
+        WhenPipe,
+        KeysPipe
     ],
     imports: [
         BrowserModule,

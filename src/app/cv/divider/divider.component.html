@@ -1,16 +1,5 @@
 <div
-    *ngIf="(data | async)">
-    <div
-        *ngIf="(data | async)?.title"
-        class="title">
-        {{ (data | async)?.title }}
-    </div>
-</div>
-
-<div
-    *ngIf="!(data | async)">
-    <div
-        class="ghost"
-        style="height: 2em; width: 100px;">
-    </div>
+    *ngIf="section?.data?.title"
+    class="title">
+    {{ section?.data?.title }}
 </div>

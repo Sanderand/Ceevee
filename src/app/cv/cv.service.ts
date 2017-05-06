@@ -44,12 +44,16 @@ export class CVService {
     }
 
     public removeCV (id): void {
-      this._authService.user$
-        .filter(Boolean)
-        .map(user => user.uid)
-        .subscribe(uid => {
-          this._af.database.object(`/cvs/${ uid }/${ id }`).remove();
-        });
+      throw Error();
+
+      // also remove section!
+
+      // this._authService.user$
+      //   .filter(Boolean)
+      //   .map(user => user.uid)
+      //   .subscribe(uid => {
+      //     this._af.database.object(`/cvs/${ uid }/${ id }`).remove();
+      //   });
     }
 
     private getCvData (id: string): Observable<any> {
