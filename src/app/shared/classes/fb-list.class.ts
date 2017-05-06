@@ -10,9 +10,9 @@ export class FBList implements OnInit, OnChanges {
     @Input() public path: string;
 
     public items: FirebaseListObservable<any>;
-    public keyInModal: string = 'kokl';
-    public uuid = generateUUID();
     protected _fields: Array<Field>;
+    private _uuid = generateUUID();
+    private _keyInModal: string;
 
     constructor (
         private _af: AngularFire,
@@ -21,7 +21,7 @@ export class FBList implements OnInit, OnChanges {
 
     public ngOnInit (): void {
         this._modalService.close$
-            .filter(res => !!res && res.source === this.uuid)
+            .filter(res => !!res && res.source === this._uuid)
             .subscribe(res => this.updateData(res.data));
     }
 
@@ -41,23 +41,23 @@ export class FBList implements OnInit, OnChanges {
                 data: item ? Object.assign({}, item) : null,
                 fields: this._fields.map(a => Object.assign({}, a)),
                 preventDelete: false,
-                source: this.uuid
+                source: this._uuid
             });
 
-      this.keyInModal = item ? item.$key : null;
+      this._keyInModal = item ? item.$key : null;
     }
 
     public updateData (data): void {
         if (data) {
-            if (this.keyInModal) {
-                this.items.update(this.keyInModal, data);
+            if (this._keyInModal) {
+                this.items.update(this._keyInModal, data);
             } else {
                 this.items.push(data);
             }
         } else {
-            this.items.remove(this.keyInModal);
+            this.items.remove(this._keyInModal);
         }
 
-        this.keyInModal = null;
+        this._keyInModal = null;
     }
 }

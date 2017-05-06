@@ -14,7 +14,6 @@ import { FBList } from '../../shared/classes/fb-list.class';
 })
 export class ExperienceComponent extends FBList {
     protected _fields: Array<Field> = ExperienceFields;
-    protected _key: string = 'experience';
 
     constructor (
         _af: AngularFire,
