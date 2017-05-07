@@ -2,8 +2,7 @@
     <select
         [(ngModel)]="activeCV"
         (change)="loadCV()"
-        name="selected-cv"
-        class="custom-select">
+        name="selected-cv">
 
         <option
             *ngIf="!(cvs | async)">

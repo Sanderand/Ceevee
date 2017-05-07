@@ -32,9 +32,9 @@
         </main>
 
         <footer
-            class="btn-group">
+            class="group">
             <button
-                class="btn btn-primary btn-sm"
+                class="button success small"
                 type="submit">
                 {{ isAdding ? 'Save' : 'Update'}}
             </button>
@@ -42,14 +42,14 @@
             <button
                 *ngIf="!isAdding && !preventDelete"
                 (click)="removeItem()"
-                class="btn btn-warning btn-sm"
+                class="button primary small"
                 type="button">
                 Delete
             </button>
 
             <button
                 (click)="cancelModal()"
-                class="btn btn-secondary btn-sm"
+                class="button small"
                 type="button">
                 Cancel
             </button>

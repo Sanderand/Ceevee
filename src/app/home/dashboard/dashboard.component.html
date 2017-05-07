@@ -11,7 +11,7 @@
 <cv-list
   [cvs]="cvs | async"></cv-list>
 
-<ul
+<div
     *ngIf="user | async"
     class="cards">
     <label
@@ -19,41 +19,33 @@
         Create a new CV
     </label>
 
-    <li class="card">
-        <form
-            (submit)="onFormSubmit($event)"
-            autocomplete="off"
-            class="primary"
-            novalidate>
-            <div
-                class="form-group"
-                [class.has-danger]="!!error">
-                <div
-                    class="input-group">
-                    <input
-                        [(ngModel)]="newTitle"
-                        [class.form-control-danger]="!!error"
-                        (keydown)="clearError()"
-                        class="form-control"
-                        placeholder="Title"
-                        name="title"
-                        type="text">
+    <form
+        (submit)="onFormSubmit($event)"
+        autocomplete="off"
+        class="primary card"
+        novalidate>
+        <div
+            class="input-group">
+            <input
+                [(ngModel)]="newTitle"
+                [class.form-control-danger]="!!error"
+                (keydown)="clearError()"
+                class="form-control"
+                placeholder="Title"
+                name="title"
+                type="text">
 
-                    <span class="input-group-btn">
-                        <button
-                            type="submit"
-                            class="btn btn-success">
-                            Add
-                        </button>
-                    </span>
-                </div>
+            <button
+                type="submit"
+                class="button success">
+                Add
+            </button>
+        </div>
 
-                <small
-                    *ngIf="!!error"
-                    class="form-text text-muted">
-                    {{ error }}
-                </small>
-            </div>
-        </form>
-    </li>
-</ul>
+        <small
+            *ngIf="!!error"
+            class="form-text text-muted">
+            {{ error }}
+        </small>
+    </form>
+</div>

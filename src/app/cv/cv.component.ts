@@ -16,9 +16,10 @@ import { AuthService } from '../auth/auth.service';
     encapsulation: ViewEncapsulation.None
 })
 export class CVComponent implements OnInit {
-    @HostBinding('class') public hostClass: string = null;
-    @HostBinding('style.fontSize.em') public fontSize: number = null;
-    @HostBinding('style.fontFamily') public fontFamily: string = null;
+    @HostBinding('class.cv') true;
+    public themeClass: string = '';
+    public fontSize: number = 1;
+    public fontFamily: string = null;
 
     @ViewChild('dropdown') public dropdown: DropdownComponent;
 
@@ -130,7 +131,7 @@ export class CVComponent implements OnInit {
                     theme = theme || {};
                     this.fontSize = theme.fontSize || 1;
                     this.fontFamily = theme.fontFamily || null;
-                    this.hostClass = theme.class || null;
+                    this.themeClass = theme.class || null;
                 });
         })
         */
@@ -187,10 +188,10 @@ export class CVComponent implements OnInit {
     }
 
     private updateTheme (): void {
-        this._theme.update({
-            fontSize: this.fontSize,
-            fontFamily: this.fontFamily || null
-        });
+        // this._theme.update({
+        //     fontSize: this.fontSize,
+        //     fontFamily: this.fontFamily || null
+        // });
     }
 
     public openDropdown ($event): void {

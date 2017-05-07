@@ -10,32 +10,37 @@ cv-cv {
         text-decoration: none;
     }
 
-    header {
-        display: block;
-
+    header.card {
         @media print {
-          display: none;
+            display: none;
+        }
+
+        @media (min-width: 768px + 200px) {
+            width: calc(768px - 2rem);
+            box-shadow: none;
+            border: none;
+            z-index: 1;
+            position: fixed;
+            top: 0;
+            padding: 13px 0px;
+            margin: 0;
+            background: transparent;
+            box-shadow: none;
         }
     }
 
     .card {
-        padding: 1rem;
-        margin-bottom: 1rem;
-
-        @media print {
-            box-shadow: none;
-            border: none;
-        }
+      @media print {
+        box-shadow: none;
+      }
     }
 
     .editable {
+      @media screen {
         &:hover {
-            box-shadow: 0px 0px 5px 2px $c_editing_light;
+          box-shadow: 0px 0px 5px 2px $c_editing_light;
         }
-
-        @media print {
-            box-shadow: none;
-        }
+      }
     }
 
     .section-title {
@@ -62,7 +67,7 @@ cv-cv {
         border-radius: .3em;
     }
 
-    .inline-btn {
+    .inline-button {
         display: inline-block;
         border-radius: 100%;
         width: 24px;

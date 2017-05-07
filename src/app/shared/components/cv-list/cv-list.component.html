@@ -1,6 +1,6 @@
-<ul
+<div
     class="cards">
-    <li
+    <a
         *ngFor="let cv of cvs"
         [routerLink]="'/cv/' + cv.$key"
         class="card">
@@ -17,8 +17,8 @@
         <div class="suffix">
             {{ cv?._created | when }}
         </div>
-    </li>
-</ul>
+    </a>
+</div>
 
 <div
     *ngIf="!cvs">

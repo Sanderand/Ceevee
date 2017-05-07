@@ -4,14 +4,25 @@ cv-dashboard {
     >header {
         margin-top: 4rem;
         margin-bottom: 3rem;
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0;
+        }
+
+        h5 {
+            font-size: 1.25rem;
+            font-weight: 400;
+            color: #444;
+        }
     }
 
-    >ul.cards {
+    >cards {
         label {
             margin-top: 2rem;
         }
 
-        li.card {
+        card {
             margin-top: 0;
         }
 
