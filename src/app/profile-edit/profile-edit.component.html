@@ -11,15 +11,17 @@
 
     <label>Name</label>
 
-    <div
-        class="input-group">
+    <form
+        (submit)="null"
+        class="input-group"
+        autocomplete="off"
+        novalidate>
         <input
-            autocomplete="off"
             placeholder="Enter your name here"
             class="form-control"
             type="text"
             name="name"
             [value]="user.name || ''"
             (change)="changeName($event)">
-    </div>
+    </form>
 </div>
