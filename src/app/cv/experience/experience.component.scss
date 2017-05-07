@@ -1,13 +1,15 @@
 @import '../../../variables.scss';
 
 cv-experience {
+  page-break-inside: avoid;
+
   .items {
     display: table;
     width: 100%;
     margin-bottom: 2em;
-    page-break-inside: avoid;
 
     .item {
+      page-break-inside: avoid;
       &:last-child .left,
       &:last-child .right {
         padding-bottom: 0;

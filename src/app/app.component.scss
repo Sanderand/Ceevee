@@ -29,6 +29,10 @@ cv-root {
             height: 52px;
             padding: 0px 10px;
         }
+
+        @media print {
+            display: none;
+        }
     }
 
     >main {
@@ -62,6 +66,10 @@ cv-root {
                 // xs
                 padding: 0.5rem;
             }
+
+            @media print {
+                width: initial;
+            }
         }
 
         >footer {
@@ -87,6 +95,14 @@ cv-root {
                     width: 100%;
                 }
             }
+
+            @media print {
+                display: none;
+            }
+        }
+
+        @media print {
+            background: none;
         }
     }
 

@@ -21,6 +21,11 @@ cv-cv {
     .card {
         padding: 1rem;
         margin-bottom: 1rem;
+
+        @media print {
+            box-shadow: none;
+            border: none;
+        }
     }
 
     .editable {
@@ -29,7 +34,7 @@ cv-cv {
         }
 
         @media print {
-          box-shadow: none;
+            box-shadow: none;
         }
     }
 
@@ -88,12 +93,4 @@ cv-cv {
         display: none;
       }
     }
-}
-
-
-
-@media print {
-  cv-root>header {
-    display: none;
-  }
 }

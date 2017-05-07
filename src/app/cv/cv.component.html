@@ -4,6 +4,38 @@
         <span
             class="button-group">
             <button
+              (click)="openDropdown($event)"
+              class="btn btn-secondary">
+                <span>...</span>
+                <cv-dropdown
+                  #dropdown
+                  closeOnScroll="true">
+                    <a
+                      class="item">
+                        Print
+                    </a>
+
+                    <a
+                      class="item">
+                        Share
+                    </a>
+
+                    <div
+                      class="divider"></div>
+
+                    <a
+                      class="item">
+                        Rename
+                    </a>
+
+                    <a
+                      (click)="removeCV()"
+                      class="item text-danger">
+                        Delete
+                    </a>
+                </cv-dropdown>
+            </button>
+            <button
                 (click)="decreaseFontSize()"
                 [disabled]="fontSize === MIN_FONT_SIZE"
                 class="btn btn-secondary">
@@ -15,60 +47,25 @@
                 class="btn btn-secondary">
                 AA
             </button>
+            <select
+              class="custom-select"
+              (change)="changeFontFamily($event)">
+                <option
+                  value="">
+                    Default
+                </option>
+
+                <option
+                  value="sans-serif">
+                    Sans-Serif
+                </option>
+
+                <option
+                  value="serif">
+                    Serif
+                </option>
+            </select>
         </span>
-
-        <select
-            class="custom-select"
-            (change)="changeFontFamily($event)">
-            <option
-                value="">
-                Default
-            </option>
-
-            <option
-                value="sans-serif">
-                Sans-Serif
-            </option>
-
-            <option
-                value="serif">
-                Serif
-            </option>
-        </select>
-
-        <button
-            (click)="openDropdown($event)"
-            class="btn btn-secondary">
-            ...
-
-            <cv-dropdown
-                #dropdown
-                closeOnScroll="true">
-                <a
-                    class="item">
-                    Print
-                </a>
-
-                <a
-                    class="item">
-                    Share
-                </a>
-
-                <div
-                    class="divider"></div>
-
-                <a
-                    class="item">
-                    Rename
-                </a>
-
-                <a
-                    (click)="removeCV()"
-                    class="item text-danger">
-                    Delete
-                </a>
-            </cv-dropdown>
-        </button>
     </div>
 </header>
 
@@ -124,7 +121,7 @@
 
   <div
     *ngIf="!(sections | async)">
-      <div class="ghost" style="height: 2rem;width: 12rem; margin-bottom: 1rem;"></div>
+      <div class="ghost" style="height: 2rem;margin-bottom: 1rem; width: 12rem;"></div>
       <div class="ghost" style="height: 5rem;margin-bottom: 1rem;"></div>
       <div class="ghost" style="height: 1rem;margin-bottom: 1rem;"></div>
       <div class="ghost" style="height: 1rem;margin-bottom: 2rem;"></div>

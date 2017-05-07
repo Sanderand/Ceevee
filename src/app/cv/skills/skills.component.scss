@@ -1,13 +1,15 @@
 @import '../../../variables.scss';
 
 cv-skills {
+    page-break-inside: avoid;
+
     .items {
         display: table;
         width: 100%;
         margin-bottom: 2em;
-        page-break-inside: avoid;
 
         .item {
+            page-break-inside: avoid;
             display: table-row;
 
             .title {

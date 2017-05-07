@@ -1,12 +1,13 @@
 @import 'variables.scss';
 
-
-html {
+@media screen {
+  html {
     overflow: hidden;
     height: 100%;
-}
+  }
 
-body {
+  body {
     overflow: auto;
     height: 100%;
+  }
 }
