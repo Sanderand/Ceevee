@@ -148,28 +148,18 @@
     novalidate>
 
     <div>
-      <label>Type</label>
-      <select
-        name="type"
-        [(ngModel)]="newSection.type">
-        <option
-          [value]="type.type"
-          *ngFor="let type of types">
-          {{ type.name }}
-        </option>
-      </select>
-    </div>
-
-    <div>
       <label>Title</label>
       <div
         class="input-group">
-        <input
-          placeholder="Section title"
-          class="form-control"
-          type="text"
-          name="name"
-          [(ngModel)]="newSection.title">
+        <select
+          name="type"
+          [(ngModel)]="newSection.type">
+          <option
+            [value]="type.type"
+            *ngFor="let type of types">
+            {{ type.name }}
+          </option>
+        </select>
 
         <button
           type="submit"

@@ -59,6 +59,10 @@
     </div>
 </div>
 
+<p
+    class="empty"
+    *ngIf="(items | async)?.length === 0">Empty experience section</p>
+
 <div class="group">
     <button
         class="button wide"

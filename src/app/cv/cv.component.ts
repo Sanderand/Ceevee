@@ -8,6 +8,7 @@ import { CVService } from './cv.service';
 import { Observable } from 'rxjs';
 import { DropdownComponent } from '../shared/components/dropdown/dropdown.component';
 import { AuthService } from '../auth/auth.service';
+import * as firebase from 'firebase';
 
 const TYPES = [{
     name: 'Details',
@@ -92,7 +93,7 @@ export class CVComponent implements OnInit {
     public submitChanges (event): void {
       event.preventDefault();
 
-      if (!this.newSection.type && !this.newSection.title) {
+      if (!this.newSection.type) {
         return;
       }
 
@@ -100,7 +101,7 @@ export class CVComponent implements OnInit {
         data: {},
         meta: {
           type: this.newSection.type,
-          title: this.newSection.title
+          _created: firebase.database.ServerValue.TIMESTAMP
         }
       });
 
