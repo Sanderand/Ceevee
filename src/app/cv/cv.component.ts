@@ -9,6 +9,26 @@ import { Observable } from 'rxjs';
 import { DropdownComponent } from '../shared/components/dropdown/dropdown.component';
 import { AuthService } from '../auth/auth.service';
 
+const TYPES = [{
+    name: 'Details',
+    type: 'DETAILS'
+}, {
+    name: 'Divider',
+    type: 'DIVIDER'
+}, {
+    name: 'Education',
+    type: 'EDUCATION'
+}, {
+    name: 'Experience',
+    type: 'EXPERIENCE'
+}, {
+    name: 'Feedback',
+    type: 'FEEDBACK'
+}, {
+    name: 'Skills',
+    type: 'SKILLS'
+}];
+
 @Component({
     selector: 'cv-cv',
     templateUrl: './cv.component.html',
@@ -30,25 +50,7 @@ export class CVComponent implements OnInit {
     public uid: Observable<any>;
     public cid: Observable<any>;
     public sections: FirebaseListObservable<any>;
-    public types = [{
-      name: 'Details',
-      type: 'DETAILS'
-    }, {
-      name: 'Divider',
-      type: 'DIVIDER'
-    }, {
-      name: 'Education',
-      type: 'EDUCATION'
-    }, {
-      name: 'Experience',
-      type: 'EXPERIENCE'
-    }, {
-      name: 'Feedback',
-      type: 'FEEDBACK'
-    }, {
-      name: 'Skills',
-      type: 'SKILLS'
-    }];
+    public types = TYPES;
     public newSection = {
       title: null,
       type: null
@@ -83,58 +85,6 @@ export class CVComponent implements OnInit {
               this.sections = sections;
             });
         });
-
-
-
-
-
-
-
-
-
-
-
-        /*
-        this._route.params
-            .map(p => p.id)
-            .filter(Boolean)
-            .subscribe(id => this._cvService.loadCV(id));
-
-        this._cvService.cv$
-            .filter(Boolean)
-            .subscribe(cv => {
-                cv.subscribe(cvData => {
-                    if (!cvData.$exists()) {
-                        this._router.navigate(['/']);
-                    }
-                });
-
-                this.cv = cv;
-            });
-
-        let userId = this._authService.user$
-            .filter(Boolean)
-            .map(user => user.uid);
-
-        this.cvId = this._cvService.cv$
-            .filter(Boolean)
-            .mergeAll()
-            .map(cv => cv.$key);
-
-        this.path = Observable.zip(userId, this.cvId)
-            .map(res => `/cvs/${ res[0] }/${ res[1] }`);
-
-        this.path.subscribe(path => {
-            this._theme = this._af.database.object(`${ path }/theme`);
-            this._theme
-                .subscribe(theme => {
-                    theme = theme || {};
-                    this.fontSize = theme.fontSize || 1;
-                    this.fontFamily = theme.fontFamily || null;
-                    this.themeClass = theme.class || null;
-                });
-        })
-        */
 
         this.resetForm();
     }

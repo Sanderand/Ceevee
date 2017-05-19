@@ -3,6 +3,7 @@
 cv-cv {
     *, :after, :before {
         user-select: none;
+        -webkit-print-color-adjust: exact;
     }
 
     a {

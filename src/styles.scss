@@ -17,23 +17,23 @@
   background-size: 400% 400%;
   border-radius: 2px;
 
-  -webkit-animation: AnimationName 1.7s ease infinite;
-  -moz-animation: AnimationName 1.7s ease infinite;
-  animation: AnimationName 1.7s ease infinite;
+  -webkit-animation: ghostAnimation 1.7s ease infinite;
+  -moz-animation: ghostAnimation 1.7s ease infinite;
+  animation: ghostAnimation 1.7s ease infinite;
 
-  @-webkit-keyframes AnimationName {
+  @-webkit-keyframes ghostAnimation {
     0%{background-position:0% 11%}
     50%{background-position:100% 90%}
     100%{background-position:0% 11%}
   }
 
-  @-moz-keyframes AnimationName {
+  @-moz-keyframes ghostAnimation {
     0%{background-position:0% 11%}
     50%{background-position:100% 90%}
     100%{background-position:0% 11%}
   }
 
-  @keyframes AnimationName {
+  @keyframes ghostAnimation {
     0%{background-position:0% 11%}
     50%{background-position:100% 90%}
     100%{background-position:0% 11%}
@@ -122,6 +122,11 @@ button {
 
   &.small {
     padding: 2px 16px;
+  }
+
+  &.wide {
+    display: block;
+    width: 100%;
   }
 
   &.primary {

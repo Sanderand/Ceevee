@@ -1,20 +1,4 @@
 <div
-  *ngIf="section?.meta?.title"
-  class="section-title">
-  {{ section?.meta?.title }}
-  <span
-    (click)="editData($event, null)"
-    class="inline-button">
-    +
-  </span>
-  <span
-    (click)="editData($event, null)"
-    class="inline-button">
-    .
-  </span>
-</div>
-
-<div
     class="items">
     <div
         *ngFor="let item of (items | async)"
@@ -57,14 +41,21 @@
                 class="description">
                 {{ item.description }}
             </div>
-            <div
-                class="field">
-                {{ item.field }}
-            </div>
-            <div
-                class="grade">
-                {{ item.grade }}
-            </div>
         </div>
     </div>
+</div>
+
+<div class="group">
+    <button
+        class="button wide"
+        (click)="editData($event, null)">
+        Add Item
+    </button>
+
+    <button
+        *ngIf="(items | async)?.length === 0"
+        class="button danger wide"
+        (click)="removeSection($event)">
+        Remove section
+    </button>
 </div>

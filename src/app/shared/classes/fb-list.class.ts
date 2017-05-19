@@ -58,10 +58,18 @@ export class FBList implements OnInit, OnChanges {
             if (this._keyInModal) {
                 this.items.remove(this._keyInModal);
             } else {
-                // note a new item gets cancelled
+                // NOTE: A new item got cancelled: do nothing
             }
         }
 
         this._keyInModal = null;
+    }
+
+    public removeSection ($event: Event): void {
+        if (!this.path) {
+            return;
+        }
+
+        this._af.database.object(this.path).remove();
     }
 }

@@ -67,68 +67,72 @@
 </header>
 
 <div
-  [class]="'card ' + themeClass"
-  [style.fontSize.rem]="fontSize"
-  [style.fontFamily]="fontFamily">
-  <section
-    *ngFor="let section of (sections | async)">
-
-    <!--TODO MOVE PATH CALCULATION TO SOMEWHERE ELSE-->
-
-    <cv-details
-      *ngIf="section.meta.type === 'DETAILS'"
-      [path]="'sections/' + (uid | async) + '/' + (cid | async) + '/' + section.$key"
-      [section]="section"
-      [style.order]="section.meta.order">
-    </cv-details>
-
-    <cv-divider
-      *ngIf="section.meta.type === 'DIVIDER'"
-      [path]="'sections/' + (uid | async) + '/' + (cid | async) + '/' + section.$key"
-      [section]="section"
-      [style.order]="section.meta.order">
-    </cv-divider>
-
-    <cv-education
-      *ngIf="section.meta.type === 'EDUCATION'"
-      [path]="'sections/' + (uid | async) + '/' + (cid | async) + '/' + section.$key"
-      [section]="section"
-      [style.order]="section.meta.order">
-    </cv-education>
-
-    <cv-experience
-      *ngIf="section.meta.type === 'EXPERIENCE'"
-      [path]="'sections/' + (uid | async) + '/' + (cid | async) + '/' + section.$key"
-      [section]="section"
-      [style.order]="section.meta.order">
-    </cv-experience>
-
-    <cv-skills
-      *ngIf="section.meta.type === 'SKILLS'"
-      [path]="'sections/' + (uid | async) + '/' + (cid | async) + '/' + section.$key"
-      [section]="section"
-      [style.order]="section.meta.order">
-    </cv-skills>
-
-    <cv-feedback
-      *ngIf="section.meta.type === 'FEEDBACK'"
-      [path]="'sections/' + (uid | async) + '/' + (cid | async) + '/' + section.$key"
-      [section]="section"
-      [style.order]="section.meta.order">
-    </cv-feedback>
-  </section>
-
+  class="card"
+  style="padding: 0;">
   <div
-    *ngIf="!(sections | async)">
-      <div class="ghost" style="height: 2rem;margin-bottom: 1rem; width: 12rem;"></div>
-      <div class="ghost" style="height: 5rem;margin-bottom: 1rem;"></div>
-      <div class="ghost" style="height: 1rem;margin-bottom: 1rem;"></div>
-      <div class="ghost" style="height: 1rem;margin-bottom: 2rem;"></div>
-      <div class="ghost" style="height: 2rem;margin-bottom: 1rem; width: 12rem;"></div>
-      <div class="ghost" style="height: 5rem;margin-bottom: 1rem;"></div>
-      <div class="ghost" style="height: 5rem;margin-bottom: 1rem;"></div>
-      <div class="ghost" style="height: 5rem;margin-bottom: 1rem;"></div>
-    </div>
+    [class]="themeClass"
+    [style.fontSize.rem]="fontSize"
+    [style.fontFamily]="fontFamily">
+    <section
+      *ngFor="let section of (sections | async)">
+
+      <!--TODO MOVE PATH CALCULATION TO SOMEWHERE ELSE-->
+
+      <cv-details
+        *ngIf="section.meta.type === 'DETAILS'"
+        [path]="'sections/' + (uid | async) + '/' + (cid | async) + '/' + section.$key"
+        [section]="section"
+        [style.order]="section.meta.order">
+      </cv-details>
+
+      <cv-divider
+        *ngIf="section.meta.type === 'DIVIDER'"
+        [path]="'sections/' + (uid | async) + '/' + (cid | async) + '/' + section.$key"
+        [section]="section"
+        [style.order]="section.meta.order">
+      </cv-divider>
+
+      <cv-education
+        *ngIf="section.meta.type === 'EDUCATION'"
+        [path]="'sections/' + (uid | async) + '/' + (cid | async) + '/' + section.$key"
+        [section]="section"
+        [style.order]="section.meta.order">
+      </cv-education>
+
+      <cv-experience
+        *ngIf="section.meta.type === 'EXPERIENCE'"
+        [path]="'sections/' + (uid | async) + '/' + (cid | async) + '/' + section.$key"
+        [section]="section"
+        [style.order]="section.meta.order">
+      </cv-experience>
+
+      <cv-skills
+        *ngIf="section.meta.type === 'SKILLS'"
+        [path]="'sections/' + (uid | async) + '/' + (cid | async) + '/' + section.$key"
+        [section]="section"
+        [style.order]="section.meta.order">
+      </cv-skills>
+
+      <cv-feedback
+        *ngIf="section.meta.type === 'FEEDBACK'"
+        [path]="'sections/' + (uid | async) + '/' + (cid | async) + '/' + section.$key"
+        [section]="section"
+        [style.order]="section.meta.order">
+      </cv-feedback>
+    </section>
+
+    <div
+      *ngIf="!(sections | async)">
+        <div class="ghost" style="height: 2rem;margin-bottom: 1rem; width: 12rem;"></div>
+        <div class="ghost" style="height: 5rem;margin-bottom: 1rem;"></div>
+        <div class="ghost" style="height: 1rem;margin-bottom: 1rem;"></div>
+        <div class="ghost" style="height: 1rem;margin-bottom: 2rem;"></div>
+        <div class="ghost" style="height: 2rem;margin-bottom: 1rem; width: 12rem;"></div>
+        <div class="ghost" style="height: 5rem;margin-bottom: 1rem;"></div>
+        <div class="ghost" style="height: 5rem;margin-bottom: 1rem;"></div>
+        <div class="ghost" style="height: 5rem;margin-bottom: 1rem;"></div>
+      </div>
+  </div>
 </div>
 
 <footer>

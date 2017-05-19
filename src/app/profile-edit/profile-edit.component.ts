@@ -52,6 +52,11 @@ export class ProfileEditComponent implements OnInit {
         });
     }
 
+    public onSubmit ($event): void {
+      $event.preventDefault();
+      $event.target.blur();
+    }
+
     private uploadFile(): void {
       let file = this._fileInput.files[0];
       let reader = new FileReader();

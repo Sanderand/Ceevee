@@ -12,10 +12,10 @@
     <label>Name</label>
 
     <form
-        (submit)="null"
+        (submit)="onSubmit($event)"
         class="input-group"
         autocomplete="off"
-        novalidate>
+            novalidate>
         <input
             placeholder="Enter your name here"
             class="form-control"
