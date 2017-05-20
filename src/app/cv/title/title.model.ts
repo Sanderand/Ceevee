@@ -1,6 +1,6 @@
 import { Field } from '../../shared/models/field.model';
 
-export const DividerFields: Array<Field> = [{
+export const TitleFields: Array<Field> = [{
     key: 'title',
     label: 'Title',
     type: 'text',

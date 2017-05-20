@@ -66,56 +66,81 @@
     </span>
 </header>
 
+
+<!--<ul
+    class="list-group"
+    [sortableData]="[1,2,3,4,5]"
+    dnd-sortable-container>
+        <li
+            *ngFor="let item of listOne; let i = index"
+            class="list-group-item"
+            dnd-sortable
+            [sortableIndex]="i">
+            {{item}}
+        </li>
+</ul>-->
+
 <div
-  class="card"
-  style="padding: 0;">
+  class="card">
   <div
+    dnd-sortable-container
+    [sortableData]="(sections | async)"
+
     [class]="themeClass"
     [style.fontSize.rem]="fontSize"
     [style.fontFamily]="fontFamily">
     <section
-      *ngFor="let section of (sections | async)">
+      *ngFor="let section of (sections | async); let i = index"
+        dnd-sortable
+        [sortableIndex]="i">
 
       <!--TODO MOVE PATH CALCULATION TO SOMEWHERE ELSE-->
 
       <cv-details
         *ngIf="section.meta.type === 'DETAILS'"
-        [path]="'sections/' + (uid | async) + '/' + (cid | async) + '/' + section.$key"
+        [path]="(basePath$ | async) + section.$key"
         [section]="section"
         [style.order]="section.meta.order">
       </cv-details>
 
-      <cv-divider
-        *ngIf="section.meta.type === 'DIVIDER'"
-        [path]="'sections/' + (uid | async) + '/' + (cid | async) + '/' + section.$key"
+      <cv-title
+        *ngIf="section.meta.type === 'TITLE'"
+        [path]="(basePath$ | async) + section.$key"
         [section]="section"
         [style.order]="section.meta.order">
-      </cv-divider>
+      </cv-title>
+
+      <cv-text
+        *ngIf="section.meta.type === 'TEXT'"
+        [path]="(basePath$ | async) + section.$key"
+        [section]="section"
+        [style.order]="section.meta.order">
+      </cv-text>
 
       <cv-education
         *ngIf="section.meta.type === 'EDUCATION'"
-        [path]="'sections/' + (uid | async) + '/' + (cid | async) + '/' + section.$key"
+        [path]="(basePath$ | async) + section.$key"
         [section]="section"
         [style.order]="section.meta.order">
       </cv-education>
 
       <cv-experience
         *ngIf="section.meta.type === 'EXPERIENCE'"
-        [path]="'sections/' + (uid | async) + '/' + (cid | async) + '/' + section.$key"
+        [path]="(basePath$ | async) + section.$key"
         [section]="section"
         [style.order]="section.meta.order">
       </cv-experience>
 
       <cv-skills
         *ngIf="section.meta.type === 'SKILLS'"
-        [path]="'sections/' + (uid | async) + '/' + (cid | async) + '/' + section.$key"
+        [path]="(basePath$ | async) + section.$key"
         [section]="section"
         [style.order]="section.meta.order">
       </cv-skills>
 
       <cv-feedback
         *ngIf="section.meta.type === 'FEEDBACK'"
-        [path]="'sections/' + (uid | async) + '/' + (cid | async) + '/' + section.$key"
+        [path]="(basePath$ | async) + section.$key"
         [section]="section"
         [style.order]="section.meta.order">
       </cv-feedback>

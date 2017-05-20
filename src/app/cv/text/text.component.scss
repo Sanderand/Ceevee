@@ -1,0 +1,13 @@
+@import '../../../variables.scss';
+
+cv-text {
+    display: block;
+    margin-bottom: 1em;
+    min-height: 2em;
+    page-break-inside: avoid;
+
+    .text {
+        font-size: 0.9em;
+        font-weight: 300;
+    }
+}

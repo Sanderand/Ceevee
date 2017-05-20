@@ -33,13 +33,14 @@ cv-cv {
     .card {
       @media print {
         box-shadow: none;
+        padding: 0;
       }
     }
 
     .editable {
       @media screen {
         &:hover {
-          box-shadow: 0px 0px 5px 2px $c_editing_light;
+          background-color: $c_editing_light;
         }
       }
     }
@@ -98,5 +99,11 @@ cv-cv {
       @media print {
         display: none;
       }
+    }
+
+    @media print {
+        button {
+            display: none !important;
+        }
     }
 }

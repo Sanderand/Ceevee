@@ -20,6 +20,7 @@ import { CVService } from './cv/cv.service';
 import { ProfileEditModule } from './profile-edit/profile-edit.module';
 import { SharedModule } from './shared/shared.module';
 import { AuthGuard } from './shared/guards/auth.guard';
+import { DndModule } from 'ng2-dnd';
 
 import { FIREBASE_ATUH_CONFIG, FIREBASE_CONFIG } from './shared/constants/constants';
 
@@ -33,6 +34,7 @@ import { FIREBASE_ATUH_CONFIG, FIREBASE_CONFIG } from './shared/constants/consta
         CommonModule,
         RouterModule,
         AngularFireModule.initializeApp(FIREBASE_CONFIG, FIREBASE_ATUH_CONFIG),
+        DndModule.forRoot(),
 
         AppRoutingModule,
         AuthModule,

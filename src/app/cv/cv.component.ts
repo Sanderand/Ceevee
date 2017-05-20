@@ -14,8 +14,11 @@ const TYPES = [{
     name: 'Details',
     type: 'DETAILS'
 }, {
-    name: 'Divider',
-    type: 'DIVIDER'
+    name: 'Title',
+    type: 'TITLE'
+}, {
+    name: 'Text',
+    type: 'TEXT'
 }, {
     name: 'Education',
     type: 'EDUCATION'
@@ -51,6 +54,7 @@ export class CVComponent implements OnInit {
     public uid: Observable<any>;
     public cid: Observable<any>;
     public sections: FirebaseListObservable<any>;
+    public basePath$: Observable<string>;
     public types = TYPES;
     public newSection = {
       title: null,
@@ -68,24 +72,25 @@ export class CVComponent implements OnInit {
     ) { }
 
     public ngOnInit (): void {
-      this.uid = this._authService.user$.map(u => u.uid);
+        this.uid = this._authService.user$
+            .map(u => u.uid)
+            .filter(Boolean);
 
-      this.cid = this._route.params
-        .map(p => p.id)
-        .filter(Boolean);
+        this.cid = this._route.params
+            .map(p => p.id)
+            .filter(Boolean);
 
-      this.cid
-        .subscribe(cid => {
-          this._cvService.getCv(cid)
-            .subscribe(cv => {
-              this.cv = cv;
+        this.cid
+            .subscribe(cid => {
+            this._cvService.getCvSections(cid)
+                .subscribe(sections => {
+                    this.sections = sections;
+                });
             });
 
-          this._cvService.getCvSections(cid)
-            .subscribe(sections => {
-              this.sections = sections;
-            });
-        });
+        this.basePath$ = this.uid
+            .combineLatest(this.cid)
+            .map(([uid, cid]) => `sections/${ uid }/${ cid }/`);
 
         this.resetForm();
     }

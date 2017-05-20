@@ -6,20 +6,23 @@ import { CommonModule } from '@angular/common';
 import { CVComponent } from './cv.component';
 
 import { DetailsComponent } from './details/details.component';
-import { DividerComponent } from './divider/divider.component';
+import { TitleComponent } from './title/title.component';
+import { TextComponent } from './text/text.component';
 import { ExperienceComponent } from './experience/experience.component';
 import { EducationComponent } from './education/education.component';
 import { SkillsComponent } from './skills/skills.component';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
+import {DndModule} from 'ng2-dnd';
 
 @NgModule({
     declarations: [
         CVComponent,
 
         DetailsComponent,
-        DividerComponent,
+        TitleComponent,
+        TextComponent,
         ExperienceComponent,
         EducationComponent,
         SkillsComponent,
@@ -33,7 +36,8 @@ import { SharedModule } from '../shared/shared.module';
         FormsModule,
         CommonModule,
         RouterModule,
-        SharedModule
+        SharedModule,
+        DndModule.forRoot()
     ]
 })
 export class CVModule { }
