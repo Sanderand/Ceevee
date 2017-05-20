@@ -6,6 +6,11 @@ export const DetailsFields: Array<Field> = [{
   placeholder: 'Name',
   type: 'text'
 }, {
+  key: 'title',
+  label: 'Title',
+  placeholder: 'Title',
+  type: 'text'
+}, {
   key: 'address',
   label: 'Address',
   placeholder: 'Address',
@@ -15,11 +20,6 @@ export const DetailsFields: Array<Field> = [{
   label: 'Email',
   placeholder: 'Email',
   type: 'email'
-}, {
-  key: 'url',
-  label: 'Url',
-  placeholder: 'Url',
-  type: 'url'
 }, {
   key: 'tel',
   label: 'Tel',

@@ -1,12 +1,13 @@
 @import '../../../variables.scss';
 
 cv-feedback {
+    display: block;
     page-break-inside: avoid;
+    margin-bottom: 1em;
 
     .items {
         display: block;
         width: 100%;
-        margin-bottom: 2em;
 
         .item {
             page-break-inside: avoid;
@@ -16,50 +17,23 @@ cv-feedback {
                 padding-bottom: 0;
             }
 
-            .name {
+            .title {
                 display: inline-block;
-                font-weight: bolder;
             }
 
             .relationship {
+                color: $c_lighte;
                 display: inline-block;
-                font-size: 0.9em;
-
-                &:before{
-                    content: '(';
-                }
-
-                &::after{
-                    content: ' at';
-                }
+                font-size: 0.8em;
             }
 
-            .institution {
-                display: inline-block;
-                font-size: 0.9em;
-
-                &:after {
-                    content: ')';
-                }
-            }
-
-            .comment {
-                text-align: justify;
-                color: $c_light;
-                font-size: 0.9em;
-                line-height: 1.15em;
-                margin-top: 0.2em;
-
+            p {
                 &:before {
                     content: '„';
-                    display: inline;
-                    font-weight: 900;
                 }
 
                 &::after {
                     content: '”';
-                    display: inline;
-                    font-weight: 900;
                 }
             }
         }

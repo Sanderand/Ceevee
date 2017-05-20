@@ -3,54 +3,33 @@
 cv-details {
     display: block;
     text-align: center;
-    line-height: 1.25em;
-    margin-bottom: 2em;
+    margin-bottom: 2.5em;
     page-break-inside: avoid;
 
     .name {
         text-transform: uppercase;
-        font-size: 1.75em;
-        letter-spacing: 0.25em;
-        margin-bottom: 0.25em;
-        font-weight: bolder;
-        display: inline-block;
+        font-size: 2em;
+        font-weight: 300;
+        letter-spacing: 2px;
+    }
+
+    .title {
+        font-weight: 300;
     }
 
     .address {
-        display: inline-block;
+        display: flex;
+        justify-content: space-around;
+        background-color: $c_highlight;
+        line-height: 1.8em;
+        margin-bottom: 2.5em;
 
-        &:after {
-            padding-left: .5em;
-            padding-right: .25em;
-            content: '•';
+        .physical,
+        .tel,
+        .email {
+            color: $c_background;
+            font-size: 0.8em;
+            padding: 0 0.25em;
         }
-    }
-
-    .tel {
-        display: inline-block;
-    }
-
-    .email {
-        display: inline-block;
-
-        &:after {
-            padding-left: .5em;
-            padding-right: .25em;
-            content: '•';
-        }
-    }
-
-    .url {
-        display: inline-block;
-    }
-
-    .email,
-    .url {
-        font-size: 0.9em;
-    }
-
-    .ghost {
-        width: 400px;
-        margin: 0 auto;
     }
 }

@@ -2,13 +2,13 @@
 
 cv-title {
     display: block;
-    margin-bottom: 1em;
     padding-left: 1em;
     min-height: 2em;
     page-break-inside: avoid;
     border-left: 1.5em solid;
     border-bottom: 0.01em solid;
-    border-color: #55b08f;
+    border-color: $c_highlight;
+    margin-bottom: 1em;
 
     .title {
         line-height: 2em;

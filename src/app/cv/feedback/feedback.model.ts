@@ -6,11 +6,6 @@ export const FeedbackFields: Array<Field> = [{
   type: 'text',
   placeholder: 'John Doe'
 }, {
-  key: 'institution',
-  label: 'Institution',
-  type: 'text',
-  placeholder: 'The Company'
-}, {
   key: 'relationship',
   label: 'Relationship',
   type: 'text',

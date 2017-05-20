@@ -45,7 +45,8 @@ export class CVService {
 
     public removeCV (cid): void {
       let uid = this._authService.user$.getValue().uid;
-      this._af.database.object(`/cvs/${ uid }/${ cid }`).remove();
-      this._af.database.object(`/sections/${ uid }/${ cid }`).remove();
+      this._af.database.object(`/sections/${ uid }/${ cid }`).remove().then(() => {
+          this._af.database.object(`/cvs/${ uid }/${ cid }`).remove();
+      });
     }
 }

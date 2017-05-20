@@ -1,12 +1,13 @@
 @import '../../../variables.scss';
 
 cv-skills {
+    display: block;
     page-break-inside: avoid;
+    margin-bottom: 1em;
 
     .items {
         display: table;
         width: 100%;
-        margin-bottom: 2em;
 
         .item {
             page-break-inside: avoid;
@@ -14,9 +15,15 @@ cv-skills {
 
             .title {
                 display: table-cell;
-                min-width: $v_left_width;
-                padding-right: 1em;
+                width: $v_left_width;
                 padding-bottom: 0.5em;
+                font-size: 0.9em;
+            }
+
+            p {
+                font-size: 0.7em;
+                font-weight: 400;
+                color: $c_light;
             }
 
             .bar {
@@ -36,11 +43,6 @@ cv-skills {
                         height: 0.5em;
                         background-color: $c_highlight;
                     }
-                }
-
-                .description {
-                    font-size: 0.85em;
-                    color: $c_light;
                 }
             }
         }

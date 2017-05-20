@@ -1,31 +1,29 @@
 <div
-    class="name">
-    {{ section?.data?.name }}
-</div>
-
-<div>
-    <div
-        class="address">
+    class="address">
+    <span
+        class="physical">
         {{ section?.data?.address }}
-    </div>
+    </span>
 
-    <div
+    <a
+        [attr.href]="'tel:' + section?.data?.tel"
         class="tel">
         {{ section?.data?.tel }}
-    </div>
-</div>
+    </a>
 
-<div>
     <a
         [attr.href]="'mailto:' + section?.data?.email"
         class="email">
       {{ section?.data?.email }}
     </a>
+</div>
 
-    <a
-        [attr.href]="section?.data?.url"
-        class="url"
-        target="_blank">
-      {{ section?.data?.url }}
-    </a>
+<div
+    class="name">
+    {{ section?.data?.name }}
+</div>
+
+<div
+    class="title">
+    {{ section?.data?.title }}
 </div>

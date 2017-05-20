@@ -5,7 +5,7 @@
         (click)="editData($event, item)"
         class="item editable">
         <div
-            class="name">
+            class="title">
             {{ item.name }}
         </div>
 
@@ -14,15 +14,9 @@
             {{ item.relationship }}
         </div>
 
-        <div
-            class="institution">
-            {{ item.institution }}
-        </div>
-
-        <div
-            class="comment">
+        <p>
             {{ item.comment }}
-        </div>
+        </p>
     </div>
 </div>
 

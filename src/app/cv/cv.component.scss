@@ -45,14 +45,6 @@ cv-cv {
       }
     }
 
-    .section-title {
-        text-transform: uppercase;
-        margin-bottom: 0.5em;
-        font-weight: 400;
-        font-size: 1.2em;
-        display: inline-block;
-    }
-
     .tag {
         background-color: #fff;
         border: 1px solid $c_highlight;
@@ -63,32 +55,10 @@ cv-cv {
         vertical-align: baseline;
         margin: 0 .1em;
         padding: 0 .7em;
-        font-size: .8em;
+        font-size: .75em;
         line-height: 1.8em;
         font-weight: normal;
         border-radius: .3em;
-    }
-
-    .inline-button {
-        display: inline-block;
-        border-radius: 100%;
-        width: 24px;
-        height: 24px;
-        background-color: #dadada;
-        text-align: center;
-        font-weight: 800;
-        color: #888;
-        line-height: 22px;
-        cursor: pointer;
-
-        &:hover {
-            color: #444;
-            background-color: #888;
-        }
-
-        @media print {
-          display: none;
-        }
     }
 
     footer {

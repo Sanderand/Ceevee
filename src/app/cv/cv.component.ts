@@ -36,7 +36,7 @@ const TYPES = [{
 @Component({
     selector: 'cv-cv',
     templateUrl: './cv.component.html',
-    styleUrls: ['./cv.component.scss'],
+    styleUrls: ['./cv.component.scss', './andre.theme.scss'],
     encapsulation: ViewEncapsulation.None
 })
 export class CVComponent implements OnInit {
@@ -74,11 +74,13 @@ export class CVComponent implements OnInit {
     public ngOnInit (): void {
         this.uid = this._authService.user$
             .map(u => u.uid)
-            .filter(Boolean);
+            .filter(Boolean)
+            .first();
 
         this.cid = this._route.params
             .map(p => p.id)
-            .filter(Boolean);
+            .filter(Boolean)
+            .first();
 
         this.cid
             .subscribe(cid => {

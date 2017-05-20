@@ -15,6 +15,7 @@
             <div
                 class="timespan">
                 <div
+                    *ngIf="item.start"
                     class="start">
                     {{ item.start ? (item.start | date:'MM/yy') : 'present' }}
                 </div>
@@ -28,19 +29,22 @@
         <div
             class="right">
             <a
+                *ngIf="item.institution"
                 [attr.href]="item.link"
                 class="institution"
                 target="_blank">
                 {{ item.institution }}
             </a>
+
             <div
+                *ngIf="item.location"
                 class="location">
                 {{ item.location }}
             </div>
-            <div
-                class="description">
+
+            <p>
                 {{ item.description }}
-            </div>
+            </p>
         </div>
     </div>
 </div>
