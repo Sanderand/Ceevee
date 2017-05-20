@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { DropdownComponent } from './components/dropdown/dropdown.component';
+import { TextAreaDirective } from './directives/text-area/text-area.directive';
 import { SplitPipe } from './pipes/split.pipe';
 import { WhenPipe } from './pipes/when.pipe';
 import { CVListComponent } from './components/cv-list/cv-list.component';
@@ -16,6 +17,7 @@ import { KeysPipe } from './pipes/keys.pipe';
     declarations: [
         SpinnerComponent,
         DropdownComponent,
+        TextAreaDirective,
 
         CVListComponent,
         CVSelectComponent,
@@ -27,6 +29,7 @@ import { KeysPipe } from './pipes/keys.pipe';
     exports: [
         SpinnerComponent,
         DropdownComponent,
+        TextAreaDirective,
 
         CVListComponent,
         CVSelectComponent,
