@@ -15,6 +15,7 @@ import { FBObject } from '../../shared/classes/fb-object.class';
 export class DetailsComponent extends FBObject {
     @HostBinding('class.editable') public editableClass = true;
     protected _fields: Array<Field> = DetailsFields;
+    public emptyValue: string = 'Empty profile section: click to edit.';
 
     constructor (
         _af: AngularFire,

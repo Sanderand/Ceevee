@@ -10,6 +10,12 @@
         </div>
 
         <div
+            *ngIf="isEmptyItem(item)"
+            class="title empty">
+            {{ emptyItemValue }}
+        </div>
+
+        <div
             class="relationship">
             {{ item.relationship }}
         </div>
@@ -22,19 +28,21 @@
 
 <p
     class="empty"
-    *ngIf="(items | async)?.length === 0">Empty feedback section</p>
+    *ngIf="(items | async)?.length === 0">
+    {{ emptyListValue }}
+</p>
 
 <div class="group">
     <button
-        class="button wide"
+        class="button small"
         (click)="editData($event, null)">
         Add Item
     </button>
 
     <button
         *ngIf="(items | async)?.length === 0"
-        class="button danger wide"
+        class="button danger small"
         (click)="removeSection($event)">
-        Remove section
+        Remove
     </button>
 </div>

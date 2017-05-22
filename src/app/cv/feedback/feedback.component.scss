@@ -2,7 +2,6 @@
 
 cv-feedback {
     display: block;
-    page-break-inside: avoid;
     margin-bottom: 1em;
 
     .items {
@@ -28,13 +27,7 @@ cv-feedback {
             }
 
             p {
-                &:before {
-                    content: '„';
-                }
-
-                &::after {
-                    content: '”';
-                }
+                font-style: italic;
             }
         }
     }

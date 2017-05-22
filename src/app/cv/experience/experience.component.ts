@@ -13,6 +13,8 @@ import { FBList } from '../../shared/classes/fb-list.class';
     encapsulation: ViewEncapsulation.None
 })
 export class ExperienceComponent extends FBList {
+    public emptyListValue: string = 'Empty experience list';
+    public emptyItemValue: string = 'Empty experience item: Click to edit.';
     protected _fields: Array<Field> = ExperienceFields;
 
     constructor (

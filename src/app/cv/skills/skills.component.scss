@@ -2,36 +2,22 @@
 
 cv-skills {
     display: block;
-    page-break-inside: avoid;
     margin-bottom: 1em;
 
     .items {
-        display: table;
-        width: 100%;
-
         .item {
+            display: flex;
             page-break-inside: avoid;
-            display: table-row;
+            padding-bottom: 0.75em;
 
-            .title {
-                display: table-cell;
+            .left {
                 width: $v_left_width;
-                padding-bottom: 0.5em;
-                font-size: 0.9em;
+                text-align: right;
             }
 
-            p {
-                font-size: 0.7em;
-                font-weight: 400;
-                color: $c_light;
-            }
-
-            .bar {
+            .right {
+                flex: 1;
                 padding-left: 1em;
-                display: table-cell;
-                vertical-align: top;
-                width: 100%;
-                padding-bottom: 0.5em;
 
                 .wrapper {
                     width: 50%;
@@ -44,6 +30,13 @@ cv-skills {
                         background-color: $c_highlight;
                     }
                 }
+            }
+
+            p {
+                font-size: 0.8em;
+                font-weight: 300;
+                color: $c_light;
+                margin: 0;
             }
         }
     }

@@ -1,3 +1,9 @@
 <p>
     {{ section?.data?.text }}
 </p>
+
+<p
+    *ngIf="isEmpty"
+    class="empty">
+    {{ emptyValue }}
+</p>

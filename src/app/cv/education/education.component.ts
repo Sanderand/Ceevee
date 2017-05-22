@@ -14,6 +14,8 @@ import { FBList } from '../../shared/classes/fb-list.class';
 })
 export class EducationComponent extends FBList {
     protected _fields: Array<Field> = EducationFields;
+    public emptyListValue: string = 'Empty education list';
+    public emptyItemValue: string = 'Empty education item: Click to edit.';
 
     constructor (
         _af: AngularFire,

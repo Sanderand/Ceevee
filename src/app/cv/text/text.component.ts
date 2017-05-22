@@ -14,6 +14,7 @@ import { FBObject } from '../../shared/classes/fb-object.class';
 })
 export class TextComponent extends FBObject {
     @HostBinding('class.editable') public editableClass = true;
+    public emptyValue: string = 'Empty text section: click to edit.';
     protected _fields: Array<Field> = TextFields;
 
     constructor (

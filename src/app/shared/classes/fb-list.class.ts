@@ -26,7 +26,7 @@ export class FBList implements OnInit, OnChanges {
     }
 
     public ngOnChanges(changes: SimpleChanges): void {
-      let { path } = changes;
+        const { path } = changes;
 
         if (path && path.currentValue) {
             this.items = this._af.database.list(`${ this.path }/data`);
@@ -71,5 +71,14 @@ export class FBList implements OnInit, OnChanges {
         }
 
         this._af.database.object(this.path).remove();
+    }
+
+    public isEmptyItem (item): boolean {
+        return Object
+            .keys(item)
+            .every(key => {
+                const value = item[key];
+                return !(value && value.length);
+            });
     }
 }

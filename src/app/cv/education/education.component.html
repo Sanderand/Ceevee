@@ -13,6 +13,12 @@
             </div>
 
             <div
+                *ngIf="isEmptyItem(item)"
+                class="empty title">
+                {{ emptyItemValue }}
+            </div>
+
+            <div
                 class="timespan">
                 <div
                     *ngIf="item.start"
@@ -51,19 +57,21 @@
 
 <p
     class="empty"
-    *ngIf="(items | async)?.length === 0">Empty education section</p>
+    *ngIf="(items | async)?.length === 0">
+    {{ emptyListValue }}
+</p>
 
 <div class="group">
     <button
-        class="button wide"
+        class="button small"
         (click)="editData($event, null)">
         Add Item
     </button>
 
     <button
         *ngIf="(items | async)?.length === 0"
-        class="button danger wide"
+        class="button danger small"
         (click)="removeSection($event)">
-        Remove section
+        Remove
     </button>
 </div>

@@ -118,7 +118,7 @@ export class CVComponent implements OnInit {
     private resetForm (): void {
       this.newSection = {
         title: null,
-        type: this.types[0].type
+        type: null
       };
     }
 

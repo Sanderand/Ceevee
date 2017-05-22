@@ -1,4 +1,5 @@
 <header
+    *ngIf="(sections | async)"
     class="card">
     <span
         class="group">
@@ -141,7 +142,8 @@
   </div>
 </div>
 
-<footer>
+<footer
+  *ngIf="(sections | async)">
   <label
     class="form-control-label">
     Add new section
@@ -154,25 +156,17 @@
     novalidate>
 
     <div>
-      <label>Title</label>
-      <div
-        class="input-group">
-        <select
-          name="type"
-          [(ngModel)]="newSection.type">
-          <option
-            [value]="type.type"
-            *ngFor="let type of types">
-            {{ type.name }}
-          </option>
-        </select>
-
-        <button
-          type="submit"
-          class="button success">
-          Add
-        </button>
-      </div>
+      <label>Type</label>
+      <select
+        name="type"
+        (change)="submitChanges($event)"
+        [(ngModel)]="newSection.type">
+        <option
+          [value]="type.type"
+          *ngFor="let type of types">
+          {{ type.name }}
+        </option>
+      </select>
     </div>
   </form>
 </footer>

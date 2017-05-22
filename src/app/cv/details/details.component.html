@@ -27,3 +27,9 @@
     class="title">
     {{ section?.data?.title }}
 </div>
+
+<span
+    *ngIf="isEmpty"
+    class="title empty">
+    {{ emptyValue }}
+</span>

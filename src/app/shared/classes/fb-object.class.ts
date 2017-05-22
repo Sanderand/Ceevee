@@ -1,4 +1,4 @@
-import { OnInit, Input, HostListener, OnChanges } from '@angular/core';
+import { OnInit, Input, HostListener, OnChanges, SimpleChanges } from '@angular/core';
 import { AngularFire, FirebaseObjectObservable } from 'angularfire2';
 
 import { ModalService } from '../../modal/modal.service';
@@ -7,9 +7,10 @@ import { generateUUID } from '../helpers/math.helpers';
 import { Subscription } from 'rxjs';
 import { Observable } from 'rxjs/Observable';
 
-export class FBObject implements OnInit {
+export class FBObject implements OnInit, OnChanges {
     @Input() public section: any;
     @Input() public path: string;
+    public isEmpty: boolean = true;
 
     private _uuid = generateUUID();
     protected _fields: Array<Field> = [];
@@ -25,6 +26,14 @@ export class FBObject implements OnInit {
             .subscribe(res => this.updateData(res.data));
     }
 
+    public ngOnChanges (changes: SimpleChanges): void {
+        const { section } = changes;
+
+        if (section && section.currentValue && section.currentValue.data) {
+            this.setIsEmpty();
+        }
+    }
+
     @HostListener('click', ['$event'])
     public editData ($event): void {
         $event.preventDefault();
@@ -35,6 +44,15 @@ export class FBObject implements OnInit {
                 fields: this._fields.map(a => Object.assign({}, a)),
                 source: this._uuid
           });
+    }
+
+    private setIsEmpty (): void {
+        this.isEmpty = Object
+            .keys(this.section.data)
+            .every(key => {
+                const value = this.section.data[key];
+                return !(value && value.length);
+            });
     }
 
     private updateData (newData): void {

@@ -6,37 +6,27 @@ cv-education {
   margin-bottom: 1em;
 
   .items {
-    display: table;
-    width: 100%;
-
     .item {
+      display: flex;
       page-break-inside: avoid;
-      &:last-child .left,
-      &:last-child .right {
-        padding-bottom: 0;
-      }
 
-      .left, .right {
+      &:not(:last-child) {
         padding-bottom: 1em;
-        display: table-cell;
       }
 
       .left {
         width: $v_left_width;
+        text-align: right;
       }
 
       .right {
-        width: 100%;
+        flex: 1;
         padding-left: 1em;
         vertical-align: top;
       }
 
       .title {
         padding-bottom: 0.25em;
-      }
-
-      .institution {
-        display: inline-block;
       }
     }
   }

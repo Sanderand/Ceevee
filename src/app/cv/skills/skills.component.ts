@@ -13,6 +13,8 @@ import { FBList } from '../../shared/classes/fb-list.class';
     encapsulation: ViewEncapsulation.None
 })
 export class SkillsComponent extends FBList {
+    public emptyListValue: string = 'Empty skill list';
+    public emptyItemValue: string = 'Empty skill item: Click to edit.';
     protected _fields: Array<Field> = SkillsFields;
 
     constructor (
