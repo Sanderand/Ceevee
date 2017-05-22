@@ -131,11 +131,11 @@
 
   <div
     *ngIf="!(sections | async)">
-      <div class="ghost" style="height: 2rem;margin-bottom: 1rem; width: 12rem;"></div>
+      <div class="ghost" style="height: 2rem;margin-bottom: 0.5rem; width: 12rem;"></div>
       <div class="ghost" style="height: 10rem;margin-bottom: 2rem;"></div>
-      <div class="ghost" style="height: 2rem;margin-bottom: 1rem; width: 12rem;"></div>
-      <div class="ghost" style="height: 1rem;margin-bottom: 1rem;"></div>
-      <div class="ghost" style="height: 1rem;margin-bottom: 1rem;"></div>
+      <div class="ghost" style="height: 2rem;margin-bottom: 0.5rem; width: 12rem;"></div>
+      <div class="ghost" style="height: 1rem;margin-bottom: 0.5rem;"></div>
+      <div class="ghost" style="height: 1rem;margin-bottom: 0.5rem;"></div>
       <div class="ghost" style="height: 3rem;"></div>
   </div>
 </div>
@@ -159,6 +159,13 @@
         name="type"
         (change)="submitChanges($event)"
         [(ngModel)]="newSection.type">
+        <option
+          [value]="null"
+          selected
+          disabled>
+          Choose a type
+        </option>
+
         <option
           [value]="type.type"
           *ngFor="let type of types">
