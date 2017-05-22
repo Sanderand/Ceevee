@@ -1,4 +1,4 @@
-import { Field } from '../../shared/models/field.model';
+import { Field } from '../../../shared/models/field.model';
 
 export const SkillsFields: Array<Field> = [{
   key: 'title',

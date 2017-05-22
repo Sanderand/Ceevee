@@ -2,19 +2,20 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
+import { SharedModule } from '../shared/shared.module';
 import { CVComponent } from './cv.component';
 
-import { DetailsComponent } from './details/details.component';
-import { TitleComponent } from './title/title.component';
-import { TextComponent } from './text/text.component';
-import { ExperienceComponent } from './experience/experience.component';
-import { EducationComponent } from './education/education.component';
-import { SkillsComponent } from './skills/skills.component';
-import { FeedbackComponent } from './feedback/feedback.component';
-import { RouterModule } from '@angular/router';
-import { SharedModule } from '../shared/shared.module';
-import {DndModule} from 'ng2-dnd';
+import { DetailsComponent } from './items/details/details.component';
+import { TitleComponent } from './items/title/title.component';
+import { TextComponent } from './items/text/text.component';
+
+import { ExperienceComponent } from './lists/experience/experience.component';
+import { EducationComponent } from './lists/education/education.component';
+import { SkillsComponent } from './lists/skills/skills.component';
+import { FeedbackComponent } from './lists/feedback/feedback.component';
+
 
 @NgModule({
     declarations: [
@@ -36,8 +37,7 @@ import {DndModule} from 'ng2-dnd';
         FormsModule,
         CommonModule,
         RouterModule,
-        SharedModule,
-        DndModule.forRoot()
+        SharedModule
     ]
 })
 export class CVModule { }

@@ -2,9 +2,8 @@ import { OnInit, Input, HostListener, OnChanges, SimpleChanges } from '@angular/
 import { AngularFire, FirebaseObjectObservable } from 'angularfire2';
 
 import { ModalService } from '../../modal/modal.service';
-import { Field } from '../models/field.model';
-import { generateUUID } from '../helpers/math.helpers';
-import { Subscription } from 'rxjs';
+import { Field } from '../../shared/models/field.model';
+import { generateUUID } from '../../shared/helpers/math.helpers';
 import { Observable } from 'rxjs/Observable';
 
 export class FBObject implements OnInit, OnChanges {

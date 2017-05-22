@@ -1,10 +1,10 @@
 import { Component, ViewEncapsulation, HostBinding } from '@angular/core';
 import { AngularFire } from 'angularfire2';
 
-import { ModalService } from '../../modal/modal.service';
-import { Field } from '../../shared/models/field.model';
+import { ModalService } from '../../../modal/modal.service';
+import { Field } from '../../../shared/models/field.model';
 import { TextFields } from './text.model';
-import { FBObject } from '../../shared/classes/fb-object.class';
+import { FBObject } from '../fb-object.class';
 
 @Component({
     selector: 'cv-text',

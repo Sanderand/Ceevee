@@ -2,8 +2,8 @@ import { Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
 
 import { ModalService } from '../../modal/modal.service';
-import { Field } from '../models/field.model';
-import { generateUUID } from '../helpers/math.helpers';
+import { Field } from '../../shared/models/field.model';
+import { generateUUID } from '../../shared/helpers/math.helpers';
 
 export class FBList implements OnInit, OnChanges {
     @Input() public section: any;
@@ -74,6 +74,7 @@ export class FBList implements OnInit, OnChanges {
     }
 
     public isEmptyItem (item): boolean {
+        // todo: find a more performant way to do this
         return Object
             .keys(item)
             .every(key => {

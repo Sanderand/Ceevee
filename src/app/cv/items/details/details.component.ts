@@ -1,10 +1,10 @@
 import { Component, ViewEncapsulation, HostBinding, OnChanges, SimpleChanges, Input } from '@angular/core';
 import { AngularFire } from 'angularfire2';
 
-import { ModalService } from '../../modal/modal.service';
-import { Field } from '../../shared/models/field.model';
+import { ModalService } from '../../../modal/modal.service';
+import { Field } from '../../../shared/models/field.model';
 import { DetailsFields } from './details.model';
-import { FBObject } from '../../shared/classes/fb-object.class';
+import { FBObject } from '../fb-object.class';
 
 @Component({
     selector: 'cv-details',
