@@ -1,6 +1,6 @@
 import { Field } from '../../../shared/models/field.model';
 
-export const DetailsFields: Array<Field> = [{
+export const HeaderFields: Array<Field> = [{
   key: 'name',
   label: 'Name',
   placeholder: 'Name',

@@ -5,14 +5,14 @@ import { FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
 import { FONT_SIZE_CHANGE_STEP, MAX_FONT_SIZE, MIN_FONT_SIZE } from '../shared/constants/constants';
 import { restrictRange } from '../shared/helpers/math.helpers';
 import { CVService } from './cv.service';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 import { DropdownComponent } from '../shared/components/dropdown/dropdown.component';
 import { AuthService } from '../auth/auth.service';
 import * as firebase from 'firebase';
 
 const TYPES = [{
-    name: 'Details',
-    type: 'DETAILS'
+    name: 'Header',
+    type: 'HEADER'
 }, {
     name: 'Title',
     type: 'TITLE'

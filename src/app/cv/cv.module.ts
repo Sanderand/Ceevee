@@ -7,7 +7,7 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { CVComponent } from './cv.component';
 
-import { DetailsComponent } from './items/details/details.component';
+import { HeaderComponent } from './items/header/header.component';
 import { TitleComponent } from './items/title/title.component';
 import { TextComponent } from './items/text/text.component';
 
@@ -21,9 +21,10 @@ import { FeedbackComponent } from './lists/feedback/feedback.component';
     declarations: [
         CVComponent,
 
-        DetailsComponent,
+        HeaderComponent,
         TitleComponent,
         TextComponent,
+
         ExperienceComponent,
         EducationComponent,
         SkillsComponent,

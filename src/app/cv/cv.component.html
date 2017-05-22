@@ -79,12 +79,12 @@
   <section
     *ngFor="let section of (sections | async)">
 
-    <cv-details
-      *ngIf="section.meta.type === 'DETAILS'"
+    <cv-header
+      *ngIf="section.meta.type === 'HEADER'"
       [path]="(basePath$ | async) + section.$key"
       [section]="section"
       [style.order]="section.meta.order">
-    </cv-details>
+    </cv-header>
 
     <cv-title
       *ngIf="section.meta.type === 'TITLE'"
