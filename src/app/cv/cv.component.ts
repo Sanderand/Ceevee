@@ -1,6 +1,6 @@
 import { Component, HostBinding, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
+import { FirebaseListObservable, FirebaseObjectObservable, AngularFire } from 'angularfire2';
 
 import { FONT_SIZE_CHANGE_STEP, MAX_FONT_SIZE, MIN_FONT_SIZE } from '../shared/constants/constants';
 import { restrictRange } from '../shared/helpers/math.helpers';
@@ -8,6 +8,8 @@ import { CVService } from './cv.service';
 import { Observable } from 'rxjs/Observable';
 import { DropdownComponent } from '../shared/components/dropdown/dropdown.component';
 import { AuthService } from '../auth/auth.service';
+import { ModalService } from '../modal/modal.service';
+import { generateUUID } from '../shared/helpers/math.helpers';
 import * as firebase from 'firebase';
 
 const TYPES = [{
@@ -49,50 +51,50 @@ export class CVComponent implements OnInit {
 
     public MIN_FONT_SIZE = MIN_FONT_SIZE;
     public MAX_FONT_SIZE = MAX_FONT_SIZE;
-
-    public cv: FirebaseObjectObservable<any>;
-    public uid: Observable<any>;
-    public cid: Observable<any>;
-    public sections: FirebaseListObservable<any>;
-    public basePath$: Observable<string>;
     public types = TYPES;
-    public newSection = {
-      title: null,
-      type: null
-    };
+    public newSection: any;
 
-    public path: Observable<any>;
+    public cid: string;
+    public uid$: Observable<any>;
+    public cv$: FirebaseObjectObservable<any>;
+    public sections$: FirebaseListObservable<any>;
+    public basePath$: Observable<string>;
+
+
     private _theme: FirebaseObjectObservable<any>;
+    private _uuid = generateUUID();
 
     constructor (
+        private _af: AngularFire,
         private _authService: AuthService,
         private _cvService: CVService,
         private _route: ActivatedRoute,
-        private _router: Router
+        private _router: Router,
+        private _modalService: ModalService
     ) { }
 
     public ngOnInit (): void {
-        this.uid = this._authService.user$
+        this.cid = this._route.snapshot.params['id'];
+
+        this.uid$ = this._authService.user$
+            .filter(Boolean)
             .map(u => u.uid)
-            .filter(Boolean)
             .first();
 
-        this.cid = this._route.params
-            .map(p => p.id)
-            .filter(Boolean)
-            .first();
+        this.uid$
+            .subscribe(uid => this.cv$ = this._af.database.object(`/cvs/${ uid }/${ this.cid }`));
 
-        this.cid
-            .subscribe(cid => {
-            this._cvService.getCvSections(cid)
-                .subscribe(sections => {
-                    this.sections = sections;
-                });
+        this._cvService.getCvSections(this.cid)
+            .subscribe(sections => {
+                this.sections$ = sections;
             });
 
-        this.basePath$ = this.uid
-            .combineLatest(this.cid)
-            .map(([uid, cid]) => `sections/${ uid }/${ cid }/`);
+        this.basePath$ = this.uid$
+            .map(uid => `sections/${ uid }/${ this.cid }/`);
+
+        this._modalService.close$
+            .filter(res => !!res && res.source === this._uuid)
+            .subscribe(this.onCvRenameModalClose);
 
         this.resetForm();
     }
@@ -104,7 +106,7 @@ export class CVComponent implements OnInit {
         return;
       }
 
-      this.sections.push({
+      this.sections$.push({
         data: {},
         meta: {
           type: this.newSection.type,
@@ -122,12 +124,10 @@ export class CVComponent implements OnInit {
       };
     }
 
-    public removeCV (): void {
-        this._router.navigate(['/']).then(() => {
-            this.cid
-                .first()
-                .subscribe(id => this._cvService.removeCV(id));
-        });
+    public removeCV ($event): void {
+        this._router
+            .navigate(['/'])
+            .then(() => this._cvService.removeCV(this.cid));
     }
 
     public decreaseFontSize (): void {
@@ -156,4 +156,47 @@ export class CVComponent implements OnInit {
         $event.stopPropagation();
         this.dropdown.open = true;
     }
+
+    public renameCV ($event): void {
+        $event.stopPropagation();
+        this.dropdown.open = false;
+
+        this.cv$
+            .filter(Boolean)
+            .first()
+            .subscribe(this.openCvRenameModal);
+    }
+
+    private openCvRenameModal = (cv): void => {
+        this._modalService
+            .openModal({
+                data: {
+                    title: cv.title,
+                    description: cv.description
+                },
+                fields: [{
+                    key: 'title',
+                    label: 'Title',
+                    type: 'text',
+                    placeholder: 'Title'
+                }, {
+                    key: 'description',
+                    label: 'Description',
+                    type: 'textarea',
+                    placeholder: 'Description'
+                }],
+                source: this._uuid
+            });
+    };
+
+    private onCvRenameModalClose = (res): void => {
+        if (!(res.data && res.data.title && res.data.title.length)) {
+            return;
+        }
+
+        this.cv$.update({
+            title: res.data.title,
+            description: res.data.description
+        });
+    };
 }

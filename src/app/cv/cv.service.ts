@@ -1,13 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 import { AuthService } from '../auth/auth.service';
-import { AngularFire, FirebaseListObservable } from 'angularfire2';
+import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
 import * as firebase from 'firebase';
 
 @Injectable()
 export class CVService {
-    public cv$: BehaviorSubject<any> = new BehaviorSubject<any>(null);
-
     constructor (
         private _af: AngularFire,
         private _authService: AuthService
@@ -22,14 +20,14 @@ export class CVService {
             }));
     }
 
-    public getCv (cid): Observable<any> {
+    public getCv (cid: string): Observable<any> {
         return this._authService.user$
           .filter(Boolean)
           .map(user => user.uid)
           .map(uid => this._af.database.object(`/cvs/${ uid }/${ cid }`));
     }
 
-    public getCvSections (cid): Observable<any> {
+    public getCvSections (cid: string): Observable<any> {
       return this._authService.user$
           .filter(Boolean)
           .map(user => user.uid)
@@ -43,8 +41,11 @@ export class CVService {
             .map(uid => this._af.database.list(`/cvs/${ uid }`));
     }
 
-    public removeCV (cid): void {
-      let uid = this._authService.user$.getValue().uid;
+    public removeCV (cid: string): void {
+      const uid = this._authService.user$.getValue().uid;
+      // note: how to delete a cv
+      // 1. remove section
+      // 2. if successfull, remove cv meta data
       this._af.database.object(`/sections/${ uid }/${ cid }`).remove().then(() => {
           this._af.database.object(`/cvs/${ uid }/${ cid }`).remove();
       });

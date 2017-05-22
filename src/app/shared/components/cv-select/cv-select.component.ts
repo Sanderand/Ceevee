@@ -23,12 +23,12 @@ export class CVSelectComponent implements OnInit {
                 this.cvs = cvs;
             });
 
-        this._cvService.cv$
-            .filter(Boolean)
-            .subscribe(cv => {
-                this.activeCV = cv.$key;
-                console.info(cv);
-            });
+        // this._cvService.cv$
+        //     .filter(Boolean)
+        //     .subscribe(cv => {
+        //         this.activeCV = cv.$key;
+        //         console.info(cv);
+        //     });
     }
 
     public loadCV (): void {

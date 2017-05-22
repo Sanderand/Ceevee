@@ -1,5 +1,5 @@
 <header
-    *ngIf="(sections | async)"
+    *ngIf="(sections$ | async)"
     class="card">
     <span
         class="group">
@@ -24,12 +24,14 @@
                   class="divider"></div>
 
                 <a
+                  *ngIf="cv$ | async"
+                  (click)="renameCV($event)"
                   class="item">
                     Rename
                 </a>
 
                 <a
-                  (click)="removeCV()"
+                  (click)="removeCV($event)"
                   class="item text-danger">
                     Delete
                 </a>
@@ -77,7 +79,7 @@
   [style.fontSize.rem]="fontSize"
   [style.fontFamily]="fontFamily">
   <section
-    *ngFor="let section of (sections | async)">
+    *ngFor="let section of (sections$ | async)">
 
     <cv-header
       *ngIf="section.meta.type === 'HEADER'"
@@ -130,7 +132,7 @@
   </section>
 
   <div
-    *ngIf="!(sections | async)">
+    *ngIf="!(sections$ | async)">
       <div class="ghost" style="height: 2rem;margin-bottom: 0.5rem; width: 12rem;"></div>
       <div class="ghost" style="height: 10rem;margin-bottom: 2rem;"></div>
       <div class="ghost" style="height: 2rem;margin-bottom: 0.5rem; width: 12rem;"></div>
@@ -141,12 +143,7 @@
 </div>
 
 <footer
-  *ngIf="(sections | async)">
-  <label
-    class="form-control-label">
-    Add new section
-  </label>
-
+  *ngIf="(sections$ | async)">
   <form
     (submit)="submitChanges($event)"
     class="card"
@@ -154,7 +151,7 @@
     novalidate>
 
     <div>
-      <label>Type</label>
+      <label>Add a new section</label>
       <select
         name="type"
         (change)="submitChanges($event)"
@@ -175,4 +172,3 @@
     </div>
   </form>
 </footer>
-

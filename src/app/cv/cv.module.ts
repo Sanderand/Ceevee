@@ -5,6 +5,8 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 import { SharedModule } from '../shared/shared.module';
+import { ModalModule } from '../modal/modal.module';
+
 import { CVComponent } from './cv.component';
 
 import { HeaderComponent } from './items/header/header.component';
@@ -38,7 +40,8 @@ import { FeedbackComponent } from './lists/feedback/feedback.component';
         FormsModule,
         CommonModule,
         RouterModule,
-        SharedModule
+        SharedModule,
+        ModalModule
     ]
 })
 export class CVModule { }
