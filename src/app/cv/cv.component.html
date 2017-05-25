@@ -25,6 +25,13 @@
 
                 <a
                   *ngIf="cv$ | async"
+                  (click)="duplicateCV($event)"
+                  class="item">
+                    Duplicate
+                </a>
+
+                <a
+                  *ngIf="cv$ | async"
                   (click)="renameCV($event)"
                   class="item">
                     Rename
@@ -78,6 +85,7 @@
   [class]="themeClass + ' card'"
   [style.fontSize.rem]="fontSize"
   [style.fontFamily]="fontFamily">
+
   <section
     *ngFor="let section of (sections$ | async)">
 

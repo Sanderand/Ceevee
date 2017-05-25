@@ -1,18 +1,17 @@
 <header>
     <h1>
-        Hi
-        {{ (user | async)?.name }}
+        {{ (user$ | async) ? 'Hi ' + (user$ | async)?.name : 'Welcome' }}
     </h1>
     <h5>
-        {{ (cvs | async)?.length ? 'Here\'s an overview of your CVs' : 'You don\'t have any CVs, yet' }}
+        {{ (cvs$ | async)?.length ? 'Here\'s an overview of your CVs' : 'You don\'t have any CVs, yet' }}
     </h5>
 </header>
 
 <cv-list
-  [cvs]="cvs | async"></cv-list>
+  [cvs]="cvs$ | async"></cv-list>
 
 <div
-    *ngIf="user | async"
+    *ngIf="user$ | async"
     class="cards">
     <label
         class="form-control-label">

@@ -1,18 +1,22 @@
-import { Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
+import { Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 
-import { ModalService } from '../../modal/modal.service';
 import { Field } from '../../shared/models/field.model';
+import { ModalService } from '../../modal/modal.service';
+import { Subject } from 'rxjs/Subject';
 import { generateUUID } from '../../shared/helpers/math.helpers';
 
-export class FBList implements OnInit, OnChanges {
+export class FBList implements OnInit, OnChanges, OnDestroy {
     @Input() public section: any;
     @Input() public path: string;
 
-    public items: FirebaseListObservable<any>;
-    protected _fields: Array<Field>;
+    public items$: FirebaseListObservable<any>;
+
     private _uuid = generateUUID();
     private _keyInModal: string;
+
+    protected _destroyed$: Subject<null> = new Subject<null>();
+    protected _fields: Array<Field>;
 
     constructor (
         private _af: AngularFire,
@@ -21,16 +25,21 @@ export class FBList implements OnInit, OnChanges {
 
     public ngOnInit (): void {
         this._modalService.close$
+            .takeUntil(this._destroyed$)
             .filter(res => !!res && res.source === this._uuid)
-            .subscribe(res => this.updateData(res.data));
+            .subscribe(res => this.onModalClosed(res.data));
     }
 
     public ngOnChanges(changes: SimpleChanges): void {
         const { path } = changes;
 
         if (path && path.currentValue) {
-            this.items = this._af.database.list(`${ this.path }/data`);
+            this.items$ = this._af.database.list(`${ this.path }/data`);
         }
+    }
+
+    public ngOnDestroy (): void {
+        this._destroyed$.next();
     }
 
     public editData ($event, item): void {
@@ -47,16 +56,16 @@ export class FBList implements OnInit, OnChanges {
       this._keyInModal = item ? item.$key : null;
     }
 
-    public updateData (data): void {
+    public onModalClosed (data): void {
         if (data) {
             if (this._keyInModal) {
-                this.items.update(this._keyInModal, data);
+                this.items$.update(this._keyInModal, data);
             } else {
-                this.items.push(data);
+                this.items$.push(data);
             }
         } else {
             if (this._keyInModal) {
-                this.items.remove(this._keyInModal);
+                this.items$.remove(this._keyInModal);
             } else {
                 // NOTE: A new item got cancelled: do nothing
             }

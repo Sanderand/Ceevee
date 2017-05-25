@@ -1,7 +1,10 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+
 import { AuthService } from '../../auth/auth.service';
 import { CVService } from '../../cv/cv.service';
+import { FirebaseListObservable } from 'angularfire2';
+import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
 
 const CV_TITLE_MIN_LENGTH = 3;
 
@@ -14,8 +17,8 @@ const CV_TITLE_MIN_LENGTH = 3;
 export class DashboardComponent implements OnInit {
     public newTitle: string = null;
     public error: string = null;
-    public user: Observable<any>;
-    public cvs: Observable<any>;
+    public user$: Observable<any>;
+    public cvs$: FirebaseListObservable<any>;
 
     constructor (
         private _authService: AuthService,
@@ -23,13 +26,8 @@ export class DashboardComponent implements OnInit {
     ) {}
 
     public ngOnInit (): void {
-        this.user = this._authService.user$;
-
-        this._cvService
-            .getCvs()
-            .subscribe(cvs => {
-                this.cvs = cvs;
-            });
+        this.user$ = this._authService.user$;
+        this.cvs$ = this._cvService.getCvs();
     }
 
     public onFormSubmit ($event: Event): void {

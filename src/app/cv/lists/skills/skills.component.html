@@ -1,7 +1,7 @@
 <div
     class="items">
     <div
-        *ngFor="let item of (items | async)"
+        *ngFor="let item of (items$ | async)"
         (click)="editData($event, item)"
         class="item editable">
 
@@ -38,7 +38,7 @@
 
 <p
     class="empty"
-    *ngIf="(items | async)?.length === 0">
+    *ngIf="(items$ | async)?.length === 0">
     {{ emptyListValue }}
 </p>
 
@@ -50,7 +50,7 @@
     </button>
 
     <button
-        *ngIf="(items | async)?.length === 0"
+        *ngIf="(items$ | async)?.length === 0"
         class="button danger small"
         (click)="removeSection($event)">
         Remove

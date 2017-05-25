@@ -1,18 +1,20 @@
-import { OnInit, Input, HostListener, OnChanges, SimpleChanges } from '@angular/core';
 import { AngularFire, FirebaseObjectObservable } from 'angularfire2';
+import { HostListener, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 
-import { ModalService } from '../../modal/modal.service';
 import { Field } from '../../shared/models/field.model';
-import { generateUUID } from '../../shared/helpers/math.helpers';
+import { ModalService } from '../../modal/modal.service';
 import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
+import { generateUUID } from '../../shared/helpers/math.helpers';
 
-export class FBObject implements OnInit, OnChanges {
+export class FBObject implements OnInit, OnChanges, OnDestroy {
     @Input() public section: any;
     @Input() public path: string;
     public isEmpty: boolean = true;
 
-    private _uuid = generateUUID();
     protected _fields: Array<Field> = [];
+    protected _destroyed$: Subject<null> = new Subject<null>();
+    private _uuid = generateUUID();
 
     constructor (
       private _af: AngularFire,
@@ -21,8 +23,13 @@ export class FBObject implements OnInit, OnChanges {
 
     public ngOnInit (): void {
         this._modalService.close$
+            .takeUntil(this._destroyed$)
             .filter(res => !!res && res.source === this._uuid)
-            .subscribe(res => this.updateData(res.data));
+            .subscribe(res => this.onModalClosed(res.data));
+    }
+
+    public ngOnDestroy (): void {
+        this._destroyed$.next();
     }
 
     public ngOnChanges (changes: SimpleChanges): void {
@@ -54,12 +61,12 @@ export class FBObject implements OnInit, OnChanges {
             });
     }
 
-    private updateData (newData): void {
-      if (newData) {
-        this._af.database.object(`${ this.path }/data`).update(newData);
-      } else {
-        this._af.database.object(`${ this.path }`).remove();
-      }
+    private onModalClosed (newData): void {
+        if (newData) {
+            this._af.database.object(`${ this.path }/data`).update(newData);
+        } else {
+            this._af.database.object(`${ this.path }`).remove();
+        }
     }
 
     private getDataClone (): any {

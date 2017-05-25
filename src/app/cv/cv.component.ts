@@ -1,16 +1,18 @@
-import { Component, HostBinding, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { FirebaseListObservable, FirebaseObjectObservable, AngularFire } from 'angularfire2';
-
-import { FONT_SIZE_CHANGE_STEP, MAX_FONT_SIZE, MIN_FONT_SIZE } from '../shared/constants/constants';
-import { restrictRange } from '../shared/helpers/math.helpers';
-import { CVService } from './cv.service';
-import { Observable } from 'rxjs/Observable';
-import { DropdownComponent } from '../shared/components/dropdown/dropdown.component';
-import { AuthService } from '../auth/auth.service';
-import { ModalService } from '../modal/modal.service';
-import { generateUUID } from '../shared/helpers/math.helpers';
 import * as firebase from 'firebase';
+
+import { ActivatedRoute, Router } from '@angular/router';
+import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
+import { Component, HostBinding, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { FONT_SIZE_CHANGE_STEP, MAX_FONT_SIZE, MIN_FONT_SIZE } from '../shared/constants/constants';
+
+import { AuthService } from '../auth/auth.service';
+import { CVService } from './cv.service';
+import { DropdownComponent } from '../shared/components/dropdown/dropdown.component';
+import { ModalService } from '../modal/modal.service';
+import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
+import { generateUUID } from '../shared/helpers/math.helpers';
+import { restrictRange } from '../shared/helpers/math.helpers';
 
 const TYPES = [{
     name: 'Header',
@@ -41,7 +43,7 @@ const TYPES = [{
     styleUrls: ['./cv.component.scss', './andre.theme.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class CVComponent implements OnInit {
+export class CVComponent implements OnInit, OnDestroy {
     @HostBinding('class.cv') true;
     public themeClass: string = '';
     public fontSize: number = 1;
@@ -55,12 +57,13 @@ export class CVComponent implements OnInit {
     public newSection: any;
 
     public cid: string;
-    public uid$: Observable<any>;
+    public uid: string;
+
     public cv$: FirebaseObjectObservable<any>;
     public sections$: FirebaseListObservable<any>;
     public basePath$: Observable<string>;
 
-
+    private _destroyed$: Subject<null> = new Subject<null>();
     private _theme: FirebaseObjectObservable<any>;
     private _uuid = generateUUID();
 
@@ -76,58 +79,59 @@ export class CVComponent implements OnInit {
     public ngOnInit (): void {
         this.cid = this._route.snapshot.params['id'];
 
-        this.uid$ = this._authService.user$
-            .filter(Boolean)
-            .map(u => u.uid)
-            .first();
+        this.cv$ = this._cvService.getCv(this.cid);
+        this.sections$ = this._cvService.getCvSections(this.cid);
 
-        this.uid$
-            .subscribe(uid => this.cv$ = this._af.database.object(`/cvs/${ uid }/${ this.cid }`));
-
-        this._cvService.getCvSections(this.cid)
-            .subscribe(sections => {
-                this.sections$ = sections;
-            });
-
-        this.basePath$ = this.uid$
-            .map(uid => `sections/${ uid }/${ this.cid }/`);
+        this.basePath$ = this._authService.user$
+            .map(user => `sections/${ user.uid }/${ this.cid }/`);
 
         this._modalService.close$
+            .takeUntil(this._destroyed$)
             .filter(res => !!res && res.source === this._uuid)
             .subscribe(this.onCvRenameModalClose);
 
         this.resetForm();
     }
 
-    public submitChanges (event): void {
-      event.preventDefault();
-
-      if (!this.newSection.type) {
-        return;
-      }
-
-      this.sections$.push({
-        data: {},
-        meta: {
-          type: this.newSection.type,
-          _created: firebase.database.ServerValue.TIMESTAMP
-        }
-      });
-
-      this.resetForm();
+    public ngOnDestroy (): void {
+        this._destroyed$.next();
     }
 
-    private resetForm (): void {
-      this.newSection = {
-        title: null,
-        type: null
-      };
+    public submitChanges (event$): void {
+        event$.preventDefault();
+
+        if (!this.newSection.type) {
+            return;
+        }
+
+        this._cvService.addCvSection(this.cid, {
+            data: {},
+            meta: {
+                type: this.newSection.type,
+                _created: firebase.database.ServerValue.TIMESTAMP
+            }
+        });
+
+        this.resetForm();
+    }
+
+    private resetForm(): void {
+        this.newSection = {
+            title: null,
+            type: null
+        };
     }
 
     public removeCV ($event): void {
         this._router
             .navigate(['/'])
             .then(() => this._cvService.removeCV(this.cid));
+    }
+
+    public duplicateCV ($event): void {
+        this._router
+            .navigate(['/'])
+            .then(() => this._cvService.duplicateCV(this.cid));
     }
 
     public decreaseFontSize (): void {
