@@ -50,6 +50,11 @@ export class CVService {
         this._af.database.list(`/sections/${ uid }/${ cid }`).push(section);
     }
 
+    public renameCv (cid: string, data: { title: string, description: string }): void {
+        const uid = this.getUserId();
+        this._af.database.object(`/cvs/${ uid }/${ cid }`).update(data);
+    }
+
     public removeCV (cid: string): void {
         const uid = this.getUserId();
         // note: how to delete a cv
@@ -61,7 +66,19 @@ export class CVService {
     }
 
     public duplicateCV (cid: string): void {
-        debugger;
+        const uid = this.getUserId();
+        this._af.database.object(`/cvs/${ uid }/${ cid }`)
+            .combineLatest(this._af.database.list(`/sections/${ uid }/${ cid }`))
+            .first()
+            .subscribe(([cv, sections]) => {
+                this._af.database.list(`/cvs/${ uid }`).push({
+                    title: `${ cv.title } Copy`,
+                    description: cv.description,
+                    _created: firebase.database.ServerValue.TIMESTAMP
+                }).then(cvCopy => {
+                    sections.forEach(section => this.addCvSection(cvCopy.key, section));
+                });
+            });
     }
 
     private getUserId (): string {

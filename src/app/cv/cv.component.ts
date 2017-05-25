@@ -198,7 +198,7 @@ export class CVComponent implements OnInit, OnDestroy {
             return;
         }
 
-        this.cv$.update({
+        this._cvService.renameCv(this.cid, {
             title: res.data.title,
             description: res.data.description
         });
