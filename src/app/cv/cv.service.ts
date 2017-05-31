@@ -1,7 +1,6 @@
 import * as firebase from 'firebase';
 
-import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
-
+import { AngularFire } from 'angularfire2';
 import { AuthService } from '../auth/auth.service';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
@@ -13,28 +12,25 @@ export class CVService {
         private _authService: AuthService
     ) {}
 
-    public getCvs (): FirebaseListObservable<any> {
+    public getCvs (): Observable<any> {
         return this._authService.user$
-            .filter(user => user && user.uid)
-            .map(user => this._af.database.list(`/cvs/${ user.uid }`))
-            .distinctUntilChanged()
-            .mergeAll();
+          .filter(user => user && user.uid)
+          .distinctUntilChanged()
+          .switchMap(user => this._af.database.list(`/cvs/${ user.uid }`));
     }
 
-    public getCv (cid: string): FirebaseObjectObservable<any> {
+    public getCv (cid: string): Observable<any> {
         return this._authService.user$
-            .filter(user => user && user.uid)
-            .map(user => this._af.database.object(`/cvs/${ user.uid }/${ cid }`))
-            .distinctUntilChanged()
-            .mergeAll();
+          .filter(user => user && user.uid)
+          .distinctUntilChanged()
+          .switchMap(user => this._af.database.list(`/cvs/${ user.uid }/${ cid }`));
     }
 
-    public getCvSections (cid: string): FirebaseListObservable<any> {
+    public getCvSections (cid: string): Observable<any> {
         return this._authService.user$
-            .filter(user => user && user.uid)
-            .map(user => this._af.database.list(`/sections/${ user.uid }/${ cid }`))
-            .distinctUntilChanged()
-            .mergeAll();
+          .filter(user => user && user.uid)
+          .distinctUntilChanged()
+          .switchMap(user => this._af.database.list(`/sections/${ user.uid }/${ cid }`));
     }
 
     public addCV (title: string): void {

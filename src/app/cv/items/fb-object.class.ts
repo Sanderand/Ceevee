@@ -1,6 +1,6 @@
-import { AngularFire, FirebaseObjectObservable } from 'angularfire2';
 import { HostListener, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 
+import { AngularFire } from 'angularfire2';
 import { Field } from '../../shared/models/field.model';
 import { ModalService } from '../../modal/modal.service';
 import { Observable } from 'rxjs/Observable';

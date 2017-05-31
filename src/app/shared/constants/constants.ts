@@ -15,7 +15,7 @@ export const FIREBASE_CONFIG = {
 };
 
 export const FIREBASE_ATUH_CONFIG = {
-    provider: AuthProviders.Google,
+    providerId: AuthProviders.Google,
     method: AuthMethods.Popup
 };
 

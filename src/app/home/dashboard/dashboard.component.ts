@@ -18,7 +18,7 @@ export class DashboardComponent implements OnInit {
     public newTitle: string = null;
     public error: string = null;
     public user$: Observable<any>;
-    public cvs$: FirebaseListObservable<any>;
+    public cvs$: Observable<any>;
 
     constructor (
         private _authService: AuthService,

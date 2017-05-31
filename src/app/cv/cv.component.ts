@@ -1,10 +1,10 @@
 import * as firebase from 'firebase';
 
 import { ActivatedRoute, Router } from '@angular/router';
-import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
 import { Component, HostBinding, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FONT_SIZE_CHANGE_STEP, MAX_FONT_SIZE, MIN_FONT_SIZE } from '../shared/constants/constants';
 
+import { AngularFire } from 'angularfire2';
 import { AuthService } from '../auth/auth.service';
 import { CVService } from './cv.service';
 import { DropdownComponent } from '../shared/components/dropdown/dropdown.component';
@@ -59,12 +59,12 @@ export class CVComponent implements OnInit, OnDestroy {
     public cid: string;
     public uid: string;
 
-    public cv$: FirebaseObjectObservable<any>;
-    public sections$: FirebaseListObservable<any>;
+    public cv$: Observable<any>;
+    public sections$: Observable<any>;
     public basePath$: Observable<string>;
 
     private _destroyed$: Subject<null> = new Subject<null>();
-    private _theme: FirebaseObjectObservable<any>;
+    private _theme: Observable<any>;
     private _uuid = generateUUID();
 
     constructor (
