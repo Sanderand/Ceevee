@@ -1,5 +1,7 @@
-import { Component, HostBinding, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, HostBinding, HostListener, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+
 import { ModalService } from './modal.service';
+import { Subject } from 'rxjs/Subject';
 
 @Component({
     selector: 'cv-modal',
@@ -7,7 +9,7 @@ import { ModalService } from './modal.service';
     styleUrls: ['./modal.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class ModalComponent implements OnInit {
+export class ModalComponent implements OnInit, OnDestroy {
     @HostBinding('class.is-open') public isOpen: boolean = false;
 
     public fields: any = null;
@@ -16,12 +18,15 @@ export class ModalComponent implements OnInit {
     public preventDelete: boolean = false;
     public source: string = '';
 
+    private _destroyed$: Subject<any> = new Subject<any>();
+
     constructor (
         private _modalService: ModalService
     ) {}
 
     public ngOnInit (): void {
         this._modalService.open$
+            .takeUntil(this._destroyed$)
             .filter(Boolean)
             .subscribe(options => {
                 this.isAdding = !options.data;
@@ -31,6 +36,10 @@ export class ModalComponent implements OnInit {
                 this.source = options.source;
                 this.isOpen = true;
             });
+    }
+
+    public ngOnDestroy (): void {
+        this._destroyed$.next();
     }
 
     public closeModal (data): void {

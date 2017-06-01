@@ -13,7 +13,7 @@ export class FBObject implements OnInit, OnChanges, OnDestroy {
     public isEmpty: boolean = true;
 
     protected _fields: Array<Field> = [];
-    protected _destroyed$: Subject<null> = new Subject<null>();
+    protected _destroyed$: Subject<any> = new Subject<any>();
     private _uuid = generateUUID();
 
     constructor (

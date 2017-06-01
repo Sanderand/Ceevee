@@ -5,10 +5,13 @@ import {
   HostListener,
   Input,
   OnChanges,
+  OnDestroy,
   SimpleChanges,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from '@angular/core';
+
 import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
 
 @Component({
     selector: 'cv-dropdown',
@@ -16,23 +19,29 @@ import { Observable } from 'rxjs/Observable';
     styleUrls: ['./dropdown.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class DropdownComponent implements OnChanges {
+export class DropdownComponent implements OnChanges, OnDestroy {
     @HostBinding('class.open')
+
     @Input() public open: boolean = false;
     @Input() public remainOnInnerClick: boolean = false;
     @Input() public closeOnScroll: boolean = false;
+
+    private _destroyed$: Subject<any> = new Subject<any>();
 
     constructor (
       private _elementRef: ElementRef
     ) {}
 
-
     public ngOnChanges (changes: SimpleChanges): void {
-        let { closeOnScroll } = changes;
+        const { closeOnScroll } = changes;
 
         if (closeOnScroll && closeOnScroll.currentValue && closeOnScroll.isFirstChange()) {
             this.addScrollListener();
         }
+    }
+
+    public ngOnDestroy (): void {
+      this._destroyed$.next();
     }
 
     @HostListener('body:click', ['$event'])
@@ -49,6 +58,7 @@ export class DropdownComponent implements OnChanges {
 
         Observable
             .fromEvent(main, 'scroll')
+            .takeUntil(this._destroyed$)
             .subscribe(e => this.close());
     }
 

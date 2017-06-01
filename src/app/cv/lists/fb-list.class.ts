@@ -15,7 +15,7 @@ export class FBList implements OnInit, OnChanges, OnDestroy {
     private _uuid = generateUUID();
     private _keyInModal: string;
 
-    protected _destroyed$: Subject<null> = new Subject<null>();
+    protected _destroyed$: Subject<any> = new Subject<any>();
     protected _fields: Array<Field>;
 
     constructor (

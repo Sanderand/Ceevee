@@ -63,7 +63,7 @@ export class CVComponent implements OnInit, OnDestroy {
     public sections$: Observable<any>;
     public basePath$: Observable<string>;
 
-    private _destroyed$: Subject<null> = new Subject<null>();
+    private _destroyed$: Subject<any> = new Subject<any>();
     private _theme: Observable<any>;
     private _uuid = generateUUID();
 

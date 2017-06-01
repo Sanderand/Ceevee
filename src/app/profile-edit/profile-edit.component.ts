@@ -1,8 +1,11 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { AuthService } from '../auth/auth.service';
-import { AngularFire } from 'angularfire2';
-import { Router } from '@angular/router';
 import * as firebase from 'firebase';
+
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+
+import { AngularFire } from 'angularfire2';
+import { AuthService } from '../auth/auth.service';
+import { Router } from '@angular/router';
+import { Subject } from 'rxjs/Subject';
 
 @Component({
     selector: 'cv-profile-edit',
@@ -10,10 +13,12 @@ import * as firebase from 'firebase';
     styleUrls: ['./profile-edit.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class ProfileEditComponent implements OnInit {
+export class ProfileEditComponent implements OnInit, OnDestroy {
     public user: any;
     public newPhoto: any;
+
     private _fileInput: HTMLInputElement = document.createElement('input');
+    private _destroyed$: Subject<any> = new Subject<any>();
 
     constructor (
         private _authService: AuthService,
@@ -22,14 +27,15 @@ export class ProfileEditComponent implements OnInit {
 
     public ngOnInit (): void {
         this._authService.user$
-            .subscribe(user => {
-                this.user = Object.assign({}, user);
-            });
+            .takeUntil(this._destroyed$)
+            .subscribe(user => this.user = Object.assign({}, user));
 
         this._fileInput.type = 'file';
-        this._fileInput.addEventListener('change', () => {
-            this.uploadFile();
-        });
+        this._fileInput.addEventListener('change', () => this.uploadFile());
+    }
+
+    public ngOnDestroy (): void {
+        this._destroyed$.next();
     }
 
     public changePhoto (): void {

@@ -29,6 +29,7 @@ export class AuthService {
         this._af.auth.login()
             .then(() => this.user$
                 .filter(Boolean)
+                .first()
                 .subscribe(user => {
                     const redirectRoute = user._updated ? '/' : '/me';
                     this._router.navigate([redirectRoute]);
@@ -48,11 +49,12 @@ export class AuthService {
     private onLoggedIn = (user): void => {
         this.isLoggedIn$.next(true);
         this._af.database.object(`/users/${ user.uid }`)
-            .subscribe(userData => this.user$.next({
-                uid: user.uid,
-                photo: userData.photo || PHOTO_PLACEHOLDER_URL,
-                name: userData.name || user.google.displayName.split(' ')[0],
-                _updated: userData._updated
-            }));
+          .first()
+          .subscribe(userData => this.user$.next({
+            uid: user.uid,
+            photo: userData.photo || PHOTO_PLACEHOLDER_URL,
+            name: userData.name || user.google.displayName.split(' ')[0],
+            _updated: userData._updated
+          }));
     };
 }
