@@ -5,6 +5,10 @@ import { Observable } from 'rxjs/Observable';
 import { PHOTO_PLACEHOLDER_URL } from '../shared/constants/constants';
 import { Router } from '@angular/router';
 
+import 'rxjs/add/Operator/distinctUntilChanged';
+import 'rxjs/add/Operator/filter';
+import 'rxjs/add/Operator/first';
+
 @Injectable()
 export class AuthService {
 	public user$: BehaviorSubject<any> = new BehaviorSubject<any>(null);

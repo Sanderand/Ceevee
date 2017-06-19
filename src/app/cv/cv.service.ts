@@ -5,6 +5,12 @@ import { AuthService } from '../auth/auth.service';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
+import 'rxjs/add/Operator/combineLatest';
+import 'rxjs/add/Operator/distinctUntilChanged';
+import 'rxjs/add/Operator/filter';
+import 'rxjs/add/Operator/first';
+import 'rxjs/add/Operator/switchMap';
+
 @Injectable()
 export class CVService {
 	constructor (

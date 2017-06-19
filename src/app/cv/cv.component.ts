@@ -14,6 +14,8 @@ import { Subject } from 'rxjs/Subject';
 import { generateUUID } from '../shared/helpers/math.helpers';
 import { restrictRange } from '../shared/helpers/math.helpers';
 
+import 'rxjs/add/Operator/map';
+
 const TYPES = [{
 	name: 'Header',
 	type: 'HEADER'

@@ -13,6 +13,8 @@ import {
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 
+import 'rxjs/add/Observable/fromEvent';
+
 @Component({
 	selector: 'cv-dropdown',
 	template: '<ng-content></ng-content>',
