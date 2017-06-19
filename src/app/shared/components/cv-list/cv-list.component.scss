@@ -1,29 +1,29 @@
 @import '../../../../variables';
 
 cv-list {
-    display: block;
+	display: block;
 
-    .cards {
-        padding: 0;
-        margin: 1rem 0;
+	.cards {
+		padding: 0;
+		margin: 1rem 0;
 
-        .card {
-            display: flex;
-            flex-direction: row;
+		.card {
+			display: flex;
+			flex-direction: row;
 
-            .primary {
-                flex: 1;
+			.primary {
+				flex: 1;
 
-                .secondary {
-                    color: #aaa;
-                    font-size: 0.8rem;
-                }
-            }
+				.secondary {
+					color: #aaa;
+					font-size: 0.8rem;
+				}
+			}
 
-            .suffix {
-                font-size: 0.8rem;
-                align-self: flex-end;
-            }
-        }
-    }
+			.suffix {
+				font-size: 0.8rem;
+				align-self: flex-end;
+			}
+		}
+	}
 }

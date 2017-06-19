@@ -25,36 +25,36 @@ import { DndModule } from 'ng2-dnd';
 import { FIREBASE_ATUH_CONFIG, FIREBASE_CONFIG } from './shared/constants/constants';
 
 @NgModule({
-    declarations: [
-        AppComponent
-    ],
-    imports: [
-        BrowserModule,
-        FormsModule,
-        CommonModule,
-        RouterModule,
-        AngularFireModule.initializeApp(FIREBASE_CONFIG, FIREBASE_ATUH_CONFIG),
-        DndModule.forRoot(),
+	declarations: [
+		AppComponent
+	],
+	imports: [
+		BrowserModule,
+		FormsModule,
+		CommonModule,
+		RouterModule,
+		AngularFireModule.initializeApp(FIREBASE_CONFIG, FIREBASE_ATUH_CONFIG),
+		DndModule.forRoot(),
 
-        AppRoutingModule,
-        AuthModule,
-        ModalModule,
-        CVModule,
-        HomeModule,
-        NotFoundModule,
-        ProfileEditModule,
-        SharedModule
-    ],
-    providers: [
-        AngularFire,
-        AuthGuard,
+		AppRoutingModule,
+		AuthModule,
+		ModalModule,
+		CVModule,
+		HomeModule,
+		NotFoundModule,
+		ProfileEditModule,
+		SharedModule
+	],
+	providers: [
+		AngularFire,
+		AuthGuard,
 
-        ModalService,
-        AuthService,
-        CVService
-    ],
-    bootstrap: [
-        AppComponent
-    ]
+		ModalService,
+		AuthService,
+		CVService
+	],
+	bootstrap: [
+		AppComponent
+	]
 })
 export class AppModule { }

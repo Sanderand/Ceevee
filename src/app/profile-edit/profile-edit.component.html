@@ -1,27 +1,27 @@
 <div
-    *ngIf="user"
-    class="card">
-    <div
-        class="profile-photo">
-        <img
-            (click)="changePhoto()"
-            [attr.src]="newPhoto || user.photo"
-            [attr.alt]="user.name">
-    </div>
+	*ngIf="user"
+	class="card">
+	<div
+		class="profile-photo">
+		<img
+			(click)="changePhoto()"
+			[attr.src]="newPhoto || user.photo"
+			[attr.alt]="user.name">
+	</div>
 
-    <label>Name</label>
+	<label>Name</label>
 
-    <form
-        (submit)="onSubmit($event)"
-        class="input-group"
-        autocomplete="off"
-            novalidate>
-        <input
-            placeholder="Enter your name here"
-            class="form-control"
-            type="text"
-            name="name"
-            [value]="user.name || ''"
-            (change)="changeName($event)">
-    </form>
+	<form
+		(submit)="onSubmit($event)"
+		class="input-group"
+		autocomplete="off"
+			novalidate>
+		<input
+			placeholder="Enter your name here"
+			class="form-control"
+			type="text"
+			name="name"
+			[value]="user.name || ''"
+			(change)="changeName($event)">
+	</form>
 </div>

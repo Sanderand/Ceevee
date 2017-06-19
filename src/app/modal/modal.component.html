@@ -1,58 +1,58 @@
 <div class="modal-inner">
-    <form
-        (submit)="submitModal($event)">
-        <header>
-            {{ isAdding ? 'New' : 'Update' }} item
-        </header>
+	<form
+		(submit)="submitModal($event)">
+		<header>
+			{{ isAdding ? 'New' : 'Update' }} item
+		</header>
 
-        <main>
-            <div
-                *ngFor="let field of fields"
-                class="form-group">
-                <label>
-                    {{ field.label }}
-                </label>
+		<main>
+			<div
+				*ngFor="let field of fields"
+				class="form-group">
+				<label>
+					{{ field.label }}
+				</label>
 
-                <input
-                    *ngIf="field.type === 'text' || field.type === 'number' || field.type === 'email' || field.type === 'url' || field.type === 'date' || field.type === 'month'"
-                    [(ngModel)]="data[field.key]"
-                    [type]="field.type"
-                    [name]="field.label"
-                    [placeholder]="field.placeholder"
-                    class="form-control">
+				<input
+					*ngIf="field.type === 'text' || field.type === 'number' || field.type === 'email' || field.type === 'url' || field.type === 'date' || field.type === 'month'"
+					[(ngModel)]="data[field.key]"
+					[type]="field.type"
+					[name]="field.label"
+					[placeholder]="field.placeholder"
+					class="form-control">
 
-                <textarea
-                    *ngIf="field.type === 'textarea'"
-                    [(ngModel)]="data[field.key]"
-                    [name]="field.label"
-                    [placeholder]="field.placeholder"
-                    class="form-control">
-                </textarea>
-            </div>
-        </main>
+				<textarea
+					*ngIf="field.type === 'textarea'"
+					[(ngModel)]="data[field.key]"
+					[name]="field.label"
+					[placeholder]="field.placeholder"
+					class="form-control">
+				</textarea>
+			</div>
+		</main>
 
-        <footer
-            class="group">
-            <button
-                class="button success small"
-                type="submit">
-                {{ isAdding ? 'Save' : 'Update'}}
-            </button>
+		<footer
+			class="group">
+			<button
+				class="button success small"
+				type="submit">
+				{{ isAdding ? 'Save' : 'Update'}}
+			</button>
 
-            <button
-                *ngIf="!isAdding && !preventDelete"
-                (click)="removeItem()"
-                class="button primary small"
-                type="button">
-                Delete
-            </button>
+			<button
+				*ngIf="!isAdding && !preventDelete"
+				(click)="removeItem()"
+				class="button primary small"
+				type="button">
+				Delete
+			</button>
 
-            <button
-                (click)="cancelModal()"
-                class="button small"
-                type="button">
-                Cancel
-            </button>
-        </footer>
-    </form>
+			<button
+				(click)="cancelModal()"
+				class="button small"
+				type="button">
+				Cancel
+			</button>
+		</footer>
+	</form>
 </div>

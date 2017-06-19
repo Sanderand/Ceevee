@@ -7,17 +7,17 @@ import { RouterModule } from '@angular/router';
 import { ProfileEditComponent } from './profile-edit.component';
 
 @NgModule({
-    declarations: [
-        ProfileEditComponent
-    ],
-    exports: [
-        ProfileEditComponent
-    ],
-    imports: [
-        BrowserModule,
-        FormsModule,
-        CommonModule,
-        RouterModule
-    ]
+	declarations: [
+		ProfileEditComponent
+	],
+	exports: [
+		ProfileEditComponent
+	],
+	imports: [
+		BrowserModule,
+		FormsModule,
+		CommonModule,
+		RouterModule
+	]
 })
 export class ProfileEditModule { }

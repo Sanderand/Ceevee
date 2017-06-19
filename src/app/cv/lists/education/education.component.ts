@@ -7,20 +7,20 @@ import { EducationFields } from './education.model';
 import { FBList } from '../fb-list.class';
 
 @Component({
-    selector: 'cv-education',
-    templateUrl: './education.component.html',
-    styleUrls: ['./education.component.scss'],
-    encapsulation: ViewEncapsulation.None
+	selector: 'cv-education',
+	templateUrl: './education.component.html',
+	styleUrls: ['./education.component.scss'],
+	encapsulation: ViewEncapsulation.None
 })
 export class EducationComponent extends FBList {
-    protected _fields: Array<Field> = EducationFields;
-    public emptyListValue: string = 'Empty education list';
-    public emptyItemValue: string = 'Empty education item: Click to edit.';
+	protected _fields: Array<Field> = EducationFields;
+	public emptyListValue: string = 'Empty education list';
+	public emptyItemValue: string = 'Empty education item: Click to edit.';
 
-    constructor (
-        _af: AngularFire,
-        _modalService: ModalService
-    ) {
-        super(_af, _modalService);
-    }
+	constructor (
+		_af: AngularFire,
+		_modalService: ModalService
+	) {
+		super(_af, _modalService);
+	}
 }

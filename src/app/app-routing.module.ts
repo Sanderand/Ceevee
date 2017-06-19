@@ -9,35 +9,35 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { ProfileEditComponent } from './profile-edit/profile-edit.component';
 
 const appRoutes: Routes = [{
-    path: '',
-    pathMatch: 'full',
-    component: HomeComponent
+	path: '',
+	pathMatch: 'full',
+	component: HomeComponent
 }, {
-    canActivate: [AuthGuard],
-    path: 'me',
-    component: ProfileEditComponent
+	canActivate: [AuthGuard],
+	path: 'me',
+	component: ProfileEditComponent
 }, {
-    canActivate: [AuthGuard],
-    path: 'cv/:id',
-    component: CVComponent
+	canActivate: [AuthGuard],
+	path: 'cv/:id',
+	component: CVComponent
 }, {
-    outlet: 'modal',
-    path: 'data',
-    component: ModalComponent
+	outlet: 'modal',
+	path: 'data',
+	component: ModalComponent
 }, {
-    path: '**',
-    component: NotFoundComponent
+	path: '**',
+	component: NotFoundComponent
 }];
 
 @NgModule({
-    imports: [
-        RouterModule.forRoot(appRoutes)
-    ],
-    exports: [
-        RouterModule
-    ],
-    providers: [
-        AuthGuard
-    ]
+	imports: [
+		RouterModule.forRoot(appRoutes)
+	],
+	exports: [
+		RouterModule
+	],
+	providers: [
+		AuthGuard
+	]
 })
 export class AppRoutingModule {}

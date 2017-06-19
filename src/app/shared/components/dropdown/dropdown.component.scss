@@ -1,39 +1,39 @@
 @import '../../../../variables';
 
 cv-dropdown {
-    position: absolute;
-    display: none;
-    z-index: 2;
-    min-width: 10rem;
-    padding: 0.5rem 0;
-    color: #333;
-    text-align: left;
-    background-color: #fff;
-    border: 1px solid rgba(0, 0, 0, 0.15);
-    border-radius: 0.25rem;
+	position: absolute;
+	display: none;
+	z-index: 2;
+	min-width: 10rem;
+	padding: 0.5rem 0;
+	color: #333;
+	text-align: left;
+	background-color: #fff;
+	border: 1px solid rgba(0, 0, 0, 0.15);
+	border-radius: 0.25rem;
 
-    &.open {
-        display: block;
-    }
+	&.open {
+		display: block;
+	}
 
-    .item {
-        cursor: pointer;
-        display: block;
-        padding: 3px 1.5rem;
-        font-weight: 400;
-        color: #333;
+	.item {
+		cursor: pointer;
+		display: block;
+		padding: 3px 1.5rem;
+		font-weight: 400;
+		color: #333;
 
-        &:hover,
-        &.active {
-            color: #111;
-            background-color: #eee;
-        }
-    }
+		&:hover,
+		&.active {
+			color: #111;
+			background-color: #eee;
+		}
+	}
 
-    .divider {
-        height: 1px;
-        margin: 0.5rem 0;
-        overflow: hidden;
-        background-color: #eee;
-    }
+	.divider {
+		height: 1px;
+		margin: 0.5rem 0;
+		overflow: hidden;
+		background-color: #eee;
+	}
 }

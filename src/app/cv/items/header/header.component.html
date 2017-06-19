@@ -1,35 +1,35 @@
 <div
-    class="address">
-    <span
-        class="physical">
-        {{ section?.data?.address }}
-    </span>
+	class="address">
+	<span
+		class="physical">
+		{{ section?.data?.address }}
+	</span>
 
-    <a
-        [attr.href]="'tel:' + section?.data?.tel"
-        class="tel">
-        {{ section?.data?.tel }}
-    </a>
+	<a
+		[attr.href]="'tel:' + section?.data?.tel"
+		class="tel">
+		{{ section?.data?.tel }}
+	</a>
 
-    <a
-        [attr.href]="'mailto:' + section?.data?.email"
-        class="email">
-      {{ section?.data?.email }}
-    </a>
+	<a
+		[attr.href]="'mailto:' + section?.data?.email"
+		class="email">
+	  {{ section?.data?.email }}
+	</a>
 </div>
 
 <div
-    class="name">
-    {{ section?.data?.name }}
+	class="name">
+	{{ section?.data?.name }}
 </div>
 
 <div
-    class="title">
-    {{ section?.data?.title }}
+	class="title">
+	{{ section?.data?.title }}
 </div>
 
 <span
-    *ngIf="isEmpty"
-    class="title empty">
-    {{ emptyValue }}
+	*ngIf="isEmpty"
+	class="title empty">
+	{{ emptyValue }}
 </span>

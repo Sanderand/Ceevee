@@ -1,79 +1,79 @@
 @import '../../variables.scss';
 
 cv-cv {
-    *, :after, :before {
-        user-select: none;
-        -webkit-print-color-adjust: exact;
-    }
+	*, :after, :before {
+		user-select: none;
+		-webkit-print-color-adjust: exact;
+	}
 
-    a {
-        color: $c_highlight;
-        text-decoration: none;
-    }
+	a {
+		color: $c_highlight;
+		text-decoration: none;
+	}
 
-    header.card {
-        @media print {
-            display: none;
-        }
+	header.card {
+		@media print {
+			display: none;
+		}
 
-        @media (min-width: 768px + 200px) {
-            width: calc(768px - 2rem);
-            box-shadow: none;
-            border: none;
-            z-index: 1;
-            position: fixed;
-            top: 0;
-            padding: 13px 0px;
-            margin: 0;
-            background: transparent;
-            box-shadow: none;
-        }
-    }
+		@media (min-width: 768px + 200px) {
+			width: calc(768px - 2rem);
+			box-shadow: none;
+			border: none;
+			z-index: 1;
+			position: fixed;
+			top: 0;
+			padding: 13px 0px;
+			margin: 0;
+			background: transparent;
+			box-shadow: none;
+		}
+	}
 
-    .card {
-      @media print {
-        box-shadow: none;
-        padding: 0;
-      }
-    }
+	.card {
+	  @media print {
+		box-shadow: none;
+		padding: 0;
+	  }
+	}
 
-    .editable {
-      @media screen {
-        &:hover {
-          background-color: $c_editing_light;
-        }
-      }
-    }
+	.editable {
+	  @media screen {
+		&:hover {
+		  background-color: $c_editing_light;
+		}
+	  }
+	}
 
-    .tag {
-        background-color: #fff;
-        border: 1px solid $c_highlight;
-        color: $c_highlight;
+	.tag {
+		background-color: #fff;
+		border: 1px solid $c_highlight;
+		color: $c_highlight;
 
-        display: inline-block;
-        line-height: 1;
-        vertical-align: baseline;
-        margin: 0 .1em;
-        padding: 0 .7em;
-        font-size: .75em;
-        line-height: 1.8em;
-        font-weight: normal;
-        border-radius: .3em;
-    }
+		display: inline-block;
+		line-height: 1;
+		vertical-align: baseline;
+		margin: 0 .1em;
+		padding: 0 .7em;
+		font-size: .75em;
+		line-height: 1.8em;
+		font-weight: normal;
+		border-radius: .3em;
+	}
 
-    footer {
-      select {
-        width: 100%;
-      }
+	footer {
+	  select {
+		width: 100%;
+	  }
 
-      @media print {
-        display: none;
-      }
-    }
+	  @media print {
+		display: none;
+	  }
+	}
 
-    @media print {
-        button {
-            display: none !important;
-        }
-    }
+	@media print {
+		button {
+			display: none !important;
+		}
+	}
 }

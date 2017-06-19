@@ -1,32 +1,32 @@
 <div
-    class="cards">
-    <a
-        *ngFor="let cv of cvs"
-        [routerLink]="'/cv/' + cv.$key"
-        class="card">
-        <div
-            class="primary">
-            {{ cv?.title }}
+	class="cards">
+	<a
+		*ngFor="let cv of cvs"
+		[routerLink]="'/cv/' + cv.$key"
+		class="card">
+		<div
+			class="primary">
+			{{ cv?.title }}
 
-            <div
-                class="secondary">
-                {{ cv?.description || 'No description' }}
-            </div>
-        </div>
+			<div
+				class="secondary">
+				{{ cv?.description || 'No description' }}
+			</div>
+		</div>
 
-        <div class="suffix">
-            {{ cv?._created | when }}
-        </div>
-    </a>
+		<div class="suffix">
+			{{ cv?._created | when }}
+		</div>
+	</a>
 </div>
 
 <div
-    *ngIf="!cvs">
-    <div
-        class="ghost"
-        style="height: 75px; margin-top: 1rem"></div>
+	*ngIf="!cvs">
+	<div
+		class="ghost"
+		style="height: 75px; margin-top: 1rem"></div>
 
-    <div
-        class="ghost"
-        style="height: 75px; margin-top: 0.5rem; margin-bottom: 1rem;"></div>
+	<div
+		class="ghost"
+		style="height: 75px; margin-top: 0.5rem; margin-bottom: 1rem;"></div>
 </div>

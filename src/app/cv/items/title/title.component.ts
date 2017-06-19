@@ -7,20 +7,20 @@ import { TitleFields } from './title.model';
 import { FBObject } from '../fb-object.class';
 
 @Component({
-    selector: 'cv-title',
-    templateUrl: './title.component.html',
-    styleUrls: ['./title.component.scss'],
-    encapsulation: ViewEncapsulation.None
+	selector: 'cv-title',
+	templateUrl: './title.component.html',
+	styleUrls: ['./title.component.scss'],
+	encapsulation: ViewEncapsulation.None
 })
 export class TitleComponent extends FBObject {
-    @HostBinding('class.editable') public editableClass = true;
-    public emptyValue: string = 'Empty title: click to edit.';
-    protected _fields: Array<Field> = TitleFields;
+	@HostBinding('class.editable') public editableClass = true;
+	public emptyValue: string = 'Empty title: click to edit.';
+	protected _fields: Array<Field> = TitleFields;
 
-    constructor (
-        _af: AngularFire,
-        _modalService: ModalService
-    ) {
-        super(_af, _modalService);
-    }
+	constructor (
+		_af: AngularFire,
+		_modalService: ModalService
+	) {
+		super(_af, _modalService);
+	}
 }

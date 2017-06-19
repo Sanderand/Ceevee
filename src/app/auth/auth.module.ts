@@ -8,19 +8,19 @@ import { SharedModule } from '../shared/shared.module';
 import { AuthTileComponent } from './auth-tile.component';
 
 @NgModule({
-    declarations: [
-        AuthTileComponent
-    ],
-    exports: [
-        AuthTileComponent
-    ],
-    imports: [
-        BrowserModule,
-        FormsModule,
-        CommonModule,
-        RouterModule,
+	declarations: [
+		AuthTileComponent
+	],
+	exports: [
+		AuthTileComponent
+	],
+	imports: [
+		BrowserModule,
+		FormsModule,
+		CommonModule,
+		RouterModule,
 
-        SharedModule
-    ]
+		SharedModule
+	]
 })
 export class AuthModule { }

@@ -1,33 +1,33 @@
 @import '../../../variables';
 
 cv-dashboard {
-    >header {
-        margin-top: 4rem;
-        margin-bottom: 3rem;
+	>header {
+		margin-top: 4rem;
+		margin-bottom: 3rem;
 
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0;
-        }
+		h1 {
+			font-size: 2.5rem;
+			margin-bottom: 0;
+		}
 
-        h5 {
-            font-size: 1.25rem;
-            font-weight: 400;
-            color: #444;
-        }
-    }
+		h5 {
+			font-size: 1.25rem;
+			font-weight: 400;
+			color: #444;
+		}
+	}
 
-    >cards {
-        label {
-            margin-top: 2rem;
-        }
+	>cards {
+		label {
+			margin-top: 2rem;
+		}
 
-        card {
-            margin-top: 0;
-        }
+		card {
+			margin-top: 0;
+		}
 
-        .form-group {
-            margin: 0;
-        }
-    }
+		.form-group {
+			margin: 0;
+		}
+	}
 }

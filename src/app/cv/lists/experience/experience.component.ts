@@ -7,20 +7,20 @@ import { ExperienceFields } from './experience.model';
 import { FBList } from '../fb-list.class';
 
 @Component({
-    selector: 'cv-experience',
-    templateUrl: './experience.component.html',
-    styleUrls: ['./experience.component.scss'],
-    encapsulation: ViewEncapsulation.None
+	selector: 'cv-experience',
+	templateUrl: './experience.component.html',
+	styleUrls: ['./experience.component.scss'],
+	encapsulation: ViewEncapsulation.None
 })
 export class ExperienceComponent extends FBList {
-    public emptyListValue: string = 'Empty experience list';
-    public emptyItemValue: string = 'Empty experience item: Click to edit.';
-    protected _fields: Array<Field> = ExperienceFields;
+	public emptyListValue: string = 'Empty experience list';
+	public emptyItemValue: string = 'Empty experience item: Click to edit.';
+	protected _fields: Array<Field> = ExperienceFields;
 
-    constructor (
-        _af: AngularFire,
-        _modalService: ModalService
-    ) {
-        super(_af, _modalService);
-    }
+	constructor (
+		_af: AngularFire,
+		_modalService: ModalService
+	) {
+		super(_af, _modalService);
+	}
 }

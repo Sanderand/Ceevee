@@ -7,20 +7,20 @@ import { SkillsFields } from './skills.model';
 import { FBList } from '../fb-list.class';
 
 @Component({
-    selector: 'cv-skills',
-    templateUrl: './skills.component.html',
-    styleUrls: ['./skills.component.scss'],
-    encapsulation: ViewEncapsulation.None
+	selector: 'cv-skills',
+	templateUrl: './skills.component.html',
+	styleUrls: ['./skills.component.scss'],
+	encapsulation: ViewEncapsulation.None
 })
 export class SkillsComponent extends FBList {
-    public emptyListValue: string = 'Empty skill list';
-    public emptyItemValue: string = 'Empty skill item: Click to edit.';
-    protected _fields: Array<Field> = SkillsFields;
+	public emptyListValue: string = 'Empty skill list';
+	public emptyItemValue: string = 'Empty skill item: Click to edit.';
+	protected _fields: Array<Field> = SkillsFields;
 
-    constructor (
-        _af: AngularFire,
-        _modalService: ModalService
-    ) {
-        super(_af, _modalService);
-    }
+	constructor (
+		_af: AngularFire,
+		_modalService: ModalService
+	) {
+		super(_af, _modalService);
+	}
 }

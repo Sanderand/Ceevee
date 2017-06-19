@@ -1,70 +1,70 @@
 import {
-  Component,
-  ElementRef,
-  HostBinding,
-  HostListener,
-  Input,
-  OnChanges,
-  OnDestroy,
-  SimpleChanges,
-  ViewEncapsulation,
+	Component,
+	ElementRef,
+	HostBinding,
+	HostListener,
+	Input,
+	OnChanges,
+	OnDestroy,
+	SimpleChanges,
+	ViewEncapsulation,
 } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 
 @Component({
-    selector: 'cv-dropdown',
-    template: '<ng-content></ng-content>',
-    styleUrls: ['./dropdown.component.scss'],
-    encapsulation: ViewEncapsulation.None
+	selector: 'cv-dropdown',
+	template: '<ng-content></ng-content>',
+	styleUrls: ['./dropdown.component.scss'],
+	encapsulation: ViewEncapsulation.None
 })
 export class DropdownComponent implements OnChanges, OnDestroy {
-    @HostBinding('class.open')
+	@HostBinding('class.open')
 
-    @Input() public open: boolean = false;
-    @Input() public remainOnInnerClick: boolean = false;
-    @Input() public closeOnScroll: boolean = false;
+	@Input() public open: boolean = false;
+	@Input() public remainOnInnerClick: boolean = false;
+	@Input() public closeOnScroll: boolean = false;
 
-    private _destroyed$: Subject<any> = new Subject<any>();
+	private _destroyed$: Subject<any> = new Subject<any>();
 
-    constructor (
-      private _elementRef: ElementRef
-    ) {}
+	constructor (
+		private _elementRef: ElementRef
+	) {}
 
-    public ngOnChanges (changes: SimpleChanges): void {
-        const { closeOnScroll } = changes;
+	public ngOnChanges (changes: SimpleChanges): void {
+		const { closeOnScroll } = changes;
 
-        if (closeOnScroll && closeOnScroll.currentValue && closeOnScroll.isFirstChange()) {
-            this.addScrollListener();
-        }
-    }
+		if (closeOnScroll && closeOnScroll.currentValue && closeOnScroll.isFirstChange()) {
+			this.addScrollListener();
+		}
+	}
 
-    public ngOnDestroy (): void {
-      this._destroyed$.next();
-    }
+	public ngOnDestroy (): void {
+		this._destroyed$.next();
+	}
 
-    @HostListener('body:click', ['$event'])
-    public onClick ($event): void {
-        if (this.remainOnInnerClick && this._elementRef.nativeElement.contains($event.target)) {
-            return;
-        }
+	@HostListener('body:click', ['$event'])
+	public onClick ($event): void {
+		if (this.remainOnInnerClick && this._elementRef.nativeElement.contains($event.target)) {
+			return;
+		}
 
-        this.close();
-    }
+		this.close();
+	}
 
-    private addScrollListener (): void {
-        let main = document.getElementsByTagName('main');
+	private addScrollListener (): void {
+		const scrollableSiteWrapper = document.getElementsByTagName('main'); // todo selector
 
-        Observable
-            .fromEvent(main, 'scroll')
-            .takeUntil(this._destroyed$)
-            .subscribe(e => this.close());
-    }
+		Observable
+			.fromEvent(scrollableSiteWrapper, 'scroll')
+			.takeUntil(this._destroyed$)
+			.subscribe(e => this.close());
+	}
 
-    private close (): void {
-        if (this.open) {
-            this.open = false;
-        }
-    }
+	private close (): void {
+		if (this.open) {
+			this.open = false;
+		}
+	}
 }

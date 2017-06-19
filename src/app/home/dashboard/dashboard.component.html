@@ -1,50 +1,50 @@
 <header>
-    <h1>
-        {{ (user$ | async) ? 'Hi ' + (user$ | async)?.name : 'Welcome' }}
-    </h1>
-    <h5>
-        {{ (cvs$ | async)?.length ? 'Here\'s an overview of your CVs' : 'You don\'t have any CVs, yet' }}
-    </h5>
+	<h1>
+		{{ (user$ | async) ? 'Hi ' + (user$ | async)?.name : 'Welcome' }}
+	</h1>
+	<h5>
+		{{ (cvs$ | async)?.length ? 'Here\'s an overview of your CVs' : 'You don\'t have any CVs, yet' }}
+	</h5>
 </header>
 
 <cv-list
   [cvs]="cvs$ | async"></cv-list>
 
 <div
-    *ngIf="user$ | async"
-    class="cards">
-    <label
-        class="form-control-label">
-        Create a new CV
-    </label>
+	*ngIf="user$ | async"
+	class="cards">
+	<label
+		class="form-control-label">
+		Create a new CV
+	</label>
 
-    <form
-        (submit)="onFormSubmit($event)"
-        autocomplete="off"
-        class="primary card"
-        novalidate>
-        <div
-            class="input-group">
-            <input
-                [(ngModel)]="newTitle"
-                [class.form-control-danger]="!!error"
-                (keydown)="clearError()"
-                class="form-control"
-                placeholder="Title"
-                name="title"
-                type="text">
+	<form
+		(submit)="onFormSubmit($event)"
+		autocomplete="off"
+		class="primary card"
+		novalidate>
+		<div
+			class="input-group">
+			<input
+				[(ngModel)]="newTitle"
+				[class.form-control-danger]="!!error"
+				(keydown)="clearError()"
+				class="form-control"
+				placeholder="Title"
+				name="title"
+				type="text">
 
-            <button
-                type="submit"
-                class="button success">
-                Add
-            </button>
-        </div>
+			<button
+				type="submit"
+				class="button success">
+				Add
+			</button>
+		</div>
 
-        <small
-            *ngIf="!!error"
-            class="form-text text-muted">
-            {{ error }}
-        </small>
-    </form>
+		<small
+			*ngIf="!!error"
+			class="form-text text-muted">
+			{{ error }}
+		</small>
+	</form>
 </div>

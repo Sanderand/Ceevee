@@ -7,17 +7,17 @@ import { RouterModule } from '@angular/router';
 import { NotFoundComponent } from './not-found.component';
 
 @NgModule({
-    declarations: [
-        NotFoundComponent
-    ],
-    exports: [
-        NotFoundComponent
-    ],
-    imports: [
-        BrowserModule,
-        FormsModule,
-        CommonModule,
-        RouterModule
-    ]
+	declarations: [
+		NotFoundComponent
+	],
+	exports: [
+		NotFoundComponent
+	],
+	imports: [
+		BrowserModule,
+		FormsModule,
+		CommonModule,
+		RouterModule
+	]
 })
 export class NotFoundModule { }

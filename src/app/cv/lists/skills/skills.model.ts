@@ -1,18 +1,18 @@
 import { Field } from '../../../shared/models/field.model';
 
 export const SkillsFields: Array<Field> = [{
-  key: 'title',
-  label: 'Title',
-  type: 'text',
-  placeholder: 'Title'
+	key: 'title',
+	label: 'Title',
+	type: 'text',
+	placeholder: 'Title'
 }, {
-  key: 'percentage',
-  label: 'Percentage',
-  type: 'number',
-  placeholder: 'Percentage'
+	key: 'percentage',
+	label: 'Percentage',
+	type: 'number',
+	placeholder: 'Percentage'
 }, {
-  key: 'description',
-  label: 'Description',
-  type: 'textarea',
-  placeholder: 'Description'
+	key: 'description',
+	label: 'Description',
+	type: 'textarea',
+	placeholder: 'Description'
 }];

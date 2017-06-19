@@ -1,33 +1,33 @@
 @import '../../../../variables.scss';
 
 cv-education {
-  display: block;
-  page-break-inside: avoid;
-  margin-bottom: 1em;
+	display: block;
+	page-break-inside: avoid;
+	margin-bottom: 1em;
 
-  .items {
-    .item {
-      display: flex;
-      page-break-inside: avoid;
+	.items {
+		.item {
+			display: flex;
+			page-break-inside: avoid;
 
-      &:not(:last-child) {
-        padding-bottom: 1em;
-      }
+			&:not(:last-child) {
+				padding-bottom: 1em;
+			}
 
-      .left {
-        width: $v_left_width;
-        text-align: right;
-      }
+			.left {
+				width: $v_left_width;
+				text-align: right;
+			}
 
-      .right {
-        flex: 1;
-        padding-left: 1em;
-        vertical-align: top;
-      }
+			.right {
+				flex: 1;
+				padding-left: 1em;
+				vertical-align: top;
+			}
 
-      .title {
-        padding-bottom: 0.25em;
-      }
-    }
-  }
+			.title {
+				padding-bottom: 0.25em;
+			}
+		}
+	}
 }

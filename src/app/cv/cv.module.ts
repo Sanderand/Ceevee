@@ -20,28 +20,28 @@ import { FeedbackComponent } from './lists/feedback/feedback.component';
 
 
 @NgModule({
-    declarations: [
-        CVComponent,
+	declarations: [
+		CVComponent,
 
-        HeaderComponent,
-        TitleComponent,
-        TextComponent,
+		HeaderComponent,
+		TitleComponent,
+		TextComponent,
 
-        ExperienceComponent,
-        EducationComponent,
-        SkillsComponent,
-        FeedbackComponent
-    ],
-    exports: [
-        CVComponent
-    ],
-    imports: [
-        BrowserModule,
-        FormsModule,
-        CommonModule,
-        RouterModule,
-        SharedModule,
-        ModalModule
-    ]
+		ExperienceComponent,
+		EducationComponent,
+		SkillsComponent,
+		FeedbackComponent
+	],
+	exports: [
+		CVComponent
+	],
+	imports: [
+		BrowserModule,
+		FormsModule,
+		CommonModule,
+		RouterModule,
+		SharedModule,
+		ModalModule
+	]
 })
 export class CVModule { }

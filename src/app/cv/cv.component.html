@@ -1,182 +1,194 @@
 <header
-    *ngIf="(sections$ | async)"
-    class="card">
-    <span
-        class="group">
-        <button
-          (click)="openDropdown($event)"
-          class="button">
-            <span>...</span>
-            <cv-dropdown
-              #dropdown
-              closeOnScroll="true">
-                <a
-                  class="item">
-                    Print
-                </a>
+	*ngIf="(sections$ | async)"
+	class="card">
+	<span
+		class="group">
+		<button
+			(click)="openDropdown($event)"
+			class="button">
+			<span>...</span>
+			<cv-dropdown
+				#dropdown
+				closeOnScroll="true">
+				<a
+					class="item">
+					Print
+					</a>
 
-                <a
-                  class="item">
-                    Share
-                </a>
+				<a
+					class="item">
+					Share
+				</a>
 
-                <div
-                  class="divider"></div>
+				<div
+					class="divider"></div>
 
-                <a
-                  *ngIf="cv$ | async"
-                  (click)="duplicateCV($event)"
-                  class="item">
-                    Duplicate
-                </a>
+				<a
+					*ngIf="cv$ | async"
+					(click)="duplicateCV($event)"
+					class="item">
+					Duplicate
+				</a>
 
-                <a
-                  *ngIf="cv$ | async"
-                  (click)="renameCV($event)"
-                  class="item">
-                    Rename
-                </a>
+				<a
+					*ngIf="cv$ | async"
+					(click)="renameCV($event)"
+					class="item">
+					Rename
+				</a>
 
-                <a
-                  (click)="removeCV($event)"
-                  class="item text-danger">
-                    Delete
-                </a>
-            </cv-dropdown>
-        </button>
-        <button
-            (click)="decreaseFontSize()"
-            [disabled]="fontSize === MIN_FONT_SIZE"
-            class="button">
-            aa
-        </button>
-        <button
-            (click)="increaseFontSize()"
-            [disabled]="fontSize === MAX_FONT_SIZE"
-            class="button">
-            AA
-        </button>
-        <select
-          (change)="changeFontFamily($event)">
-            <option
-              value="">
-                Default
-            </option>
+				<a
+					(click)="removeCV($event)"
+					class="item text-danger">
+					Delete
+				</a>
+			</cv-dropdown>
+		</button>
+		<button
+			(click)="decreaseFontSize()"
+			[disabled]="fontSize === MIN_FONT_SIZE"
+			class="button">
+			aa
+		</button>
+		<button
+			(click)="increaseFontSize()"
+			[disabled]="fontSize === MAX_FONT_SIZE"
+			class="button">
+			AA
+		</button>
+		<select
+			(change)="changeFontFamily($event)">
+			<option
+				value="">
+				Default
+			</option>
 
-            <option
-              value="sans-serif">
-                Sans-Serif
-            </option>
+			<option
+				value="sans-serif">
+				Sans-Serif
+			</option>
 
-            <option
-              value="serif">
-                Serif
-            </option>
+			<option
+				value="serif">
+				Serif
+			</option>
 
-            <option
-              value="'Comic Sans MS'">
-                Comic Sans MS
-            </option>
-        </select>
-    </span>
+			<option
+				value="'Comic Sans MS'">
+				Comic Sans MS
+			</option>
+		</select>
+	</span>
 </header>
 
 <div
-  [class]="themeClass + ' card'"
-  [style.fontSize.rem]="fontSize"
-  [style.fontFamily]="fontFamily">
+	[class]="themeClass + ' card'"
+	[style.fontSize.rem]="fontSize"
+	[style.fontFamily]="fontFamily">
 
-  <section
-    *ngFor="let section of (sections$ | async)">
+	<section
+		*ngFor="let section of (sections$ | async)">
 
-    <cv-header
-      *ngIf="section.meta.type === 'HEADER'"
-      [path]="(basePath$ | async) + section.$key"
-      [section]="section"
-      [style.order]="section.meta.order">
-    </cv-header>
+		<cv-header
+			*ngIf="section.meta.type === 'HEADER'"
+			[path]="(basePath$ | async) + section.$key"
+			[section]="section"
+			[style.order]="section.meta.order">
+		</cv-header>
 
-    <cv-title
-      *ngIf="section.meta.type === 'TITLE'"
-      [path]="(basePath$ | async) + section.$key"
-      [section]="section"
-      [style.order]="section.meta.order">
-    </cv-title>
+		<cv-title
+			*ngIf="section.meta.type === 'TITLE'"
+			[path]="(basePath$ | async) + section.$key"
+			[section]="section"
+			[style.order]="section.meta.order">
+		</cv-title>
 
-    <cv-text
-      *ngIf="section.meta.type === 'TEXT'"
-      [path]="(basePath$ | async) + section.$key"
-      [section]="section"
-      [style.order]="section.meta.order">
-    </cv-text>
+		<cv-text
+			*ngIf="section.meta.type === 'TEXT'"
+			[path]="(basePath$ | async) + section.$key"
+			[section]="section"
+			[style.order]="section.meta.order">
+		</cv-text>
 
-    <cv-education
-      *ngIf="section.meta.type === 'EDUCATION'"
-      [path]="(basePath$ | async) + section.$key"
-      [section]="section"
-      [style.order]="section.meta.order">
-    </cv-education>
+		<cv-education
+			*ngIf="section.meta.type === 'EDUCATION'"
+			[path]="(basePath$ | async) + section.$key"
+			[section]="section"
+			[style.order]="section.meta.order">
+		</cv-education>
 
-    <cv-experience
-      *ngIf="section.meta.type === 'EXPERIENCE'"
-      [path]="(basePath$ | async) + section.$key"
-      [section]="section"
-      [style.order]="section.meta.order">
-    </cv-experience>
+		<cv-experience
+			*ngIf="section.meta.type === 'EXPERIENCE'"
+			[path]="(basePath$ | async) + section.$key"
+			[section]="section"
+			[style.order]="section.meta.order">
+		</cv-experience>
 
-    <cv-skills
-      *ngIf="section.meta.type === 'SKILLS'"
-      [path]="(basePath$ | async) + section.$key"
-      [section]="section"
-      [style.order]="section.meta.order">
-    </cv-skills>
+		<cv-skills
+			*ngIf="section.meta.type === 'SKILLS'"
+			[path]="(basePath$ | async) + section.$key"
+			[section]="section"
+			[style.order]="section.meta.order">
+		</cv-skills>
 
-    <cv-feedback
-      *ngIf="section.meta.type === 'FEEDBACK'"
-      [path]="(basePath$ | async) + section.$key"
-      [section]="section"
-      [style.order]="section.meta.order">
-    </cv-feedback>
-  </section>
+		<cv-feedback
+			*ngIf="section.meta.type === 'FEEDBACK'"
+			[path]="(basePath$ | async) + section.$key"
+			[section]="section"
+			[style.order]="section.meta.order">
+		</cv-feedback>
+	</section>
 
-  <div
-    *ngIf="!(sections$ | async)">
-      <div class="ghost" style="height: 2rem;margin-bottom: 0.5rem; width: 12rem;"></div>
-      <div class="ghost" style="height: 10rem;margin-bottom: 2rem;"></div>
-      <div class="ghost" style="height: 2rem;margin-bottom: 0.5rem; width: 12rem;"></div>
-      <div class="ghost" style="height: 1rem;margin-bottom: 0.5rem;"></div>
-      <div class="ghost" style="height: 1rem;margin-bottom: 0.5rem;"></div>
-      <div class="ghost" style="height: 3rem;"></div>
-  </div>
+	<div
+		*ngIf="!(sections$ | async)">
+		<div
+			class="ghost"
+			style="height: 2rem;margin-bottom: 0.5rem; width: 12rem;"></div>
+		<div
+			class="ghost"
+			style="height: 10rem;margin-bottom: 2rem;"></div>
+		<div
+			class="ghost"
+			style="height: 2rem;margin-bottom: 0.5rem; width: 12rem;"></div>
+		<div
+			class="ghost"
+			style="height: 1rem;margin-bottom: 0.5rem;"></div>
+		<div
+			class="ghost"
+			style="height: 1rem;margin-bottom: 0.5rem;"></div>
+		<div
+			class="ghost"
+			style="height: 3rem;"></div>
+	</div>
 </div>
 
 <footer
-  *ngIf="(sections$ | async)">
-  <form
-    (submit)="submitChanges($event)"
-    class="card"
-    autocomplete="off"
-    novalidate>
+	*ngIf="(sections$ | async)">
+	<form
+		(submit)="submitChanges($event)"
+		class="card"
+		autocomplete="off"
+		novalidate>
 
-    <div>
-      <label>Add a new section</label>
-      <select
-        name="type"
-        (change)="submitChanges($event)"
-        [(ngModel)]="newSection.type">
-        <option
-          [value]="null"
-          selected
-          disabled>
-          Choose a type
-        </option>
+		<div>
+			<label>Add a new section</label>
+			<select
+				name="type"
+				(change)="submitChanges($event)"
+				[(ngModel)]="newSection.type">
+				<option
+					[value]="null"
+					selected
+					disabled>
+					Choose a type
+				</option>
 
-        <option
-          [value]="type.type"
-          *ngFor="let type of types">
-          {{ type.name }}
-        </option>
-      </select>
-    </div>
-  </form>
+				<option
+					[value]="type.type"
+					*ngFor="let type of types">
+					{{ type.name }}
+				</option>
+			</select>
+		</div>
+	</form>
 </footer>

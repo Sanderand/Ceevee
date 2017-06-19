@@ -1,86 +1,86 @@
 <div
-    class="items">
-    <div
-        *ngFor="let item of (items$ | async)"
-        (click)="editData($event, item)"
-        class="item editable">
+	class="items">
+	<div
+		*ngFor="let item of (items$ | async)"
+		(click)="editData($event, item)"
+		class="item editable">
 
-        <div
-            class="left">
-            <div
-                class="title">
-                {{ item.title }}
-            </div>
+		<div
+			class="left">
+			<div
+				class="title">
+				{{ item.title }}
+			</div>
 
-            <div
-                *ngIf="isEmptyItem(item)"
-                class="empty title">
-                {{ emptyItemValue }}
-            </div>
+			<div
+				*ngIf="isEmptyItem(item)"
+				class="empty title">
+				{{ emptyItemValue }}
+			</div>
 
-            <div
-                class="timespan">
-                <div
-                    *ngIf="item.start"
-                    class="start">
-                    {{ item.start ? (item.start | date:'MM/yy') : 'present' }}
-                </div>
-                <div
-                    class="end">
-                    {{ item.end ? (item.end | date:'MM/yy') : 'present' }}
-                </div>
-            </div>
-        </div>
+			<div
+				class="timespan">
+				<div
+					*ngIf="item.start"
+					class="start">
+					{{ item.start ? (item.start | date:'MM/yy') : 'present' }}
+				</div>
+				<div
+					class="end">
+					{{ item.end ? (item.end | date:'MM/yy') : 'present' }}
+				</div>
+			</div>
+		</div>
 
-        <div
-            class="right">
-            <a
-                *ngIf="item.institution"
-                [attr.href]="item.link"
-                class="institution"
-                target="_blank">
-                {{ item.institution }}
-            </a>
+		<div
+			class="right">
+			<a
+				*ngIf="item.institution"
+				[attr.href]="item.link"
+				class="institution"
+				target="_blank">
+				{{ item.institution }}
+			</a>
 
-            <div
-                *ngIf="item.location"
-                class="location">
-                {{ item.location }}
-            </div>
+			<div
+				*ngIf="item.location"
+				class="location">
+				{{ item.location }}
+			</div>
 
-            <p>
-                {{ item.description }}
-            </p>
+			<p>
+				{{ item.description }}
+			</p>
 
-            <div
-                class="tags">
-                <div
-                    *ngFor="let tag of (item.tags | split:',')"
-                    class="tag">
-                    {{ tag }}
-                </div>
-            </div>
-        </div>
-    </div>
+			<div
+				class="tags">
+				<div
+					*ngFor="let tag of (item.tags | split:',')"
+					class="tag">
+					{{ tag }}
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 
 <p
-    class="empty"
-    *ngIf="(items$ | async)?.length === 0">
-    {{ emptyListValue }}
+	class="empty"
+	*ngIf="(items$ | async)?.length === 0">
+	{{ emptyListValue }}
 </p>
 
 <div class="group">
-    <button
-        class="button small"
-        (click)="editData($event, null)">
-        Add Item
-    </button>
+	<button
+		class="button small"
+		(click)="editData($event, null)">
+		Add Item
+	</button>
 
-    <button
-        *ngIf="(items$ | async)?.length === 0"
-        class="button danger small"
-        (click)="removeSection($event)">
-        Remove
-    </button>
+	<button
+		*ngIf="(items$ | async)?.length === 0"
+		class="button danger small"
+		(click)="removeSection($event)">
+		Remove
+	</button>
 </div>

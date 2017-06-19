@@ -9,21 +9,21 @@ import { LandingComponent } from './landing/landing.component';
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
-    declarations: [
-        HomeComponent,
-        DashboardComponent,
-        LandingComponent
-    ],
-    exports: [
-        HomeComponent,
-        DashboardComponent,
-        LandingComponent
-    ],
-    imports: [
-        BrowserModule,
-        FormsModule,
-        CommonModule,
-        SharedModule
-    ]
+	declarations: [
+		HomeComponent,
+		DashboardComponent,
+		LandingComponent
+	],
+	exports: [
+		HomeComponent,
+		DashboardComponent,
+		LandingComponent
+	],
+	imports: [
+		BrowserModule,
+		FormsModule,
+		CommonModule,
+		SharedModule
+	]
 })
 export class HomeModule { }

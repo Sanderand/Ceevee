@@ -1,50 +1,50 @@
 @import '../../variables.scss';
 
 cv-cv {
-    p {
-        font-size: 0.9em;
-        font-weight: 300;
-        margin-bottom: 0.25em;
-    }
+	p {
+		font-size: 0.9em;
+		font-weight: 300;
+		margin-bottom: 0.25em;
+	}
 
-    .empty {
-        opacity: 0.7;
-        font-style: italic;
-    }
+	.empty {
+		opacity: 0.7;
+		font-style: italic;
+	}
 
-    .title {
-        font-weight: 400;
-    }
+	.title {
+		font-weight: 400;
+	}
 
-    .timespan {
-        color: $c_light;
-        font-size: 0.7em;
-        font-weight: 400;
+	.timespan {
+		color: $c_light;
+		font-size: 0.7em;
+		font-weight: 400;
 
-        .start {
-            display: inline-block;
+		.start {
+			display: inline-block;
 
-            &:after {
-                content: '-';
-                padding-left: .5em;
-                padding-right: .25em;
-            }
-        }
-        .end {
-            display: inline-block;
-        }
-    }
+			&:after {
+				content: '-';
+				padding-left: .5em;
+				padding-right: .25em;
+			}
+		}
+		.end {
+			display: inline-block;
+		}
+	}
 
-    .location {
-        color: $c_lighte;
-        display: inline-block;
-        font-size: 0.8em;
-        padding-left: 0.25em;
-        font-weight: 300;
-    }
+	.location {
+		color: $c_lighte;
+		display: inline-block;
+		font-size: 0.8em;
+		padding-left: 0.25em;
+		font-weight: 300;
+	}
 
-    .institution {
-        display: inline-block;
-        font-weight: 300;
-    }
+	.institution {
+		display: inline-block;
+		font-weight: 300;
+	}
 }

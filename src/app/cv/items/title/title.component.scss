@@ -1,15 +1,15 @@
 @import '../../../../variables.scss';
 
 cv-title {
-    display: block;
-    padding-left: 1em;
-    min-height: 2em;
-    page-break-inside: avoid;
-    border-left: 1.5em solid;
-    border-bottom: 0.01em solid;
-    border-color: $c_highlight;
-    margin-bottom: 1em;
-    line-height: 2em;
-    font-size: 1.1em;
-    font-weight: 400;
+	display: block;
+	padding-left: 1em;
+	min-height: 2em;
+	page-break-inside: avoid;
+	border-left: 1.5em solid;
+	border-bottom: 0.01em solid;
+	border-color: $c_highlight;
+	margin-bottom: 1em;
+	line-height: 2em;
+	font-size: 1.1em;
+	font-weight: 400;
 }

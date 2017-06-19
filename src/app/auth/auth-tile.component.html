@@ -1,34 +1,34 @@
 <div
-    *ngIf="(user | async)">
-    <img
-        (click)="openDropdown($event)"
-        [src]="(user | async)?.photo || PHOTO_PLACEHOLDER_URL">
+	*ngIf="(user | async)">
+	<img
+		(click)="openDropdown($event)"
+		[src]="(user | async)?.photo || PHOTO_PLACEHOLDER_URL">
 
-    <cv-dropdown
-        #dropdown
-        closeOnScroll="true">
-        <a
-            routerLink="/"
-            routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: true }"
-            class="item">
-            Dashboard
-        </a>
+	<cv-dropdown
+		#dropdown
+		closeOnScroll="true">
+		<a
+			routerLink="/"
+			routerLinkActive="active"
+			[routerLinkActiveOptions]="{ exact: true }"
+			class="item">
+			Dashboard
+		</a>
 
-        <a
-            routerLink="/me"
-            routerLinkActive="active"
-            class="item">
-            Profile
-        </a>
+		<a
+			routerLink="/me"
+			routerLinkActive="active"
+			class="item">
+			Profile
+		</a>
 
-        <div
-            class="divider"></div>
+		<div
+			class="divider"></div>
 
-        <a
-            (click)="logout()"
-            class="item text-danger">
-            Log out
-        </a>
-    </cv-dropdown>
+		<a
+			(click)="logout()"
+			class="item text-danger">
+			Log out
+		</a>
+	</cv-dropdown>
 </div>

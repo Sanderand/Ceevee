@@ -11,38 +11,35 @@ import { SplitPipe } from './pipes/split.pipe';
 import { WhenPipe } from './pipes/when.pipe';
 import { CVListComponent } from './components/cv-list/cv-list.component';
 import { CVSelectComponent } from './components/cv-select/cv-select.component';
-import { KeysPipe } from './pipes/keys.pipe';
 
 @NgModule({
-    declarations: [
-        SpinnerComponent,
-        DropdownComponent,
-        TextAreaDirective,
+	declarations: [
+		SpinnerComponent,
+		DropdownComponent,
+		TextAreaDirective,
 
-        CVListComponent,
-        CVSelectComponent,
+		CVListComponent,
+		CVSelectComponent,
 
-        SplitPipe,
-        WhenPipe,
-        KeysPipe
-    ],
-    exports: [
-        SpinnerComponent,
-        DropdownComponent,
-        TextAreaDirective,
+		SplitPipe,
+		WhenPipe
+	],
+	exports: [
+		SpinnerComponent,
+		DropdownComponent,
+		TextAreaDirective,
 
-        CVListComponent,
-        CVSelectComponent,
+		CVListComponent,
+		CVSelectComponent,
 
-        SplitPipe,
-        WhenPipe,
-        KeysPipe
-    ],
-    imports: [
-        BrowserModule,
-        FormsModule,
-        CommonModule,
-        RouterModule
-    ]
+		SplitPipe,
+		WhenPipe
+	],
+	imports: [
+		BrowserModule,
+		FormsModule,
+		CommonModule,
+		RouterModule
+	]
 })
 export class SharedModule { }

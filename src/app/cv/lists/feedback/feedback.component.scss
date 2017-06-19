@@ -1,34 +1,34 @@
 @import '../../../../variables.scss';
 
 cv-feedback {
-    display: block;
-    margin-bottom: 1em;
+	display: block;
+	margin-bottom: 1em;
 
-    .items {
-        display: block;
-        width: 100%;
+	.items {
+		display: block;
+		width: 100%;
 
-        .item {
-            page-break-inside: avoid;
-            padding-bottom: 1.25em;
+		.item {
+			page-break-inside: avoid;
+			padding-bottom: 1.25em;
 
-            &:last-child {
-                padding-bottom: 0;
-            }
+			&:last-child {
+				padding-bottom: 0;
+			}
 
-            .title {
-                display: inline-block;
-            }
+			.title {
+				display: inline-block;
+			}
 
-            .relationship {
-                color: $c_lighte;
-                display: inline-block;
-                font-size: 0.8em;
-            }
+			.relationship {
+				color: $c_lighte;
+				display: inline-block;
+				font-size: 0.8em;
+			}
 
-            p {
-                font-style: italic;
-            }
-        }
-    }
+			p {
+				font-style: italic;
+			}
+		}
+	}
 }

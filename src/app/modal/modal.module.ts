@@ -7,17 +7,17 @@ import { SharedModule } from '../shared/shared.module';
 import { ModalComponent } from './modal.component';
 
 @NgModule({
-    declarations: [
-        ModalComponent
-    ],
-    exports: [
-        ModalComponent
-    ],
-    imports: [
-        SharedModule,
-        BrowserModule,
-        FormsModule,
-        CommonModule
-    ]
+	declarations: [
+		ModalComponent
+	],
+	exports: [
+		ModalComponent
+	],
+	imports: [
+		SharedModule,
+		BrowserModule,
+		FormsModule,
+		CommonModule
+	]
 })
 export class ModalModule { }
