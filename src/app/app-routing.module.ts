@@ -1,6 +1,5 @@
 import { RouterModule, Routes } from '@angular/router';
 
-import { AuthGuard } from './shared/guards/auth.guard';
 import { CVComponent } from './cv/cv.component';
 import { HomeComponent } from './home/home.component';
 import { ModalComponent } from './modal/modal.component';
@@ -13,11 +12,9 @@ const appRoutes: Routes = [{
 	pathMatch: 'full',
 	component: HomeComponent
 }, {
-	canActivate: [AuthGuard],
 	path: 'me',
 	component: ProfileEditComponent
 }, {
-	canActivate: [AuthGuard],
 	path: 'cv/:id',
 	component: CVComponent
 }, {
@@ -35,9 +32,6 @@ const appRoutes: Routes = [{
 	],
 	exports: [
 		RouterModule
-	],
-	providers: [
-		AuthGuard
 	]
 })
 export class AppRoutingModule {}

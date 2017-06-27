@@ -19,7 +19,6 @@ import { AuthService } from './auth/auth.service';
 import { CVService } from './cv/cv.service';
 import { ProfileEditModule } from './profile-edit/profile-edit.module';
 import { SharedModule } from './shared/shared.module';
-import { AuthGuard } from './shared/guards/auth.guard';
 
 import { FIREBASE_ATUH_CONFIG, FIREBASE_CONFIG } from './shared/constants/constants';
 
@@ -45,7 +44,6 @@ import { FIREBASE_ATUH_CONFIG, FIREBASE_CONFIG } from './shared/constants/consta
 	],
 	providers: [
 		AngularFire,
-		AuthGuard,
 
 		ModalService,
 		AuthService,

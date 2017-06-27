@@ -60,8 +60,6 @@ export class CVComponent implements OnInit, OnDestroy {
 		this.cid = this._route.snapshot.params['id'];
 
 		this.cv$ = this._cvService.getCv(this.cid);
-
-		this.cv$.subscribe(cv => console.log(cv));
 		this.sections$ = this._cvService.getCvSections(this.cid);
 
 		this.basePath$ = this._authService.user$
