@@ -13,31 +13,9 @@ import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import { generateUUID } from '../shared/helpers/math.helpers';
 import { restrictRange } from '../shared/helpers/math.helpers';
+import { SectionTypes } from './section-types.config';
 
 import 'rxjs/add/Operator/map';
-
-const TYPES = [{
-	name: 'Header',
-	type: 'HEADER'
-}, {
-	name: 'Title',
-	type: 'TITLE'
-}, {
-	name: 'Text',
-	type: 'TEXT'
-}, {
-	name: 'Education',
-	type: 'EDUCATION'
-}, {
-	name: 'Experience',
-	type: 'EXPERIENCE'
-}, {
-	name: 'Feedback',
-	type: 'FEEDBACK'
-}, {
-	name: 'Skills',
-	type: 'SKILLS'
-}];
 
 @Component({
 	selector: 'cv-cv',
@@ -55,7 +33,7 @@ export class CVComponent implements OnInit, OnDestroy {
 
 	public MIN_FONT_SIZE = MIN_FONT_SIZE;
 	public MAX_FONT_SIZE = MAX_FONT_SIZE;
-	public types = TYPES;
+	public types = SectionTypes;
 	public newSection: any;
 
 	public cid: string;
@@ -82,6 +60,8 @@ export class CVComponent implements OnInit, OnDestroy {
 		this.cid = this._route.snapshot.params['id'];
 
 		this.cv$ = this._cvService.getCv(this.cid);
+
+		this.cv$.subscribe(cv => console.log(cv));
 		this.sections$ = this._cvService.getCvSections(this.cid);
 
 		this.basePath$ = this._authService.user$
@@ -138,24 +118,17 @@ export class CVComponent implements OnInit, OnDestroy {
 
 	public decreaseFontSize (): void {
 		this.fontSize = restrictRange(this.fontSize - FONT_SIZE_CHANGE_STEP, MIN_FONT_SIZE, MAX_FONT_SIZE);
-		this.updateTheme();
+		this._cvService.updateCVFontSize(this.cid, this.fontSize);
 	}
 
 	public increaseFontSize (): void {
 		this.fontSize = restrictRange(this.fontSize + FONT_SIZE_CHANGE_STEP, MIN_FONT_SIZE, MAX_FONT_SIZE);
-		this.updateTheme();
+		this._cvService.updateCVFontSize(this.cid, this.fontSize);
 	}
 
 	public changeFontFamily ($event): void {
 		this.fontFamily = $event.target.value || null;
-		this.updateTheme();
-	}
-
-	private updateTheme (): void {
-		// this._theme.update({
-		//     fontSize: this.fontSize,
-		//     fontFamily: this.fontFamily || null
-		// });
+		this._cvService.updateCVFontFamily(this.cid, this.fontFamily);
 	}
 
 	public openDropdown ($event): void {

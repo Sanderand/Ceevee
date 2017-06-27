@@ -29,7 +29,7 @@ export class CVService {
 		return this._authService.user$
 			.filter(user => user && user.uid)
 			.distinctUntilChanged()
-			.switchMap(user => this._af.database.list(`/cvs/${ user.uid }/${ cid }`));
+			.switchMap(user => this._af.database.object(`/cvs/${ user.uid }/${ cid }`));
 	}
 
 	public getCvSections (cid: string): Observable<any> {
@@ -45,6 +45,32 @@ export class CVService {
 			title,
 			_created: firebase.database.ServerValue.TIMESTAMP
 		});
+	}
+
+	public updateCVFontFamily (cid: string, fontFamily: string): void {
+		const uid = this.getUserId();
+
+		if (!fontFamily || fontFamily === 'null') {
+			this._af.database
+				.object(`/cvs/${ uid }/${ cid }/fontFamily`)
+				.remove();
+		} else {
+			this._af.database
+				.object(`/cvs/${ uid }/${ cid }`)
+				.update({
+					fontFamily
+				});
+		}
+	}
+
+	public updateCVFontSize (cid: string, fontSize: number): void {
+		const uid = this.getUserId();
+
+		this._af.database
+			.object(`/cvs/${ uid }/${ cid }`)
+			.update({
+				fontSize
+			});
 	}
 
 	public addCvSection (cid: string, section: any): void {

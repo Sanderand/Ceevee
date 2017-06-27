@@ -46,20 +46,21 @@
 		</button>
 		<button
 			(click)="decreaseFontSize()"
-			[disabled]="fontSize === MIN_FONT_SIZE"
+			[disabled]="fontSize <= MIN_FONT_SIZE"
 			class="button">
 			aa
 		</button>
 		<button
 			(click)="increaseFontSize()"
-			[disabled]="fontSize === MAX_FONT_SIZE"
+			[disabled]="fontSize >= MAX_FONT_SIZE"
 			class="button">
 			AA
 		</button>
 		<select
-			(change)="changeFontFamily($event)">
+			(change)="changeFontFamily($event)"
+			[value]="(cv$ | async)?.fontFamily || null">
 			<option
-				value="">
+				[value]="null">
 				Default
 			</option>
 
@@ -74,7 +75,7 @@
 			</option>
 
 			<option
-				value="'Comic Sans MS'">
+				value="Comic Sans MS">
 				Comic Sans MS
 			</option>
 		</select>
@@ -83,8 +84,8 @@
 
 <div
 	[class]="themeClass + ' card'"
-	[style.fontSize.rem]="fontSize"
-	[style.fontFamily]="fontFamily">
+	[style.fontSize.rem]="(cv$ | async)?.fontSize || null"
+	[style.fontFamily]="(cv$ | async)?.fontFamily || null">
 
 	<section
 		*ngFor="let section of (sections$ | async)">
