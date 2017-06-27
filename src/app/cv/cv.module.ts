@@ -18,7 +18,6 @@ import { EducationComponent } from './lists/education/education.component';
 import { SkillsComponent } from './lists/skills/skills.component';
 import { FeedbackComponent } from './lists/feedback/feedback.component';
 
-
 @NgModule({
 	declarations: [
 		CVComponent,
