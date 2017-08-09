@@ -25,4 +25,24 @@ export const HeaderFields: Array<Field> = [{
 	label: 'Tel',
 	placeholder: 'Tel',
 	type: 'text'
+}, {
+	key: 'linkedin',
+	label: 'Linked In',
+	placeholder: 'Linked In',
+	type: 'text'
+}, {
+	key: 'github',
+	label: 'Github',
+	placeholder: 'Github',
+	type: 'text'
+}, {
+	key: 'facebook',
+	label: 'Facebook',
+	placeholder: 'Facebook',
+	type: 'text'
+}, {
+	key: 'twitter',
+	label: 'Twitter',
+	placeholder: 'Twitter',
+	type: 'text'
 }];

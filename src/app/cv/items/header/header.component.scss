@@ -33,4 +33,19 @@ cv-header {
 			padding: 0 0.25em;
 		}
 	}
+
+	.social {
+		a {
+			width: 30px;
+			height: 30px;
+			margin-left: 0.25em;
+			margin-right: 0.25em;
+			display: inline-block;
+			fill: $c_dark;
+
+			&:hover {
+				fill: $c_light;
+			}
+		}
+	}
 }
