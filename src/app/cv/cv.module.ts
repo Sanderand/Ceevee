@@ -17,6 +17,8 @@ import { ExperienceComponent } from './lists/experience/experience.component';
 import { EducationComponent } from './lists/education/education.component';
 import { SkillsComponent } from './lists/skills/skills.component';
 import { FeedbackComponent } from './lists/feedback/feedback.component';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 @NgModule({
 	declarations: [
@@ -40,7 +42,10 @@ import { FeedbackComponent } from './lists/feedback/feedback.component';
 		CommonModule,
 		RouterModule,
 		SharedModule,
-		ModalModule
+		ModalModule,
+
+		AngularFireDatabaseModule,
+		AngularFireAuthModule
 	]
 })
 export class CVModule { }

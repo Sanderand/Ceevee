@@ -16,7 +16,7 @@ import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/Observable/fromEvent';
 
 @Component({
-	selector: 'cv-dropdown',
+	selector: 'app-dropdown',
 	template: '<ng-content></ng-content>',
 	styleUrls: ['./dropdown.component.scss'],
 	encapsulation: ViewEncapsulation.None

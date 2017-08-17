@@ -2,7 +2,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import { AuthService } from '../../auth/auth.service';
 
 @Component({
-	selector: 'cv-landing',
+	selector: 'app-landing',
 	templateUrl: './landing.component.html',
 	styleUrls: ['./landing.component.scss'],
 	encapsulation: ViewEncapsulation.None

@@ -1,4 +1,4 @@
-cv-auth-tile {
+app-auth-tile {
 	img {
 		display: inline-block;
 		width: 38px;
@@ -12,7 +12,7 @@ cv-auth-tile {
 		}
 	}
 
-	cv-dropdown {
+	app-dropdown {
 		right: 2rem;
 		top: 2rem;
 		box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.25);

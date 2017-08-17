@@ -7,7 +7,7 @@
 			(click)="openDropdown($event)"
 			class="button">
 			<span>...</span>
-			<cv-dropdown
+			<app-dropdown
 				#dropdown
 				closeOnScroll="true">
 				<a
@@ -42,7 +42,7 @@
 					class="item text-danger">
 					Delete
 				</a>
-			</cv-dropdown>
+			</app-dropdown>
 		</button>
 		<button
 			(click)="decreaseFontSize()"
@@ -90,54 +90,54 @@
 	<section
 		*ngFor="let section of (sections$ | async)">
 
-		<cv-header
+		<app-header
 			*ngIf="section.meta.type === 'HEADER'"
 			[path]="(basePath$ | async) + section.$key"
 			[section]="section"
 			[style.order]="section.meta.order">
-		</cv-header>
+		</app-header>
 
-		<cv-title
+		<app-title
 			*ngIf="section.meta.type === 'TITLE'"
 			[path]="(basePath$ | async) + section.$key"
 			[section]="section"
 			[style.order]="section.meta.order">
-		</cv-title>
+		</app-title>
 
-		<cv-text
+		<app-text
 			*ngIf="section.meta.type === 'TEXT'"
 			[path]="(basePath$ | async) + section.$key"
 			[section]="section"
 			[style.order]="section.meta.order">
-		</cv-text>
+		</app-text>
 
-		<cv-education
+		<app-education
 			*ngIf="section.meta.type === 'EDUCATION'"
 			[path]="(basePath$ | async) + section.$key"
 			[section]="section"
 			[style.order]="section.meta.order">
-		</cv-education>
+		</app-education>
 
-		<cv-experience
+		<app-experience
 			*ngIf="section.meta.type === 'EXPERIENCE'"
 			[path]="(basePath$ | async) + section.$key"
 			[section]="section"
 			[style.order]="section.meta.order">
-		</cv-experience>
+		</app-experience>
 
-		<cv-skills
+		<app-skills
 			*ngIf="section.meta.type === 'SKILLS'"
 			[path]="(basePath$ | async) + section.$key"
 			[section]="section"
 			[style.order]="section.meta.order">
-		</cv-skills>
+		</app-skills>
 
-		<cv-feedback
+		<app-feedback
 			*ngIf="section.meta.type === 'FEEDBACK'"
 			[path]="(basePath$ | async) + section.$key"
 			[section]="section"
 			[style.order]="section.meta.order">
-		</cv-feedback>
+		</app-feedback>
 	</section>
 
 	<div

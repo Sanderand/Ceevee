@@ -4,7 +4,7 @@ import { AuthService } from '../auth/auth.service';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
-	selector: 'cv-home',
+	selector: 'app-home',
 	templateUrl: './home.component.html',
 	styleUrls: ['./home.component.scss'],
 	encapsulation: ViewEncapsulation.None

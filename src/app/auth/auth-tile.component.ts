@@ -5,7 +5,7 @@ import { PHOTO_PLACEHOLDER_URL } from '../shared/constants/constants';
 import { DropdownComponent } from '../shared/components/dropdown/dropdown.component';
 
 @Component({
-	selector: 'cv-auth-tile',
+	selector: 'app-auth-tile',
 	templateUrl: './auth-tile.component.html',
 	styleUrls: ['./auth-tile.component.scss'],
 	encapsulation: ViewEncapsulation.None

@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation, HostBinding } from '@angular/core';
-import { AngularFire } from 'angularfire2';
+import { AngularFireDatabase } from 'angularfire2/database';
 
 import { ModalService } from '../../../modal/modal.service';
 import { Field } from '../../../shared/models/field.model';
@@ -7,7 +7,7 @@ import { TextFields } from './text.model';
 import { FBObject } from '../fb-object.class';
 
 @Component({
-	selector: 'cv-text',
+	selector: 'app-text',
 	templateUrl: './text.component.html',
 	styleUrls: ['./text.component.scss'],
 	encapsulation: ViewEncapsulation.None
@@ -18,9 +18,9 @@ export class TextComponent extends FBObject {
 	protected _fields: Array<Field> = TextFields;
 
 	constructor (
-		_af: AngularFire,
+		_db: AngularFireDatabase,
 		_modalService: ModalService
 	) {
-		super(_af, _modalService);
+		super(_db, _modalService);
 	}
 }

@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { AngularFire } from 'angularfire2';
+import { AngularFireDatabase } from 'angularfire2/database';
 
 import { ModalService } from '../../../modal/modal.service';
 import { Field } from '../../../shared/models/field.model';
@@ -7,7 +7,7 @@ import { EducationFields } from './education.model';
 import { FBList } from '../fb-list.class';
 
 @Component({
-	selector: 'cv-education',
+	selector: 'app-education',
 	templateUrl: './education.component.html',
 	styleUrls: ['./education.component.scss'],
 	encapsulation: ViewEncapsulation.None
@@ -18,9 +18,9 @@ export class EducationComponent extends FBList {
 	public emptyItemValue: string = 'Empty education item: Click to edit.';
 
 	constructor (
-		_af: AngularFire,
+		_db: AngularFireDatabase,
 		_modalService: ModalService
 	) {
-		super(_af, _modalService);
+		super(_db, _modalService);
 	}
 }

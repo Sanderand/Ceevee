@@ -10,7 +10,6 @@ import { TextAreaDirective } from './directives/text-area/text-area.directive';
 import { SplitPipe } from './pipes/split.pipe';
 import { WhenPipe } from './pipes/when.pipe';
 import { CVListComponent } from './components/cv-list/cv-list.component';
-import { CVSelectComponent } from './components/cv-select/cv-select.component';
 
 @NgModule({
 	declarations: [
@@ -19,7 +18,6 @@ import { CVSelectComponent } from './components/cv-select/cv-select.component';
 		TextAreaDirective,
 
 		CVListComponent,
-		CVSelectComponent,
 
 		SplitPipe,
 		WhenPipe
@@ -30,7 +28,6 @@ import { CVSelectComponent } from './components/cv-select/cv-select.component';
 		TextAreaDirective,
 
 		CVListComponent,
-		CVSelectComponent,
 
 		SplitPipe,
 		WhenPipe

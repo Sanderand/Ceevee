@@ -1,7 +1,7 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core';
 
 @Component({
-	selector: 'cv-list',
+	selector: 'app-list',
 	templateUrl: './cv-list.component.html',
 	styleUrls: ['./cv-list.component.scss'],
 	encapsulation: ViewEncapsulation.None

@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { AngularFire } from 'angularfire2';
+import { AngularFireDatabase } from 'angularfire2/database';
 
 import { ModalService } from '../../../modal/modal.service';
 import { Field } from '../../../shared/models/field.model';
@@ -7,7 +7,7 @@ import { FeedbackFields } from './feedback.model';
 import { FBList } from '../fb-list.class';
 
 @Component({
-	selector: 'cv-feedback',
+	selector: 'app-feedback',
 	templateUrl: './feedback.component.html',
 	styleUrls: ['./feedback.component.scss'],
 	encapsulation: ViewEncapsulation.None
@@ -18,9 +18,9 @@ export class FeedbackComponent extends FBList {
 	protected _fields: Array<Field> = FeedbackFields;
 
 	constructor (
-		_af: AngularFire,
+		_db: AngularFireDatabase,
 		_modalService: ModalService
 	) {
-		super(_af, _modalService);
+		super(_db, _modalService);
 	}
 }

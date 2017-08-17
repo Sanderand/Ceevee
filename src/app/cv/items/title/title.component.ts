@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation, HostBinding } from '@angular/core';
-import { AngularFire } from 'angularfire2';
+import { AngularFireDatabase } from 'angularfire2/database';
 
 import { ModalService } from '../../../modal/modal.service';
 import { Field } from '../../../shared/models/field.model';
@@ -7,7 +7,7 @@ import { TitleFields } from './title.model';
 import { FBObject } from '../fb-object.class';
 
 @Component({
-	selector: 'cv-title',
+	selector: 'app-title',
 	templateUrl: './title.component.html',
 	styleUrls: ['./title.component.scss'],
 	encapsulation: ViewEncapsulation.None
@@ -18,9 +18,9 @@ export class TitleComponent extends FBObject {
 	protected _fields: Array<Field> = TitleFields;
 
 	constructor (
-		_af: AngularFire,
+		_db: AngularFireDatabase,
 		_modalService: ModalService
 	) {
-		super(_af, _modalService);
+		super(_db, _modalService);
 	}
 }

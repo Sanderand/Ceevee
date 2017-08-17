@@ -1,3 +1,5 @@
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -19,6 +21,9 @@ import { AuthTileComponent } from './auth-tile.component';
 		FormsModule,
 		CommonModule,
 		RouterModule,
+
+		AngularFireDatabaseModule,
+		AngularFireAuthModule,
 
 		SharedModule
 	]

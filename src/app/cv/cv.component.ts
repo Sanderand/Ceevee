@@ -4,7 +4,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Component, HostBinding, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FONT_SIZE_CHANGE_STEP, MAX_FONT_SIZE, MIN_FONT_SIZE } from '../shared/constants/constants';
 
-import { AngularFire } from 'angularfire2';
 import { AuthService } from '../auth/auth.service';
 import { CVService } from './cv.service';
 import { DropdownComponent } from '../shared/components/dropdown/dropdown.component';
@@ -18,7 +17,7 @@ import { SectionTypes } from './section-types.config';
 import 'rxjs/add/Operator/map';
 
 @Component({
-	selector: 'cv-cv',
+	selector: 'app-cv',
 	templateUrl: './cv.component.html',
 	styleUrls: ['./cv.component.scss', './andre.theme.scss'],
 	encapsulation: ViewEncapsulation.None
@@ -48,7 +47,6 @@ export class CVComponent implements OnInit, OnDestroy {
 	private _uuid = generateUUID();
 
 	constructor (
-		private _af: AngularFire,
 		private _authService: AuthService,
 		private _cvService: CVService,
 		private _route: ActivatedRoute,

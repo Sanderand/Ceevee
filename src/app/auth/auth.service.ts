@@ -1,9 +1,10 @@
-import { AngularFire } from 'angularfire2';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { PHOTO_PLACEHOLDER_URL } from '../shared/constants/constants';
 import { Router } from '@angular/router';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireDatabase } from 'angularfire2/database';
 
 import 'rxjs/add/Operator/distinctUntilChanged';
 import 'rxjs/add/Operator/filter';
@@ -15,10 +16,11 @@ export class AuthService {
 	public isLoggedIn$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
 	constructor (
-		private _af: AngularFire,
+		private _auth: AngularFireAuth,
+		private _db: AngularFireDatabase,
 		private _router: Router
 	) {
-		this._af.auth
+		this._auth.authState
 			.distinctUntilChanged()
 			.subscribe(user => {
 				if (this.user$.getValue() && !user) {
@@ -30,7 +32,7 @@ export class AuthService {
 	}
 
 	public login (): void {
-		this._af.auth.login()
+		this._auth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
 			.then(() => this.user$
 				.filter(Boolean)
 				.first()
@@ -41,7 +43,7 @@ export class AuthService {
 	}
 
 	public logout (): void {
-		this._af.auth.logout();
+		this._auth.auth.signOut();
 	}
 
 	private onLoggedOut = (): void => {
@@ -52,7 +54,7 @@ export class AuthService {
 
 	private onLoggedIn = (user): void => {
 		this.isLoggedIn$.next(true);
-		this._af.database.object(`/users/${ user.uid }`)
+		this._db.object(`/users/${ user.uid }`)
 			.first()
 			.subscribe(userData => this.user$.next({
 				uid: user.uid,

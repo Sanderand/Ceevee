@@ -1,6 +1,6 @@
 import * as firebase from 'firebase';
 
-import { AngularFire } from 'angularfire2';
+import { AngularFireDatabase } from 'angularfire2/database';
 import { AuthService } from '../auth/auth.service';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
@@ -14,7 +14,7 @@ import 'rxjs/add/Operator/switchMap';
 @Injectable()
 export class CVService {
 	constructor (
-		private _af: AngularFire,
+		private _db: AngularFireDatabase,
 		private _authService: AuthService
 	) {}
 
@@ -22,26 +22,26 @@ export class CVService {
 		return this._authService.user$
 			.filter(user => user && user.uid)
 			.distinctUntilChanged()
-			.switchMap(user => this._af.database.list(`/cvs/${ user.uid }`));
+			.switchMap(user => this._db.list(`/cvs/${ user.uid }`));
 	}
 
 	public getCv (cid: string): Observable<any> {
 		return this._authService.user$
 			.filter(user => user && user.uid)
 			.distinctUntilChanged()
-			.switchMap(user => this._af.database.object(`/cvs/${ user.uid }/${ cid }`));
+			.switchMap(user => this._db.object(`/cvs/${ user.uid }/${ cid }`));
 	}
 
 	public getCvSections (cid: string): Observable<any> {
 		return this._authService.user$
 			.filter(user => user && user.uid)
 			.distinctUntilChanged()
-			.switchMap(user => this._af.database.list(`/sections/${ user.uid }/${ cid }`));
+			.switchMap(user => this._db.list(`/sections/${ user.uid }/${ cid }`));
 	}
 
 	public addCV (title: string): void {
 		const uid = this.getUserId();
-		this._af.database.list(`/cvs/${ uid }`).push({
+		this._db.list(`/cvs/${ uid }`).push({
 			title,
 			_created: firebase.database.ServerValue.TIMESTAMP
 		});
@@ -51,11 +51,11 @@ export class CVService {
 		const uid = this.getUserId();
 
 		if (!fontFamily || fontFamily === 'null') {
-			this._af.database
+			this._db
 				.object(`/cvs/${ uid }/${ cid }/fontFamily`)
 				.remove();
 		} else {
-			this._af.database
+			this._db
 				.object(`/cvs/${ uid }/${ cid }`)
 				.update({
 					fontFamily
@@ -66,7 +66,7 @@ export class CVService {
 	public updateCVFontSize (cid: string, fontSize: number): void {
 		const uid = this.getUserId();
 
-		this._af.database
+		this._db
 			.object(`/cvs/${ uid }/${ cid }`)
 			.update({
 				fontSize
@@ -75,12 +75,12 @@ export class CVService {
 
 	public addCvSection (cid: string, section: any): void {
 		const uid = this.getUserId();
-		this._af.database.list(`/sections/${ uid }/${ cid }`).push(section);
+		this._db.list(`/sections/${ uid }/${ cid }`).push(section);
 	}
 
 	public renameCv (cid: string, data: { title: string, description: string }): void {
 		const uid = this.getUserId();
-		this._af.database.object(`/cvs/${ uid }/${ cid }`).update(data);
+		this._db.object(`/cvs/${ uid }/${ cid }`).update(data);
 	}
 
 	public removeCV (cid: string): void {
@@ -88,18 +88,18 @@ export class CVService {
 		// note: how to delete a cv
 		// 1. remove section
 		// 2. if successfull, remove cv meta data
-		this._af.database.object(`/sections/${ uid }/${ cid }`).remove().then(() => {
-			this._af.database.object(`/cvs/${ uid }/${ cid }`).remove();
+		this._db.object(`/sections/${ uid }/${ cid }`).remove().then(() => {
+			this._db.object(`/cvs/${ uid }/${ cid }`).remove();
 		});
 	}
 
 	public duplicateCV (cid: string): void {
 		const uid = this.getUserId();
-		this._af.database.object(`/cvs/${ uid }/${ cid }`)
-			.combineLatest(this._af.database.list(`/sections/${ uid }/${ cid }`))
+		this._db.object(`/cvs/${ uid }/${ cid }`)
+			.combineLatest(this._db.list(`/sections/${ uid }/${ cid }`))
 			.first()
 			.subscribe(([cv, sections]) => {
-				this._af.database.list(`/cvs/${ uid }`).push({
+				this._db.list(`/cvs/${ uid }`).push({
 					title: `${ cv.title } Copy`,
 					description: cv.description,
 					_created: firebase.database.ServerValue.TIMESTAMP

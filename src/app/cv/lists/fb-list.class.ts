@@ -1,4 +1,4 @@
-import { AngularFire, FirebaseListObservable } from 'angularfire2';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 
 import { Field } from '../../shared/models/field.model';
@@ -19,7 +19,7 @@ export class FBList implements OnInit, OnChanges, OnDestroy {
 	protected _fields: Array<Field>;
 
 	constructor (
-		private _af: AngularFire,
+		private _db: AngularFireDatabase,
 		private _modalService: ModalService
 	) {}
 
@@ -34,7 +34,7 @@ export class FBList implements OnInit, OnChanges, OnDestroy {
 		const { path } = changes;
 
 		if (path && path.currentValue) {
-			this.items$ = this._af.database.list(`${ this.path }/data`);
+			this.items$ = this._db.list(`${ this.path }/data`);
 		}
 	}
 
@@ -79,7 +79,7 @@ export class FBList implements OnInit, OnChanges, OnDestroy {
 			return;
 		}
 
-		this._af.database.object(this.path).remove();
+		this._db.object(this.path).remove();
 	}
 
 	public isEmptyItem (item): boolean {

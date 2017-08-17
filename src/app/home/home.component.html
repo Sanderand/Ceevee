@@ -1,5 +1,5 @@
-<cv-landing
-	*ngIf="!(isLoggedIn$ | async)"></cv-landing>
+<app-landing
+	*ngIf="!(isLoggedIn$ | async)"></app-landing>
 
-<cv-dashboard
-	*ngIf="(isLoggedIn$ | async)"></cv-dashboard>
+<app-dashboard
+	*ngIf="(isLoggedIn$ | async)"></app-dashboard>

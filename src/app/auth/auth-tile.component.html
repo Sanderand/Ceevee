@@ -4,7 +4,7 @@
 		(click)="openDropdown($event)"
 		[src]="(user | async)?.photo || PHOTO_PLACEHOLDER_URL">
 
-	<cv-dropdown
+	<app-dropdown
 		#dropdown
 		closeOnScroll="true">
 		<a
@@ -30,5 +30,5 @@
 			class="item text-danger">
 			Log out
 		</a>
-	</cv-dropdown>
+	</app-dropdown>
 </div>

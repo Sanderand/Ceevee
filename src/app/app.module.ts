@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { AngularFire, AngularFireModule } from 'angularfire2';
+import { AngularFireModule } from 'angularfire2';
 
 import { AppComponent } from './app.component';
 
@@ -20,7 +20,7 @@ import { CVService } from './cv/cv.service';
 import { ProfileEditModule } from './profile-edit/profile-edit.module';
 import { SharedModule } from './shared/shared.module';
 
-import { FIREBASE_ATUH_CONFIG, FIREBASE_CONFIG } from './shared/constants/constants';
+import { environment } from '../environments/environment';
 
 @NgModule({
 	declarations: [
@@ -31,7 +31,7 @@ import { FIREBASE_ATUH_CONFIG, FIREBASE_CONFIG } from './shared/constants/consta
 		FormsModule,
 		CommonModule,
 		RouterModule,
-		AngularFireModule.initializeApp(FIREBASE_CONFIG, FIREBASE_ATUH_CONFIG),
+		AngularFireModule.initializeApp(environment.firebase),
 
 		AppRoutingModule,
 		AuthModule,
@@ -43,8 +43,6 @@ import { FIREBASE_ATUH_CONFIG, FIREBASE_CONFIG } from './shared/constants/consta
 		SharedModule
 	],
 	providers: [
-		AngularFire,
-
 		ModalService,
 		AuthService,
 		CVService

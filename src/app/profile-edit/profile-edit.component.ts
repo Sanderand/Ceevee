@@ -2,13 +2,13 @@ import * as firebase from 'firebase';
 
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 
-import { AngularFire } from 'angularfire2';
+import { AngularFireDatabase } from 'angularfire2/database';
 import { AuthService } from '../auth/auth.service';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs/Subject';
 
 @Component({
-	selector: 'cv-profile-edit',
+	selector: 'app-profile-edit',
 	templateUrl: './profile-edit.component.html',
 	styleUrls: ['./profile-edit.component.scss'],
 	encapsulation: ViewEncapsulation.None
@@ -22,7 +22,7 @@ export class ProfileEditComponent implements OnInit, OnDestroy {
 
 	constructor (
 		private _authService: AuthService,
-		private _af: AngularFire
+		private _db: AngularFireDatabase
 	) {}
 
 	public ngOnInit (): void {
@@ -50,7 +50,7 @@ export class ProfileEditComponent implements OnInit, OnDestroy {
 			return;
 		}
 
-		this._af.database.object(`/users/${ this.user.uid }`).update({
+		this._db.object(`/users/${ this.user.uid }`).update({
 			name: newName,
 			_updated: firebase.database.ServerValue.TIMESTAMP
 		}).then(() => {
@@ -114,7 +114,7 @@ export class ProfileEditComponent implements OnInit, OnDestroy {
 	private saveNewPhoto (dataUrl): void {
 		this.newPhoto = dataUrl;
 
-		this._af.database.object(`/users/${ this.user.uid }`).update({
+		this._db.object(`/users/${ this.user.uid }`).update({
 			photo: dataUrl,
 			_updated: firebase.database.ServerValue.TIMESTAMP
 		}).then(() => {

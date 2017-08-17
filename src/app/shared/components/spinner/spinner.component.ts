@@ -1,7 +1,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 
 @Component({
-	selector: 'cv-spinner',
+	selector: 'app-spinner',
 	templateUrl: './spinner.component.html',
 	styleUrls: ['./spinner.component.scss'],
 	encapsulation: ViewEncapsulation.None

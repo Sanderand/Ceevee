@@ -6,7 +6,7 @@ import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/Operator/takeUntil';
 
 @Component({
-	selector: 'cv-modal',
+	selector: 'app-modal',
 	templateUrl: './modal.component.html',
 	styleUrls: ['./modal.component.scss'],
 	encapsulation: ViewEncapsulation.None

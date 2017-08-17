@@ -1,6 +1,6 @@
 import { HostListener, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 
-import { AngularFire } from 'angularfire2';
+import { AngularFireDatabase } from 'angularfire2/database';
 import { Field } from '../../shared/models/field.model';
 import { ModalService } from '../../modal/modal.service';
 import { Observable } from 'rxjs/Observable';
@@ -17,7 +17,7 @@ export class FBObject implements OnInit, OnChanges, OnDestroy {
 	private _uuid = generateUUID();
 
 	constructor (
-		private _af: AngularFire,
+		private _db: AngularFireDatabase,
 		private _modalService: ModalService
 	) {}
 
@@ -63,9 +63,9 @@ export class FBObject implements OnInit, OnChanges, OnDestroy {
 
 	private onModalClosed (newData): void {
 		if (newData) {
-			this._af.database.object(`${ this.path }/data`).update(newData);
+			this._db.object(`${ this.path }/data`).update(newData);
 		} else {
-			this._af.database.object(`${ this.path }`).remove();
+			this._db.object(`${ this.path }`).remove();
 		}
 	}
 
