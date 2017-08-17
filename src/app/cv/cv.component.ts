@@ -132,6 +132,15 @@ export class CVComponent implements OnInit, OnDestroy {
 		this.dropdown.open = true;
 	}
 
+	public openPrintDialog ($event: Event): void {
+		$event.stopPropagation();
+		this.dropdown.open = false;
+
+		setTimeout(() => {
+			window.print();
+		});
+	}
+
 	public renameCV ($event): void {
 		$event.stopPropagation();
 		this.dropdown.open = false;
