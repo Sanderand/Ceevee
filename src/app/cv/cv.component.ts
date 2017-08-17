@@ -61,6 +61,7 @@ export class CVComponent implements OnInit, OnDestroy {
 		this.sections$ = this._cvService.getCvSections(this.cid);
 
 		this.basePath$ = this._authService.user$
+			.filter(Boolean)
 			.map(user => `sections/${ user.uid }/${ this.cid }/`);
 
 		this._modalService.close$

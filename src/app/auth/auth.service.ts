@@ -5,6 +5,7 @@ import { PHOTO_PLACEHOLDER_URL } from '../shared/constants/constants';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
+import * as firebase from 'firebase';
 
 import 'rxjs/add/Operator/distinctUntilChanged';
 import 'rxjs/add/Operator/filter';
