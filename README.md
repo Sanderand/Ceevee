@@ -1,6 +1,6 @@
 # Ceevee
 
-<img src="https://media.giphy.com/media/3ohnEFSIKWqRYTGTu0/giphy.gif">
+![A gif of Ceevee running](https://media.giphy.com/media/3ohnEFSIKWqRYTGTu0/giphy.gif)
 
 Try a running version right [here](ceevee.andresander.com). 
 
