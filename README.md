@@ -29,6 +29,31 @@ CVs can be freely structured using the following section types:
 
 A user can print a CV or export it as PDF right from Ceevee. Additionally users can change Fonts and text sizes to optimize the appearance of their particular CV(s).
 
+## How to get your own copy running
+
+- Clone this repository
+- Setup a firebase project
+- Create the following files `src/environments/environment.ts` and `src/environments/environment.prod.ts` with the below contents
+- Install angular cli globally. I'm running `1.4.5`. Then run `npm i`
+- `ng serve`
+- Go to `localhost:4200`
+
+### Put this in the environment files
+
+```
+export const environment = {
+	production: false,
+	firebase: {
+		apiKey: '<YOUR_FIREBASE_API_KEY>',
+		authDomain: '<YOUR_FIREBASE_AUTH_DOMAIN>',
+		databaseURL: '<YOUR_FIREBASE_DATABASE_URL>',
+		projectId: '<YOUR_FIREBASE_PROJECT_ID>',
+		storageBucket: '<YOUR_FIREBASE_STORAGE_BUCKET>',
+		messagingSenderId: '<YOUR_FIREBASE_MESSAGING_SENDER_ID>'
+	}
+};
+```
+
 ## Future work and ideas
 
 - Multiple themes to choose from
