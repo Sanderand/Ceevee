@@ -1,6 +1,6 @@
 # Ceevee
 
-![A gif of Ceevee running][http://www.giphy.com/gifs/3ohnEFSIKWqRYTGTu0]
+<img src="https://media.giphy.com/media/3ohnEFSIKWqRYTGTu0/giphy.gif">
 
 Try a running version right [here](ceevee.andresander.com). 
 
@@ -41,6 +41,7 @@ A user can print a CV or export it as PDF right from Ceevee. Additionally users 
 ## More techical stuff
 
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.28.3.
+
 - Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 - Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
 - Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
