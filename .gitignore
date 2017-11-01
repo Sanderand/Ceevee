@@ -2,6 +2,7 @@
 
 # stuffs
 /functions/node_modules
+/src/environments/
 
 # compiled output
 /dist
