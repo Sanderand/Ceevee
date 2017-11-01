@@ -2,7 +2,7 @@
 
 ![A gif of Ceevee running](https://media.giphy.com/media/3ohnEFSIKWqRYTGTu0/giphy.gif)
 
-Try a running version right [here](ceevee.andresander.com). 
+Try a running version right [here](http://ceevee.andresander.com). 
 
 ## Why is this here?
 
