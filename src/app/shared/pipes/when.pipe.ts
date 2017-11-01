@@ -1,5 +1,12 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { differenceInYears, differenceInMonths, differenceInWeeks, differenceInDays, differenceInHours, differenceInMinutes } from 'date-fns';
+import {
+	differenceInYears,
+	differenceInMonths,
+	differenceInWeeks,
+	differenceInDays,
+	differenceInHours,
+	differenceInMinutes
+} from 'date-fns';
 
 @Pipe({
 	name: 'when'

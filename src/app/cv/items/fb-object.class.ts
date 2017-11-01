@@ -70,7 +70,9 @@ export class FBObject implements OnInit, OnChanges, OnDestroy {
 	}
 
 	private getDataClone (): any {
+		// tslint:disable:prefer-const
 		let clone = {};
+		// tslint:enable:prefer-const
 
 		Object.keys(this.section.data || {})
 			.filter(key => key[0] !== '$')
