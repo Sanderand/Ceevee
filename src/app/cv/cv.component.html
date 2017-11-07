@@ -92,52 +92,52 @@
 		*ngFor="let section of (sections$ | async)">
 
 		<app-header
-			*ngIf="section.meta.type === 'HEADER'"
+			*ngIf="section?.meta?.type === 'HEADER'"
 			[path]="(basePath$ | async) + section.$key"
 			[section]="section"
-			[style.order]="section.meta.order">
+			[style.order]="section?.meta?.order">
 		</app-header>
 
 		<app-title
-			*ngIf="section.meta.type === 'TITLE'"
+			*ngIf="section?.meta?.type === 'TITLE'"
 			[path]="(basePath$ | async) + section.$key"
 			[section]="section"
-			[style.order]="section.meta.order">
+			[style.order]="section?.meta?.order">
 		</app-title>
 
 		<app-text
-			*ngIf="section.meta.type === 'TEXT'"
+			*ngIf="section?.meta?.type === 'TEXT'"
 			[path]="(basePath$ | async) + section.$key"
 			[section]="section"
-			[style.order]="section.meta.order">
+			[style.order]="section?.meta?.order">
 		</app-text>
 
 		<app-education
-			*ngIf="section.meta.type === 'EDUCATION'"
+			*ngIf="section?.meta?.type === 'EDUCATION'"
 			[path]="(basePath$ | async) + section.$key"
 			[section]="section"
-			[style.order]="section.meta.order">
+			[style.order]="section?.meta?.order">
 		</app-education>
 
 		<app-experience
-			*ngIf="section.meta.type === 'EXPERIENCE'"
+			*ngIf="section?.meta?.type === 'EXPERIENCE'"
 			[path]="(basePath$ | async) + section.$key"
 			[section]="section"
-			[style.order]="section.meta.order">
+			[style.order]="section?.meta?.order">
 		</app-experience>
 
 		<app-skills
-			*ngIf="section.meta.type === 'SKILLS'"
+			*ngIf="section?.meta?.type === 'SKILLS'"
 			[path]="(basePath$ | async) + section.$key"
 			[section]="section"
-			[style.order]="section.meta.order">
+			[style.order]="section?.meta?.order">
 		</app-skills>
 
 		<app-feedback
-			*ngIf="section.meta.type === 'FEEDBACK'"
+			*ngIf="section?.meta?.type === 'FEEDBACK'"
 			[path]="(basePath$ | async) + section.$key"
 			[section]="section"
-			[style.order]="section.meta.order">
+			[style.order]="section?.meta?.order">
 		</app-feedback>
 	</section>
 

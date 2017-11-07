@@ -1,15 +1,16 @@
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { PHOTO_PLACEHOLDER_URL } from '../shared/constants/constants';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
 import * as firebase from 'firebase';
 
-import 'rxjs/add/Operator/distinctUntilChanged';
-import 'rxjs/add/Operator/filter';
-import 'rxjs/add/Operator/first';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/filter';
+import 'rxjs/add/operator/first';
+
+import { PHOTO_PLACEHOLDER_URL } from '../shared/constants/constants';
 
 @Injectable()
 export class AuthService {
@@ -55,13 +56,23 @@ export class AuthService {
 
 	private onLoggedIn = (user): void => {
 		this.isLoggedIn$.next(true);
-		this._db.object(`/users/${ user.uid }`)
+		this._db.object(`/users/${ user.uid }`).valueChanges()
 			.first()
-			.subscribe(userData => this.user$.next({
-				uid: user.uid,
-				photo: userData.photo || PHOTO_PLACEHOLDER_URL,
-				name: userData.name || user.google.displayName.split(' ')[0],
-				_updated: userData._updated
-			}));
+			.subscribe((userData: any) => {
+				if (userData) {
+					this.user$.next({
+						uid: user.uid,
+						photo: userData.photo || PHOTO_PLACEHOLDER_URL,
+						name: userData.name || user.displayName.split(' ')[0],
+						_updated: userData._updated
+					});
+				} else {
+					this.user$.next({
+						uid: user.uid,
+						photo: PHOTO_PLACEHOLDER_URL,
+						name: user.displayName.split(' ')[0]
+					});
+				}
+			});
 	}
 }

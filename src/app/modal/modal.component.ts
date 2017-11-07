@@ -3,7 +3,7 @@ import { Component, HostBinding, HostListener, OnDestroy, OnInit, ViewEncapsulat
 import { ModalService } from './modal.service';
 import { Subject } from 'rxjs/Subject';
 
-import 'rxjs/add/Operator/takeUntil';
+import 'rxjs/add/operator/takeUntil';
 
 @Component({
 	selector: 'app-modal',

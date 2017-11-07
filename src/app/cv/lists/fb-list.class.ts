@@ -1,16 +1,18 @@
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
 
 import { Field } from '../../shared/models/field.model';
 import { ModalService } from '../../modal/modal.service';
-import { Subject } from 'rxjs/Subject';
 import { generateUUID } from '../../shared/helpers/math.helpers';
+import { firebaseListMap } from '../../shared/helpers/firebase.helpers';
 
 export class FBList implements OnInit, OnChanges, OnDestroy {
 	@Input() public section: any;
 	@Input() public path: string;
 
-	public items$: FirebaseListObservable<any>;
+	public items$: Observable<any>;
 
 	private _uuid = generateUUID();
 	private _keyInModal: string;
@@ -34,7 +36,9 @@ export class FBList implements OnInit, OnChanges, OnDestroy {
 		const { path } = changes;
 
 		if (path && path.currentValue) {
-			this.items$ = this._db.list(`${ this.path }/data`);
+			this.items$ = this._db.list(`${ this.path }/data`)
+				.snapshotChanges()
+				.map(firebaseListMap);
 		}
 	}
 
@@ -58,14 +62,16 @@ export class FBList implements OnInit, OnChanges, OnDestroy {
 
 	public onModalClosed (data): void {
 		if (data) {
+			delete data.$key;
+
 			if (this._keyInModal) {
-				this.items$.update(this._keyInModal, data);
+				this._db.list(`${ this.path }/data`).update(this._keyInModal, data);
 			} else {
-				this.items$.push(data);
+				this._db.list(`${ this.path }/data`).push(data);
 			}
 		} else {
 			if (this._keyInModal) {
-				this.items$.remove(this._keyInModal);
+				this._db.list(`${ this.path }/data`).remove(this._keyInModal);
 			} else {
 				// NOTE: A new item got cancelled: do nothing
 			}

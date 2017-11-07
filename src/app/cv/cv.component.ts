@@ -14,7 +14,7 @@ import { generateUUID } from '../shared/helpers/math.helpers';
 import { restrictRange } from '../shared/helpers/math.helpers';
 import { SectionTypes } from './section-types.config';
 
-import 'rxjs/add/Operator/map';
+import 'rxjs/add/operator/map';
 
 @Component({
 	selector: 'app-cv',
@@ -180,8 +180,8 @@ export class CVComponent implements OnInit, OnDestroy {
 		}
 
 		this._cvService.renameCv(this.cid, {
-			title: res.data.title,
-			description: res.data.description
+			title: res.data.title || 'Unnamed CV',
+			description: res.data.description || ''
 		});
 	}
 }

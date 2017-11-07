@@ -61,9 +61,10 @@ export class FBObject implements OnInit, OnChanges, OnDestroy {
 			});
 	}
 
-	private onModalClosed (newData): void {
-		if (newData) {
-			this._db.object(`${ this.path }/data`).update(newData);
+	private onModalClosed (data): void {
+		if (data) {
+			delete data.$key;
+			this._db.object(`${ this.path }/data`).update(data);
 		} else {
 			this._db.object(`${ this.path }`).remove();
 		}

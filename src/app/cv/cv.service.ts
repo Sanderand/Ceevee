@@ -1,15 +1,17 @@
+import { Injectable } from '@angular/core';
+import { AngularFireDatabase } from 'angularfire2/database';
 import * as firebase from 'firebase';
 
-import { AngularFireDatabase } from 'angularfire2/database';
-import { AuthService } from '../auth/auth.service';
-import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/combineLatest';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/filter';
+import 'rxjs/add/operator/first';
+import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/do';
 
-import 'rxjs/add/Operator/combineLatest';
-import 'rxjs/add/Operator/distinctUntilChanged';
-import 'rxjs/add/Operator/filter';
-import 'rxjs/add/Operator/first';
-import 'rxjs/add/Operator/switchMap';
+import { AuthService } from '../auth/auth.service';
+import { firebaseListMap, firebaseObjectMap } from '../shared/helpers/firebase.helpers';
 
 @Injectable()
 export class CVService {
@@ -22,21 +24,24 @@ export class CVService {
 		return this._authService.user$
 			.filter(user => user && user.uid)
 			.distinctUntilChanged()
-			.switchMap(user => this._db.list(`/cvs/${ user.uid }`));
+			.switchMap(user => this._db.list(`/cvs/${ user.uid }`).snapshotChanges())
+			.map(firebaseListMap);
 	}
 
 	public getCv (cid: string): Observable<any> {
 		return this._authService.user$
 			.filter(user => user && user.uid)
 			.distinctUntilChanged()
-			.switchMap(user => this._db.object(`/cvs/${ user.uid }/${ cid }`));
+			.switchMap(user => this._db.object(`/cvs/${ user.uid }/${ cid }`).snapshotChanges())
+			.map(firebaseObjectMap);
 	}
 
 	public getCvSections (cid: string): Observable<any> {
 		return this._authService.user$
 			.filter(user => user && user.uid)
 			.distinctUntilChanged()
-			.switchMap(user => this._db.list(`/sections/${ user.uid }/${ cid }`));
+			.switchMap(user => this._db.list(`/sections/${ user.uid }/${ cid }`).snapshotChanges())
+			.map(firebaseListMap);
 	}
 
 	public addCV (title: string): void {
@@ -95,15 +100,19 @@ export class CVService {
 
 	public duplicateCV (cid: string): void {
 		const uid = this.getUserId();
+
 		this._db.object(`/cvs/${ uid }/${ cid }`)
-			.combineLatest(this._db.list(`/sections/${ uid }/${ cid }`))
+			.valueChanges()
+			.combineLatest(this._db.list(`/sections/${ uid }/${ cid }`).valueChanges())
 			.first()
 			.subscribe(([cv, sections]) => {
-				this._db.list(`/cvs/${ uid }`).push({
-					title: `${ cv.title } Copy`,
-					description: cv.description,
+				const cvData = {
+					title: `${ (<any>cv).title } Copy`,
+					description: (<any>cv).description,
 					_created: firebase.database.ServerValue.TIMESTAMP
-				}).then(cvCopy => {
+				};
+
+				this._db.list(`/cvs/${ uid }`).push(cvData).then(cvCopy => {
 					sections.forEach(section => this.addCvSection(cvCopy.key, section));
 				});
 			});

@@ -36,7 +36,7 @@
 			class="right">
 			<a
 				*ngIf="item.institution"
-				[attr.href]="item.link"
+				[attr.href]="item.link || ''"
 				class="institution"
 				target="_blank">
 				{{ item.institution }}

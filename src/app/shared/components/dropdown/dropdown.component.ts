@@ -13,7 +13,7 @@ import {
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 
-import 'rxjs/add/Observable/fromEvent';
+import 'rxjs/add/observable/fromEvent';
 
 @Component({
 	selector: 'app-dropdown',
